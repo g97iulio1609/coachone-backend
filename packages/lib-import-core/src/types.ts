@@ -63,3 +63,35 @@ export const IMPORT_LIMITS = {
   MAX_FILE_SIZE: 8 * 1024 * 1024,
   RATE_LIMIT_PER_HOUR: 30,
 };
+
+/**
+ * Import context for request tracking
+ */
+export interface ImportContext {
+  /** Unique request identifier */
+  requestId: string;
+  /** User performing the import */
+  userId: string;
+}
+
+/**
+ * Base result shape that all domain results must extend
+ */
+export interface BaseImportResult {
+  success: boolean;
+  errors?: string[];
+  warnings?: string[];
+}
+
+/**
+ * Configuration for import services
+ */
+export interface ImportServiceConfig<TParsed> {
+  /** AI context for parsing files */
+  aiContext: AIParseContext<TParsed>;
+  /** Optional progress callback */
+  onProgress?: (progress: ImportProgress) => void;
+  /** Request context for logging */
+  context: ImportContext;
+}
+

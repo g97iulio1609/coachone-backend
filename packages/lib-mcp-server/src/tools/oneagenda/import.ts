@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import type { McpTool, McpContext } from '../../types';
 import { IMPORT_LIMITS } from '@onecoach/lib-import-core';
+import { randomUUID } from 'crypto';
 import { OneAgendaImportService, createOneAgendaAIContext } from '../../services/oneagenda';
 
 const importFileSchema = z.object({
@@ -30,12 +31,13 @@ export const oneAgendaImportTool: McpTool<OneAgendaImportParams> = {
     }
 
     const { files } = oneAgendaImportParamsSchema.parse(args);
+    const requestId = randomUUID();
     const service = new OneAgendaImportService({
       aiContext: createOneAgendaAIContext(),
       onProgress: (progress) => {
         console.log(`[OneAgendaImport] ${progress.step}: ${progress.message}`);
       },
-      context: { userId: context.userId },
+      context: { userId: context.userId, requestId },
     });
 
     const result = await service.import(files, context.userId, {});

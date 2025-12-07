@@ -14,42 +14,12 @@ import type {
     ImportProgress,
     ImportProgressStep,
     AIParseContext,
+    ImportContext,
+    BaseImportResult,
+    ImportServiceConfig,
 } from './types';
 import { IMPORT_LIMITS } from './types';
 import { createMimeRouter } from './mime-router';
-
-// ==================== TYPES ====================
-
-/**
- * Import context for request tracking
- */
-export interface ImportContext {
-    /** Unique request identifier */
-    requestId: string;
-    /** User performing the import */
-    userId: string;
-}
-
-/**
- * Base result shape that all domain results must extend
- */
-export interface BaseImportResult {
-    success: boolean;
-    errors?: string[];
-    warnings?: string[];
-}
-
-/**
- * Configuration for import services
- */
-export interface ImportServiceConfig<TParsed> {
-    /** AI context for parsing files */
-    aiContext: AIParseContext<TParsed>;
-    /** Optional progress callback */
-    onProgress?: (progress: ImportProgress) => void;
-    /** Request context for logging */
-    context: ImportContext;
-}
 
 // ==================== ABSTRACT BASE CLASS ====================
 

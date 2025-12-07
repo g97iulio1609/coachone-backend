@@ -1,13 +1,14 @@
 import type { Prisma } from '@prisma/client';
 import { prisma } from '@onecoach/lib-core/prisma';
-import { logger } from '@onecoach/lib-shared/utils/logger';
 import type {
   AIParseContext,
-  ImportFile,
   ImportOptions,
-  ImportProgress,
+  BaseImportResult,
 } from '@onecoach/lib-import-core';
-import { IMPORT_LIMITS, createMimeRouter, parseWithVisionAI } from '@onecoach/lib-import-core';
+import {
+  BaseImportService,
+  parseWithVisionAI,
+} from '@onecoach/lib-import-core';
 import type {
   ImportedOneAgenda,
   ImportedProject,
@@ -16,124 +17,117 @@ import type {
 } from './imported-oneagenda.schema';
 import { ImportedOneAgendaSchema } from './imported-oneagenda.schema';
 
-export type OneAgendaImportResult = {
-  success: boolean;
+export interface OneAgendaImportResult extends BaseImportResult {
   projectIds?: string[];
   habitIds?: string[];
-  warnings?: string[];
-  errors?: string[];
   parseResult?: ImportedOneAgenda;
-};
+}
 
-type Context = { requestId?: string; userId: string };
+/**
+ * Service for importing OneAgenda data (projects, tasks, habits).
+ * Extends BaseImportService for standardized workflow.
+ */
+export class OneAgendaImportService extends BaseImportService<ImportedOneAgenda, OneAgendaImportResult> {
+  protected getLoggerName(): string {
+    return 'OneAgendaImport';
+  }
 
-export class OneAgendaImportService {
-  constructor(
-    private readonly params: {
-      aiContext: AIParseContext<ImportedOneAgenda>;
-      onProgress?: (progress: ImportProgress) => void;
-      context: Context;
+  protected buildPrompt(_options?: Partial<ImportOptions>): string {
+    return `Analizza il file (progetti/attività/abitudini) e restituisci SOLO JSON con struttura:
+{
+  "projects": [
+    {
+      "title": string,
+      "description": string,
+      "status": "ACTIVE" | "COMPLETED" | "ARCHIVED" | "ON_HOLD",
+      "dueDate": ISO string,
+      "color": string,
+      "tasks": [
+        {
+          "title": string,
+          "description": string,
+          "status": "TODO" | "IN_PROGRESS" | "COMPLETED" | "BLOCKED" | "CANCELLED",
+          "priority": "LOW" | "MEDIUM" | "HIGH" | "CRITICAL",
+          "dueDate": ISO string,
+          "subtasks": [ ...nested tasks... ]
+        }
+      ]
     }
-  ) {}
-
-  private emit(progress: ImportProgress) {
-    if (this.params.onProgress) this.params.onProgress(progress);
-  }
-
-  private validateFiles(files: ImportFile[]) {
-    if (files.length === 0) throw new Error('Almeno un file richiesto');
-    if (files.length > IMPORT_LIMITS.MAX_FILES)
-      throw new Error(`Massimo ${IMPORT_LIMITS.MAX_FILES} file`);
-    for (const file of files) {
-      if (file.size && file.size > IMPORT_LIMITS.MAX_FILE_SIZE) {
-        throw new Error('File troppo grande');
-      }
+  ],
+  "tasks": [ same schema as tasks, used when non è specificato un progetto ],
+  "habits": [
+    {
+      "title": string,
+      "description": string,
+      "frequency": "DAILY" | "WEEKLY",
+      "color": string
     }
+  ]
+}
+Regole:
+- Mantieni gerarchia di task (subtasks).
+- Se il file contiene solo task senza progetto, mettili in "tasks".
+- Usa date in formato ISO (YYYY-MM-DD o ISO 8601) se presenti.
+- Non aggiungere testo extra, solo JSON valido.`;
   }
 
-  private buildRouter() {
-    const prompt = buildOneAgendaPrompt();
-    const handler = async (content: string, mimeType: string) =>
-      this.params.aiContext.parseWithAI(content, mimeType, prompt);
-
-    return createMimeRouter<ImportedOneAgenda>({
-      image: handler,
-      pdf: handler,
-      spreadsheet: handler,
-      document: handler,
-      fallback: handler,
-    });
-  }
-
-  async import(
-    files: ImportFile[],
-    userId: string,
+  protected async processParsed(
+    parsed: ImportedOneAgenda,
+    _userId: string,
     _options?: Partial<ImportOptions>
-  ): Promise<OneAgendaImportResult> {
-    this.emit({ step: 'validating', message: 'Validazione file' });
-    this.validateFiles(files);
+  ): Promise<ImportedOneAgenda> {
+    // No complex post-processing needed for OneAgenda
+    // Logic for normalization is handled during persistence
+    return parsed;
+  }
 
-    const warnings: string[] = [];
-    const errors: string[] = [];
+  protected async persist(
+    processed: unknown,
+    userId: string
+  ): Promise<Partial<OneAgendaImportResult>> {
+    const parseResult = processed as ImportedOneAgenda;
+    const projectIds: string[] = [];
+    const habitIds: string[] = [];
 
-    try {
-      const router = this.buildRouter();
-      const file = files[0];
-      if (!file) {
-        throw new Error("Nessun file fornito per l'import");
+    await prisma.$transaction(async (tx) => {
+      // Projects + tasks
+      for (const project of parseResult.projects || []) {
+        const projectId = await this.persistProject(tx, userId, project);
+        projectIds.push(projectId);
       }
 
-      this.emit({ step: 'parsing', message: 'Parsing AI', progress: 0.25 });
-      const parseResult = await router(file.content, file.mimeType || 'application/octet-stream');
+      // Standalone tasks -> fallback project
+      if (parseResult.tasks && parseResult.tasks.length > 0) {
+        const fallbackProjectId = await this.persistProject(tx, userId, {
+          title: 'Imported Tasks',
+          description: 'Tasks importati via AI',
+          tasks: parseResult.tasks,
+        });
+        projectIds.push(fallbackProjectId);
+      }
 
-      const projectIds: string[] = [];
-      const habitIds: string[] = [];
+      // Habits
+      for (const habit of parseResult.habits || []) {
+        const habitId = await this.persistHabit(tx, userId, habit);
+        habitIds.push(habitId);
+      }
+    });
 
-      this.emit({ step: 'persisting', message: 'Salvataggio dati', progress: 0.7 });
-      await prisma.$transaction(async (tx) => {
-        // Projects + tasks
-        for (const project of parseResult.projects || []) {
-          const projectId = await this.persistProject(tx, userId, project);
-          projectIds.push(projectId);
-        }
-
-        // Standalone tasks -> fallback project
-        if (parseResult.tasks && parseResult.tasks.length > 0) {
-          const fallbackProjectId = await this.persistProject(tx, userId, {
-            title: 'Imported Tasks',
-            description: 'Tasks importati via AI',
-            tasks: parseResult.tasks,
-          });
-          projectIds.push(fallbackProjectId);
-        }
-
-        // Habits
-        for (const habit of parseResult.habits || []) {
-          const habitId = await this.persistHabit(tx, userId, habit);
-          habitIds.push(habitId);
-        }
-      });
-
-      this.emit({ step: 'completed', message: 'Import completato', progress: 1 });
-
-      return {
-        success: true,
-        projectIds,
-        habitIds,
-        warnings,
-        parseResult,
-      };
-    } catch (error) {
-      const message = error instanceof Error ? error.message : 'Errore sconosciuto';
-      logger.error('OneAgenda import failed', {
-        userId,
-        message,
-        requestId: this.params.context.requestId,
-      });
-      errors.push(message);
-      return { success: false, errors };
-    }
+    return {
+      projectIds,
+      habitIds,
+      parseResult,
+    };
   }
+
+  protected createErrorResult(errors: string[]): Partial<OneAgendaImportResult> {
+    return {
+      success: false,
+      errors,
+    };
+  }
+
+  // ==================== HELPERS ====================
 
   private async persistProject(
     tx: Prisma.TransactionClient,
@@ -224,6 +218,8 @@ export function createOneAgendaAIContext(): AIParseContext<ImportedOneAgenda> {
   };
 }
 
+// ==================== NORMALIZERS ====================
+
 function normalizeProjectStatus(status?: string): 'ACTIVE' | 'COMPLETED' | 'ARCHIVED' | 'ON_HOLD' {
   if (!status) return 'ACTIVE';
   const upper = status.toUpperCase();
@@ -260,43 +256,4 @@ function normalizeHabitFrequency(frequency?: string): 'DAILY' | 'WEEKLY' {
     return upper as 'DAILY' | 'WEEKLY';
   }
   return 'DAILY';
-}
-
-function buildOneAgendaPrompt(): string {
-  return `Analizza il file (progetti/attività/abitudini) e restituisci SOLO JSON con struttura:
-{
-  "projects": [
-    {
-      "title": string,
-      "description": string,
-      "status": "ACTIVE" | "COMPLETED" | "ARCHIVED" | "ON_HOLD",
-      "dueDate": ISO string,
-      "color": string,
-      "tasks": [
-        {
-          "title": string,
-          "description": string,
-          "status": "TODO" | "IN_PROGRESS" | "COMPLETED" | "BLOCKED" | "CANCELLED",
-          "priority": "LOW" | "MEDIUM" | "HIGH" | "CRITICAL",
-          "dueDate": ISO string,
-          "subtasks": [ ...nested tasks... ]
-        }
-      ]
-    }
-  ],
-  "tasks": [ same schema as tasks, used when non è specificato un progetto ],
-  "habits": [
-    {
-      "title": string,
-      "description": string,
-      "frequency": "DAILY" | "WEEKLY",
-      "color": string
-    }
-  ]
-}
-Regole:
-- Mantieni gerarchia di task (subtasks).
-- Se il file contiene solo task senza progetto, mettili in "tasks".
-- Usa date in formato ISO (YYYY-MM-DD o ISO 8601) se presenti.
-- Non aggiungere testo extra, solo JSON valido.`;
 }

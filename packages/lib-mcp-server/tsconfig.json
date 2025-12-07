@@ -6,26 +6,67 @@
     "tsBuildInfoFile": "dist/tsconfig.tsbuildinfo",
     "baseUrl": ".",
     "paths": {
-      "@onecoach/types": ["../types/dist/index.d.ts"],
-      "@onecoach/types/*": ["../types/dist/*.d.ts"],
-      "@onecoach/schemas": ["../schemas/dist/index.d.ts"],
-      "@onecoach/schemas/*": ["../schemas/dist/*"],
-      "@onecoach/lib-core": ["../lib-core/dist/index.d.ts"],
-      "@onecoach/lib-core/*": ["../lib-core/dist/*"],
-      "@onecoach/lib-core/prisma": ["../lib-core/dist/prisma.d.ts"],
-      "@onecoach/lib-shared": ["../lib-shared/dist/index.d.ts"],
-      "@onecoach/lib-shared/*": ["../lib-shared/dist/*"],
-      "@onecoach/lib-shared/utils/logger": ["../lib-shared/dist/utils/logger/index.d.ts"],
-      "@onecoach/lib-workout": ["../lib-workout/dist/index.d.ts"],
-      "@onecoach/lib-workout/*": ["../lib-workout/dist/*"],
-      "@onecoach/lib-import-core": ["./src/stubs/lib-import-core.d.ts"],
-      "@onecoach/lib-nutrition": ["./src/stubs/lib-nutrition.d.ts"],
-      "@onecoach/lib-food": ["./src/stubs/lib-food.d.ts"],
-      "@onecoach/lib-food/*": ["./src/stubs/lib-food.d.ts"],
-      "@onecoach/lib-exercise": ["./src/stubs/lib-exercise.d.ts"],
-      "@onecoach/lib-exercise/*": ["./src/stubs/lib-exercise.d.ts"]
+      "@onecoach/types": [
+        "../types/dist/index.d.ts"
+      ],
+      "@onecoach/types/*": [
+        "../types/dist/*.d.ts"
+      ],
+      "@onecoach/schemas": [
+        "../schemas/dist/index.d.ts"
+      ],
+      "@onecoach/schemas/*": [
+        "../schemas/dist/*"
+      ],
+      "@onecoach/lib-core": [
+        "../lib-core/dist/index.d.ts"
+      ],
+      "@onecoach/lib-core/*": [
+        "../lib-core/dist/*"
+      ],
+      "@onecoach/lib-core/prisma": [
+        "../lib-core/dist/prisma.d.ts"
+      ],
+      "@onecoach/lib-shared": [
+        "../lib-shared/dist/index.d.ts"
+      ],
+      "@onecoach/lib-shared/*": [
+        "../lib-shared/dist/*"
+      ],
+      "@onecoach/lib-shared/utils/logger": [
+        "../lib-shared/dist/utils/logger/index.d.ts"
+      ],
+      "@onecoach/lib-workout": [
+        "../lib-workout/dist/index.d.ts"
+      ],
+      "@onecoach/lib-workout/*": [
+        "../lib-workout/dist/*"
+      ],
+      "@onecoach/lib-import-core": [
+        "../lib-import-core/src/index.ts"
+      ],
+      "@onecoach/lib-nutrition": [
+        "./src/stubs/lib-nutrition.d.ts"
+      ],
+      "@onecoach/lib-food": [
+        "./src/stubs/lib-food.d.ts"
+      ],
+      "@onecoach/lib-food/*": [
+        "./src/stubs/lib-food.d.ts"
+      ],
+      "@onecoach/lib-exercise": [
+        "./src/stubs/lib-exercise.d.ts"
+      ],
+      "@onecoach/lib-exercise/*": [
+        "./src/stubs/lib-exercise.d.ts"
+      ]
     }
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }

@@ -131,6 +131,12 @@
       "@onecoach/lib-ai-utils/*": [
         "./packages/lib-ai-utils/src/*"
       ],
+      "@onecoach/lib-import-core": [
+        "./packages/lib-import-core/src/index.ts"
+      ],
+      "@onecoach/lib-import-core/*": [
+        "./packages/lib-import-core/src/*"
+      ],
       "@onecoach/lib-marketplace": [
         "./packages/lib-marketplace/src/index.ts"
       ],

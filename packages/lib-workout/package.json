@@ -79,6 +79,7 @@
     "@onecoach/constants": "workspace:*",
     "@onecoach/contracts": "workspace:*",
     "@onecoach/lib-core": "workspace:*",
+    "@onecoach/lib-import-core": "workspace:*",
     "@onecoach/lib-shared": "workspace:*",
     "@onecoach/lib-ai": "workspace:*",
     "@onecoach/lib-ai-agents": "workspace:*",

@@ -2,6 +2,7 @@ import { z } from 'zod';
 import type { McpTool, McpContext } from '../../types';
 import { NutritionImportService, createNutritionAIContext } from '@onecoach/lib-nutrition';
 import { IMPORT_LIMITS } from '@onecoach/lib-import-core';
+import { randomUUID } from 'crypto';
 
 const importFileSchema = z.object({
   name: z.string(),
@@ -39,12 +40,13 @@ export const nutritionImportTool: McpTool<NutritionImportParams> = {
     }
 
     const { files, options } = nutritionImportParamsSchema.parse(args);
+    const requestId = randomUUID();
     const importService = new NutritionImportService({
       aiContext: createNutritionAIContext(),
       onProgress: (progress) => {
         console.log(`[NutritionImport] ${progress.step}: ${progress.message}`);
       },
-      context: { userId: context.userId },
+      context: { userId: context.userId, requestId },
     });
 
     const result = await importService.import(files, context.userId, options as ImportOptions);
