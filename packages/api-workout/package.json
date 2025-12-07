@@ -1,0 +1,21 @@
+{
+  "name": "@OneCoach/api-workout",
+  "version": "0.0.0",
+  "description": "API routes per il dominio workout",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@OneCoach/contracts": "workspace:*",
+    "@OneCoach/schemas": "workspace:*",
+    "@OneCoach/lib-registry": "workspace:*",
+    "@OneCoach/lib-workout": "workspace:*",
+    "next": "^16.0.6"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "sideEffects": false
+}
