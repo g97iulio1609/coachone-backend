@@ -12,8 +12,4 @@ import type { WorkoutProgram } from '@OneCoach/types';
  * @param baseProgram - Base program data (optional)
  * @returns Normalized workout program with calculated weights
  */
-export declare function normalizeWithWeightCalculation(
-  rawPayload: unknown,
-  userId?: string,
-  baseProgram?: Partial<WorkoutProgram>
-): Promise<WorkoutProgram>;
+export declare function normalizeWithWeightCalculation(rawPayload: unknown, userId?: string, baseProgram?: Partial<WorkoutProgram>): Promise<WorkoutProgram>;

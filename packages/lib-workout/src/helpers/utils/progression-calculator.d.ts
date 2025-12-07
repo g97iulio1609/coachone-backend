@@ -7,11 +7,7 @@ import type { ExerciseSet, SetProgression, SetGroup } from '@OneCoach/types';
 /**
  * Applica una progressione a una serie base in base al numero della serie
  */
-export declare function applyProgression(
-  baseSet: ExerciseSet,
-  progression: SetProgression,
-  setNumber: number
-): ExerciseSet;
+export declare function applyProgression(baseSet: ExerciseSet, progression: SetProgression, setNumber: number): ExerciseSet;
 /**
  * Genera tutte le serie da un gruppo applicando la progressione se presente
  */

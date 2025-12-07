@@ -17,37 +17,37 @@ let edgeConfigClient = null;
  * Ottiene il client Edge Config (singleton pattern)
  */
 function getClient() {
-  if (edgeConfigClient) {
-    return edgeConfigClient;
-  }
-  const connectionString = process.env.EDGE_CONFIG;
-  if (!connectionString) {
-    throw new Error(
-      'EDGE_CONFIG environment variable is not set. Please configure Edge Config in Vercel Dashboard.'
-    );
-  }
-  try {
-    edgeConfigClient = createClient(connectionString);
-    return edgeConfigClient;
-  } catch (error) {
-    logError('Failed to create Edge Config client', error);
-    throw new Error('Failed to initialize Edge Config client');
-  }
+    if (edgeConfigClient) {
+        return edgeConfigClient;
+    }
+    const connectionString = process.env.EDGE_CONFIG;
+    if (!connectionString) {
+        throw new Error('EDGE_CONFIG environment variable is not set. Please configure Edge Config in Vercel Dashboard.');
+    }
+    try {
+        edgeConfigClient = createClient(connectionString);
+        return edgeConfigClient;
+    }
+    catch (error) {
+        logError('Failed to create Edge Config client', error);
+        throw new Error('Failed to initialize Edge Config client');
+    }
 }
 /**
  * Estrae l'ID del config dalla connection string
  */
 function extractConfigId(connectionString) {
-  try {
-    const url = new URL(connectionString);
-    const configId = url.pathname.split('/').filter(Boolean).pop();
-    if (!configId) {
-      throw new Error('Invalid EDGE_CONFIG format');
+    try {
+        const url = new URL(connectionString);
+        const configId = url.pathname.split('/').filter(Boolean).pop();
+        if (!configId) {
+            throw new Error('Invalid EDGE_CONFIG format');
+        }
+        return configId;
     }
-    return configId;
-  } catch (_error) {
-    throw new Error('Invalid EDGE_CONFIG format. Expected URL with config ID.');
-  }
+    catch (_error) {
+        throw new Error('Invalid EDGE_CONFIG format. Expected URL with config ID.');
+    }
 }
 /**
  * Valida le variabili d'ambiente necessarie per operazioni di scrittura
@@ -57,43 +57,39 @@ function extractConfigId(connectionString) {
  * - VERCEL_API_TOKEN: Token API Vercel generale (usato solo dagli script di setup)
  */
 function validateWriteEnv() {
-  const authToken = process.env.EDGE_CONFIG_AUTH_TOKEN;
-  const connectionString = process.env.EDGE_CONFIG;
-  if (!authToken) {
-    throw new Error(
-      'EDGE_CONFIG_AUTH_TOKEN is not set. Required for write operations. ' +
-        'Configure it in Vercel Dashboard > Project Settings > Environment Variables.'
-    );
-  }
-  if (!connectionString) {
-    throw new Error(
-      'EDGE_CONFIG is not set. Edge Config connection string is required. ' +
-        'It should be automatically added when Edge Config is created in Vercel Dashboard.'
-    );
-  }
-  return { authToken, configId: extractConfigId(connectionString) };
+    const authToken = process.env.EDGE_CONFIG_AUTH_TOKEN;
+    const connectionString = process.env.EDGE_CONFIG;
+    if (!authToken) {
+        throw new Error('EDGE_CONFIG_AUTH_TOKEN is not set. Required for write operations. ' +
+            'Configure it in Vercel Dashboard > Project Settings > Environment Variables.');
+    }
+    if (!connectionString) {
+        throw new Error('EDGE_CONFIG is not set. Edge Config connection string is required. ' +
+            'It should be automatically added when Edge Config is created in Vercel Dashboard.');
+    }
+    return { authToken, configId: extractConfigId(connectionString) };
 }
 /**
  * Esegue una richiesta PATCH all'API Vercel per aggiornare Edge Config
  */
 async function patchEdgeConfigItems(configId, authToken, items) {
-  const response = await fetch(`https://api.vercel.com/v1/edge-config/${configId}/items`, {
-    method: 'PATCH',
-    headers: {
-      Authorization: `Bearer ${authToken}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ items }),
-  });
-  if (!response.ok) {
-    const errorText = await response.text();
-    logError('Failed to update Edge Config', {
-      status: response.status,
-      statusText: response.statusText,
-      error: errorText,
+    const response = await fetch(`https://api.vercel.com/v1/edge-config/${configId}/items`, {
+        method: 'PATCH',
+        headers: {
+            Authorization: `Bearer ${authToken}`,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ items }),
     });
-    throw new Error(`Failed to update Edge Config: ${response.statusText}`);
-  }
+    if (!response.ok) {
+        const errorText = await response.text();
+        logError('Failed to update Edge Config', {
+            status: response.status,
+            statusText: response.statusText,
+            error: errorText,
+        });
+        throw new Error(`Failed to update Edge Config: ${response.statusText}`);
+    }
 }
 // ============================================================================
 // Public API - Lettura
@@ -102,25 +98,27 @@ async function patchEdgeConfigItems(configId, authToken, items) {
  * Legge un valore da Edge Config
  */
 export async function getEdgeConfigValue(key) {
-  try {
-    const client = getClient();
-    return await client.get(key);
-  } catch (error) {
-    logError(`Failed to get Edge Config value for key: ${key}`, error);
-    return undefined;
-  }
+    try {
+        const client = getClient();
+        return await client.get(key);
+    }
+    catch (error) {
+        logError(`Failed to get Edge Config value for key: ${key}`, error);
+        return undefined;
+    }
 }
 /**
  * Legge tutti i valori da Edge Config
  */
 export async function getAllEdgeConfigValues() {
-  try {
-    const client = getClient();
-    return (await client.getAll()) || {};
-  } catch (error) {
-    logError('Failed to get all Edge Config values', error);
-    return {};
-  }
+    try {
+        const client = getClient();
+        return (await client.getAll()) || {};
+    }
+    catch (error) {
+        logError('Failed to get all Edge Config values', error);
+        return {};
+    }
 }
 // ============================================================================
 // Public API - Scrittura
@@ -129,53 +127,52 @@ export async function getAllEdgeConfigValues() {
  * Aggiorna un valore in Edge Config
  */
 export async function setEdgeConfigValue(key, value) {
-  try {
-    const { authToken, configId } = validateWriteEnv();
-    await patchEdgeConfigItems(configId, authToken, [{ operation: 'update', key, value }]);
-    return { success: true };
-  } catch (error) {
-    logError(`Failed to set Edge Config value for key: ${key}`, error);
-    return {
-      success: false,
-      error: error instanceof Error ? error.message : 'Unknown error',
-    };
-  }
+    try {
+        const { authToken, configId } = validateWriteEnv();
+        await patchEdgeConfigItems(configId, authToken, [{ operation: 'update', key, value }]);
+        return { success: true };
+    }
+    catch (error) {
+        logError(`Failed to set Edge Config value for key: ${key}`, error);
+        return {
+            success: false,
+            error: error instanceof Error ? error.message : 'Unknown error',
+        };
+    }
 }
 /**
  * Aggiorna multiple valori in Edge Config
  */
 export async function setEdgeConfigValues(items) {
-  try {
-    const { authToken, configId } = validateWriteEnv();
-    await patchEdgeConfigItems(
-      configId,
-      authToken,
-      items.map((item) => ({ operation: 'update', key: item.key, value: item.value }))
-    );
-    return { success: true };
-  } catch (error) {
-    logError('Failed to set multiple Edge Config values', error);
-    return {
-      success: false,
-      error: error instanceof Error ? error.message : 'Unknown error',
-    };
-  }
+    try {
+        const { authToken, configId } = validateWriteEnv();
+        await patchEdgeConfigItems(configId, authToken, items.map((item) => ({ operation: 'update', key: item.key, value: item.value })));
+        return { success: true };
+    }
+    catch (error) {
+        logError('Failed to set multiple Edge Config values', error);
+        return {
+            success: false,
+            error: error instanceof Error ? error.message : 'Unknown error',
+        };
+    }
 }
 /**
  * Elimina un valore da Edge Config
  */
 export async function deleteEdgeConfigValue(key) {
-  try {
-    const { authToken, configId } = validateWriteEnv();
-    await patchEdgeConfigItems(configId, authToken, [{ operation: 'delete', key }]);
-    return { success: true };
-  } catch (error) {
-    logError(`Failed to delete Edge Config value for key: ${key}`, error);
-    return {
-      success: false,
-      error: error instanceof Error ? error.message : 'Unknown error',
-    };
-  }
+    try {
+        const { authToken, configId } = validateWriteEnv();
+        await patchEdgeConfigItems(configId, authToken, [{ operation: 'delete', key }]);
+        return { success: true };
+    }
+    catch (error) {
+        logError(`Failed to delete Edge Config value for key: ${key}`, error);
+        return {
+            success: false,
+            error: error instanceof Error ? error.message : 'Unknown error',
+        };
+    }
 }
 // ============================================================================
 // Service Object (per compatibilità con API routes esistenti)
@@ -185,29 +182,29 @@ export async function deleteEdgeConfigValue(key) {
  * Wrapper per compatibilità con codice esistente
  */
 export const edgeConfigService = {
-  async get(key) {
-    return getEdgeConfigValue(key);
-  },
-  async getAll() {
-    return getAllEdgeConfigValues();
-  },
-  async set(key, value) {
-    const result = await setEdgeConfigValue(key, value);
-    if (!result.success) {
-      throw new Error(result.error || 'Failed to set Edge Config value');
-    }
-  },
-  async setMany(items) {
-    const itemsArray = Object.entries(items).map(([key, value]) => ({ key, value }));
-    const result = await setEdgeConfigValues(itemsArray);
-    if (!result.success) {
-      throw new Error(result.error || 'Failed to set Edge Config values');
-    }
-  },
-  async delete(key) {
-    const result = await deleteEdgeConfigValue(key);
-    if (!result.success) {
-      throw new Error(result.error || 'Failed to delete Edge Config value');
-    }
-  },
+    async get(key) {
+        return getEdgeConfigValue(key);
+    },
+    async getAll() {
+        return getAllEdgeConfigValues();
+    },
+    async set(key, value) {
+        const result = await setEdgeConfigValue(key, value);
+        if (!result.success) {
+            throw new Error(result.error || 'Failed to set Edge Config value');
+        }
+    },
+    async setMany(items) {
+        const itemsArray = Object.entries(items).map(([key, value]) => ({ key, value }));
+        const result = await setEdgeConfigValues(itemsArray);
+        if (!result.success) {
+            throw new Error(result.error || 'Failed to set Edge Config values');
+        }
+    },
+    async delete(key) {
+        const result = await deleteEdgeConfigValue(key);
+        if (!result.success) {
+            throw new Error(result.error || 'Failed to delete Edge Config value');
+        }
+    },
 };

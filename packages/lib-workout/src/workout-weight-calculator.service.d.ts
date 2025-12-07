@@ -19,16 +19,10 @@ export declare function calculateSetWeights(set: ExerciseSet, oneRepMaxKg: numbe
  * @param program - Programma di allenamento
  * @returns Programma con pesi calcolati
  */
-export declare function calculateWeightsInProgram(
-  userId: string,
-  program: WorkoutProgram
-): Promise<WorkoutProgram>;
+export declare function calculateWeightsInProgram(userId: string, program: WorkoutProgram): Promise<WorkoutProgram>;
 /**
  * Aggiorna tutti i programmi attivi dell'utente quando viene inserito/aggiornato un 1RM
  * @param userId - ID dell'utente
  * @param catalogExerciseId - ID dell'esercizio nel catalogo per cui è stato inserito/aggiornato l'1RM
  */
-export declare function updateProgramWeightsForExerciseId(
-  userId: string,
-  catalogExerciseId: string
-): Promise<void>;
+export declare function updateProgramWeightsForExerciseId(userId: string, catalogExerciseId: string): Promise<void>;

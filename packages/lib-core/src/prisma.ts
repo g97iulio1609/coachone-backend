@@ -8,7 +8,8 @@
  * Use dynamic imports when needed in server-side code that may be bundled with client code.
  */
 
-import 'server-only';
+// Note: 'server-only' import removed due to Turbopack bundler issues
+// This file is inherently server-only due to Node.js dependencies (pg, @prisma/client)
 
 import { PrismaClient } from '@prisma/client';
 import { PrismaPg } from '@prisma/adapter-pg';

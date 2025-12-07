@@ -4,10 +4,7 @@
  * Funzioni per normalizzare dati workout programs da formati vari
  */
 import { DifficultyLevel, WorkoutStatus } from '@OneCoach/types/client';
-import type {
-  workout_programs as PrismaWorkoutProgram,
-  workout_program_versions as PrismaWorkoutProgramVersion,
-} from '@prisma/client';
+import type { workout_programs as PrismaWorkoutProgram, workout_program_versions as PrismaWorkoutProgramVersion } from '@prisma/client';
 import type { WorkoutDay, WorkoutProgram, WorkoutWeek } from '@OneCoach/types';
 type RawJson = Record<string, unknown>;
 /**
@@ -37,7 +34,5 @@ export declare function normalizeMetadata(value: unknown): Record<string, unknow
 /**
  * Normalizza un workout program completo da Prisma
  */
-export declare function normalizeWorkoutProgram(
-  program: PrismaWorkoutProgram | PrismaWorkoutProgramVersion
-): WorkoutProgram;
+export declare function normalizeWorkoutProgram(program: PrismaWorkoutProgram | PrismaWorkoutProgramVersion): WorkoutProgram;
 export {};

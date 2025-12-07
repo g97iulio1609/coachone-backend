@@ -6,13 +6,13 @@
 import type { Session } from 'next-auth';
 import type { UserRole } from '@prisma/client';
 export type AuthenticatedUser = {
-  id: string;
-  email: string;
-  name: string | null;
-  role: UserRole;
-  credits: number;
-  image?: string | null;
-  copilotEnabled: boolean;
+    id: string;
+    email: string;
+    name: string | null;
+    role: UserRole;
+    credits: number;
+    image?: string | null;
+    copilotEnabled: boolean;
 };
 /**
  * Ottiene la sessione corrente (server-side)

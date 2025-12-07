@@ -24,11 +24,8 @@ export declare function validateBodyPartsByName(names: string[]): Promise<string
  * @param name - Exercise type name to validate
  * @param sharedContext - Optional shared context from OneAgent SDK to avoid duplicate creation across parallel batches
  */
-export declare function validateExerciseTypeByName(
-  name: string,
-  sharedContext?: {
+export declare function validateExerciseTypeByName(name: string, sharedContext?: {
     metadata?: {
-      createdExerciseTypes?: Record<string, string>;
+        createdExerciseTypes?: Record<string, string>;
     };
-  }
-): Promise<string | null>;
+}): Promise<string | null>;

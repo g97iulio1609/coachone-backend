@@ -1,0 +1,44 @@
+{
+    "name": "@OneCoach/lib-ai-utils",
+    "version": "0.0.0",
+    "description": "Shared AI utilities for CoachOne backend",
+    "main": "src/index.ts",
+    "types": "src/index.ts",
+    "exports": {
+        ".": {
+            "types": "./src/index.ts",
+            "default": "./src/index.ts"
+        },
+        "./json-parser": {
+            "types": "./src/json-parser.ts",
+            "default": "./src/json-parser.ts"
+        },
+        "./model-factory": {
+            "types": "./src/model-factory.ts",
+            "default": "./src/model-factory.ts"
+        },
+        "./response": {
+            "types": "./src/response.ts",
+            "default": "./src/response.ts"
+        },
+        "./constants": {
+            "types": "./src/constants.ts",
+            "default": "./src/constants.ts"
+        },
+        "./schemas/*": {
+            "types": "./src/schemas/*.ts",
+            "default": "./src/schemas/*.ts"
+        }
+    },
+    "scripts": {
+        "type-check": "tsc --noEmit"
+    },
+    "dependencies": {
+        "@ai-sdk/openai": "^1.3.22",
+        "ai": "^4.3.16"
+    },
+    "devDependencies": {
+        "typescript": "^5.9.3"
+    },
+    "sideEffects": false
+}

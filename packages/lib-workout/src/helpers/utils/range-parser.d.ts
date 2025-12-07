@@ -13,21 +13,21 @@
  * Risultato del parsing di un range
  */
 export interface ParsedRange {
-  min: number;
-  max?: number;
+    min: number;
+    max?: number;
 }
 /**
  * Opzioni per il parsing
  */
 export interface ParseRangeOptions {
-  /** Valore minimo consentito (default: 0) */
-  minValue?: number;
-  /** Valore massimo consentito (default: Infinity) */
-  maxValue?: number;
-  /** Consenti decimali (default: true) */
-  allowDecimals?: boolean;
-  /** Arrotonda a N decimali (default: 1) */
-  decimalPlaces?: number;
+    /** Valore minimo consentito (default: 0) */
+    minValue?: number;
+    /** Valore massimo consentito (default: Infinity) */
+    maxValue?: number;
+    /** Consenti decimali (default: true) */
+    allowDecimals?: boolean;
+    /** Arrotonda a N decimali (default: 1) */
+    decimalPlaces?: number;
 }
 /**
  * Parsifica un input range nel formato "min-max" o "valore"
@@ -48,10 +48,7 @@ export interface ParseRangeOptions {
  * parseRange("80") // { min: 80 }
  * parseRange("6.5-8.5", { decimalPlaces: 1 }) // { min: 6.5, max: 8.5 }
  */
-export declare function parseRange(
-  input: string | number | null | undefined,
-  options?: ParseRangeOptions
-): ParsedRange | null;
+export declare function parseRange(input: string | number | null | undefined, options?: ParseRangeOptions): ParsedRange | null;
 /**
  * Formatta un range in stringa "min-max" o "min"
  *
@@ -65,11 +62,7 @@ export declare function parseRange(
  * formatRange(80) // "80"
  * formatRange(6.5, 8.5) // "6.5-8.5"
  */
-export declare function formatRange(
-  min: number | null | undefined,
-  max?: number | null,
-  decimalPlaces?: number
-): string;
+export declare function formatRange(min: number | null | undefined, max?: number | null, decimalPlaces?: number): string;
 /**
  * Parsifica e ritorna i valori separati per min e max
  * Utile per aggiornare campi del database
@@ -82,11 +75,7 @@ export declare function formatRange(
  * parseRangeToFields("8-10", "reps")
  * // { reps: 8, repsMax: 10 }
  */
-export declare function parseRangeToFields<T extends string>(
-  input: string | number | null | undefined,
-  fieldName: T,
-  options?: ParseRangeOptions
-): Record<T | `${T}Max`, number | undefined> | null;
+export declare function parseRangeToFields<T extends string>(input: string | number | null | undefined, fieldName: T, options?: ParseRangeOptions): Record<T | `${T}Max`, number | undefined> | null;
 /**
  * Verifica se un input rappresenta un range (min ≠ max)
  */
@@ -107,9 +96,7 @@ export declare const RPE_OPTIONS: ParseRangeOptions;
 export declare const REST_OPTIONS: ParseRangeOptions;
 export declare const parseReps: (input: string | number | null | undefined) => ParsedRange | null;
 export declare const parseWeight: (input: string | number | null | undefined) => ParsedRange | null;
-export declare const parseIntensity: (
-  input: string | number | null | undefined
-) => ParsedRange | null;
+export declare const parseIntensity: (input: string | number | null | undefined) => ParsedRange | null;
 export declare const parseRPE: (input: string | number | null | undefined) => ParsedRange | null;
 export declare const parseRest: (input: string | number | null | undefined) => ParsedRange | null;
 export default parseRange;

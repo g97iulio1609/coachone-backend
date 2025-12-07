@@ -9,10 +9,7 @@
  * @param intensityPercent - Intensità percentuale (0-100)
  * @returns Peso calcolato in kg
  */
-export declare function calculateWeightFromIntensity(
-  oneRepMax: number,
-  intensityPercent: number
-): number;
+export declare function calculateWeightFromIntensity(oneRepMax: number, intensityPercent: number): number;
 /**
  * Calcola l'intensità percentuale da peso e 1RM
  * @param weight - Peso sollevato in kg
@@ -32,11 +29,7 @@ export declare function calculateIntensityFromWeight(weight: number, oneRepMax: 
  * // Per 5 reps a RPE 8 con 1RM di 100kg
  * calculateWeightFromRPE(100, 5, 8) // ~81.1kg
  */
-export declare function calculateWeightFromRPE(
-  oneRepMax: number,
-  reps: number,
-  rpe: number
-): number;
+export declare function calculateWeightFromRPE(oneRepMax: number, reps: number, rpe: number): number;
 /**
  * Calcola l'intensità percentuale da RPE e reps
  *
@@ -53,11 +46,7 @@ export declare function calculateIntensityFromRPE(reps: number, rpe: number): nu
  * @param reps - Numero di ripetizioni
  * @returns RPE stimato (6.5-10)
  */
-export declare function calculateRPEFromWeight(
-  weight: number,
-  oneRepMax: number,
-  reps: number
-): number;
+export declare function calculateRPEFromWeight(weight: number, oneRepMax: number, reps: number): number;
 /**
  * Calcola RPE da intensità e reps
  *
@@ -93,13 +82,13 @@ export declare function lbsToKg(lbs: number): number;
  * Ritorna i valori calcolati per weight, intensity, rpe
  */
 export interface SyncedValues {
-  weight?: number;
-  weightMax?: number;
-  weightLbs?: number;
-  intensityPercent?: number;
-  intensityPercentMax?: number;
-  rpe?: number;
-  rpeMax?: number;
+    weight?: number;
+    weightMax?: number;
+    weightLbs?: number;
+    intensityPercent?: number;
+    intensityPercentMax?: number;
+    rpe?: number;
+    rpeMax?: number;
 }
 export type FocusField = 'weight' | 'intensity' | 'rpe';
 /**
@@ -111,16 +100,11 @@ export type FocusField = 'weight' | 'intensity' | 'rpe';
  * @param oneRepMax - 1RM per i calcoli
  * @param reps - Reps per calcolo RPE (opzionale)
  */
-export declare function syncSetValues(
-  focusField: FocusField,
-  values: {
+export declare function syncSetValues(focusField: FocusField, values: {
     weight?: number | null;
     weightMax?: number | null;
     intensityPercent?: number | null;
     intensityPercentMax?: number | null;
     rpe?: number | null;
     rpeMax?: number | null;
-  },
-  oneRepMax?: number,
-  reps?: number
-): SyncedValues;
+}, oneRepMax?: number, reps?: number): SyncedValues;

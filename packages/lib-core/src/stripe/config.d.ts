@@ -9,8 +9,8 @@ import { CREDIT_PACK_OPTIONS, getCreditPackPriceId } from '@OneCoach/constants/c
  * Piani abbonamento
  */
 export declare const STRIPE_PLANS: {
-  plus: PlanPricing;
-  pro: PlanPricing;
+    plus: PlanPricing;
+    pro: PlanPricing;
 };
 /**
  * Pacchetti crediti
@@ -21,12 +21,12 @@ export { CREDIT_PACK_OPTIONS, getCreditPackPriceId };
  * Webhook events da gestire
  */
 export declare const STRIPE_WEBHOOK_EVENTS: {
-  readonly CHECKOUT_COMPLETED: 'checkout.session.completed';
-  readonly SUBSCRIPTION_CREATED: 'customer.subscription.created';
-  readonly SUBSCRIPTION_UPDATED: 'customer.subscription.updated';
-  readonly SUBSCRIPTION_DELETED: 'customer.subscription.deleted';
-  readonly INVOICE_PAID: 'invoice.paid';
-  readonly INVOICE_PAYMENT_FAILED: 'invoice.payment_failed';
-  readonly PAYMENT_INTENT_SUCCEEDED: 'payment_intent.succeeded';
-  readonly PAYMENT_INTENT_FAILED: 'payment_intent.payment_failed';
+    readonly CHECKOUT_COMPLETED: "checkout.session.completed";
+    readonly SUBSCRIPTION_CREATED: "customer.subscription.created";
+    readonly SUBSCRIPTION_UPDATED: "customer.subscription.updated";
+    readonly SUBSCRIPTION_DELETED: "customer.subscription.deleted";
+    readonly INVOICE_PAID: "invoice.paid";
+    readonly INVOICE_PAYMENT_FAILED: "invoice.payment_failed";
+    readonly PAYMENT_INTENT_SUCCEEDED: "payment_intent.succeeded";
+    readonly PAYMENT_INTENT_FAILED: "payment_intent.payment_failed";
 };

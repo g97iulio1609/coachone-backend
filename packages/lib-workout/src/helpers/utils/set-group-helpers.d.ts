@@ -34,11 +34,7 @@ export declare function generateSetGroupId(): string;
  *   steps: [{ fromSet: 1, toSet: 4, adjustment: 2.5 }]
  * });
  */
-export declare function expandSetsFromGroup(
-  baseSet: ExerciseSet,
-  count: number,
-  progression?: SetProgression
-): ExerciseSet[];
+export declare function expandSetsFromGroup(baseSet: ExerciseSet, count: number, progression?: SetProgression): ExerciseSet[];
 /**
  * Idrata tutti i SetGroup di un esercizio, popolando sets[] da baseSet + count.
  * Utile quando si caricano esercizi dal DB che hanno solo baseSet/count.
@@ -75,12 +71,9 @@ export declare function getExerciseSets(exercise: Exercise): ExerciseSet[];
  * @param baseSetParams - Parametri per la serie base
  * @returns SetGroup completo con sets[] espansi
  */
-export declare function createSetGroup(
-  count: number,
-  baseSetParams: Partial<ExerciseSet> & {
+export declare function createSetGroupFromParams(count: number, baseSetParams: Partial<ExerciseSet> & {
     rest: number;
-  }
-): SetGroup;
+}): SetGroup;
 /**
  * Aggiunge una progressione a un SetGroup esistente e rigenera sets[].
  *
@@ -88,10 +81,7 @@ export declare function createSetGroup(
  * @param progression - Progressione da applicare
  * @returns Nuovo SetGroup con progressione e sets[] aggiornati
  */
-export declare function addProgressionToSetGroup(
-  setGroup: SetGroup,
-  progression: SetProgression
-): SetGroup;
+export declare function addProgressionToSetGroup(setGroup: SetGroup, progression: SetProgression): SetGroup;
 /**
  * Calcola il volume totale di un SetGroup.
  * Volume = Σ(reps × weight) per ogni serie.

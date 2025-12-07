@@ -14,7 +14,7 @@ import { getAIProviderKey } from './env';
  * provides a simple fallback to static env vars for lib-config usage
  */
 export async function getDynamicAIProviderKey(provider) {
-  // For now, just use static env vars
-  // Edge Config access should be done through lib-core services
-  return getAIProviderKey(provider);
+    // For now, just use static env vars
+    // Edge Config access should be done through lib-core services
+    return getAIProviderKey(provider);
 }

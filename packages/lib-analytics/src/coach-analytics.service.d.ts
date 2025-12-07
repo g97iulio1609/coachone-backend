@@ -6,25 +6,25 @@
  */
 export type Period = '7d' | '30d' | '90d' | '1y';
 export interface SalesTrendPoint {
-  date: string;
-  sales: number;
+    date: string;
+    sales: number;
 }
 export interface RevenueTrendPoint {
-  date: string;
-  revenue: number;
+    date: string;
+    revenue: number;
 }
 export interface RatingTrendPoint {
-  date: string;
-  rating: number | null;
-  reviews: number;
+    date: string;
+    rating: number | null;
+    reviews: number;
 }
 export interface TopPlan {
-  planId: string;
-  title: string;
-  planType: 'WORKOUT' | 'NUTRITION';
-  sales: number;
-  revenue: number;
-  averageRating: number | null;
+    planId: string;
+    title: string;
+    planType: 'WORKOUT' | 'NUTRITION';
+    sales: number;
+    revenue: number;
+    averageRating: number | null;
 }
 /**
  * Get sales trends for a coach
@@ -33,17 +33,11 @@ export declare function getSalesTrends(userId: string, period?: Period): Promise
 /**
  * Get revenue trends for a coach
  */
-export declare function getRevenueTrends(
-  userId: string,
-  period?: Period
-): Promise<RevenueTrendPoint[]>;
+export declare function getRevenueTrends(userId: string, period?: Period): Promise<RevenueTrendPoint[]>;
 /**
  * Get rating trends for a coach
  */
-export declare function getRatingTrends(
-  userId: string,
-  period?: Period
-): Promise<RatingTrendPoint[]>;
+export declare function getRatingTrends(userId: string, period?: Period): Promise<RatingTrendPoint[]>;
 /**
  * Get top plans by sales
  */

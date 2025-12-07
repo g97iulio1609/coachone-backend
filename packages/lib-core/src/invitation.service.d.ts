@@ -1,116 +1,113 @@
 import { prisma } from './prisma';
 import { Prisma, InvitationType, InvitationStatus } from '@prisma/client';
 export interface CreateInvitationInput {
-  type: InvitationType;
-  maxUses?: number;
-  expiresAt?: Date;
-  createdById: string;
-  metadata?: Record<string, unknown>;
-  code?: string;
+    type: InvitationType;
+    maxUses?: number;
+    expiresAt?: Date;
+    createdById: string;
+    metadata?: Record<string, unknown>;
+    code?: string;
 }
 export interface InvitationValidationResult {
-  isValid: boolean;
-  invitation?: Awaited<ReturnType<typeof prisma.invitations.findUnique>>;
-  error?: string;
+    isValid: boolean;
+    invitation?: Awaited<ReturnType<typeof prisma.invitations.findUnique>>;
+    error?: string;
 }
 export declare class InvitationService {
-  /**
-   * Generate a unique invitation code
-   */
-  private static generateUniqueCode;
-  /**
-   * Create a new invitation
-   */
-  static createInvitation(input: CreateInvitationInput): Promise<{
-    id: string;
-    updatedAt: Date;
-    createdAt: Date;
-    status: import('@prisma/client').$Enums.InvitationStatus;
-    metadata: Prisma.JsonValue | null;
-    type: import('@prisma/client').$Enums.InvitationType;
-    expiresAt: Date | null;
-    createdById: string | null;
-    code: string;
-    maxUses: number;
-    usedCount: number;
-  }>;
-  /**
-   * Validate an invitation code
-   */
-  static validateInvitation(code: string): Promise<InvitationValidationResult>;
-  /**
-   * Use an invitation (to be called during registration)
-   */
-  static useInvitation(
-    code: string,
-    userId: string
-  ): Promise<{
-    id: string;
-    updatedAt: Date;
-    createdAt: Date;
-    status: import('@prisma/client').$Enums.InvitationStatus;
-    metadata: Prisma.JsonValue | null;
-    type: import('@prisma/client').$Enums.InvitationType;
-    expiresAt: Date | null;
-    createdById: string | null;
-    code: string;
-    maxUses: number;
-    usedCount: number;
-  }>;
-  /**
-   * Revoke an invitation
-   */
-  static revokeInvitation(id: string): Promise<{
-    id: string;
-    updatedAt: Date;
-    createdAt: Date;
-    status: import('@prisma/client').$Enums.InvitationStatus;
-    metadata: Prisma.JsonValue | null;
-    type: import('@prisma/client').$Enums.InvitationType;
-    expiresAt: Date | null;
-    createdById: string | null;
-    code: string;
-    maxUses: number;
-    usedCount: number;
-  }>;
-  /**
-   * Get invitations with filtering
-   */
-  static getInvitations(params: {
-    page?: number;
-    limit?: number;
-    status?: InvitationStatus;
-    type?: InvitationType;
-    search?: string;
-  }): Promise<{
-    items: ({
-      createdBy: {
-        name: string | null;
-        email: string;
-      } | null;
-      _count: {
-        uses: number;
-      };
-    } & {
-      id: string;
-      updatedAt: Date;
-      createdAt: Date;
-      status: import('@prisma/client').$Enums.InvitationStatus;
-      metadata: Prisma.JsonValue | null;
-      type: import('@prisma/client').$Enums.InvitationType;
-      expiresAt: Date | null;
-      createdById: string | null;
-      code: string;
-      maxUses: number;
-      usedCount: number;
-    })[];
-    total: number;
-    page: number;
-    limit: number;
-    totalPages: number;
-  }>;
-  /**
-   * Expire invitations that have passed their expiration date
-   */
-  static expireInvitations(): Promise<number>;
+    /**
+     * Generate a unique invitation code
+     */
+    private static generateUniqueCode;
+    /**
+     * Create a new invitation
+     */
+    static createInvitation(input: CreateInvitationInput): Promise<{
+        status: import("@prisma/client").$Enums.InvitationStatus;
+        metadata: Prisma.JsonValue | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        code: string;
+        expiresAt: Date | null;
+        type: import("@prisma/client").$Enums.InvitationType;
+        createdById: string | null;
+        maxUses: number;
+        usedCount: number;
+    }>;
+    /**
+     * Validate an invitation code
+     */
+    static validateInvitation(code: string): Promise<InvitationValidationResult>;
+    /**
+     * Use an invitation (to be called during registration)
+     */
+    static useInvitation(code: string, userId: string): Promise<{
+        status: import("@prisma/client").$Enums.InvitationStatus;
+        metadata: Prisma.JsonValue | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        code: string;
+        expiresAt: Date | null;
+        type: import("@prisma/client").$Enums.InvitationType;
+        createdById: string | null;
+        maxUses: number;
+        usedCount: number;
+    }>;
+    /**
+     * Revoke an invitation
+     */
+    static revokeInvitation(id: string): Promise<{
+        status: import("@prisma/client").$Enums.InvitationStatus;
+        metadata: Prisma.JsonValue | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        code: string;
+        expiresAt: Date | null;
+        type: import("@prisma/client").$Enums.InvitationType;
+        createdById: string | null;
+        maxUses: number;
+        usedCount: number;
+    }>;
+    /**
+     * Get invitations with filtering
+     */
+    static getInvitations(params: {
+        page?: number;
+        limit?: number;
+        status?: InvitationStatus;
+        type?: InvitationType;
+        search?: string;
+    }): Promise<{
+        items: ({
+            _count: {
+                uses: number;
+            };
+            createdBy: {
+                name: string | null;
+                email: string;
+            } | null;
+        } & {
+            status: import("@prisma/client").$Enums.InvitationStatus;
+            metadata: Prisma.JsonValue | null;
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            code: string;
+            expiresAt: Date | null;
+            type: import("@prisma/client").$Enums.InvitationType;
+            createdById: string | null;
+            maxUses: number;
+            usedCount: number;
+        })[];
+        total: number;
+        page: number;
+        limit: number;
+        totalPages: number;
+    }>;
+    /**
+     * Expire invitations that have passed their expiration date
+     */
+    static expireInvitations(): Promise<number>;
 }

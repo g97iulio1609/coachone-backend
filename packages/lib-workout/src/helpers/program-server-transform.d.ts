@@ -16,7 +16,4 @@ import type { WorkoutProgram } from '@OneCoach/types';
  *
  * IMPORTANT: This function is server-only and should only be called from API routes
  */
-export declare function normalizeAgentWorkoutPayload(
-  payload: unknown,
-  base?: Partial<WorkoutProgram>
-): Promise<WorkoutProgram>;
+export declare function normalizeAgentWorkoutPayload(payload: unknown, base?: Partial<WorkoutProgram>): Promise<WorkoutProgram>;

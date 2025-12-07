@@ -15,22 +15,20 @@
  */
 import { streamText, Output } from 'ai';
 import { AIProviderConfigService, PROVIDER_MAP } from '@onecoach/lib-ai/ai-provider-config';
-import {
-  AIFrameworkConfigService,
-  FrameworkFeature,
-} from '@onecoach/lib-ai/ai-framework-config.service';
+import { AIFrameworkConfigService, FrameworkFeature, } from '@onecoach/lib-ai/ai-framework-config.service';
 import { creditService } from '@OneCoach/lib-core/credit.service';
 import { prisma } from '@OneCoach/lib-core/prisma';
 import { parseJsonResponse } from '@onecoach/lib-ai-agents/utils/json-parser';
 import { TOKEN_LIMITS } from '@OneCoach/constants';
-import { ImportedWorkoutProgramSchema } from '../schemas/imported-workout.schema';
+import { ImportedWorkoutProgramSchema, } from '../schemas/imported-workout.schema';
 // ==================== LOGGING ====================
 function traceLog(message, context) {
-  if (context && Object.keys(context).length > 0) {
-    console.log('[WorkoutVision][trace]', message, context);
-  } else {
-    console.log('[WorkoutVision][trace]', message);
-  }
+    if (context && Object.keys(context).length > 0) {
+        console.log('[WorkoutVision][trace]', message, context);
+    }
+    else {
+        console.log('[WorkoutVision][trace]', message);
+    }
 }
 // ==================== PROMPTS ====================
 /**
@@ -256,20 +254,20 @@ Return ONLY valid JSON, no markdown or explanatory text.`;
  * Converte base64 in formato data URL
  */
 function base64ToDataUrl(base64, mimeType) {
-  const cleanBase64 = base64.replace(/^data:[^;]+;base64,/, '');
-  return `data:${mimeType};base64,${cleanBase64}`;
+    const cleanBase64 = base64.replace(/^data:[^;]+;base64,/, '');
+    return `data:${mimeType};base64,${cleanBase64}`;
 }
 /**
  * Delay asincrono per retry
  */
 function delay(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+    return new Promise((resolve) => setTimeout(resolve, ms));
 }
 /**
  * Calcola delay con exponential backoff
  */
 function getRetryDelay(attempt, baseMs) {
-  return baseMs * Math.pow(2, attempt);
+    return baseMs * Math.pow(2, attempt);
 }
 /**
  * Carica configurazione modello AI dalla configurazione admin
@@ -279,78 +277,68 @@ function getRetryDelay(attempt, baseMs) {
  * Nessun valore hardcoded - se non configurato, l'operazione fallisce.
  */
 async function getVisionModelConfig(type) {
-  const apiKey = await AIProviderConfigService.getApiKey('openrouter');
-  if (!apiKey) {
-    throw new Error(
-      'OpenRouter API key non configurata. Vai su Admin > AI Settings > Provider API Keys.'
-    );
-  }
-  const { config } = await AIFrameworkConfigService.getConfig(FrameworkFeature.IMPORT_MODELS);
-  if (!config) {
-    throw new Error(
-      'Configurazione AI per import workout non trovata. ' +
-        'Vai su Admin > AI Settings > Framework & Agents > Vision & Import Models per configurare i modelli.'
-    );
-  }
-  const typedConfig = config;
-  // Mappa tipo -> chiave config
-  const modelKeyMap = {
-    image: 'imageModel',
-    pdf: 'pdfModel',
-    document: 'documentModel',
-    spreadsheet: 'spreadsheetModel',
-  };
-  const modelKey = modelKeyMap[type];
-  const model = typedConfig[modelKey];
-  // Verifica che il modello sia configurato
-  if (!model) {
-    throw new Error(
-      `Modello AI per tipo "${type}" non configurato. ` +
-        'Vai su Admin > AI Settings > Framework & Agents > Vision & Import Models per configurare i modelli.'
-    );
-  }
-  const fallbackModel = typedConfig.fallbackModel;
-  // Verifica che il fallback sia configurato
-  if (!fallbackModel) {
-    throw new Error(
-      'Modello fallback non configurato. ' +
-        'Vai su Admin > AI Settings > Framework & Agents > Vision & Import Models per configurare i modelli.'
-    );
-  }
-  const creditCost = typedConfig.creditCosts?.[type];
-  if (creditCost === undefined || Number.isNaN(Number(creditCost))) {
-    throw new Error(
-      `Costo crediti per "${type}" non configurato. ` +
-        'Vai su Admin > AI Settings > Framework & Agents > Vision & Import Models per configurare i costi.'
-    );
-  }
-  const maxRetries = Math.max(0, typedConfig.maxRetries ?? 0);
-  const retryDelayBaseMs = Math.max(0, typedConfig.retryDelayBaseMs ?? 0);
-  console.log(`[WorkoutVision] ⚙️ Model config loaded for ${type}:`, {
-    type,
-    model,
-    fallbackModel,
-    configuredFromDB: true,
-    creditCost,
-    maxRetries,
-    retryDelayBaseMs,
-  });
-  return {
-    provider: 'openrouter',
-    model,
-    apiKey,
-    fallbackModel,
-    creditCost,
-    maxRetries,
-    retryDelayBaseMs,
-  };
+    const apiKey = await AIProviderConfigService.getApiKey('openrouter');
+    if (!apiKey) {
+        throw new Error('OpenRouter API key non configurata. Vai su Admin > AI Settings > Provider API Keys.');
+    }
+    const { config } = await AIFrameworkConfigService.getConfig(FrameworkFeature.IMPORT_MODELS);
+    if (!config) {
+        throw new Error('Configurazione AI per import workout non trovata. ' +
+            'Vai su Admin > AI Settings > Framework & Agents > Vision & Import Models per configurare i modelli.');
+    }
+    const typedConfig = config;
+    // Mappa tipo -> chiave config
+    const modelKeyMap = {
+        image: 'imageModel',
+        pdf: 'pdfModel',
+        document: 'documentModel',
+        spreadsheet: 'spreadsheetModel',
+    };
+    const modelKey = modelKeyMap[type];
+    const model = typedConfig[modelKey];
+    // Verifica che il modello sia configurato
+    if (!model) {
+        throw new Error(`Modello AI per tipo "${type}" non configurato. ` +
+            'Vai su Admin > AI Settings > Framework & Agents > Vision & Import Models per configurare i modelli.');
+    }
+    const fallbackModel = typedConfig.fallbackModel;
+    // Verifica che il fallback sia configurato
+    if (!fallbackModel) {
+        throw new Error('Modello fallback non configurato. ' +
+            'Vai su Admin > AI Settings > Framework & Agents > Vision & Import Models per configurare i modelli.');
+    }
+    const creditCost = typedConfig.creditCosts?.[type];
+    if (creditCost === undefined || Number.isNaN(Number(creditCost))) {
+        throw new Error(`Costo crediti per "${type}" non configurato. ` +
+            'Vai su Admin > AI Settings > Framework & Agents > Vision & Import Models per configurare i costi.');
+    }
+    const maxRetries = Math.max(0, typedConfig.maxRetries ?? 0);
+    const retryDelayBaseMs = Math.max(0, typedConfig.retryDelayBaseMs ?? 0);
+    console.log(`[WorkoutVision] ⚙️ Model config loaded for ${type}:`, {
+        type,
+        model,
+        fallbackModel,
+        configuredFromDB: true,
+        creditCost,
+        maxRetries,
+        retryDelayBaseMs,
+    });
+    return {
+        provider: 'openrouter',
+        model,
+        apiKey,
+        fallbackModel,
+        creditCost,
+        maxRetries,
+        retryDelayBaseMs,
+    };
 }
 /**
  * Decodifica base64 a testo
  */
 function decodeBase64ToText(base64) {
-  const cleanBase64 = base64.replace(/^data:[^;]+;base64,/, '');
-  return Buffer.from(cleanBase64, 'base64').toString('utf-8');
+    const cleanBase64 = base64.replace(/^data:[^;]+;base64,/, '');
+    return Buffer.from(cleanBase64, 'base64').toString('utf-8');
 }
 // ==================== SERVICE CLASS ====================
 /**
@@ -359,162 +347,139 @@ function decodeBase64ToText(base64) {
  * Parsing AI di workout programs da file multimediali e spreadsheet
  */
 export class WorkoutVisionService {
-  /**
-   * Parse programma da immagine (JPEG, PNG, WEBP, HEIC)
-   */
-  static async parseImage(imageBase64, mimeType, userId) {
-    return this.parseWithVisionAI(imageBase64, mimeType, userId, 'image', IMAGE_EXTRACTION_PROMPT);
-  }
-  /**
-   * Parse programma da PDF
-   */
-  static async parsePDF(pdfBase64, userId) {
-    return this.parseWithVisionAI(
-      pdfBase64,
-      'application/pdf',
-      userId,
-      'pdf',
-      PDF_EXTRACTION_PROMPT
-    );
-  }
-  /**
-   * Parse programma da documento (DOCX, DOC, ODT)
-   */
-  static async parseDocument(documentBase64, mimeType, userId) {
-    return this.parseWithVisionAI(
-      documentBase64,
-      mimeType,
-      userId,
-      'document',
-      DOCUMENT_EXTRACTION_PROMPT
-    );
-  }
-  /**
-   * Parse programma da spreadsheet (CSV, XLSX)
-   * Usa parsing testuale invece di vision
-   */
-  static async parseSpreadsheet(contentBase64, mimeType, userId) {
-    const config = await getVisionModelConfig('spreadsheet');
-    const creditCost = config.creditCost;
-    const maxRetries = config.maxRetries;
-    const retryDelayBaseMs = config.retryDelayBaseMs;
-    // Valida crediti
-    const hasCredits = await creditService.checkCredits(userId, creditCost);
-    if (!hasCredits) {
-      throw new Error(`Crediti insufficienti. Richiesti: ${creditCost} crediti`);
+    /**
+     * Parse programma da immagine (JPEG, PNG, WEBP, HEIC)
+     */
+    static async parseImage(imageBase64, mimeType, userId) {
+        return this.parseWithVisionAI(imageBase64, mimeType, userId, 'image', IMAGE_EXTRACTION_PROMPT);
     }
-    // Consuma crediti
-    await creditService.consumeCredits({
-      userId,
-      amount: creditCost,
-      type: 'CONSUMPTION',
-      description: `Parsing workout program da spreadsheet`,
-      metadata: {
-        operation: 'import_models_parse',
-        fileType: 'spreadsheet',
-        mimeType,
-        provider: config.provider,
-        model: config.model,
-      },
-    });
-    let lastError = null;
-    let currentModel = config.model;
-    // Avviso se model == fallbackModel (nessun vero fallback)
-    if (config.model === config.fallbackModel) {
-      console.warn('[WorkoutVision] ⚠️ WARNING: Model and fallbackModel are the same!', {
-        model: config.model,
-        suggestion:
-          'Configure a different fallback model in Admin > AI Settings > Vision & Import Models',
-      });
+    /**
+     * Parse programma da PDF
+     */
+    static async parsePDF(pdfBase64, userId) {
+        return this.parseWithVisionAI(pdfBase64, 'application/pdf', userId, 'pdf', PDF_EXTRACTION_PROMPT);
     }
-    console.log(`[WorkoutVision] 🚀 Starting spreadsheet parsing:`, {
-      userId,
-      mimeType,
-      provider: config.provider,
-      model: currentModel,
-      fallbackModel: config.fallbackModel,
-      sameModelAsFallback: config.model === config.fallbackModel,
-      creditCost,
-    });
-    // Retry loop con fallback
-    for (let attempt = 0; attempt <= maxRetries; attempt++) {
-      try {
-        traceLog('parseSpreadsheet.attempt', {
-          attempt: attempt + 1,
-          model: currentModel,
-          mimeType,
+    /**
+     * Parse programma da documento (DOCX, DOC, ODT)
+     */
+    static async parseDocument(documentBase64, mimeType, userId) {
+        return this.parseWithVisionAI(documentBase64, mimeType, userId, 'document', DOCUMENT_EXTRACTION_PROMPT);
+    }
+    /**
+     * Parse programma da spreadsheet (CSV, XLSX)
+     * Usa parsing testuale invece di vision
+     */
+    static async parseSpreadsheet(contentBase64, mimeType, userId) {
+        const config = await getVisionModelConfig('spreadsheet');
+        const creditCost = config.creditCost;
+        const maxRetries = config.maxRetries;
+        const retryDelayBaseMs = config.retryDelayBaseMs;
+        // Valida crediti
+        const hasCredits = await creditService.checkCredits(userId, creditCost);
+        if (!hasCredits) {
+            throw new Error(`Crediti insufficienti. Richiesti: ${creditCost} crediti`);
+        }
+        // Consuma crediti
+        await creditService.consumeCredits({
+            userId,
+            amount: creditCost,
+            type: 'CONSUMPTION',
+            description: `Parsing workout program da spreadsheet`,
+            metadata: {
+                operation: 'import_models_parse',
+                fileType: 'spreadsheet',
+                mimeType,
+                provider: config.provider,
+                model: config.model,
+            },
         });
-        const result = await this.callTextAI(
-          contentBase64,
-          mimeType,
-          SPREADSHEET_EXTRACTION_PROMPT,
-          currentModel,
-          config.apiKey
-        );
-        return result;
-      } catch (error) {
-        lastError = error instanceof Error ? error : new Error(String(error));
-        console.error(
-          `[WorkoutVision] Spreadsheet parsing attempt ${attempt + 1} failed:`,
-          lastError.message
-        );
-        // Su primo fallimento, prova modello fallback
-        if (attempt === 0 && currentModel !== config.fallbackModel) {
-          console.log(`[WorkoutVision] Switching to fallback model: ${config.fallbackModel}`);
-          currentModel = config.fallbackModel;
+        let lastError = null;
+        let currentModel = config.model;
+        // Avviso se model == fallbackModel (nessun vero fallback)
+        if (config.model === config.fallbackModel) {
+            console.warn('[WorkoutVision] ⚠️ WARNING: Model and fallbackModel are the same!', {
+                model: config.model,
+                suggestion: 'Configure a different fallback model in Admin > AI Settings > Vision & Import Models',
+            });
         }
-        // Aspetta prima di retry
-        if (attempt < maxRetries) {
-          await delay(getRetryDelay(attempt, retryDelayBaseMs));
+        console.log(`[WorkoutVision] 🚀 Starting spreadsheet parsing:`, {
+            userId,
+            mimeType,
+            provider: config.provider,
+            model: currentModel,
+            fallbackModel: config.fallbackModel,
+            sameModelAsFallback: config.model === config.fallbackModel,
+            creditCost,
+        });
+        // Retry loop con fallback
+        for (let attempt = 0; attempt <= maxRetries; attempt++) {
+            try {
+                traceLog('parseSpreadsheet.attempt', {
+                    attempt: attempt + 1,
+                    model: currentModel,
+                    mimeType,
+                });
+                const result = await this.callTextAI(contentBase64, mimeType, SPREADSHEET_EXTRACTION_PROMPT, currentModel, config.apiKey);
+                return result;
+            }
+            catch (error) {
+                lastError = error instanceof Error ? error : new Error(String(error));
+                console.error(`[WorkoutVision] Spreadsheet parsing attempt ${attempt + 1} failed:`, lastError.message);
+                // Su primo fallimento, prova modello fallback
+                if (attempt === 0 && currentModel !== config.fallbackModel) {
+                    console.log(`[WorkoutVision] Switching to fallback model: ${config.fallbackModel}`);
+                    currentModel = config.fallbackModel;
+                }
+                // Aspetta prima di retry
+                if (attempt < maxRetries) {
+                    await delay(getRetryDelay(attempt, retryDelayBaseMs));
+                }
+            }
         }
-      }
+        // Tutti i tentativi falliti - rimborsa crediti
+        await creditService.addCredits({
+            userId,
+            amount: creditCost,
+            type: 'ADMIN_ADJUSTMENT',
+            description: 'Rimborso parsing workout fallito',
+            metadata: {
+                reason: lastError?.message || 'Parsing failed',
+            },
+        });
+        // Messaggio di errore migliorato con suggerimento
+        const suggestion = config.model === config.fallbackModel
+            ? ' Suggerimento: configura un modello diverso in Admin > AI Settings > Vision & Import Models.'
+            : '';
+        throw new Error(`Impossibile analizzare il file spreadsheet. ${lastError?.message || 'Errore sconosciuto'}${suggestion}`);
     }
-    // Tutti i tentativi falliti - rimborsa crediti
-    await creditService.addCredits({
-      userId,
-      amount: creditCost,
-      type: 'ADMIN_ADJUSTMENT',
-      description: 'Rimborso parsing workout fallito',
-      metadata: {
-        reason: lastError?.message || 'Parsing failed',
-      },
-    });
-    // Messaggio di errore migliorato con suggerimento
-    const suggestion =
-      config.model === config.fallbackModel
-        ? ' Suggerimento: configura un modello diverso in Admin > AI Settings > Vision & Import Models.'
-        : '';
-    throw new Error(
-      `Impossibile analizzare il file spreadsheet. ${lastError?.message || 'Errore sconosciuto'}${suggestion}`
-    );
-  }
-  /**
-   * Chiamata AI con text model per spreadsheet
-   *
-   * Pattern identico a workout-generation-orchestrator.service.ts:
-   * - Usa createOpenAI direttamente con OpenRouter baseURL
-   * - Usa streamText con Output.object() per maggiore affidabilità
-   * - Logging dettagliato di cosa viene inviato al modello
-   */
-  static async callTextAI(contentBase64, mimeType, prompt, modelId, apiKey) {
-    // Import createOpenAI per usare pattern identico a workout-generation-orchestrator
-    const { createOpenAI } = await import('@ai-sdk/openai');
-    // Decodifica il contenuto base64 a testo
-    let textContent;
-    try {
-      textContent = decodeBase64ToText(contentBase64);
-    } catch (decodeError) {
-      console.error('[WorkoutVision] ❌ Base64 decode failed:', decodeError);
-      throw new Error('Impossibile decodificare il contenuto del file');
-    }
-    // Per XLSX, il contenuto binario non può essere decodificato direttamente
-    // In questo caso usiamo vision-like approach
-    if (mimeType.includes('spreadsheet') || mimeType.includes('excel')) {
-      console.log('[WorkoutVision] XLSX detected, using vision approach for binary content');
-      return this.parseWithVisionAI(contentBase64, mimeType, '', 'spreadsheet', prompt);
-    }
-    // Costruisci messaggio per AI
-    const fullPrompt = `${prompt}
+    /**
+     * Chiamata AI con text model per spreadsheet
+     *
+     * Pattern identico a workout-generation-orchestrator.service.ts:
+     * - Usa createOpenAI direttamente con OpenRouter baseURL
+     * - Usa streamText con Output.object() per maggiore affidabilità
+     * - Logging dettagliato di cosa viene inviato al modello
+     */
+    static async callTextAI(contentBase64, mimeType, prompt, modelId, apiKey) {
+        // Import createOpenAI per usare pattern identico a workout-generation-orchestrator
+        const { createOpenAI } = await import('@ai-sdk/openai');
+        // Decodifica il contenuto base64 a testo
+        let textContent;
+        try {
+            textContent = decodeBase64ToText(contentBase64);
+        }
+        catch (decodeError) {
+            console.error('[WorkoutVision] ❌ Base64 decode failed:', decodeError);
+            throw new Error('Impossibile decodificare il contenuto del file');
+        }
+        // Per XLSX, il contenuto binario non può essere decodificato direttamente
+        // In questo caso usiamo vision-like approach
+        if (mimeType.includes('spreadsheet') || mimeType.includes('excel')) {
+            console.log('[WorkoutVision] XLSX detected, using vision approach for binary content');
+            return this.parseWithVisionAI(contentBase64, mimeType, '', 'spreadsheet', prompt);
+        }
+        // Costruisci messaggio per AI
+        const fullPrompt = `${prompt}
 
 Here is the spreadsheet data to parse:
 
@@ -523,311 +488,302 @@ ${textContent}
 \`\`\`
 
 Parse this data and return ONLY valid JSON.`;
-    // ========== LOGGING DETTAGLIATO ==========
-    const csvRows = textContent.split('\n').length;
-    const csvPreview = textContent.substring(0, 500);
-    const promptPreview = fullPrompt.substring(0, 1000);
-    console.log('[WorkoutVision] 📋 AI Request Details:', {
-      modelId,
-      mimeType,
-      csvRows,
-      csvBytes: textContent.length,
-      promptBytes: fullPrompt.length,
-      csvPreview: csvPreview + (textContent.length > 500 ? '...' : ''),
-    });
-    console.log(
-      '[WorkoutVision] 📝 Prompt Preview:',
-      promptPreview + (fullPrompt.length > 1000 ? '...' : '')
-    );
-    // ==========================================
-    const startTime = Date.now();
-    try {
-      // Crea provider OpenRouter usando pattern identico a workout-generation-config.service.ts
-      const openai = createOpenAI({
-        apiKey,
-        baseURL: 'https://openrouter.ai/api/v1',
-        headers: {
-          'HTTP-Referer': process.env.OPENROUTER_SITE_URL || 'https://onecoach.ai',
-          'X-Title': process.env.OPENROUTER_SITE_NAME || 'OneCoach AI',
-        },
-      });
-      const model = openai(modelId);
-      // Alcuni modelli (reasoning models) non supportano temperature
-      // Detect based on model name patterns
-      const isReasoningModel =
-        modelId.toLowerCase().includes('reasoning') ||
-        modelId.toLowerCase().includes('think') ||
-        modelId.toLowerCase().includes('reflect');
-      console.log('[WorkoutVision] 🚀 Calling AI with streamText + Output.object()...', {
-        modelId,
-        maxOutputTokens: TOKEN_LIMITS.DEFAULT_MAX_TOKENS,
-        temperature: isReasoningModel ? 'N/A (reasoning model)' : 0.2,
-        isReasoningModel,
-      });
-      // Usa streamText con Output.object() come in workout-generation-orchestrator
-      // Questo è più affidabile di streamObject per alcuni modelli
-      const streamResult = streamText({
-        model,
-        output: Output.object({
-          schema: ImportedWorkoutProgramSchema,
-        }),
-        prompt: fullPrompt,
-        maxOutputTokens: TOKEN_LIMITS.DEFAULT_MAX_TOKENS,
-        // Solo passa temperature per modelli non-reasoning
-        ...(isReasoningModel ? {} : { temperature: 0.2 }),
-        providerOptions: {
-          openrouter: {
-            usage: { include: true },
-          },
-        },
-      });
-      // Raccogli il testo di risposta per debug
-      let rawTextOutput = '';
-      let chunkCount = 0;
-      console.log('[WorkoutVision] 📡 Streaming response...');
-      for await (const part of streamResult.fullStream) {
-        chunkCount++;
-        if (part.type === 'text-delta') {
-          rawTextOutput += part.text || '';
-        }
-        // Log progress ogni 50 chunk
-        if (chunkCount % 50 === 0) {
-          console.log(
-            `[WorkoutVision] 📊 Stream progress: ${chunkCount} chunks, ${rawTextOutput.length} bytes`
-          );
-        }
-      }
-      console.log('[WorkoutVision] ✅ Stream completed:', {
-        chunkCount,
-        rawTextLength: rawTextOutput.length,
-        durationMs: Date.now() - startTime,
-        rawTextPreview: rawTextOutput.substring(0, 500) + (rawTextOutput.length > 500 ? '...' : ''),
-      });
-      // Prova a ottenere l'output strutturato
-      let parsedOutput = null;
-      try {
-        parsedOutput = await streamResult.output;
-        console.log('[WorkoutVision] ✅ Structured output parsed successfully:', {
-          hasOutput: Boolean(parsedOutput),
-          programName: parsedOutput?.name,
-          weeksCount: parsedOutput?.weeks?.length,
+        // ========== LOGGING DETTAGLIATO ==========
+        const csvRows = textContent.split('\n').length;
+        const csvPreview = textContent.substring(0, 500);
+        const promptPreview = fullPrompt.substring(0, 1000);
+        console.log('[WorkoutVision] 📋 AI Request Details:', {
+            modelId,
+            mimeType,
+            csvRows,
+            csvBytes: textContent.length,
+            promptBytes: fullPrompt.length,
+            csvPreview: csvPreview + (textContent.length > 500 ? '...' : ''),
         });
-      } catch (parseError) {
-        console.error(
-          '[WorkoutVision] ⚠️ Structured output failed, trying JSON extraction:',
-          parseError
-        );
-        // Fallback: estrai JSON dal testo raw
-        if (rawTextOutput) {
-          const jsonMatch = rawTextOutput.match(/\{[\s\S]*\}/);
-          if (jsonMatch) {
-            try {
-              const parsed = JSON.parse(jsonMatch[0]);
-              parsedOutput = ImportedWorkoutProgramSchema.parse(parsed);
-              console.log('[WorkoutVision] ✅ Fallback JSON extraction successful');
-            } catch (jsonError) {
-              console.error('[WorkoutVision] ❌ Fallback JSON parsing failed:', jsonError);
+        console.log('[WorkoutVision] 📝 Prompt Preview:', promptPreview + (fullPrompt.length > 1000 ? '...' : ''));
+        // ==========================================
+        const startTime = Date.now();
+        try {
+            // Crea provider OpenRouter usando pattern identico a workout-generation-config.service.ts
+            const openai = createOpenAI({
+                apiKey,
+                baseURL: 'https://openrouter.ai/api/v1',
+                headers: {
+                    'HTTP-Referer': process.env.OPENROUTER_SITE_URL || 'https://onecoach.ai',
+                    'X-Title': process.env.OPENROUTER_SITE_NAME || 'OneCoach AI',
+                },
+            });
+            const model = openai(modelId);
+            // Alcuni modelli (reasoning models) non supportano temperature
+            // Detect based on model name patterns
+            const isReasoningModel = modelId.toLowerCase().includes('reasoning') ||
+                modelId.toLowerCase().includes('think') ||
+                modelId.toLowerCase().includes('reflect');
+            console.log('[WorkoutVision] 🚀 Calling AI with streamText + Output.object()...', {
+                modelId,
+                maxOutputTokens: TOKEN_LIMITS.DEFAULT_MAX_TOKENS,
+                temperature: isReasoningModel ? 'N/A (reasoning model)' : 0.2,
+                isReasoningModel,
+            });
+            // Usa streamText con Output.object() come in workout-generation-orchestrator
+            // Questo è più affidabile di streamObject per alcuni modelli
+            const streamResult = streamText({
+                model,
+                output: Output.object({
+                    schema: ImportedWorkoutProgramSchema,
+                }),
+                prompt: fullPrompt,
+                maxOutputTokens: TOKEN_LIMITS.DEFAULT_MAX_TOKENS,
+                // Solo passa temperature per modelli non-reasoning
+                ...(isReasoningModel ? {} : { temperature: 0.2 }),
+                providerOptions: {
+                    openrouter: {
+                        usage: { include: true },
+                    },
+                },
+            });
+            // Raccogli il testo di risposta per debug
+            let rawTextOutput = '';
+            let chunkCount = 0;
+            console.log('[WorkoutVision] 📡 Streaming response...');
+            for await (const part of streamResult.fullStream) {
+                chunkCount++;
+                if (part.type === 'text-delta') {
+                    rawTextOutput += part.text || '';
+                }
+                // Log progress ogni 50 chunk
+                if (chunkCount % 50 === 0) {
+                    console.log(`[WorkoutVision] 📊 Stream progress: ${chunkCount} chunks, ${rawTextOutput.length} bytes`);
+                }
             }
-          }
+            console.log('[WorkoutVision] ✅ Stream completed:', {
+                chunkCount,
+                rawTextLength: rawTextOutput.length,
+                durationMs: Date.now() - startTime,
+                rawTextPreview: rawTextOutput.substring(0, 500) + (rawTextOutput.length > 500 ? '...' : ''),
+            });
+            // Prova a ottenere l'output strutturato
+            let parsedOutput = null;
+            try {
+                parsedOutput = (await streamResult.output);
+                console.log('[WorkoutVision] ✅ Structured output parsed successfully:', {
+                    hasOutput: Boolean(parsedOutput),
+                    programName: parsedOutput?.name,
+                    weeksCount: parsedOutput?.weeks?.length,
+                });
+            }
+            catch (parseError) {
+                console.error('[WorkoutVision] ⚠️ Structured output failed, trying JSON extraction:', parseError);
+                // Fallback: estrai JSON dal testo raw
+                if (rawTextOutput) {
+                    const jsonMatch = rawTextOutput.match(/\{[\s\S]*\}/);
+                    if (jsonMatch) {
+                        try {
+                            const parsed = JSON.parse(jsonMatch[0]);
+                            parsedOutput = ImportedWorkoutProgramSchema.parse(parsed);
+                            console.log('[WorkoutVision] ✅ Fallback JSON extraction successful');
+                        }
+                        catch (jsonError) {
+                            console.error('[WorkoutVision] ❌ Fallback JSON parsing failed:', jsonError);
+                        }
+                    }
+                }
+            }
+            if (!parsedOutput) {
+                console.error('[WorkoutVision] ❌ No valid output obtained');
+                throw new Error('AI returned empty or invalid response');
+            }
+            traceLog('callTextAI.end', {
+                model: modelId,
+                durationMs: Date.now() - startTime,
+                chunkCount,
+                rawTextLength: rawTextOutput.length,
+                hasOutput: Boolean(parsedOutput),
+                mode: 'streamText+Output.object',
+            });
+            return parsedOutput;
         }
-      }
-      if (!parsedOutput) {
-        console.error('[WorkoutVision] ❌ No valid output obtained');
-        throw new Error('AI returned empty or invalid response');
-      }
-      traceLog('callTextAI.end', {
-        model: modelId,
-        durationMs: Date.now() - startTime,
-        chunkCount,
-        rawTextLength: rawTextOutput.length,
-        hasOutput: Boolean(parsedOutput),
-        mode: 'streamText+Output.object',
-      });
-      return parsedOutput;
-    } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : String(err);
-      const errorStack = err instanceof Error ? err.stack : undefined;
-      console.error('[WorkoutVision] ❌ AI call failed:', {
-        modelId,
-        durationMs: Date.now() - startTime,
-        error: errorMessage,
-        stack: errorStack,
-        errorObject: err,
-      });
-      traceLog('callTextAI.error', {
-        model: modelId,
-        durationMs: Date.now() - startTime,
-        error: errorMessage,
-        mode: 'streamText+Output.object',
-      });
-      throw err instanceof Error ? err : new Error(`AI call failed: ${errorMessage}`);
+        catch (err) {
+            const errorMessage = err instanceof Error ? err.message : String(err);
+            const errorStack = err instanceof Error ? err.stack : undefined;
+            console.error('[WorkoutVision] ❌ AI call failed:', {
+                modelId,
+                durationMs: Date.now() - startTime,
+                error: errorMessage,
+                stack: errorStack,
+                errorObject: err,
+            });
+            traceLog('callTextAI.error', {
+                model: modelId,
+                durationMs: Date.now() - startTime,
+                error: errorMessage,
+                mode: 'streamText+Output.object',
+            });
+            throw err instanceof Error ? err : new Error(`AI call failed: ${errorMessage}`);
+        }
     }
-  }
-  /**
-   * Core parsing method con vision model (per immagini, PDF, documenti)
-   */
-  static async parseWithVisionAI(contentBase64, mimeType, userId, type, prompt) {
-    const config = await getVisionModelConfig(type);
-    const creditCost = config.creditCost;
-    const maxRetries = config.maxRetries;
-    const retryDelayBaseMs = config.retryDelayBaseMs;
-    // Solo consuma crediti se userId è fornito (evita doppio addebito per XLSX)
-    if (userId) {
-      const hasCredits = await creditService.checkCredits(userId, creditCost);
-      if (!hasCredits) {
-        throw new Error(`Crediti insufficienti. Richiesti: ${creditCost} crediti`);
-      }
-      await creditService.consumeCredits({
-        userId,
-        amount: creditCost,
-        type: 'CONSUMPTION',
-        description: `Parsing workout program da ${type}`,
-        metadata: {
-          operation: 'import_models_parse',
-          fileType: type,
-          provider: config.provider,
-          model: config.model,
-        },
-      });
+    /**
+     * Core parsing method con vision model (per immagini, PDF, documenti)
+     */
+    static async parseWithVisionAI(contentBase64, mimeType, userId, type, prompt) {
+        const config = await getVisionModelConfig(type);
+        const creditCost = config.creditCost;
+        const maxRetries = config.maxRetries;
+        const retryDelayBaseMs = config.retryDelayBaseMs;
+        // Solo consuma crediti se userId è fornito (evita doppio addebito per XLSX)
+        if (userId) {
+            const hasCredits = await creditService.checkCredits(userId, creditCost);
+            if (!hasCredits) {
+                throw new Error(`Crediti insufficienti. Richiesti: ${creditCost} crediti`);
+            }
+            await creditService.consumeCredits({
+                userId,
+                amount: creditCost,
+                type: 'CONSUMPTION',
+                description: `Parsing workout program da ${type}`,
+                metadata: {
+                    operation: 'import_models_parse',
+                    fileType: type,
+                    provider: config.provider,
+                    model: config.model,
+                },
+            });
+        }
+        let lastError = null;
+        let currentModel = config.model;
+        // Retry loop con fallback
+        for (let attempt = 0; attempt <= maxRetries; attempt++) {
+            try {
+                traceLog('parseWithVisionAI.attempt', {
+                    attempt: attempt + 1,
+                    model: currentModel,
+                    type,
+                    mimeType,
+                });
+                const result = await this.callVisionAI(contentBase64, mimeType, prompt, currentModel, config.apiKey);
+                return result;
+            }
+            catch (error) {
+                lastError = error instanceof Error ? error : new Error(String(error));
+                console.error(`[WorkoutVision] Attempt ${attempt + 1} failed:`, lastError.message);
+                // Su primo fallimento, prova modello fallback
+                if (attempt === 0 && currentModel !== config.fallbackModel) {
+                    console.log(`[WorkoutVision] Switching to fallback model: ${config.fallbackModel}`);
+                    currentModel = config.fallbackModel;
+                }
+                // Aspetta prima di retry
+                if (attempt < maxRetries) {
+                    await delay(getRetryDelay(attempt, retryDelayBaseMs));
+                }
+            }
+        }
+        // Tutti i tentativi falliti - rimborsa crediti solo se userId fornito
+        if (userId) {
+            await creditService.addCredits({
+                userId,
+                amount: creditCost,
+                type: 'ADMIN_ADJUSTMENT',
+                description: 'Rimborso parsing workout fallito',
+                metadata: {
+                    reason: lastError?.message || 'Parsing failed',
+                },
+            });
+        }
+        throw new Error(`Impossibile analizzare il file. ${lastError?.message || 'Errore sconosciuto'}`);
     }
-    let lastError = null;
-    let currentModel = config.model;
-    // Retry loop con fallback
-    for (let attempt = 0; attempt <= maxRetries; attempt++) {
-      try {
-        traceLog('parseWithVisionAI.attempt', {
-          attempt: attempt + 1,
-          model: currentModel,
-          type,
-          mimeType,
+    /**
+     * Chiamata AI con vision model
+     */
+    static async callVisionAI(contentBase64, mimeType, prompt, modelId, apiKey) {
+        const { createModel } = await import('@onecoach/lib-ai-agents/utils/model-factory');
+        const modelConfig = {
+            provider: 'openrouter',
+            model: modelId,
+            maxTokens: TOKEN_LIMITS.DEFAULT_MAX_TOKENS,
+            temperature: 0.3,
+            reasoningEnabled: false,
+            creditsPerRequest: 0,
+        };
+        const model = createModel(modelConfig, apiKey, 0.3);
+        // Prepara content in formato data URL
+        const dataUrl = base64ToDataUrl(contentBase64, mimeType);
+        // Costruisci messaggi per AI
+        const messages = [
+            {
+                role: 'user',
+                content: [
+                    {
+                        type: 'text',
+                        text: prompt,
+                    },
+                    {
+                        type: 'image',
+                        image: dataUrl,
+                    },
+                ],
+            },
+        ];
+        const startTime = Date.now();
+        traceLog('callVisionAI.start', {
+            model: modelId,
+            promptLength: prompt.length,
+            mimeType,
         });
-        const result = await this.callVisionAI(
-          contentBase64,
-          mimeType,
-          prompt,
-          currentModel,
-          config.apiKey
-        );
-        return result;
-      } catch (error) {
-        lastError = error instanceof Error ? error : new Error(String(error));
-        console.error(`[WorkoutVision] Attempt ${attempt + 1} failed:`, lastError.message);
-        // Su primo fallimento, prova modello fallback
-        if (attempt === 0 && currentModel !== config.fallbackModel) {
-          console.log(`[WorkoutVision] Switching to fallback model: ${config.fallbackModel}`);
-          currentModel = config.fallbackModel;
+        const result = await streamText({
+            model,
+            messages,
+            experimental_output: Output.object({
+                schema: ImportedWorkoutProgramSchema,
+            }),
+            temperature: 0.3,
+        });
+        // Estrai testo completo
+        const fullText = await result.text;
+        if (!fullText || fullText.trim() === '') {
+            throw new Error('AI returned empty response');
         }
-        // Aspetta prima di retry
-        if (attempt < maxRetries) {
-          await delay(getRetryDelay(attempt, retryDelayBaseMs));
+        // Parse JSON response
+        const parsed = parseJsonResponse(fullText);
+        // Valida con schema Zod
+        const validated = ImportedWorkoutProgramSchema.parse(parsed);
+        traceLog('callVisionAI.end', {
+            model: modelId,
+            durationMs: Date.now() - startTime,
+            responseLength: fullText.length,
+            usage: result.usage,
+        });
+        return validated;
+    }
+    /**
+     * Aggiorna configurazione modelli nel database
+     */
+    static async updateModelConfig(config) {
+        const openRouterConfig = await AIProviderConfigService.getConfig('openrouter');
+        if (!openRouterConfig) {
+            throw new Error('OpenRouter config non trovata');
         }
-      }
+        const metadata = openRouterConfig.metadata || {};
+        const workoutModels = metadata.workoutModels || {};
+        if (config.imageExtraction)
+            workoutModels.imageExtraction = config.imageExtraction;
+        if (config.pdfExtraction)
+            workoutModels.pdfExtraction = config.pdfExtraction;
+        if (config.documentExtraction)
+            workoutModels.documentExtraction = config.documentExtraction;
+        if (config.spreadsheetExtraction)
+            workoutModels.spreadsheetExtraction = config.spreadsheetExtraction;
+        if (config.fallback)
+            workoutModels.fallback = config.fallback;
+        await prisma.ai_provider_configs.update({
+            where: { provider: PROVIDER_MAP.openrouter.enum },
+            data: {
+                metadata: {
+                    ...metadata,
+                    workoutModels,
+                },
+                updatedBy: 'system',
+                updatedAt: new Date(),
+            },
+        });
     }
-    // Tutti i tentativi falliti - rimborsa crediti solo se userId fornito
-    if (userId) {
-      await creditService.addCredits({
-        userId,
-        amount: creditCost,
-        type: 'ADMIN_ADJUSTMENT',
-        description: 'Rimborso parsing workout fallito',
-        metadata: {
-          reason: lastError?.message || 'Parsing failed',
-        },
-      });
-    }
-    throw new Error(
-      `Impossibile analizzare il file. ${lastError?.message || 'Errore sconosciuto'}`
-    );
-  }
-  /**
-   * Chiamata AI con vision model
-   */
-  static async callVisionAI(contentBase64, mimeType, prompt, modelId, apiKey) {
-    const { createModel } = await import('@onecoach/lib-ai-agents/utils/model-factory');
-    const modelConfig = {
-      provider: 'openrouter',
-      model: modelId,
-      maxTokens: TOKEN_LIMITS.DEFAULT_MAX_TOKENS,
-      temperature: 0.3,
-      reasoningEnabled: false,
-      creditsPerRequest: 0,
-    };
-    const model = createModel(modelConfig, apiKey, 0.3);
-    // Prepara content in formato data URL
-    const dataUrl = base64ToDataUrl(contentBase64, mimeType);
-    // Costruisci messaggi per AI
-    const messages = [
-      {
-        role: 'user',
-        content: [
-          {
-            type: 'text',
-            text: prompt,
-          },
-          {
-            type: 'image',
-            image: dataUrl,
-          },
-        ],
-      },
-    ];
-    const startTime = Date.now();
-    traceLog('callVisionAI.start', {
-      model: modelId,
-      promptLength: prompt.length,
-      mimeType,
-    });
-    const result = await streamText({
-      model,
-      messages,
-      experimental_output: Output.object({
-        schema: ImportedWorkoutProgramSchema,
-      }),
-      temperature: 0.3,
-    });
-    // Estrai testo completo
-    const fullText = await result.text;
-    if (!fullText || fullText.trim() === '') {
-      throw new Error('AI returned empty response');
-    }
-    // Parse JSON response
-    const parsed = parseJsonResponse(fullText);
-    // Valida con schema Zod
-    const validated = ImportedWorkoutProgramSchema.parse(parsed);
-    traceLog('callVisionAI.end', {
-      model: modelId,
-      durationMs: Date.now() - startTime,
-      responseLength: fullText.length,
-      usage: result.usage,
-    });
-    return validated;
-  }
-  /**
-   * Aggiorna configurazione modelli nel database
-   */
-  static async updateModelConfig(config) {
-    const openRouterConfig = await AIProviderConfigService.getConfig('openrouter');
-    if (!openRouterConfig) {
-      throw new Error('OpenRouter config non trovata');
-    }
-    const metadata = openRouterConfig.metadata || {};
-    const workoutModels = metadata.workoutModels || {};
-    if (config.imageExtraction) workoutModels.imageExtraction = config.imageExtraction;
-    if (config.pdfExtraction) workoutModels.pdfExtraction = config.pdfExtraction;
-    if (config.documentExtraction) workoutModels.documentExtraction = config.documentExtraction;
-    if (config.spreadsheetExtraction)
-      workoutModels.spreadsheetExtraction = config.spreadsheetExtraction;
-    if (config.fallback) workoutModels.fallback = config.fallback;
-    await prisma.ai_provider_configs.update({
-      where: { provider: PROVIDER_MAP.openrouter.enum },
-      data: {
-        metadata: {
-          ...metadata,
-          workoutModels,
-        },
-        updatedBy: 'system',
-        updatedAt: new Date(),
-      },
-    });
-  }
 }

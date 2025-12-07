@@ -14,20 +14,20 @@ export declare function getAIProviderKey(provider: string): string | undefined;
  * Get OpenRouter configuration
  */
 export declare function getOpenRouterConfig(): {
-  apiKey: string | undefined;
-  baseUrl: string | undefined;
-  siteUrl: string | undefined;
-  appName: string | undefined;
+    apiKey: string | undefined;
+    baseUrl: string | undefined;
+    siteUrl: string | undefined;
+    appName: string | undefined;
 };
 /**
  * Get all configured AI provider keys
  */
 export declare function getAllAIProviderKeys(): {
-  anthropic: string | undefined;
-  openai: string | undefined;
-  google: string | undefined;
-  xai: string | undefined;
-  openrouter: string | undefined;
+    anthropic: string | undefined;
+    openai: string | undefined;
+    google: string | undefined;
+    xai: string | undefined;
+    openrouter: string | undefined;
 };
 /**
  * Check if any AI provider key is configured

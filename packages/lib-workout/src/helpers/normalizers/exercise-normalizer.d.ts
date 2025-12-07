@@ -28,8 +28,4 @@ export declare function normalizeSetGroup(raw: unknown): SetGroup | null;
  * Normalizza un esercizio completo
  * Se exerciseId è presente, viene preservato per risoluzione futura nel frontend
  */
-export declare function normalizeExercise(
-  rawExercise: unknown,
-  dayNumber: number,
-  index: number
-): Exercise;
+export declare function normalizeExercise(rawExercise: unknown, dayNumber: number, index: number): Exercise;

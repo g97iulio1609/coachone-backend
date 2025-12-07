@@ -11,60 +11,60 @@ import { generateId } from '@OneCoach/lib-shared/utils/id-generator';
  * Estrae dati template in base al tipo
  */
 export function extractTemplateData(template) {
-  return template.data;
+    return template.data;
 }
 /**
  * Re-ID tutti gli esercizi, giorni e settimane in un template per evitare conflitti
  */
 export function reIdTemplateData(data, type) {
-  switch (type) {
-    case 'exercise': {
-      const exercise = data;
-      // SSOT: Solo setGroups, non exercise.sets
-      return {
-        ...exercise,
-        id: generateId('exercise'),
-        setGroups: exercise.setGroups?.map((group) => ({
-          ...group,
-          id: generateId('setgroup'),
-          sets: group.sets.map((set) => ({ ...set })),
-        })),
-      };
+    switch (type) {
+        case 'exercise': {
+            const exercise = data;
+            // SSOT: Solo setGroups, non exercise.sets
+            return {
+                ...exercise,
+                id: generateId('exercise'),
+                setGroups: exercise.setGroups?.map((group) => ({
+                    ...group,
+                    id: generateId('setgroup'),
+                    sets: group.sets.map((set) => ({ ...set })),
+                })),
+            };
+        }
+        case 'day': {
+            const day = data;
+            return {
+                ...day,
+                exercises: day.exercises.map((exercise) => ({
+                    ...exercise,
+                    id: generateId('exercise'),
+                    setGroups: exercise.setGroups?.map((group) => ({
+                        ...group,
+                        id: generateId('setgroup'),
+                        sets: group.sets.map((set) => ({ ...set })),
+                    })),
+                })),
+            };
+        }
+        case 'week': {
+            const week = data;
+            return {
+                ...week,
+                days: week.days.map((day) => ({
+                    ...day,
+                    exercises: day.exercises.map((exercise) => ({
+                        ...exercise,
+                        id: generateId('exercise'),
+                        setGroups: exercise.setGroups?.map((group) => ({
+                            ...group,
+                            id: generateId('setgroup'),
+                            sets: group.sets.map((set) => ({ ...set })),
+                        })),
+                    })),
+                })),
+            };
+        }
+        default:
+            return data;
     }
-    case 'day': {
-      const day = data;
-      return {
-        ...day,
-        exercises: day.exercises.map((exercise) => ({
-          ...exercise,
-          id: generateId('exercise'),
-          setGroups: exercise.setGroups?.map((group) => ({
-            ...group,
-            id: generateId('setgroup'),
-            sets: group.sets.map((set) => ({ ...set })),
-          })),
-        })),
-      };
-    }
-    case 'week': {
-      const week = data;
-      return {
-        ...week,
-        days: week.days.map((day) => ({
-          ...day,
-          exercises: day.exercises.map((exercise) => ({
-            ...exercise,
-            id: generateId('exercise'),
-            setGroups: exercise.setGroups?.map((group) => ({
-              ...group,
-              id: generateId('setgroup'),
-              sets: group.sets.map((set) => ({ ...set })),
-            })),
-          })),
-        })),
-      };
-    }
-    default:
-      return data;
-  }
 }

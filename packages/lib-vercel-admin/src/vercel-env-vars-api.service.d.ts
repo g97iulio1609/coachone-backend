@@ -8,49 +8,45 @@
  */
 export type VercelEnvironment = 'production' | 'preview' | 'development';
 export interface VercelEnvVar {
-  id: string;
-  key: string;
-  value: string;
-  type: 'system' | 'secret' | 'encrypted' | 'plain';
-  target: VercelEnvironment[];
-  gitBranch?: string;
-  configurationId?: string;
-  updatedAt?: number;
-  createdAt?: number;
+    id: string;
+    key: string;
+    value: string;
+    type: 'system' | 'secret' | 'encrypted' | 'plain';
+    target: VercelEnvironment[];
+    gitBranch?: string;
+    configurationId?: string;
+    updatedAt?: number;
+    createdAt?: number;
 }
 export interface CreateEnvVarParams {
-  key: string;
-  value: string;
-  environments: VercelEnvironment[];
-  sensitive?: boolean;
+    key: string;
+    value: string;
+    environments: VercelEnvironment[];
+    sensitive?: boolean;
 }
 export interface UpdateEnvVarParams {
-  envId: string;
-  key?: string;
-  value?: string;
-  environments?: VercelEnvironment[];
-  sensitive?: boolean;
+    envId: string;
+    key?: string;
+    value?: string;
+    environments?: VercelEnvironment[];
+    sensitive?: boolean;
 }
 export interface VercelApiResult<T = unknown> {
-  success: boolean;
-  data?: T;
-  error?: string;
-  message?: string;
+    success: boolean;
+    data?: T;
+    error?: string;
+    message?: string;
 }
 /**
  * Crea una nuova Environment Variable su Vercel
  */
-export declare function createEnvVar(
-  params: CreateEnvVarParams
-): Promise<VercelApiResult<VercelEnvVar>>;
+export declare function createEnvVar(params: CreateEnvVarParams): Promise<VercelApiResult<VercelEnvVar>>;
 /**
  * Lista tutte le Environment Variables del progetto
  */
-export declare function listEnvVars(): Promise<
-  VercelApiResult<{
+export declare function listEnvVars(): Promise<VercelApiResult<{
     envs: VercelEnvVar[];
-  }>
->;
+}>>;
 /**
  * Trova una Environment Variable per chiave
  */
@@ -58,9 +54,7 @@ export declare function getEnvVarByKey(key: string): Promise<VercelApiResult<Ver
 /**
  * Aggiorna una Environment Variable esistente
  */
-export declare function updateEnvVar(
-  params: UpdateEnvVarParams
-): Promise<VercelApiResult<VercelEnvVar>>;
+export declare function updateEnvVar(params: UpdateEnvVarParams): Promise<VercelApiResult<VercelEnvVar>>;
 /**
  * Elimina una Environment Variable
  */

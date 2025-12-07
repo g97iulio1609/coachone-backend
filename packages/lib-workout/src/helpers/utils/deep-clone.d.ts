@@ -30,10 +30,7 @@ export declare function deepClone<T>(obj: T): T;
  * @example
  * const clone = selectiveDeepClone(program, ['weeks', 'metadata']);
  */
-export declare function selectiveDeepClone<T extends Record<string, unknown>>(
-  obj: T,
-  deepPaths: string[]
-): T;
+export declare function selectiveDeepClone<T extends Record<string, unknown>>(obj: T, deepPaths: string[]): T;
 /**
  * Checks if an object has any circular references.
  * Useful for debugging when JSON.stringify fails.

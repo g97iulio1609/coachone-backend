@@ -10,13 +10,13 @@ let stripePromise = null;
  * Usa lazy loading per evitare di caricare Stripe finché non necessario.
  */
 export function getStripeClient() {
-  if (!stripePromise) {
-    const publishableKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;
-    if (!publishableKey) {
-      console.error('NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY non configurata');
-      return Promise.resolve(null);
+    if (!stripePromise) {
+        const publishableKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;
+        if (!publishableKey) {
+            console.error('NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY non configurata');
+            return Promise.resolve(null);
+        }
+        stripePromise = loadStripe(publishableKey);
     }
-    stripePromise = loadStripe(publishableKey);
-  }
-  return stripePromise;
+    return stripePromise;
 }

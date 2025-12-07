@@ -12,7 +12,7 @@ import { creditService } from '@OneCoach/lib-core/credit.service';
 import { prisma } from '@OneCoach/lib-core/prisma';
 import type { LabelExtractionResult, DishSegmentationResult } from '@OneCoach/types';
 import { streamText, Output } from 'ai';
-import { parseJsonResponse } from '@onecoach/lib-ai-agents/utils/json-parser';
+import { parseJsonResponse } from '@OneCoach/lib-ai-utils/json-parser';
 import { TOKEN_LIMITS } from '@OneCoach/constants/models';
 
 // Default models configurabili admin
@@ -168,7 +168,7 @@ export class FoodVisionService {
 
     try {
       // Crea modello OpenRouter usando ProviderFactory
-      const { createModel } = await import('@onecoach/lib-ai-agents/utils/model-factory');
+      const { createModel } = await import('@OneCoach/lib-ai-utils/model-factory');
       const modelConfig = {
         provider: 'openrouter' as const,
         model: config.model,
@@ -262,7 +262,7 @@ export class FoodVisionService {
 
     try {
       // Crea modello OpenRouter usando ProviderFactory
-      const { createModel } = await import('@onecoach/lib-ai-agents/utils/model-factory');
+      const { createModel } = await import('@OneCoach/lib-ai-utils/model-factory');
       const modelConfig = {
         provider: 'openrouter' as const,
         model: config.model,

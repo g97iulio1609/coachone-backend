@@ -5,7 +5,15 @@
     "outDir": "./dist",
     "baseUrl": "..",
     "noEmit": false,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "@OneCoach/lib-shared": [
+        "../../coachone-shared/packages/lib-shared/src/index.ts"
+      ],
+      "@OneCoach/lib-shared/*": [
+        "../../coachone-shared/packages/lib-shared/src/*"
+      ]
+    }
   },
   "include": [
     "src/**/*"

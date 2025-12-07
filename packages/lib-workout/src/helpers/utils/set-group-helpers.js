@@ -13,7 +13,7 @@
  * Genera un ID univoco per SetGroup
  */
 export function generateSetGroupId() {
-  return `setgroup_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    return `setgroup_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
 }
 /**
  * Calcola le serie espanse da baseSet + count + progression opzionale.
@@ -35,49 +35,49 @@ export function generateSetGroupId() {
  * });
  */
 export function expandSetsFromGroup(baseSet, count, progression) {
-  const sets = [];
-  for (let i = 0; i < count; i++) {
-    const setNumber = i + 1; // 1-based
-    let adjustedSet = { ...baseSet };
-    if (progression) {
-      adjustedSet = applyProgressionToSet(adjustedSet, setNumber, progression);
+    const sets = [];
+    for (let i = 0; i < count; i++) {
+        const setNumber = i + 1; // 1-based
+        let adjustedSet = { ...baseSet };
+        if (progression) {
+            adjustedSet = applyProgressionToSet(adjustedSet, setNumber, progression);
+        }
+        sets.push(adjustedSet);
     }
-    sets.push(adjustedSet);
-  }
-  return sets;
+    return sets;
 }
 /**
  * Applica la progressione a una singola serie.
  */
 function applyProgressionToSet(set, setNumber, progression) {
-  const adjustedSet = { ...set };
-  for (const step of progression.steps) {
-    if (setNumber >= step.fromSet && setNumber <= step.toSet) {
-      const progressInRange = setNumber - step.fromSet;
-      switch (progression.type) {
-        case 'linear':
-          // Incremento lineare in kg
-          if (adjustedSet.weight !== null) {
-            adjustedSet.weight = adjustedSet.weight + step.adjustment * progressInRange;
-          }
-          break;
-        case 'percentage':
-          // Incremento percentuale
-          if (adjustedSet.weight !== null) {
-            const percentMultiplier = 1 + (step.adjustment / 100) * progressInRange;
-            adjustedSet.weight = Math.round(adjustedSet.weight * percentMultiplier * 10) / 10;
-          }
-          break;
-        case 'rpe':
-          // Incremento RPE
-          if (adjustedSet.rpe !== null) {
-            adjustedSet.rpe = Math.min(10, adjustedSet.rpe + step.adjustment * progressInRange);
-          }
-          break;
-      }
+    const adjustedSet = { ...set };
+    for (const step of progression.steps) {
+        if (setNumber >= step.fromSet && setNumber <= step.toSet) {
+            const progressInRange = setNumber - step.fromSet;
+            switch (progression.type) {
+                case 'linear':
+                    // Incremento lineare in kg
+                    if (adjustedSet.weight !== null) {
+                        adjustedSet.weight = adjustedSet.weight + step.adjustment * progressInRange;
+                    }
+                    break;
+                case 'percentage':
+                    // Incremento percentuale
+                    if (adjustedSet.weight !== null) {
+                        const percentMultiplier = 1 + (step.adjustment / 100) * progressInRange;
+                        adjustedSet.weight = Math.round(adjustedSet.weight * percentMultiplier * 10) / 10;
+                    }
+                    break;
+                case 'rpe':
+                    // Incremento RPE
+                    if (adjustedSet.rpe !== null) {
+                        adjustedSet.rpe = Math.min(10, adjustedSet.rpe + step.adjustment * progressInRange);
+                    }
+                    break;
+            }
+        }
     }
-  }
-  return adjustedSet;
+    return adjustedSet;
 }
 /**
  * Idrata tutti i SetGroup di un esercizio, popolando sets[] da baseSet + count.
@@ -87,13 +87,12 @@ function applyProgressionToSet(set, setNumber, progression) {
  * @returns SetGroup[] con sets[] popolati
  */
 export function hydrateSetGroups(setGroups) {
-  return setGroups.map((group) => ({
-    ...group,
-    sets:
-      group.sets && group.sets.length > 0
-        ? group.sets
-        : expandSetsFromGroup(group.baseSet, group.count, group.progression),
-  }));
+    return setGroups.map((group) => ({
+        ...group,
+        sets: group.sets && group.sets.length > 0
+            ? group.sets
+            : expandSetsFromGroup(group.baseSet, group.count, group.progression),
+    }));
 }
 /**
  * Estrae tutte le serie espanse da un array di SetGroup.
@@ -107,8 +106,8 @@ export function hydrateSetGroups(setGroups) {
  * const totalVolume = allSets.reduce((sum: any, set: any) => sum + (set.reps * set.weight), 0);
  */
 export function getExpandedSets(setGroups) {
-  const hydratedGroups = hydrateSetGroups(setGroups);
-  return hydratedGroups.flatMap((group) => group.sets);
+    const hydratedGroups = hydrateSetGroups(setGroups);
+    return hydratedGroups.flatMap((group) => group.sets);
 }
 /**
  * Estrae tutte le serie da un esercizio.
@@ -118,10 +117,10 @@ export function getExpandedSets(setGroups) {
  * @returns Array di ExerciseSet
  */
 export function getExerciseSets(exercise) {
-  if (!exercise.setGroups || exercise.setGroups.length === 0) {
-    return [];
-  }
-  return getExpandedSets(exercise.setGroups);
+    if (!exercise.setGroups || exercise.setGroups.length === 0) {
+        return [];
+    }
+    return getExpandedSets(exercise.setGroups);
 }
 /**
  * Crea un SetGroup da parametri semplici.
@@ -131,26 +130,26 @@ export function getExerciseSets(exercise) {
  * @param baseSetParams - Parametri per la serie base
  * @returns SetGroup completo con sets[] espansi
  */
-export function createSetGroup(count, baseSetParams) {
-  const baseSet = {
-    reps: baseSetParams.reps,
-    repsMax: baseSetParams.repsMax,
-    duration: baseSetParams.duration,
-    weight: baseSetParams.weight ?? null,
-    weightMax: baseSetParams.weightMax,
-    weightLbs: baseSetParams.weightLbs ?? null,
-    intensityPercent: baseSetParams.intensityPercent ?? null,
-    intensityPercentMax: baseSetParams.intensityPercentMax,
-    rpe: baseSetParams.rpe ?? null,
-    rpeMax: baseSetParams.rpeMax,
-    rest: baseSetParams.rest,
-  };
-  return {
-    id: generateSetGroupId(),
-    count,
-    baseSet,
-    sets: expandSetsFromGroup(baseSet, count),
-  };
+export function createSetGroupFromParams(count, baseSetParams) {
+    const baseSet = {
+        reps: baseSetParams.reps,
+        repsMax: baseSetParams.repsMax,
+        duration: baseSetParams.duration,
+        weight: baseSetParams.weight ?? null,
+        weightMax: baseSetParams.weightMax,
+        weightLbs: baseSetParams.weightLbs ?? null,
+        intensityPercent: baseSetParams.intensityPercent ?? null,
+        intensityPercentMax: baseSetParams.intensityPercentMax,
+        rpe: baseSetParams.rpe ?? null,
+        rpeMax: baseSetParams.rpeMax,
+        rest: baseSetParams.rest,
+    };
+    return {
+        id: generateSetGroupId(),
+        count,
+        baseSet,
+        sets: expandSetsFromGroup(baseSet, count),
+    };
 }
 /**
  * Aggiunge una progressione a un SetGroup esistente e rigenera sets[].
@@ -160,67 +159,67 @@ export function createSetGroup(count, baseSetParams) {
  * @returns Nuovo SetGroup con progressione e sets[] aggiornati
  */
 export function addProgressionToSetGroup(setGroup, progression) {
-  return {
-    ...setGroup,
-    progression,
-    sets: expandSetsFromGroup(setGroup.baseSet, setGroup.count, progression),
-  };
+    return {
+        ...setGroup,
+        progression,
+        sets: expandSetsFromGroup(setGroup.baseSet, setGroup.count, progression),
+    };
 }
 /**
  * Calcola il volume totale di un SetGroup.
  * Volume = Σ(reps × weight) per ogni serie.
  */
 export function calculateSetGroupVolume(setGroup) {
-  const sets =
-    setGroup.sets.length > 0
-      ? setGroup.sets
-      : expandSetsFromGroup(setGroup.baseSet, setGroup.count, setGroup.progression);
-  return sets.reduce((total, set) => {
-    const reps = set.reps ?? 0;
-    const weight = set.weight ?? 0;
-    return total + reps * weight;
-  }, 0);
+    const sets = setGroup.sets.length > 0
+        ? setGroup.sets
+        : expandSetsFromGroup(setGroup.baseSet, setGroup.count, setGroup.progression);
+    return sets.reduce((total, set) => {
+        const reps = set.reps ?? 0;
+        const weight = set.weight ?? 0;
+        return total + reps * weight;
+    }, 0);
 }
 /**
  * Calcola il volume totale di un esercizio.
  */
 export function calculateExerciseVolume(exercise) {
-  if (!exercise.setGroups || exercise.setGroups.length === 0) {
-    return 0;
-  }
-  return exercise.setGroups.reduce((total, group) => total + calculateSetGroupVolume(group), 0);
+    if (!exercise.setGroups || exercise.setGroups.length === 0) {
+        return 0;
+    }
+    return exercise.setGroups.reduce((total, group) => total + calculateSetGroupVolume(group), 0);
 }
 /**
  * Conta il numero totale di serie di un esercizio.
  */
 export function countExerciseSets(exercise) {
-  if (!exercise.setGroups || exercise.setGroups.length === 0) {
-    return 0;
-  }
-  return exercise.setGroups.reduce((total, group) => total + group.count, 0);
+    if (!exercise.setGroups || exercise.setGroups.length === 0) {
+        return 0;
+    }
+    return exercise.setGroups.reduce((total, group) => total + group.count, 0);
 }
 /**
  * Valida che un SetGroup sia valido.
  */
 export function isValidSetGroup(setGroup) {
-  if (!setGroup || typeof setGroup !== 'object') return false;
-  const sg = setGroup;
-  return (
-    typeof sg.id === 'string' &&
-    sg.id.length > 0 &&
-    typeof sg.count === 'number' &&
-    sg.count > 0 &&
-    sg.baseSet !== null &&
-    typeof sg.baseSet === 'object' &&
-    Array.isArray(sg.sets)
-  );
+    if (!setGroup || typeof setGroup !== 'object')
+        return false;
+    const sg = setGroup;
+    return (typeof sg.id === 'string' &&
+        sg.id.length > 0 &&
+        typeof sg.count === 'number' &&
+        sg.count > 0 &&
+        sg.baseSet !== null &&
+        typeof sg.baseSet === 'object' &&
+        Array.isArray(sg.sets));
 }
 /**
  * Valida che un esercizio abbia setGroups validi.
  */
 export function hasValidSetGroups(exercise) {
-  if (!exercise || typeof exercise !== 'object') return false;
-  const ex = exercise;
-  if (!Array.isArray(ex.setGroups)) return false;
-  return ex.setGroups.length > 0 && ex.setGroups.every(isValidSetGroup);
+    if (!exercise || typeof exercise !== 'object')
+        return false;
+    const ex = exercise;
+    if (!Array.isArray(ex.setGroups))
+        return false;
+    return ex.setGroups.length > 0 && ex.setGroups.every(isValidSetGroup);
 }

@@ -2,23 +2,45 @@
   "extends": "../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "./dist",
-    "rootDir": "..",
+    "rootDir": "../../..",
     "noEmit": false,
     "strict": true,
     "composite": true
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"],
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
   "references": [
-    { "path": "../contracts" },
-    { "path": "../lib-core" },
-    { "path": "../lib-shared" },
-    { "path": "../constants" },
-    { "path": "../schemas" },
-    { "path": "../lib-ai" },
-    { "path": "../lib-ai-agents" },
-    { "path": "../lib-exercise" },
-    { "path": "../one-agent" },
-    { "path": "../types" }
+    {
+      "path": "../../../coachone-shared/packages/contracts"
+    },
+    {
+      "path": "../lib-core"
+    },
+    {
+      "path": "../../../coachone-shared/packages/constants"
+    },
+    {
+      "path": "../../../coachone-shared/packages/schemas"
+    },
+    {
+      "path": "../../../lib-ai"
+    },
+    {
+      "path": "../../../../packages/lib-ai-agents"
+    },
+    {
+      "path": "../lib-exercise"
+    },
+    {
+      "path": "../../../one-agent"
+    },
+    {
+      "path": "../../../coachone-shared/packages/types"
+    }
   ]
 }
