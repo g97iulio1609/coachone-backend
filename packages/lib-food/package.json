@@ -1,0 +1,49 @@
+{
+  "name": "@OneCoach/lib-food",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Servizi per il dominio alimenti",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./food.service": {
+      "types": "./src/food.service.ts",
+      "default": "./src/food.service.ts"
+    },
+    "./food-matching.service": {
+      "types": "./src/food-matching.service.ts",
+      "default": "./src/food-matching.service.ts"
+    },
+    "./food-admin.service": {
+      "types": "./src/food-admin.service.ts",
+      "default": "./src/food-admin.service.ts"
+    },
+    "./food-vision.service": {
+      "types": "./src/food-vision.service.ts",
+      "default": "./src/food-vision.service.ts"
+    }
+  },
+  "scripts": {
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@OneCoach/contracts": "workspace:*",
+    "@OneCoach/lib-ai": "workspace:*",
+    "@OneCoach/lib-ai-agents": "workspace:*",
+    "@OneCoach/lib-core": "workspace:*",
+    "@OneCoach/lib-shared": "workspace:*",
+    "@OneCoach/one-agent": "workspace:*",
+    "@OneCoach/schemas": "workspace:*",
+    "@OneCoach/types": "workspace:*",
+    "@prisma/client": "7.0.0",
+    "ai": "6.0.0-beta.124"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "sideEffects": false
+}

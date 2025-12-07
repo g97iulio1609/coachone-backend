@@ -1,0 +1,82 @@
+{
+  "name": "@OneCoach/lib-api",
+  "version": "0.0.0",
+  "description": "API client e hooks per React Query",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./client": {
+      "types": "./src/client.ts",
+      "default": "./src/client.ts"
+    },
+    "./react-query": {
+      "types": "./src/react-query/index.ts",
+      "default": "./src/react-query/index.ts"
+    },
+    "./hooks": {
+      "types": "./src/hooks/index.ts",
+      "default": "./src/hooks/index.ts"
+    },
+    "./hooks/*": {
+      "types": "./src/hooks/*.ts",
+      "default": "./src/hooks/*.ts"
+    },
+    "./habits": {
+      "types": "./src/habits.ts",
+      "default": "./src/habits.ts"
+    },
+    "./error-handler/core": {
+      "types": "./src/error-handler/core.ts",
+      "default": "./src/error-handler/core.ts"
+    },
+    "./projects": {
+      "types": "./src/projects.ts",
+      "default": "./src/projects.ts"
+    },
+    "./queries/exercise.queries": {
+      "types": "./src/queries/exercise.queries.ts",
+      "default": "./src/queries/exercise.queries.ts"
+    },
+    "./utils/generation-handler": {
+      "types": "./src/utils/generation-handler.ts",
+      "default": "./src/utils/generation-handler.ts"
+    },
+    "./utils/streaming-handler": {
+      "types": "./src/utils/streaming-handler.ts",
+      "default": "./src/utils/streaming-handler.ts"
+    }
+  },
+  "scripts": {
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@OneCoach/types": "workspace:*",
+    "@OneCoach/schemas": "workspace:*",
+    "@OneCoach/contracts": "workspace:*",
+    "@OneCoach/lib-shared": "workspace:*",
+    "@OneCoach/lib-core": "workspace:*",
+    "@OneCoach/lib-config": "workspace:*",
+    "@OneCoach/lib-stores": "workspace:*",
+    "@prisma/client": "7.0.0",
+    "@tanstack/react-query": "^5.90.7",
+    "react": ">=19.1.0 <20",
+    "react-native": ">=0.81 <0.83"
+  },
+  "peerDependencies": {
+    "react": ">=19.1.0 <20",
+    "react-native": ">=0.81 <0.83"
+  },
+  "peerDependenciesMeta": {
+    "react-native": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "sideEffects": false
+}

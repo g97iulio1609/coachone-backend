@@ -1,0 +1,28 @@
+{
+  "name": "@OneCoach/api-core",
+  "version": "0.0.0",
+  "description": "API routes per il dominio core (auth, profile, onboarding, payments, subscriptions, credits, invitations, policies, health, iap)",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@OneCoach/contracts": "workspace:*",
+    "@OneCoach/schemas": "workspace:*",
+    "@OneCoach/lib-registry": "workspace:*",
+    "@OneCoach/lib-core": "workspace:*",
+    "@OneCoach/lib-marketplace": "workspace:*",
+    "@OneCoach/lib-workout": "workspace:*",
+    "@OneCoach/constants": "workspace:*",
+    "@OneCoach/types": "workspace:*",
+    "next": "^16.0.6",
+    "next-auth": "5.0.0-beta.30",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "typescript": "^5.9.3"
+  },
+  "sideEffects": false
+}

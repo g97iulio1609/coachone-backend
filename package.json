@@ -1,0 +1,10 @@
+{
+  "name": "coachone-backend",
+  "private": true,
+  "packageManager": "pnpm@10.20.0",
+  "scripts": {
+    "type-check": "pnpm -r type-check",
+    "lint": "pnpm -r lint",
+    "test": "pnpm -r test"
+  }
+}

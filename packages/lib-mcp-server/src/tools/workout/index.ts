@@ -1,0 +1,46 @@
+/**
+ * Workout MCP Tools
+ *
+ * PRINCIPI:
+ * - KISS: Export semplici e diretti di tool MCP
+ * - SOLID (ISP): Ogni modulo esporta solo tool conformi a McpTool
+ * - DRY: Nessuna duplicazione, ogni tool esportato una volta
+ *
+ * REGOLA: Questo modulo esporta ESCLUSIVAMENTE oggetti conformi
+ * all'interfaccia McpTool { name, description, parameters, execute }.
+ * Utility e costanti vanno in moduli separati (es. ./constants).
+ */
+
+// Import Tool
+export { workoutImportTool } from './import';
+
+// Statistics Tool
+export { workoutStatisticsTool } from './statistics';
+
+// Progression Tools
+export {
+  workoutApplyProgressionTool,
+  workoutSaveProgressionTemplateTool,
+  workoutListProgressionTemplatesTool,
+  workoutGranularUpdateTool,
+} from './progression';
+
+// Granular Session Management Tools
+export {
+  workoutGranularSetGroupUpdateTool,
+  workoutGranularIndividualSetUpdateTool,
+  workoutGranularExerciseUpdateTool,
+  workoutGranularDayUpdateTool,
+  workoutGranularWeekUpdateTool,
+  workoutBatchGranularUpdateTool,
+  workoutAddSetGroupTool,
+  workoutRemoveSetGroupTool,
+  workoutDuplicateSetGroupTool,
+  workoutCopyProgressionPatternTool,
+} from './granular';
+
+// Program Generation Tools
+export { workoutProgramTools } from './program';
+
+// Exercise Management Tools
+export { workoutExerciseTools } from './exercises';

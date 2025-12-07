@@ -1,0 +1,32 @@
+/**
+ * Seed Feature Flags
+ *
+ * Inizializza i feature flags di default nel database.
+ * Idempotente: può essere eseguito più volte senza problemi.
+ */
+
+import type { PrismaClient } from '@prisma/client';
+
+export async function seedFeatureFlags(prisma: PrismaClient, adminUserId: string) {
+  // Feature flag per abilitare/disabilitare registrazioni tramite invito
+  const invitationRegistrationFlag = await prisma.feature_flags.upsert({
+    where: { key: 'ENABLE_INVITATION_REGISTRATION' },
+    update: {},
+    create: {
+      key: 'ENABLE_INVITATION_REGISTRATION',
+      name: 'Registrazioni tramite Invito',
+      description:
+        'Abilita o disabilita la possibilità di registrarsi utilizzando un codice invito. Quando disabilitato, il campo invito non sarà visibile nel form di registrazione.',
+      enabled: false, // Disabilitato di default
+      strategy: 'ALL',
+      config: {},
+      createdBy: adminUserId,
+    },
+  });
+
+  console.warn(`  ✓ Feature flag: ${invitationRegistrationFlag.key}`);
+
+  return {
+    invitationRegistrationFlag,
+  };
+}

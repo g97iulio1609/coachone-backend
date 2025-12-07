@@ -1,0 +1,30 @@
+{
+  "name": "@OneCoach/lib-config",
+  "version": "0.0.0",
+  "description": "Environment variables e configurazione",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./env.server": {
+      "types": "./src/env.server.ts",
+      "default": "./src/env.server.ts"
+    },
+    "./env": {
+      "types": "./src/env.ts",
+      "default": "./src/env.ts"
+    }
+  },
+  "scripts": {
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "typescript": "^5.9.3"
+  },
+  "sideEffects": false
+}

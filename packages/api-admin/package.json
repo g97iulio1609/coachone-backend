@@ -1,0 +1,30 @@
+{
+  "name": "@OneCoach/api-admin",
+  "version": "0.0.0",
+  "description": "API routes per admin (users, feature-flags, policies, invitations, metadata, affiliates, promotions, config, etc.)",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@OneCoach/contracts": "workspace:*",
+    "@OneCoach/schemas": "workspace:*",
+    "@OneCoach/lib-registry": "workspace:*",
+    "@OneCoach/lib-core": "workspace:*",
+    "@OneCoach/lib-vercel-admin": "workspace:*",
+    "@OneCoach/lib-metadata": "workspace:*",
+    "@OneCoach/lib-ai": "workspace:*",
+    "@OneCoach/lib-food": "workspace:*",
+    "@OneCoach/lib-exercise": "workspace:*",
+    "@OneCoach/lib-marketplace": "workspace:*",
+    "@OneCoach/types": "workspace:*",
+    "next": "^16.0.6",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "typescript": "^5.9.3"
+  },
+  "sideEffects": false
+}

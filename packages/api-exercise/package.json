@@ -1,0 +1,27 @@
+{
+  "name": "@OneCoach/api-exercise",
+  "version": "0.0.0",
+  "description": "API routes per il dominio esercizi",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@OneCoach/contracts": "workspace:*",
+    "@OneCoach/schemas": "workspace:*",
+    "@OneCoach/lib-registry": "workspace:*",
+    "@OneCoach/lib-exercise": "workspace:*",
+    "@OneCoach/lib-core": "workspace:*",
+    "@OneCoach/lib-api": "workspace:*",
+    "@OneCoach/one-agent": "workspace:*",
+    "@OneCoach/types": "workspace:*",
+    "next": "^16.0.6",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "typescript": "^5.9.3"
+  },
+  "sideEffects": false
+}

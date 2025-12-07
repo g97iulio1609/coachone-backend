@@ -1,0 +1,31 @@
+{
+  "name": "@OneCoach/lib-coach",
+  "version": "0.0.0",
+  "description": "Servizi per il dominio coach",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./coach.service": {
+      "types": "./src/coach.service.ts",
+      "default": "./src/coach.service.ts"
+    }
+  },
+  "scripts": {
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@OneCoach/types": "workspace:*",
+    "@OneCoach/schemas": "workspace:*",
+    "@OneCoach/contracts": "workspace:*",
+    "@OneCoach/lib-core": "workspace:*",
+    "@prisma/client": "7.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "sideEffects": false
+}

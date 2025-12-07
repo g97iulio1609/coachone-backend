@@ -1,0 +1,41 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "..",
+    "composite": true,
+    "declaration": true,
+    "allowJs": false,
+    "noEmit": false,
+    "strict": true,
+    "paths": {
+      "@OneCoach/lib-shared": ["../lib-shared/src/index.ts"],
+      "@OneCoach/lib-shared/*": ["../lib-shared/src/*"],
+      "@OneCoach/lib-shared/utils/*": ["../lib-shared/src/utils/*"],
+      "@OneCoach/lib-shared/id-generator": ["../lib-shared/src/id-generator.ts"],
+      "@OneCoach/lib-shared/utils/logger": ["../lib-shared/src/utils/logger/index.ts"],
+      "@OneCoach/types": ["../types/src/index.ts"],
+      "@OneCoach/types/*": ["../types/src/*"],
+      "@OneCoach/contracts": ["../contracts/src/index.ts"],
+      "@OneCoach/contracts/*": ["../contracts/src/*"],
+      "@OneCoach/constants": ["../constants/src/index.ts"],
+      "@OneCoach/constants/*": ["../constants/src/*"],
+      "@OneCoach/lib-config": ["../lib-config/src/index.ts"],
+      "@OneCoach/lib-config/*": ["../lib-config/src/*"],
+      "@OneCoach/lib-ai-agents": ["../lib-ai-agents/src/index.ts"],
+      "@OneCoach/lib-ai-agents/*": ["../lib-ai-agents/src/*"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "src/auth/guards-client.*",
+    "src/auth/auth-components.*",
+    "src/user-memory/analyzer.*",
+    "src/seeds/**/*",
+    "src/db/init-db.ts",
+    "src/db/init-db.js",
+    "src/db/init-db.*"
+  ]
+}

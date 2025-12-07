@@ -1,0 +1,57 @@
+import { NextRequest, NextResponse } from 'next/server';
+import { requireAdmin } from '@OneCoach/lib-core/auth/guards';
+import { ExerciseAdminService, exerciseImportSchema } from '@OneCoach/lib-exercise-admin.service';
+import { z } from 'zod';
+import { logError, mapErrorToApiResponse } from '@OneCoach/lib-shared/utils/error';
+
+export const dynamic = 'force-dynamic';
+
+const importRequestSchema = z.object({
+  items: z.preprocess(
+    (value) => (Array.isArray(value) ? value : value ? [value] : []),
+    z.array(exerciseImportSchema)
+  ),
+  autoApprove: z.boolean().optional(),
+  mergeExisting: z.boolean().optional(),
+});
+
+export async function POST(_req: NextRequest) {
+  const adminOrError = await requireAdmin();
+
+  if (adminOrError instanceof NextResponse) {
+    return adminOrError;
+  }
+
+  try {
+    const body = await _req.json();
+    const parsed = importRequestSchema.safeParse(body);
+
+    if (!parsed.success) {
+      return NextResponse.json(
+        {
+          error: 'Payload import non valido',
+          details: parsed.error.flatten(),
+        },
+        { status: 400 }
+      );
+    }
+
+    const result = await ExerciseAdminService.import(parsed.data.items, {
+      userId: adminOrError.id,
+      autoApprove: parsed.data.autoApprove,
+      mergeExisting: parsed.data.mergeExisting,
+    });
+
+    return NextResponse.json({
+      success: true,
+      summary: result,
+    });
+  } catch (error: unknown) {
+    logError("Errore nell'importazione degli esercizi", error);
+    const { response, status } = mapErrorToApiResponse(
+      error,
+      "Errore nell'importazione degli esercizi"
+    );
+    return NextResponse.json(response, { status });
+  }
+}

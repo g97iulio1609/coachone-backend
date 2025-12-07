@@ -1,0 +1,39 @@
+import { z } from 'zod';
+import type { McpTool, McpContext, BatchResult } from '../../types';
+import { foodService } from '@OneCoach/lib-food';
+import { updateFoodSchema } from '@OneCoach/schemas';
+
+const batchUpdateParameters = z.object({
+  items: z
+    .array(
+      z.object({
+        id: z.string(),
+        data: updateFoodSchema,
+      })
+    )
+    .max(100),
+});
+
+export const foodBatchUpdateTool: McpTool = {
+  name: 'food_batch_update',
+  description: 'Updates multiple food items by ID. Requires admin privileges.',
+  parameters: batchUpdateParameters,
+  execute: async (args, context: McpContext) => {
+    if (!context.isAdmin) {
+      throw new Error('Unauthorized: Admin access required for this operation');
+    }
+
+    const results: BatchResult[] = [];
+
+    for (const item of args.items) {
+      try {
+        const updated = await foodService.updateFood(item.id, item.data);
+        results.push({ success: true, id: item.id, data: updated });
+      } catch (error: any) {
+        results.push({ success: false, id: item.id, error: error.message });
+      }
+    }
+
+    return results;
+  },
+};

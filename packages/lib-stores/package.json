@@ -1,0 +1,59 @@
+{
+  "name": "@OneCoach/lib-stores",
+  "version": "0.0.0",
+  "description": "Zustand stores per web e native",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./auth": {
+      "types": "./src/auth.store.ts",
+      "default": "./src/auth.store.ts"
+    },
+    "./auth.store": {
+      "types": "./src/auth.store.ts",
+      "default": "./src/auth.store.ts"
+    },
+    "./onboarding": {
+      "types": "./src/onboarding.store.ts",
+      "default": "./src/onboarding.store.ts"
+    },
+    "./onboarding.store": {
+      "types": "./src/onboarding.store.ts",
+      "default": "./src/onboarding.store.ts"
+    },
+    "./health.store": {
+      "types": "./src/health.store.ts",
+      "default": "./src/health.store.ts"
+    },
+    "./iap.store": {
+      "types": "./src/iap.store.ts",
+      "default": "./src/iap.store.ts"
+    },
+    "./dialog.store": {
+      "types": "./src/dialog.store.ts",
+      "default": "./src/dialog.store.ts"
+    },
+    "./index": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "scripts": {
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@OneCoach/lib-shared": "workspace:*",
+    "@OneCoach/lib-core": "workspace:*",
+    "@OneCoach/types": "workspace:*",
+    "zustand": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "typescript": "^5.9.3"
+  },
+  "sideEffects": false
+}

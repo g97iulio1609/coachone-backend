@@ -1,0 +1,65 @@
+import { z } from 'zod';
+
+export type ImportMode = 'auto' | 'review';
+
+export type ImportFile = {
+  name: string;
+  mimeType?: string;
+  content: string;
+  size?: number;
+  sheetIndex?: number;
+  sheetName?: string;
+};
+
+export type ImportOptions = {
+  mode?: ImportMode;
+  locale?: string;
+  matchThreshold?: number;
+  preserveProgressions?: boolean;
+};
+
+export type ImportProgressStep =
+  | 'validating'
+  | 'parsing'
+  | 'matching'
+  | 'persisting'
+  | 'completed'
+  | 'error';
+
+export type ImportProgress = {
+  step: ImportProgressStep;
+  message: string;
+  progress?: number;
+  stepNumber?: number;
+  totalSteps?: number;
+  metadata?: Record<string, unknown>;
+};
+
+export type AIParseContext<TParsed = unknown> = {
+  parseWithAI: (content: string, mimeType: string, prompt: string) => Promise<TParsed>;
+};
+
+export type MimeHandler<TParsed> = (content: string, mimeType: string) => Promise<TParsed>;
+
+export type MimeRouterHandlers<TParsed> = {
+  image?: MimeHandler<TParsed>;
+  pdf?: MimeHandler<TParsed>;
+  spreadsheet?: MimeHandler<TParsed>;
+  document?: MimeHandler<TParsed>;
+  fallback?: MimeHandler<TParsed>;
+};
+
+export type VisionParseParams<T> = {
+  contentBase64: string;
+  mimeType: string;
+  prompt: string;
+  schema: z.ZodSchema<T>;
+  modelId?: string;
+  apiKey?: string;
+};
+
+export const IMPORT_LIMITS = {
+  MAX_FILES: 5,
+  MAX_FILE_SIZE: 8 * 1024 * 1024,
+  RATE_LIMIT_PER_HOUR: 30,
+};

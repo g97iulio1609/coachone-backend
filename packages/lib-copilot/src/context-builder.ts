@@ -1,0 +1,286 @@
+/**
+ * Copilot Context Builder
+ *
+ * Costruisce il contesto completo per i copilot AI includendo:
+ * - Piano/programma corrente
+ * - Profilo utente
+ * - Ultimi 2-3 piani/programmi precedenti
+ * - Metadati utili
+ *
+ * Refactored to use centralized utilities following DRY principle
+ */
+
+import { prisma } from '@OneCoach/lib-core/prisma';
+import { normalizeNutritionPlan } from '@OneCoach/lib-nutrition/plan-transform';
+import { resolveFoodReferences } from '@OneCoach/lib-nutrition/helpers/plan-server-transform';
+import {
+  buildUserProfileData,
+  USER_PROFILE_SELECT,
+  type UserProfileData,
+} from './user-profile-builder';
+import { userMemoryService } from '@OneCoach/lib-core';
+import type { NutritionPlan } from '@OneCoach/types';
+import type { WorkoutProgram } from '@OneCoach/types';
+
+const CHAT_CONSTANTS = {
+  RECENT_ITEMS_TAKE: 3,
+};
+
+/**
+ * Recent exercise structure for context
+ */
+export interface RecentExercise {
+  id: string;
+  slug: string;
+  name: string;
+  muscles: Array<{
+    id: string;
+    name: string;
+    role: string;
+  }>;
+  equipment: Array<{
+    id: string;
+    name: string;
+  }>;
+}
+
+export interface CopilotContext {
+  currentPlan?: NutritionPlan | WorkoutProgram;
+  userProfile: UserProfileData;
+  recentPlans?: NutritionPlan[];
+  recentPrograms?: WorkoutProgram[];
+  recentExercises?: RecentExercise[];
+  // User memory for personalization
+  userMemory?: {
+    patterns: Array<{
+      type: string;
+      description: string;
+      confidence: number;
+      suggestions?: string[];
+    }>;
+    insights: Array<{
+      category: string;
+      insight: string;
+      basedOn: string;
+      confidence: number;
+    }>;
+    recommendations: Array<{
+      type: string;
+      message: string;
+      priority: number;
+    }>;
+  };
+  // Analytics-specific properties (optional, only present when built from buildAnalyticsContext)
+  latestBodyMeasurement?: unknown;
+  currentSnapshot?: unknown;
+  recentWorkoutSessions?: Array<{
+    id: string;
+    programId: string;
+    weekNumber: number;
+    dayNumber: number;
+    startedAt: string;
+    completedAt: string | null;
+    completed: boolean;
+  }>;
+  recentNutritionLogs?: Array<{
+    id: string;
+    planId: string;
+    date: string;
+    weekNumber: number;
+    dayNumber: number;
+    actualDailyMacros: unknown;
+    waterIntake: number | null;
+  }>;
+  activeGoals?: unknown[];
+  activeNutritionPlan?: {
+    id: string;
+    name: string;
+    goals: string[];
+    targetMacros: unknown;
+    durationWeeks: number;
+  } | null;
+  activeWorkoutProgram?: {
+    id: string;
+    name: string;
+    goals: string[];
+    difficulty: string;
+    durationWeeks: number;
+  } | null;
+  metadata: {
+    planVersion?: number;
+    planCreatedAt?: string;
+    planUpdatedAt?: string;
+    contextType?: string;
+    timestamp?: string;
+  };
+}
+
+/**
+ * Costruisce il contesto per il copilot nutrizionale
+ */
+export async function buildNutritionContext(
+  userId: string,
+  planId: string
+): Promise<CopilotContext> {
+  // Carica il piano corrente
+  const currentPlan = await prisma.nutrition_plans.findUnique({
+    where: { id: planId },
+  });
+
+  if (!currentPlan || currentPlan.userId !== userId) {
+    throw new Error('Piano non trovato o non autorizzato');
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const normalizedPlan = normalizeNutritionPlan(currentPlan as any);
+  // Risolvi foodItemId in dati completi per UI/API
+  const resolvedPlan = await resolveFoodReferences(normalizedPlan);
+
+  // Carica il profilo utente
+  const profile = await prisma.user_profiles.findUnique({
+    where: { userId },
+    select: USER_PROFILE_SELECT,
+  });
+
+  // Carica gli ultimi 2-3 piani nutrizionali (escludendo quello corrente)
+  const recentPlans = await prisma.nutrition_plans.findMany({
+    where: {
+      userId,
+      id: { not: planId },
+    },
+    orderBy: {
+      createdAt: 'desc',
+    },
+    take: CHAT_CONSTANTS.RECENT_ITEMS_TAKE,
+  });
+
+  const normalizedRecentPlans = await Promise.all(
+    recentPlans.map((plan: any) => resolveFoodReferences(normalizeNutritionPlan(plan)))
+  );
+
+  // Get user memory context
+  const memoryContext = await userMemoryService.getMemoryContext(userId, 'nutrition');
+
+  return {
+    currentPlan: resolvedPlan,
+    userProfile: buildUserProfileData(profile),
+    recentPlans: normalizedRecentPlans,
+    userMemory: {
+      patterns: memoryContext.relevantPatterns,
+      insights: memoryContext.relevantInsights,
+      recommendations: memoryContext.recommendations,
+    },
+    metadata: {
+      planVersion: currentPlan.version,
+      planCreatedAt: currentPlan.createdAt.toISOString(),
+      planUpdatedAt: currentPlan.updatedAt.toISOString(),
+    },
+  };
+}
+
+/**
+ * Costruisce il contesto per il copilot workout
+ */
+export async function buildWorkoutContext(
+  userId: string,
+  programId: string
+): Promise<CopilotContext> {
+  // Carica il programma corrente
+  const currentProgram = await prisma.workout_programs.findUnique({
+    where: { id: programId },
+  });
+
+  if (!currentProgram || currentProgram.userId !== userId) {
+    throw new Error('Programma non trovato o non autorizzato');
+  }
+
+  // Normalizza il programma (se necessario, altrimenti usa direttamente)
+  const normalizedProgram = currentProgram as unknown as WorkoutProgram;
+
+  // Carica il profilo utente
+  const profile = await prisma.user_profiles.findUnique({
+    where: { userId },
+    select: USER_PROFILE_SELECT,
+  });
+
+  // Carica gli ultimi 2-3 programmi di allenamento (escludendo quello corrente)
+  const recentPrograms = await prisma.workout_programs.findMany({
+    where: {
+      userId,
+      id: { not: programId },
+    },
+    orderBy: {
+      createdAt: 'desc',
+    },
+    take: CHAT_CONSTANTS.RECENT_ITEMS_TAKE,
+  });
+
+  const normalizedRecentPrograms = recentPrograms as unknown as WorkoutProgram[];
+
+  // Get user memory context
+  const memoryContext = await userMemoryService.getMemoryContext(userId, 'workout');
+
+  return {
+    currentPlan: normalizedProgram,
+    userProfile: buildUserProfileData(profile),
+    recentPrograms: normalizedRecentPrograms,
+    userMemory: {
+      patterns: memoryContext.relevantPatterns,
+      insights: memoryContext.relevantInsights,
+      recommendations: memoryContext.recommendations,
+    },
+    metadata: {
+      planVersion: currentProgram.version,
+      planCreatedAt: currentProgram.createdAt.toISOString(),
+      planUpdatedAt: currentProgram.updatedAt.toISOString(),
+    },
+  };
+}
+
+/**
+ * Costruisce il contesto per il copilot chat generale
+ */
+export async function buildChatContext(
+  userId: string
+): Promise<Omit<CopilotContext, 'currentPlan'>> {
+  // Carica il profilo utente
+  const profile = await prisma.user_profiles.findUnique({
+    where: { userId },
+    select: USER_PROFILE_SELECT,
+  });
+
+  // Carica gli ultimi 2-3 piani nutrizionali
+  const recentPlans = await prisma.nutrition_plans.findMany({
+    where: { userId },
+    orderBy: { createdAt: 'desc' },
+    take: CHAT_CONSTANTS.RECENT_ITEMS_TAKE,
+  });
+
+  // Carica gli ultimi 2-3 programmi di allenamento
+  const recentPrograms = await prisma.workout_programs.findMany({
+    where: { userId },
+    orderBy: { createdAt: 'desc' },
+    take: CHAT_CONSTANTS.RECENT_ITEMS_TAKE,
+  });
+
+  const normalizedRecentPlans = recentPlans.map((plan: any) => normalizeNutritionPlan(plan));
+  const normalizedRecentPrograms = recentPrograms as unknown as WorkoutProgram[];
+
+  // Get user memory context (all domains)
+  const memoryContext = await userMemoryService.getMemoryContext(userId);
+
+  return {
+    userProfile: buildUserProfileData(profile),
+    recentPlans: normalizedRecentPlans,
+    recentPrograms: normalizedRecentPrograms,
+    userMemory: {
+      patterns: memoryContext.relevantPatterns,
+      insights: memoryContext.relevantInsights,
+      recommendations: memoryContext.recommendations,
+    },
+    metadata: {},
+  };
+}
+
+// Re-export exercise context builder for convenience
+export { buildExerciseContext } from './exercise-context-builder';

@@ -1,0 +1,44 @@
+{
+  "name": "@OneCoach/lib-metadata",
+  "version": "0.0.0",
+  "description": "Servizi metadata (translation, validation, catalog)",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./metadata-translation.service": {
+      "types": "./src/metadata-translation.service.ts",
+      "default": "./src/metadata-translation.service.ts"
+    },
+    "./catalog-provider.service": {
+      "types": "./src/catalog-provider.service.ts",
+      "default": "./src/catalog-provider.service.ts"
+    },
+    "./metadata-id-resolver.service": {
+      "types": "./src/metadata-id-resolver.service.ts",
+      "default": "./src/metadata-id-resolver.service.ts"
+    },
+    "./metadata-validator.service": {
+      "types": "./src/metadata-validator.service.ts",
+      "default": "./src/metadata-validator.service.ts"
+    }
+  },
+  "scripts": {
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@OneCoach/types": "workspace:*",
+    "@OneCoach/schemas": "workspace:*",
+    "@OneCoach/contracts": "workspace:*",
+    "@OneCoach/lib-core": "workspace:*",
+    "@OneCoach/lib-shared": "workspace:*",
+    "@prisma/client": "7.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "sideEffects": false
+}

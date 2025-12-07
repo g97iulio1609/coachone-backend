@@ -1,0 +1,31 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "..",
+    "tsBuildInfoFile": "dist/tsconfig.tsbuildinfo",
+    "baseUrl": ".",
+    "paths": {
+      "@OneCoach/types": ["../types/dist/index.d.ts"],
+      "@OneCoach/types/*": ["../types/dist/*.d.ts"],
+      "@OneCoach/schemas": ["../schemas/dist/index.d.ts"],
+      "@OneCoach/schemas/*": ["../schemas/dist/*"],
+      "@OneCoach/lib-core": ["../lib-core/dist/index.d.ts"],
+      "@OneCoach/lib-core/*": ["../lib-core/dist/*"],
+      "@OneCoach/lib-core/prisma": ["../lib-core/dist/prisma.d.ts"],
+      "@OneCoach/lib-shared": ["../lib-shared/dist/index.d.ts"],
+      "@OneCoach/lib-shared/*": ["../lib-shared/dist/*"],
+      "@OneCoach/lib-shared/utils/logger": ["../lib-shared/dist/utils/logger/index.d.ts"],
+      "@OneCoach/lib-workout": ["../lib-workout/dist/index.d.ts"],
+      "@OneCoach/lib-workout/*": ["../lib-workout/dist/*"],
+      "@OneCoach/lib-import-core": ["./src/stubs/lib-import-core.d.ts"],
+      "@OneCoach/lib-nutrition": ["./src/stubs/lib-nutrition.d.ts"],
+      "@OneCoach/lib-food": ["./src/stubs/lib-food.d.ts"],
+      "@OneCoach/lib-food/*": ["./src/stubs/lib-food.d.ts"],
+      "@OneCoach/lib-exercise": ["./src/stubs/lib-exercise.d.ts"],
+      "@OneCoach/lib-exercise/*": ["./src/stubs/lib-exercise.d.ts"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

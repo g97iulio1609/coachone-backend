@@ -1,0 +1,22 @@
+{
+  "name": "@OneCoach/lib-import-core",
+  "version": "0.0.0",
+  "description": "Core utilities condivisi per i flussi di import AI multi-dominio",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "scripts": {
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "typescript": "^5.9.3"
+  },
+  "sideEffects": false
+}

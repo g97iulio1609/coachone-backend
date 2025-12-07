@@ -1,0 +1,55 @@
+{
+  "name": "@OneCoach/lib-marketplace",
+  "version": "0.0.0",
+  "description": "Servizi marketplace (marketplace, coach, affiliate, promotion)",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./affiliate.service": {
+      "types": "./src/affiliate.service.ts",
+      "default": "./src/affiliate.service.ts"
+    },
+    "./promotion.service": {
+      "types": "./src/promotion.service.ts",
+      "default": "./src/promotion.service.ts"
+    },
+    "./marketplace.service": {
+      "types": "./src/marketplace.service.ts",
+      "default": "./src/marketplace.service.ts"
+    },
+    "./coach.service": {
+      "types": "./src/coach.service.ts",
+      "default": "./src/coach.service.ts"
+    },
+    "./affiliate-logger.service": {
+      "types": "./src/affiliate-logger.service.ts",
+      "default": "./src/affiliate-logger.service.ts"
+    },
+    "./payout-audit.service": {
+      "types": "./src/payout-audit.service.ts",
+      "default": "./src/payout-audit.service.ts"
+    },
+    "./payout-profile.service": {
+      "types": "./src/payout-profile.service.ts",
+      "default": "./src/payout-profile.service.ts"
+    }
+  },
+  "scripts": {
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@OneCoach/types": "workspace:*",
+    "@OneCoach/schemas": "workspace:*",
+    "@OneCoach/contracts": "workspace:*",
+    "@OneCoach/lib-core": "workspace:*",
+    "@prisma/client": "7.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "sideEffects": false
+}

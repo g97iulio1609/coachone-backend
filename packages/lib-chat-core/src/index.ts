@@ -1,0 +1,91 @@
+/**
+ * lib-chat-core
+ *
+ * Core condiviso per Chat e Copilot.
+ * SSOT (Single Source of Truth) per tutti i componenti e hook chat-related.
+ *
+ * PRINCIPI:
+ * - KISS: API semplice e intuitiva
+ * - SOLID: Separation of Concerns chiara
+ * - DRY: Nessuna duplicazione tra Chat e Copilot
+ *
+ * ARCHITETTURA:
+ * ```
+ * ┌─────────────────────────────────────────────────────────────┐
+ * │                    lib-chat-core                            │
+ * │                                                             │
+ * │  ┌───────────────────────────────────────────────────────┐ │
+ * │  │  TYPES                                                 │ │
+ * │  │  - ChatMessage, ChatConversation, ChatStatus          │ │
+ * │  │  - UseChatCoreOptions, MessageBubbleProps             │ │
+ * │  │  - UnifiedChatProps, ScreenContextData                │ │
+ * │  └───────────────────────────────────────────────────────┘ │
+ * │                                                             │
+ * │  ┌───────────────────────────────────────────────────────┐ │
+ * │  │  PROVIDERS                                             │ │
+ * │  │  - UnifiedChatProvider (global context)               │ │
+ * │  └───────────────────────────────────────────────────────┘ │
+ * │                                                             │
+ * │  ┌───────────────────────────────────────────────────────┐ │
+ * │  │  HOOKS                                                 │ │
+ * │  │  - useChatCore (AI SDK v6 wrapper)                    │ │
+ * │  │  - useUnifiedChat (Chat + Copilot unified)            │ │
+ * │  │  - useChatRealtime (Supabase Realtime)                │ │
+ * │  └───────────────────────────────────────────────────────┘ │
+ * │                                                             │
+ * │  ┌───────────────────────────────────────────────────────┐ │
+ * │  │  COMPONENTS                                            │ │
+ * │  │  - MessageBubble (markdown, syntax highlight)         │ │
+ * │  │  - ChatInput (auto-resize, keyboard)                  │ │
+ * │  │  - ConversationList (selection, delete)               │ │
+ * │  │  - UnifiedChat (fullscreen/sidebar/floating)          │ │
+ * │  └───────────────────────────────────────────────────────┘ │
+ * │                                                             │
+ * │  ┌───────────────────────────────────────────────────────┐ │
+ * │  │  UTILS                                                 │ │
+ * │  │  - Message conversion (AI SDK v6 ↔ ChatMessage)       │ │
+ * │  │  - Message helpers (create, filter, sort)             │ │
+ * │  └───────────────────────────────────────────────────────┘ │
+ * └─────────────────────────────────────────────────────────────┘
+ * ```
+ *
+ * @example
+ * ```tsx
+ * // Chat unificata (fullscreen)
+ * import { useUnifiedChat, UnifiedChatProvider } from '@OneCoach/lib-chat-core';
+ *
+ * function Chat() {
+ *   const { messages, sendMessage, status } = useUnifiedChat({ mode: 'fullscreen' });
+ *   // ...
+ * }
+ * ```
+ *
+ * @example
+ * ```tsx
+ * // Copilot sidebar con contesto
+ * import { useUnifiedChat } from '@OneCoach/lib-chat-core';
+ *
+ * function Copilot({ workoutId }) {
+ *   const { messages, sendMessage } = useUnifiedChat({
+ *     mode: 'sidebar',
+ *     contextOverride: { type: 'workout', entityId: workoutId }
+ *   });
+ *   // ...
+ * }
+ * ```
+ */
+
+// Types
+export * from './types';
+
+// Providers
+export * from './providers';
+
+// Hooks
+export * from './hooks';
+
+// Components
+export * from './components';
+
+// Utils
+export * from './utils';

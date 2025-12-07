@@ -1,0 +1,4 @@
+
+> @OneCoach/lib-config@0.0.0 type-check /Users/giulioleone/Sviluppo/CoachOne/packages/lib-config
+> tsc --noEmit
+

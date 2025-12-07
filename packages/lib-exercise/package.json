@@ -1,0 +1,45 @@
+{
+  "name": "@OneCoach/lib-exercise",
+  "version": "0.0.0",
+  "description": "Servizi per il dominio esercizi",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./exercise-admin.service": {
+      "types": "./src/exercise-admin.service.ts",
+      "default": "./src/exercise-admin.service.ts"
+    },
+    "./exercise.service": {
+      "types": "./src/exercise.service.ts",
+      "default": "./src/exercise.service.ts"
+    },
+    "./one-rep-max.service": {
+      "types": "./src/one-rep-max.service.ts",
+      "default": "./src/one-rep-max.service.ts"
+    },
+    "./exercise-id-resolver.service": {
+      "types": "./src/exercise-id-resolver.service.ts",
+      "default": "./src/exercise-id-resolver.service.ts"
+    }
+  },
+  "scripts": {
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@OneCoach/types": "workspace:*",
+    "@OneCoach/schemas": "workspace:*",
+    "@OneCoach/contracts": "workspace:*",
+    "@OneCoach/lib-core": "workspace:*",
+    "@OneCoach/lib-shared": "workspace:*",
+    "@OneCoach/one-agent": "workspace:*",
+    "@prisma/client": "7.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "sideEffects": false
+}

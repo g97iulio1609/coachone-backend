@@ -1,0 +1,19 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "..",
+    "noEmit": false,
+    "strict": true,
+    "composite": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"],
+  "references": [
+    { "path": "../lib-core" },
+    { "path": "../lib-shared" },
+    { "path": "../constants" },
+    { "path": "../schemas" },
+    { "path": "../types" }
+  ]
+}

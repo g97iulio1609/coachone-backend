@@ -1,0 +1,47 @@
+/**
+ * Goal Detail API Route
+ */
+
+import { NextRequest, NextResponse } from 'next/server';
+import { auth } from '@OneCoach/lib-core/auth';
+import { oneagendaDB } from '@OneCoach/oneagenda-core/db';
+import { logger } from '@OneCoach/lib-shared/utils/logger';
+
+interface RouteContext {
+  params: Promise<{ id: string }>;
+}
+
+export async function GET(request: NextRequest, context: RouteContext) {
+  try {
+    const session = await auth();
+    if (!session?.user?.id) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+    const { id } = await context.params;
+    const goal = await oneagendaDB.getGoal(id, session.user.id);
+
+    if (!goal) {
+      return NextResponse.json({ error: 'Goal not found' }, { status: 404 });
+    }
+
+    return NextResponse.json(goal);
+  } catch (error: unknown) {
+    logger.error('Error fetching goal', { error, goalId: (await context.params).id });
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+  }
+}
+
+export async function DELETE(request: NextRequest, context: RouteContext) {
+  try {
+    const session = await auth();
+    if (!session?.user?.id) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+    const { id } = await context.params;
+    await oneagendaDB.deleteGoal(id, session.user.id);
+    return NextResponse.json({ success: true });
+  } catch (error: unknown) {
+    logger.error('Error deleting goal', { error, goalId: (await context.params).id });
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+  }
+}
