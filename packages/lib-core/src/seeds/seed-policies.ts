@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { createId } from '@OneCoach/lib-shared/utils/id-generator';
+import { createId } from '@onecoach/lib-shared/utils/id-generator';
 
 export async function seedPolicies(prisma: PrismaClient, adminUserId: string) {
   const basePolicies = [
@@ -7,7 +7,7 @@ export async function seedPolicies(prisma: PrismaClient, adminUserId: string) {
       type: 'PRIVACY',
       slug: 'privacy-policy',
       title: 'Privacy Policy',
-      metaDescription: 'Informativa sulla privacy di OneCoach',
+      metaDescription: 'Informativa sulla privacy di onecoach',
       content: '# Privacy Policy\n\nContenuto di default. Aggiorna dal pannello Admin.',
       status: 'PUBLISHED',
     },
@@ -15,7 +15,7 @@ export async function seedPolicies(prisma: PrismaClient, adminUserId: string) {
       type: 'TERMS',
       slug: 'terms-conditions',
       title: 'Termini e Condizioni',
-      metaDescription: 'Termini e condizioni di servizio di OneCoach',
+      metaDescription: 'Termini e condizioni di servizio di onecoach',
       content: '# Termini e Condizioni\n\nContenuto di default. Aggiorna dal pannello Admin.',
       status: 'PUBLISHED',
     },
@@ -23,7 +23,7 @@ export async function seedPolicies(prisma: PrismaClient, adminUserId: string) {
       type: 'GDPR',
       slug: 'gdpr',
       title: 'GDPR',
-      metaDescription: 'Conformità GDPR di OneCoach',
+      metaDescription: 'Conformità GDPR di onecoach',
       content: '# GDPR\n\nContenuto di default. Aggiorna dal pannello Admin.',
       status: 'PUBLISHED',
     },
@@ -31,7 +31,7 @@ export async function seedPolicies(prisma: PrismaClient, adminUserId: string) {
       type: 'CONTENT',
       slug: 'content-policy',
       title: 'Content Policy',
-      metaDescription: 'Policy sui contenuti di OneCoach',
+      metaDescription: 'Policy sui contenuti di onecoach',
       content: '# Content Policy\n\nContenuto di default. Aggiorna dal pannello Admin.',
       status: 'PUBLISHED',
     },

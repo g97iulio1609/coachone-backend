@@ -4,9 +4,9 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { coachService } from '@OneCoach/lib-coach/coach.service';
-import { marketplaceService } from '@OneCoach/lib-marketplace/marketplace.service';
-import { logError, mapErrorToApiResponse } from '@OneCoach/lib-shared/utils/error';
+import { coachService } from '@onecoach/lib-coach/coach.service';
+import { marketplaceService } from '@onecoach/lib-marketplace/marketplace.service';
+import { logError, mapErrorToApiResponse } from '@onecoach/lib-shared/utils/error';
 
 export const dynamic = 'force-dynamic';
 

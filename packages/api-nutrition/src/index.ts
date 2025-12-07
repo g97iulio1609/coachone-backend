@@ -1,11 +1,11 @@
 /**
- * @OneCoach/api-nutrition
+ * @onecoach/api-nutrition
  *
  * API routes per il dominio nutrizione
  * Esporta route handlers che possono essere usati in apps/next/app/api/nutrition/*
  */
 
-import { getService } from '@OneCoach/lib-registry';
+import { getService } from '@onecoach/lib-registry';
 import type { NextRequest } from 'next/server';
 
 /**

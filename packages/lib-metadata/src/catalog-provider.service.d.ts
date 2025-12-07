@@ -63,7 +63,7 @@ export declare class CatalogProviderService {
     /**
      * Get instructions for AI on how to specify foods
      * Delegates to SSOT schema instructions
-     * @deprecated Use AI_FOOD_GENERATION_INSTRUCTIONS directly from @OneCoach/schemas
+     * @deprecated Use AI_FOOD_GENERATION_INSTRUCTIONS directly from @onecoach/schemas
      */
     static getFoodInstructions(): string;
 }

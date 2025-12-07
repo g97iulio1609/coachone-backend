@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import type { McpTool, McpContext } from '../../types';
-import { exerciseService } from '@OneCoach/lib-exercise';
-import { exerciseQuerySchema } from '@OneCoach/schemas';
+import { exerciseService } from '@onecoach/lib-exercise';
+import { exerciseQuerySchema } from '@onecoach/schemas';
 
 const readParameters = exerciseQuerySchema.extend({
   id: z.string().optional(),

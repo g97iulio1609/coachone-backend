@@ -5,10 +5,10 @@
  * Segue principi KISS, SOLID, DRY
  */
 
-import { prisma } from '@OneCoach/lib-core/prisma';
-import { getStripe } from '@OneCoach/lib-core/stripe';
-import { creditService } from '@OneCoach/lib-core/credit.service';
-import { createId } from '@OneCoach/lib-shared/utils/id-generator';
+import { prisma } from '@onecoach/lib-core/prisma';
+import { getStripe } from '@onecoach/lib-core/stripe';
+import { creditService } from '@onecoach/lib-core/credit.service';
+import { createId } from '@onecoach/lib-shared/utils/id-generator';
 import { Prisma } from '@prisma/client';
 /**
  * Promotion Service

@@ -29,58 +29,58 @@
     "incremental": true,
     "baseUrl": "..",
     "paths": {
-      "@OneCoach/constants": [
-        "../coachone-shared/packages/constants/src/index.ts"
+      "@onecoach/constants": [
+        "../onecoach-shared/packages/constants/src/index.ts"
       ],
-      "@OneCoach/constants/*": [
-        "../coachone-shared/packages/constants/src/*"
+      "@onecoach/constants/*": [
+        "../onecoach-shared/packages/constants/src/*"
       ],
-      "@OneCoach/schemas": [
-        "../coachone-shared/packages/schemas/src/index.ts"
+      "@onecoach/schemas": [
+        "../onecoach-shared/packages/schemas/src/index.ts"
       ],
-      "@OneCoach/schemas/*": [
-        "../coachone-shared/packages/schemas/src/*"
+      "@onecoach/schemas/*": [
+        "../onecoach-shared/packages/schemas/src/*"
       ],
-      "@OneCoach/contracts": [
-        "../coachone-shared/packages/contracts/src/index.ts"
+      "@onecoach/contracts": [
+        "../onecoach-shared/packages/contracts/src/index.ts"
       ],
-      "@OneCoach/contracts/*": [
-        "../coachone-shared/packages/contracts/src/*"
+      "@onecoach/contracts/*": [
+        "../onecoach-shared/packages/contracts/src/*"
       ],
-      "@OneCoach/lib-core": [
+      "@onecoach/lib-core": [
         "./packages/lib-core/src/index.ts"
       ],
-      "@OneCoach/lib-core/*": [
+      "@onecoach/lib-core/*": [
         "./packages/lib-core/src/*"
       ],
-      "@OneCoach/lib-shared": [
-        "../coachone-shared/packages/lib-shared/src/index.ts"
+      "@onecoach/lib-shared": [
+        "../onecoach-shared/packages/lib-shared/src/index.ts"
       ],
-      "@OneCoach/lib-shared/*": [
-        "../coachone-shared/packages/lib-shared/src/*"
+      "@onecoach/lib-shared/*": [
+        "../onecoach-shared/packages/lib-shared/src/*"
       ],
-      "@OneCoach/lib-shared/utils/*": [
-        "../coachone-shared/packages/lib-shared/src/utils/*"
+      "@onecoach/lib-shared/utils/*": [
+        "../onecoach-shared/packages/lib-shared/src/utils/*"
       ],
-      "@OneCoach/lib-shared/utils/logger": [
-        "../coachone-shared/packages/lib-shared/src/utils/logger/index.ts"
+      "@onecoach/lib-shared/utils/logger": [
+        "../onecoach-shared/packages/lib-shared/src/utils/logger/index.ts"
       ],
-      "@OneCoach/lib-registry": [
+      "@onecoach/lib-registry": [
         "./packages/lib-registry/src/index.ts"
       ],
-      "@OneCoach/lib-registry/*": [
+      "@onecoach/lib-registry/*": [
         "./packages/lib-registry/src/*"
       ],
-      "@OneCoach/lib-nutrition": [
+      "@onecoach/lib-nutrition": [
         "./packages/lib-nutrition/src/index.ts"
       ],
-      "@OneCoach/lib-nutrition/*": [
+      "@onecoach/lib-nutrition/*": [
         "./packages/lib-nutrition/src/*"
       ],
-      "@OneCoach/lib-workout": [
+      "@onecoach/lib-workout": [
         "./packages/lib-workout/src/index.ts"
       ],
-      "@OneCoach/lib-workout/*": [
+      "@onecoach/lib-workout/*": [
         "./packages/lib-workout/src/*"
       ],
       "ai": [
@@ -89,28 +89,28 @@
       "ai/*": [
         "./node_modules/ai/dist/*"
       ],
-      "@OneCoach/lib-exercise": [
+      "@onecoach/lib-exercise": [
         "./packages/lib-exercise/src/index.ts"
       ],
-      "@OneCoach/lib-exercise/*": [
+      "@onecoach/lib-exercise/*": [
         "./packages/lib-exercise/src/*"
       ],
-      "@OneCoach/lib-food": [
+      "@onecoach/lib-food": [
         "./packages/lib-food/src/index.ts"
       ],
-      "@OneCoach/lib-food/*": [
+      "@onecoach/lib-food/*": [
         "./packages/lib-food/src/*"
       ],
-      "@OneCoach/lib-analytics": [
+      "@onecoach/lib-analytics": [
         "./packages/lib-analytics/src/index.ts"
       ],
-      "@OneCoach/lib-analytics/*": [
+      "@onecoach/lib-analytics/*": [
         "./packages/lib-analytics/src/*"
       ],
-      "@OneCoach/lib-api": [
+      "@onecoach/lib-api": [
         "./packages/lib-api/src/index.ts"
       ],
-      "@OneCoach/lib-api/*": [
+      "@onecoach/lib-api/*": [
         "./packages/lib-api/src/*"
       ],
       "@onecoach/lib-ai": [
@@ -119,256 +119,256 @@
       "@onecoach/lib-ai/*": [
         "./packages/lib-ai/src/*"
       ],
-      "@OneCoach/lib-ai-agents": [
+      "@onecoach/lib-ai-agents": [
         "./packages/lib-ai-agents/src/index.ts"
       ],
-      "@OneCoach/lib-ai-agents/*": [
+      "@onecoach/lib-ai-agents/*": [
         "./packages/lib-ai-agents/src/*"
       ],
-      "@OneCoach/lib-ai-utils": [
+      "@onecoach/lib-ai-utils": [
         "./packages/lib-ai-utils/src/index.ts"
       ],
-      "@OneCoach/lib-ai-utils/*": [
+      "@onecoach/lib-ai-utils/*": [
         "./packages/lib-ai-utils/src/*"
       ],
-      "@OneCoach/lib-marketplace": [
+      "@onecoach/lib-marketplace": [
         "./packages/lib-marketplace/src/index.ts"
       ],
-      "@OneCoach/lib-marketplace/*": [
+      "@onecoach/lib-marketplace/*": [
         "./packages/lib-marketplace/src/*"
       ],
-      "@OneCoach/lib-metadata": [
+      "@onecoach/lib-metadata": [
         "./packages/lib-metadata/src/index.ts"
       ],
-      "@OneCoach/lib-metadata/*": [
+      "@onecoach/lib-metadata/*": [
         "./packages/lib-metadata/src/*"
       ],
-      "@OneCoach/lib-coach": [
+      "@onecoach/lib-coach": [
         "./packages/lib-coach/src/index.ts"
       ],
-      "@OneCoach/lib-coach/*": [
+      "@onecoach/lib-coach/*": [
         "./packages/lib-coach/src/*"
       ],
-      "@OneCoach/lib-planning": [
+      "@onecoach/lib-planning": [
         "./packages/lib-planning/src/index.ts"
       ],
-      "@OneCoach/lib-planning/*": [
+      "@onecoach/lib-planning/*": [
         "./packages/lib-planning/src/*"
       ],
-      "@OneCoach/lib-visual-builder": [
+      "@onecoach/lib-visual-builder": [
         "./packages/lib-visual-builder/src/index.ts"
       ],
-      "@OneCoach/lib-visual-builder/*": [
+      "@onecoach/lib-visual-builder/*": [
         "./packages/lib-visual-builder/src/*"
       ],
-      "@OneCoach/lib-vercel-admin": [
+      "@onecoach/lib-vercel-admin": [
         "./packages/lib-vercel-admin/src/index.ts"
       ],
-      "@OneCoach/lib-vercel-admin/*": [
+      "@onecoach/lib-vercel-admin/*": [
         "./packages/lib-vercel-admin/src/*"
       ],
-      "@OneCoach/lib-api-client": [
+      "@onecoach/lib-api-client": [
         "./packages/lib-api-client/src/index.ts"
       ],
-      "@OneCoach/lib-api-client/*": [
+      "@onecoach/lib-api-client/*": [
         "./packages/lib-api-client/src/*"
       ],
-      "@OneCoach/lib-copilot": [
+      "@onecoach/lib-copilot": [
         "./packages/lib-copilot/src/index.ts"
       ],
-      "@OneCoach/lib-copilot/*": [
+      "@onecoach/lib-copilot/*": [
         "./packages/lib-copilot/src/*"
       ],
-      "@OneCoach/lib-stores": [
+      "@onecoach/lib-stores": [
         "./packages/lib-stores/src/index.ts"
       ],
-      "@OneCoach/lib-stores/*": [
+      "@onecoach/lib-stores/*": [
         "./packages/lib-stores/src/*"
       ],
-      "@OneCoach/lib-config": [
+      "@onecoach/lib-config": [
         "./packages/lib-config/src/index.ts"
       ],
-      "@OneCoach/lib-config/*": [
+      "@onecoach/lib-config/*": [
         "./packages/lib-config/src/*"
       ],
-      "@OneCoach/lib-design-system": [
-        "../coachone-ui/packages/lib-design-system/src/index.ts"
+      "@onecoach/lib-design-system": [
+        "../onecoach-ui/packages/lib-design-system/src/index.ts"
       ],
-      "@OneCoach/lib-design-system/*": [
-        "../coachone-ui/packages/lib-design-system/src/*"
+      "@onecoach/lib-design-system/*": [
+        "../onecoach-ui/packages/lib-design-system/src/*"
       ],
       "design-system": [
-        "../coachone-ui/packages/design-system/src/index.ts"
+        "../onecoach-ui/packages/design-system/src/index.ts"
       ],
       "design-system/*": [
-        "../coachone-ui/packages/design-system/src/*"
+        "../onecoach-ui/packages/design-system/src/*"
       ],
       "hooks": [
-        "../coachone-ui/packages/hooks/src/index.ts"
+        "../onecoach-ui/packages/hooks/src/index.ts"
       ],
       "hooks/*": [
-        "../coachone-ui/packages/hooks/src/*"
+        "../onecoach-ui/packages/hooks/src/*"
       ],
       "ui": [
-        "../coachone-ui/packages/ui/src/index.ts"
+        "../onecoach-ui/packages/ui/src/index.ts"
       ],
       "ui/*": [
-        "../coachone-ui/packages/ui/src/*"
+        "../onecoach-ui/packages/ui/src/*"
       ],
-      "@OneCoach/api-exercise": [
+      "@onecoach/api-exercise": [
         "./packages/api-exercise/src/index.ts"
       ],
-      "@OneCoach/api-exercise/*": [
+      "@onecoach/api-exercise/*": [
         "./packages/api-exercise/src/*"
       ],
-      "@OneCoach/api-food": [
+      "@onecoach/api-food": [
         "./packages/api-food/src/index.ts"
       ],
-      "@OneCoach/api-food/*": [
+      "@onecoach/api-food/*": [
         "./packages/api-food/src/*"
       ],
-      "@OneCoach/api-analytics": [
+      "@onecoach/api-analytics": [
         "./packages/api-analytics/src/index.ts"
       ],
-      "@OneCoach/api-analytics/*": [
+      "@onecoach/api-analytics/*": [
         "./packages/api-analytics/src/*"
       ],
-      "@OneCoach/api-core": [
+      "@onecoach/api-core": [
         "./packages/api-core/src/index.ts"
       ],
-      "@OneCoach/api-core/*": [
+      "@onecoach/api-core/*": [
         "./packages/api-core/src/*"
       ],
-      "@OneCoach/api-coach": [
+      "@onecoach/api-coach": [
         "./packages/api-coach/src/index.ts"
       ],
-      "@OneCoach/api-coach/*": [
+      "@onecoach/api-coach/*": [
         "./packages/api-coach/src/*"
       ],
-      "@OneCoach/api-chat": [
+      "@onecoach/api-chat": [
         "./packages/api-chat/src/index.ts"
       ],
-      "@OneCoach/api-chat/*": [
+      "@onecoach/api-chat/*": [
         "./packages/api-chat/src/*"
       ],
-      "@OneCoach/api-oneagenda": [
+      "@onecoach/api-oneagenda": [
         "./packages/api-oneagenda/src/index.ts"
       ],
-      "@OneCoach/api-oneagenda/*": [
+      "@onecoach/api-oneagenda/*": [
         "./packages/api-oneagenda/src/*"
       ],
-      "@OneCoach/api-admin": [
+      "@onecoach/api-admin": [
         "./packages/api-admin/src/index.ts"
       ],
-      "@OneCoach/api-admin/*": [
+      "@onecoach/api-admin/*": [
         "./packages/api-admin/src/*"
       ],
-      "@OneCoach/one-agenda": [
+      "@onecoach/one-agenda": [
         "../../one-agenda/src/index.ts"
       ],
-      "@OneCoach/one-agenda/*": [
+      "@onecoach/one-agenda/*": [
         "../../one-agenda/src/*"
       ],
-      "@OneCoach/oneagenda-core": [
+      "@onecoach/oneagenda-core": [
         "../../../packages/oneagenda-core/src/index.ts"
       ],
-      "@OneCoach/oneagenda-core/*": [
+      "@onecoach/oneagenda-core/*": [
         "../../../packages/oneagenda-core/src/*"
       ],
-      "@OneCoach/oneagenda-ui": [
+      "@onecoach/oneagenda-ui": [
         "../../../packages/oneagenda-ui/src/index.ts"
       ],
-      "@OneCoach/oneagenda-ui/*": [
+      "@onecoach/oneagenda-ui/*": [
         "../../../packages/oneagenda-ui/src/*"
       ],
-      "@OneCoach/one-agent": [
+      "@onecoach/one-agent": [
         "../../one-agent/src/index.ts"
       ],
-      "@OneCoach/one-agent/*": [
+      "@onecoach/one-agent/*": [
         "../../one-agent/src/*"
       ],
-      "@OneCoach/types": [
-        "../coachone-shared/packages/types/src/index.ts"
+      "@onecoach/types": [
+        "../onecoach-shared/packages/types/src/index.ts"
       ],
-      "@OneCoach/types/*": [
-        "../coachone-shared/packages/types/src/*"
+      "@onecoach/types/*": [
+        "../onecoach-shared/packages/types/src/*"
       ],
-      "@OneCoach/features/analytics": [
+      "@onecoach/features/analytics": [
         "./packages/features/analytics/index.ts"
       ],
-      "@OneCoach/features/analytics/*": [
+      "@onecoach/features/analytics/*": [
         "./packages/features/analytics/*"
       ],
-      "@OneCoach/features/affiliates": [
+      "@onecoach/features/affiliates": [
         "./packages/app/src/features/affiliates/index.ts"
       ],
-      "@OneCoach/features/affiliates/*": [
+      "@onecoach/features/affiliates/*": [
         "./packages/app/src/features/affiliates/*"
       ],
-      "@OneCoach/features/marketplace": [
+      "@onecoach/features/marketplace": [
         "./packages/app/src/features/marketplace/index.ts"
       ],
-      "@OneCoach/features/marketplace/*": [
+      "@onecoach/features/marketplace/*": [
         "./packages/app/src/features/marketplace/*"
       ],
-      "@OneCoach/features/nutrition": [
+      "@onecoach/features/nutrition": [
         "./packages/app/src/features/nutrition/index.ts"
       ],
-      "@OneCoach/features/nutrition/*": [
+      "@onecoach/features/nutrition/*": [
         "./packages/app/src/features/nutrition/*"
       ],
-      "@OneCoach/features/nutrition/hooks": [
+      "@onecoach/features/nutrition/hooks": [
         "./packages/features/nutrition/hooks/index.ts"
       ],
-      "@OneCoach/features/workout": [
+      "@onecoach/features/workout": [
         "./packages/features/workout/index.ts"
       ],
-      "@OneCoach/features/workout/*": [
+      "@onecoach/features/workout/*": [
         "./packages/features/workout/*"
       ],
-      "@OneCoach/features/workout/hooks": [
+      "@onecoach/features/workout/hooks": [
         "./packages/features/workout/hooks/index.ts"
       ],
-      "@OneCoach/features/workouts": [
+      "@onecoach/features/workouts": [
         "./packages/app/src/features/workouts/index.ts"
       ],
-      "@OneCoach/features/workouts/*": [
+      "@onecoach/features/workouts/*": [
         "./packages/app/src/features/workouts/*"
       ],
-      "@OneCoach/features/calendar": [
+      "@onecoach/features/calendar": [
         "./packages/app/src/features/calendar/index.ts"
       ],
-      "@OneCoach/features/calendar/*": [
+      "@onecoach/features/calendar/*": [
         "./packages/app/src/features/calendar/*"
       ],
-      "@OneCoach/features/onboarding": [
+      "@onecoach/features/onboarding": [
         "./packages/app/src/features/onboarding/index.ts"
       ],
-      "@OneCoach/features/onboarding/*": [
+      "@onecoach/features/onboarding/*": [
         "./packages/app/src/features/onboarding/*"
       ],
-      "@OneCoach/features/chat": [
+      "@onecoach/features/chat": [
         "./packages/app/src/features/chat/index.ts"
       ],
-      "@OneCoach/features/chat/*": [
+      "@onecoach/features/chat/*": [
         "./packages/app/src/features/chat/*"
       ],
-      "@OneCoach/features/oneagenda": [
+      "@onecoach/features/oneagenda": [
         "./packages/app/src/features/oneagenda/index.ts"
       ],
-      "@OneCoach/features/oneagenda/*": [
+      "@onecoach/features/oneagenda/*": [
         "./packages/app/src/features/oneagenda/*"
       ],
-      "@OneCoach/features/profile": [
+      "@onecoach/features/profile": [
         "./packages/app/src/features/profile/index.ts"
       ],
-      "@OneCoach/features/profile/*": [
+      "@onecoach/features/profile/*": [
         "./packages/app/src/features/profile/*"
       ],
-      "@OneCoach/app/features/projects": [
+      "@onecoach/app/features/projects": [
         "./packages/app/src/features/projects/index.ts"
       ],
-      "@OneCoach/app/features/projects/*": [
+      "@onecoach/app/features/projects/*": [
         "./packages/app/src/features/projects/*"
       ],
       "@/*": [

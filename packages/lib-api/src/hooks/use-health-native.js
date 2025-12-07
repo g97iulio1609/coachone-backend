@@ -10,12 +10,12 @@ import { Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AppleHealthKit from 'react-native-health';
 import { initialize, requestPermission, SdkAvailabilityStatus, getSdkStatus, } from 'react-native-health-connect';
-import { useHealthStore, useHealthSync, useHealthSummary, } from '@OneCoach/lib-stores/health.store';
+import { useHealthStore, useHealthSync, useHealthSummary, } from '@onecoach/lib-stores/health.store';
 import { useSyncHealthData, useHealthSummaryQuery } from './use-health';
-import { useAuthStore } from '@OneCoach/lib-stores/auth.store';
-import { APPLE_HEALTH_PERMISSIONS, ANDROID_HEALTH_PERMISSIONS, HEALTH_DATA_TYPES, DEFAULT_SYNC_DAYS, HEALTH_STORAGE_KEYS, } from '@OneCoach/constants/health.config';
-import { logger } from '@OneCoach/lib-shared/utils/logger';
-import { getErrorMessage } from '@OneCoach/lib-shared/utils/error';
+import { useAuthStore } from '@onecoach/lib-stores/auth.store';
+import { APPLE_HEALTH_PERMISSIONS, ANDROID_HEALTH_PERMISSIONS, HEALTH_DATA_TYPES, DEFAULT_SYNC_DAYS, HEALTH_STORAGE_KEYS, } from '@onecoach/constants/health.config';
+import { logger } from '@onecoach/lib-shared/utils/logger';
+import { getErrorMessage } from '@onecoach/lib-shared/utils/error';
 /**
  * Hook to initialize and manage Health Kit/Connect
  * Replaces HealthProvider context

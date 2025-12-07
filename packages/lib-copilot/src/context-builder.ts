@@ -10,17 +10,17 @@
  * Refactored to use centralized utilities following DRY principle
  */
 
-import { prisma } from '@OneCoach/lib-core/prisma';
-import { normalizeNutritionPlan } from '@OneCoach/lib-nutrition/plan-transform';
-import { resolveFoodReferences } from '@OneCoach/lib-nutrition/helpers/plan-server-transform';
+import { prisma } from '@onecoach/lib-core/prisma';
+import { normalizeNutritionPlan } from '@onecoach/lib-nutrition/plan-transform';
+import { resolveFoodReferences } from '@onecoach/lib-nutrition/helpers/plan-server-transform';
 import {
   buildUserProfileData,
   USER_PROFILE_SELECT,
   type UserProfileData,
 } from './user-profile-builder';
-import { userMemoryService } from '@OneCoach/lib-core';
-import type { NutritionPlan } from '@OneCoach/types';
-import type { WorkoutProgram } from '@OneCoach/types';
+import { userMemoryService } from '@onecoach/lib-core';
+import type { NutritionPlan } from '@onecoach/types';
+import type { WorkoutProgram } from '@onecoach/types';
 
 const CHAT_CONSTANTS = {
   RECENT_ITEMS_TAKE: 3,

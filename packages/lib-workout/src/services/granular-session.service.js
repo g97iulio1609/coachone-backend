@@ -16,7 +16,7 @@
 import { calculateWeightFromIntensity, calculateIntensityFromWeight, kgToLbs, lbsToKg, } from '../helpers/intensity-calculator';
 import { generateSetsFromGroup } from '../helpers/utils/progression-calculator';
 import { deepClone } from '../helpers/utils';
-import { generateId } from '@OneCoach/lib-shared/id-generator';
+import { generateId } from '@onecoach/lib-shared/id-generator';
 // =====================================================
 // Utility Functions
 // =====================================================

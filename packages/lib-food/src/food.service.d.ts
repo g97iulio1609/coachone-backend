@@ -10,9 +10,9 @@
  * or server components. Pure utility functions like normalizeFoodName can be
  * safely used in client components.
  */
-import type { FoodItem } from '@OneCoach/types';
-import type { Macros } from '@OneCoach/types';
-import type { FoodsResponse } from '@OneCoach/lib-api';
+import type { FoodItem } from '@onecoach/types';
+import type { Macros } from '@onecoach/types';
+import type { FoodsResponse } from '@onecoach/lib-api';
 interface SearchFoodOptions {
   locale?: string;
   limit?: number;

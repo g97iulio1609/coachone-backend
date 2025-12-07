@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { requireAdmin } from '@OneCoach/lib-core/auth/guards';
-import { FoodMatchingService } from '@OneCoach/lib-food-matching.service';
-import { logError, mapErrorToApiResponse } from '@OneCoach/lib-shared/utils/error';
+import { requireAdmin } from '@onecoach/lib-core/auth/guards';
+import { FoodMatchingService } from '@onecoach/lib-food-matching.service';
+import { logError, mapErrorToApiResponse } from '@onecoach/lib-shared/utils/error';
 
 export const dynamic = 'force-dynamic';
 

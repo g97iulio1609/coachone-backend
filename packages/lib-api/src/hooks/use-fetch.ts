@@ -13,7 +13,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { handleApiError } from '@OneCoach/lib-shared/utils/api-error-handler';
+import { handleApiError } from '@onecoach/lib-shared/utils/api-error-handler';
 
 export interface UseFetchOptions<T> {
   url: string | null;

@@ -5,19 +5,19 @@
  * Handles day/week modifications with validation and atomic persistence.
  */
 
-import { prisma } from '@OneCoach/lib-core/prisma';
+import { prisma } from '@onecoach/lib-core/prisma';
 import {
   normalizeNutritionPlan,
   preparePlanForPersistence,
   normalizeAgentPayload,
 } from './helpers/plan-transform';
-import { prepareProgramForPersistence } from '@OneCoach/lib-workout/helpers/program-transform';
-import { normalizeWorkoutProgram } from '@OneCoach/lib-workout/helpers/normalizers/workout-normalizer';
-import { normalizeAgentWorkoutPayload } from '@OneCoach/lib-workout/helpers/program-server-transform';
-import type { NutritionPlan, Macros, Meal, NutritionWeek, NutritionDay, WorkoutProgram, WorkoutWeek } from '@OneCoach/types';
+import { prepareProgramForPersistence } from '@onecoach/lib-workout/helpers/program-transform';
+import { normalizeWorkoutProgram } from '@onecoach/lib-workout/helpers/normalizers/workout-normalizer';
+import { normalizeAgentWorkoutPayload } from '@onecoach/lib-workout/helpers/program-server-transform';
+import type { NutritionPlan, Macros, Meal, NutritionWeek, NutritionDay, WorkoutProgram, WorkoutWeek } from '@onecoach/types';
 import { Prisma } from '@prisma/client';
 
-import { createId } from '@OneCoach/lib-shared';
+import { createId } from '@onecoach/lib-shared';
 
 /**
  * Modified nutrition day data structure (from AI agent)
@@ -77,7 +77,7 @@ export class ModificationService {
     const normalizedPlanToUpdate = normalizeNutritionPlan(planToUpdate as any);
 
     const { getNutritionPlanDay, getNutritionPlanTotalDays } = await import(
-      '@OneCoach/lib-shared/utils/nutrition-plan-helpers'
+      '@onecoach/lib-shared/utils/nutrition-plan-helpers'
     );
 
     const totalDays = getNutritionPlanTotalDays(normalizedPlanToUpdate);
@@ -257,7 +257,7 @@ export class ModificationService {
     };
 
     const { calculateWeightsInProgram } = await import(
-      '@OneCoach/lib-workout/workout-weight-calculator.service'
+      '@onecoach/lib-workout/workout-weight-calculator.service'
     );
     const programWithSyncedWeights = await calculateWeightsInProgram(
       userId,

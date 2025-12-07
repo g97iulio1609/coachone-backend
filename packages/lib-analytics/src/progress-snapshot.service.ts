@@ -6,9 +6,9 @@
  * Follows SOLID principles with single responsibility.
  */
 
-import { prisma } from '@OneCoach/lib-core/prisma';
-import { getExerciseSets } from '@OneCoach/lib-workout';
-import type { Exercise } from '@OneCoach/types';
+import { prisma } from '@onecoach/lib-core/prisma';
+import { getExerciseSets } from '@onecoach/lib-workout';
+import type { Exercise } from '@onecoach/types';
 import { Prisma } from '@prisma/client';
 
 // ============================================

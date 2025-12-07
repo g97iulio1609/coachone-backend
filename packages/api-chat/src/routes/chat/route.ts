@@ -6,12 +6,12 @@
  */
 
 import { NextResponse } from 'next/server';
-import { requireAuth } from '@OneCoach/lib-core/auth/guards';
+import { requireAuth } from '@onecoach/lib-core/auth/guards';
 import { createChatAgentStream } from '@onecoach/lib-ai-agents/chat-agent';
-import { userProfileService } from '@OneCoach/lib-core';
+import { userProfileService } from '@onecoach/lib-core';
 import { z } from 'zod';
-import { logError, mapErrorToApiResponse } from '@OneCoach/lib-shared/utils/error';
-import { AI_REASONING_CONFIG, TOKEN_LIMITS } from '@OneCoach/constants/models';
+import { logError, mapErrorToApiResponse } from '@onecoach/lib-shared/utils/error';
+import { AI_REASONING_CONFIG, TOKEN_LIMITS } from '@onecoach/constants/models';
 
 export const dynamic = 'force-dynamic';
 

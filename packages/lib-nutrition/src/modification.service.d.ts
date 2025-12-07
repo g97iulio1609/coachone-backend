@@ -4,8 +4,8 @@
  * Centralized service for modifying nutrition plans and workout programs.
  * Handles day/week modifications with validation and atomic persistence.
  */
-import type { NutritionPlan, Macros, Meal } from '@OneCoach/types';
-import type { WorkoutProgram, WorkoutWeek } from '@OneCoach/types';
+import type { NutritionPlan, Macros, Meal } from '@onecoach/types';
+import type { WorkoutProgram, WorkoutWeek } from '@onecoach/types';
 /**
  * Modified nutrition day data structure (from AI agent)
  */

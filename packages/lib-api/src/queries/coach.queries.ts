@@ -5,7 +5,7 @@
  */
 
 import type { PublicCoachProfileResponse } from '../coach';
-import type { MarketplacePlanType } from '@OneCoach/types';
+import type { MarketplacePlanType } from '@onecoach/types';
 
 /**
  * MarketplacePlanCardProps - aligned with CoachPlanCardProps in UI

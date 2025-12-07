@@ -4,7 +4,7 @@
  * Centralized service for normalizing workout programs and calculating weights
  * based on user's 1RM. Follows SOLID principles with single responsibility.
  */
-import type { WorkoutProgram } from '@OneCoach/types';
+import type { WorkoutProgram } from '@onecoach/types';
 /**
  * Normalize workout program and calculate weights based on user's 1RM
  * @param rawPayload - Raw workout payload from AI agent

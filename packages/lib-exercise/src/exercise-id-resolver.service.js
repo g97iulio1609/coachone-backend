@@ -5,8 +5,8 @@
  * Used when AI provides exerciseId references that need to be
  * displayed with localized names in the frontend.
  */
-import { prisma } from '@OneCoach/lib-core/prisma';
-import { SimpleCache } from '@OneCoach/lib-shared';
+import { prisma } from '@onecoach/lib-core/prisma';
+import { SimpleCache } from '@onecoach/lib-shared';
 const DEFAULT_LOCALE = 'en';
 const CACHE_TTL_MS = 1000 * 60 * 10; // 10 minutes
 // Cache for resolved exercises

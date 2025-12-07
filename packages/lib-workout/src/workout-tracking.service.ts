@@ -12,9 +12,9 @@
  * - Dependency Inversion: Depends on Prisma abstraction
  */
 
-import { prisma } from '@OneCoach/lib-core/prisma';
+import { prisma } from '@onecoach/lib-core/prisma';
 import type { Prisma } from '@prisma/client';
-import { createId } from '@OneCoach/lib-shared/id-generator';
+import { createId } from '@onecoach/lib-shared/id-generator';
 import { mapToWorkoutSession, mapToWorkoutSessions } from './mappers/workout-session.mapper';
 import { hydrateSetGroups } from './helpers/utils/set-group-helpers';
 import type {
@@ -22,7 +22,7 @@ import type {
   CreateWorkoutSessionRequest,
   UpdateWorkoutSessionRequest,
   WorkoutProgramStats,
-} from '@OneCoach/types';
+} from '@onecoach/types';
 
 /**
  * Create a new workout session

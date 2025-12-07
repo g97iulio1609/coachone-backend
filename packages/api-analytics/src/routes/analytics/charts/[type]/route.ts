@@ -10,12 +10,12 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { requireAuth } from '@OneCoach/lib-core/auth/guards';
+import { requireAuth } from '@onecoach/lib-core/auth/guards';
 import {
   generateWeightChart,
   generateVolumeChart,
   generateMacrosChart,
-} from '@OneCoach/lib-analytics/analytics.service';
+} from '@onecoach/lib-analytics/analytics.service';
 import { z } from 'zod';
 
 export const dynamic = 'force-dynamic';

@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { createId } from '@OneCoach/lib-shared/utils/id-generator';
+import { createId } from '@onecoach/lib-shared/utils/id-generator';
 
 export async function seedAffiliate(prisma: PrismaClient, adminUserId: string) {
   const program = await prisma.affiliate_programs.upsert({
@@ -56,7 +56,7 @@ export async function seedAffiliate(prisma: PrismaClient, adminUserId: string) {
 
   // Referral code admin (best effort)
   try {
-    const { AffiliateService } = await import('@OneCoach/lib-marketplace/affiliate.service');
+    const { AffiliateService } = await import('@onecoach/lib-marketplace/affiliate.service');
     await AffiliateService.ensureUserReferralCode(adminUserId, program.id);
   } catch (_error: unknown) {}
 

@@ -9,26 +9,26 @@
  */
 
 import { registerService } from './index';
-import { nutritionService } from '@OneCoach/lib-nutrition';
-import { workoutService } from '@OneCoach/lib-workout';
-import { exerciseService } from '@OneCoach/lib-exercise';
-import { foodService } from '@OneCoach/lib-food';
-import { analyticsService } from '@OneCoach/lib-analytics';
+import { nutritionService } from '@onecoach/lib-nutrition';
+import { workoutService } from '@onecoach/lib-workout';
+import { exerciseService } from '@onecoach/lib-exercise';
+import { foodService } from '@onecoach/lib-food';
+import { analyticsService } from '@onecoach/lib-analytics';
 import {
   creditService,
   subscriptionService,
   userProfileService,
   paymentService,
   onboardingService,
-} from '@OneCoach/lib-core';
+} from '@onecoach/lib-core';
 import { aiConfigService, chatService } from '@onecoach/lib-ai';
-import { marketplaceService } from '@OneCoach/lib-marketplace';
-import { coachService } from '@OneCoach/lib-coach';
-import type { IExerciseService, IFoodService, IAnalyticsService } from '@OneCoach/contracts';
+import { marketplaceService } from '@onecoach/lib-marketplace';
+import { coachService } from '@onecoach/lib-coach';
+import type { IExerciseService, IFoodService, IAnalyticsService } from '@onecoach/contracts';
 import {
   getBodyMeasurementHistory,
   createBodyMeasurement as createBodyMeasurementFn,
-} from '@OneCoach/lib-analytics/body-measurements.service';
+} from '@onecoach/lib-analytics/body-measurements.service';
 
 /**
  * Wrapper per ExerciseService che implementa IExerciseService

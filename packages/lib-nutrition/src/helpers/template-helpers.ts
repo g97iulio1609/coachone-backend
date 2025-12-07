@@ -12,7 +12,7 @@ import type {
   NutritionDay,
   NutritionWeek,
   Food,
-} from '@OneCoach/types';
+} from '@onecoach/types';
 
 /**
  * Estrae dati template in base al tipo

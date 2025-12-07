@@ -1,13 +1,13 @@
 import { z } from 'zod';
-import { prisma } from '@OneCoach/lib-core/prisma';
-import { logger } from '@OneCoach/lib-shared/utils/logger';
+import { prisma } from '@onecoach/lib-core/prisma';
+import { logger } from '@onecoach/lib-shared/utils/logger';
 import type {
   AIParseContext,
   ImportFile,
   ImportOptions,
   ImportProgress,
-} from '@OneCoach/lib-import-core';
-import { IMPORT_LIMITS, createMimeRouter, parseWithVisionAI } from '@OneCoach/lib-import-core';
+} from '@onecoach/lib-import-core';
+import { IMPORT_LIMITS, createMimeRouter, parseWithVisionAI } from '@onecoach/lib-import-core';
 import { normalizeAgentPayload, preparePlanForPersistence } from './helpers/plan-transform';
 import type { nutrition_plans } from '@prisma/client';
 import {

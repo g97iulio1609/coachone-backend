@@ -14,7 +14,7 @@
  * @module lib-workout/services/granular-session.service
  */
 
-import type { WorkoutProgram, Exercise, SetGroup, ExerciseSet } from '@OneCoach/types';
+import type { WorkoutProgram, Exercise, SetGroup, ExerciseSet } from '@onecoach/types';
 import {
   calculateWeightFromIntensity,
   calculateIntensityFromWeight,
@@ -23,7 +23,7 @@ import {
 } from '../helpers/intensity-calculator';
 import { generateSetsFromGroup } from '../helpers/utils/progression-calculator';
 import { deepClone } from '../helpers/utils';
-import { generateId } from '@OneCoach/lib-shared/id-generator';
+import { generateId } from '@onecoach/lib-shared/id-generator';
 
 // =====================================================
 // Types & Interfaces

@@ -1,5 +1,5 @@
 {
-  "name": "@OneCoach/lib-registry",
+  "name": "@onecoach/lib-registry",
   "version": "0.0.0",
   "description": "Service registry per dependency injection",
   "main": "src/index.ts",
@@ -18,7 +18,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@OneCoach/contracts": "workspace:*"
+    "@onecoach/contracts": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5.9.3"

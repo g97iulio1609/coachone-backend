@@ -1,5 +1,5 @@
 {
-  "name": "@OneCoach/lib-food",
+  "name": "@onecoach/lib-food",
   "version": "0.0.0",
   "type": "module",
   "description": "Servizi per il dominio alimenti",
@@ -31,14 +31,14 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@OneCoach/contracts": "workspace:*",
-    "@OneCoach/lib-ai": "workspace:*",
-    "@OneCoach/lib-ai-agents": "workspace:*",
-    "@OneCoach/lib-core": "workspace:*",
+    "@onecoach/contracts": "workspace:*",
+    "@onecoach/lib-ai": "workspace:*",
+    "@onecoach/lib-ai-agents": "workspace:*",
+    "@onecoach/lib-core": "workspace:*",
     "@onecoach/lib-shared": "workspace:*",
-    "@OneCoach/one-agent": "workspace:*",
-    "@OneCoach/schemas": "workspace:*",
-    "@OneCoach/types": "workspace:*",
+    "@onecoach/one-agent": "workspace:*",
+    "@onecoach/schemas": "workspace:*",
+    "@onecoach/types": "workspace:*",
     "@prisma/client": "7.0.0",
     "ai": "6.0.0-beta.124"
   },

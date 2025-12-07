@@ -1,5 +1,5 @@
 /**
- * @OneCoach/api-analytics
+ * @onecoach/api-analytics
  *
  * API routes per il dominio analytics
  * Esporta route handlers che possono essere usati in apps/next/app/api/analytics/*

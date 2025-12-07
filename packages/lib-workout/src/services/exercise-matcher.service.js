@@ -13,9 +13,9 @@
  *
  * @module lib-workout/services/exercise-matcher
  */
-import { prisma } from '@OneCoach/lib-core/prisma';
-import { SimpleCache } from '@OneCoach/lib-shared';
-import { generateId } from '@OneCoach/lib-shared/utils';
+import { prisma } from '@onecoach/lib-core/prisma';
+import { SimpleCache } from '@onecoach/lib-shared';
+import { generateId } from '@onecoach/lib-shared/utils';
 // ==================== CACHES ====================
 /**
  * Cache per gli esercizi dal database (30 min TTL)

@@ -4,7 +4,7 @@
  * Constants condivise per workout programs
  */
 
-import type { ExerciseSet, MuscleGroup } from '@OneCoach/types';
+import type { ExerciseSet, MuscleGroup } from '@onecoach/types';
 
 /**
  * Default values per ExerciseSet

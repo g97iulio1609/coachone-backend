@@ -1,5 +1,5 @@
 {
-  "name": "@OneCoach/api-food",
+  "name": "@onecoach/api-food",
   "version": "0.0.0",
   "description": "API routes per il dominio alimenti",
   "main": "src/index.ts",
@@ -8,14 +8,14 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@OneCoach/contracts": "workspace:*",
-    "@OneCoach/schemas": "workspace:*",
-    "@OneCoach/lib-registry": "workspace:*",
-    "@OneCoach/lib-food": "workspace:*",
-    "@OneCoach/lib-core": "workspace:*",
-    "@OneCoach/lib-api": "workspace:*",
-    "@OneCoach/one-agent": "workspace:*",
-    "@OneCoach/types": "workspace:*",
+    "@onecoach/contracts": "workspace:*",
+    "@onecoach/schemas": "workspace:*",
+    "@onecoach/lib-registry": "workspace:*",
+    "@onecoach/lib-food": "workspace:*",
+    "@onecoach/lib-core": "workspace:*",
+    "@onecoach/lib-api": "workspace:*",
+    "@onecoach/one-agent": "workspace:*",
+    "@onecoach/types": "workspace:*",
     "next": "^16.0.6",
     "zod": "^4.1.12"
   },

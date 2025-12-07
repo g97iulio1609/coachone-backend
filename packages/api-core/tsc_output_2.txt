@@ -1,5 +1,5 @@
 
-> @OneCoach/api-core@0.0.0 type-check
+> @onecoach/api-core@0.0.0 type-check
 > tsc --noEmit
 
 tsconfig.json(17,5): error TS6310: Referenced project '/Users/giulioleone/Sviluppo/CoachOne/packages/contracts' may not disable emit.

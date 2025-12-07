@@ -5,7 +5,7 @@
  */
 
 import { apiClient } from './client';
-import type { WorkoutProgram } from '@OneCoach/types';
+import type { WorkoutProgram } from '@onecoach/types';
 
 export interface WorkoutProgramResponse {
   program: WorkoutProgram;

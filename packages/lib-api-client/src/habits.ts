@@ -1,5 +1,5 @@
 import { apiClient } from './client';
-import type { Habit } from '@OneCoach/types';
+import type { Habit } from '@onecoach/types';
 
 export interface HabitsResponse {
   habits: Habit[];

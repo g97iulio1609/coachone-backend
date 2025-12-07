@@ -1,6 +1,6 @@
 import type { McpTool, McpContext } from '../../types';
-import { exerciseService } from '@OneCoach/lib-exercise';
-import { createExerciseSchema } from '@OneCoach/schemas';
+import { exerciseService } from '@onecoach/lib-exercise';
+import { createExerciseSchema } from '@onecoach/schemas';
 
 export const exerciseCreateTool: McpTool = {
   name: 'exercise_create',

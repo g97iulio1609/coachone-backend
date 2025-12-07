@@ -3,7 +3,7 @@
  *
  * Centralized service for macro validation and coherence checking.
  */
-import { type Macros, type MacroCoherenceResult } from '@OneCoach/lib-shared';
+import { type Macros, type MacroCoherenceResult } from '@onecoach/lib-shared';
 /**
  * Validation result for Atwater formula
  */

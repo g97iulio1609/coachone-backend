@@ -4,7 +4,7 @@
  * Clean, refactored version without backward compatibility.
  * Follows KISS, SOLID, DRY principles.
  */
-import { NutritionStatus } from '@OneCoach/types/client';
+import { NutritionStatus } from '@onecoach/types/client';
 import {
   NutritionWeekSchema,
   NutritionDaySchema,
@@ -14,14 +14,14 @@ import {
   AdaptationsSchema,
   NutritionUserProfileSchema,
   NutritionPlanBaseSchema,
-} from '@OneCoach/schemas';
-import { generateId } from '@OneCoach/lib-shared/utils/id-generator';
+} from '@onecoach/schemas';
+import { generateId } from '@onecoach/lib-shared/utils/id-generator';
 import {
   calculateMacros,
   aggregateMealMacros,
   normalizeMacros,
   normalizeMacroValue,
-} from '@OneCoach/lib-shared/utils/macro-calculations';
+} from '@onecoach/lib-shared/utils/macro-calculations';
 import {
   parseCompleteMacrosSafe,
   isNutritionWeek,

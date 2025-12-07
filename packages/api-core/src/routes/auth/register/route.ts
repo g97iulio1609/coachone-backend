@@ -6,12 +6,12 @@
 
 import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
-import { prisma } from '@OneCoach/lib-core/prisma';
-import type { RegisterData } from '@OneCoach/types';
-import { AffiliateService } from '@OneCoach/lib-marketplace/affiliate.service';
-import { InvitationService } from '@OneCoach/lib-core/invitation.service';
-import { ConsentService } from '@OneCoach/lib-core/consent.service';
-import { logError, mapErrorToApiResponse } from '@OneCoach/lib-shared/utils/error';
+import { prisma } from '@onecoach/lib-core/prisma';
+import type { RegisterData } from '@onecoach/types';
+import { AffiliateService } from '@onecoach/lib-marketplace/affiliate.service';
+import { InvitationService } from '@onecoach/lib-core/invitation.service';
+import { ConsentService } from '@onecoach/lib-core/consent.service';
+import { logError, mapErrorToApiResponse } from '@onecoach/lib-shared/utils/error';
 
 export const dynamic = 'force-dynamic';
 
@@ -98,7 +98,7 @@ export async function POST(_req: Request) {
     // Crea utente con crediti di benvenuto
     const WELCOME_CREDITS = 100;
 
-    const { generateUUID } = await import('@OneCoach/lib-shared/id-generator');
+    const { generateUUID } = await import('@onecoach/lib-shared/id-generator');
 
     // Estrai IP e User-Agent dalla request per il tracciamento consensi
     const ipAddress =
@@ -122,7 +122,7 @@ export async function POST(_req: Request) {
       });
 
       const { generateId: generateTransactionId } =
-        await import('@OneCoach/lib-shared/id-generator');
+        await import('@onecoach/lib-shared/id-generator');
 
       await tx.credit_transactions.create({
         data: {

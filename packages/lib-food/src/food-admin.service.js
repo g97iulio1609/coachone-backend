@@ -5,14 +5,14 @@
  * - Import/export in formato JSON con deduplica
  * - Operazioni batch (CRUD) e automazioni AI
  */
-import { prisma } from '@OneCoach/lib-core/prisma';
+import { prisma } from '@onecoach/lib-core/prisma';
 import { FoodService, normalizeFoodName } from './food.service';
-import { createFoodSchema } from '@OneCoach/schemas';
-import { FoodGenerationAgent } from '@OneCoach/one-agent';
-import { createAIAgentConfig, createAgentInstance } from '@OneCoach/one-agent';
-import { processBatchesInParallel } from '@OneCoach/lib-shared/batch-processing';
-import { normalizeUrl } from '@OneCoach/lib-shared/url-normalizer';
-import { TOKEN_LIMITS } from '@OneCoach/constants/models';
+import { createFoodSchema } from '@onecoach/schemas';
+import { FoodGenerationAgent } from '@onecoach/one-agent';
+import { createAIAgentConfig, createAgentInstance } from '@onecoach/one-agent';
+import { processBatchesInParallel } from '@onecoach/lib-shared/batch-processing';
+import { normalizeUrl } from '@onecoach/lib-shared/url-normalizer';
+import { TOKEN_LIMITS } from '@onecoach/constants/models';
 /**
  * Schema per import payload (estende createFoodSchema)
  * IMPORTANTE: name, description, macrosPer100g, servingSize sono OBBLIGATORI

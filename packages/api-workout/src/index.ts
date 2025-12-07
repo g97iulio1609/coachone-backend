@@ -1,11 +1,11 @@
 /**
- * @OneCoach/api-workout
+ * @onecoach/api-workout
  *
  * API routes per il dominio workout
  */
 
-import { getService } from '@OneCoach/lib-registry';
-import type { IWorkoutService } from '@OneCoach/contracts';
+import { getService } from '@onecoach/lib-registry';
+import type { IWorkoutService } from '@onecoach/contracts';
 import type { NextRequest } from 'next/server';
 
 /**

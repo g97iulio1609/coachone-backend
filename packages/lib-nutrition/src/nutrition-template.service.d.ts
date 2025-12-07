@@ -10,7 +10,7 @@ import type {
   Meal,
   NutritionDay,
   NutritionWeek,
-} from '@OneCoach/types';
+} from '@onecoach/types';
 interface ListTemplatesOptions {
   type?: NutritionTemplateType;
   category?: string;

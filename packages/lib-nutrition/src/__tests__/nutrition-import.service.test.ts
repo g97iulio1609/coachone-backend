@@ -1,9 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { NutritionImportService } from '../nutrition-import.service';
-import type { AIParseContext } from '@OneCoach/lib-import-core';
+import type { AIParseContext } from '@onecoach/lib-import-core';
 import type { ImportedNutritionPlan } from '../helpers/imported-nutrition.schema';
 
-vi.mock('@OneCoach/lib-core/prisma', () => ({
+vi.mock('@onecoach/lib-core/prisma', () => ({
   prisma: {
     nutrition_plans: {
       create: vi.fn().mockResolvedValue({ id: 'plan_1' }),

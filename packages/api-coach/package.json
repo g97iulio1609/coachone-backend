@@ -1,5 +1,5 @@
 {
-  "name": "@OneCoach/api-coach",
+  "name": "@onecoach/api-coach",
   "version": "0.0.0",
   "description": "API routes per il dominio coach",
   "main": "src/index.ts",
@@ -8,14 +8,14 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@OneCoach/contracts": "workspace:*",
-    "@OneCoach/schemas": "workspace:*",
-    "@OneCoach/lib-registry": "workspace:*",
-    "@OneCoach/lib-core": "workspace:*",
-    "@OneCoach/lib-coach": "workspace:*",
-    "@OneCoach/lib-analytics": "workspace:*",
-    "@OneCoach/lib-marketplace": "workspace:*",
-    "@OneCoach/types": "workspace:*",
+    "@onecoach/contracts": "workspace:*",
+    "@onecoach/schemas": "workspace:*",
+    "@onecoach/lib-registry": "workspace:*",
+    "@onecoach/lib-core": "workspace:*",
+    "@onecoach/lib-coach": "workspace:*",
+    "@onecoach/lib-analytics": "workspace:*",
+    "@onecoach/lib-marketplace": "workspace:*",
+    "@onecoach/types": "workspace:*",
     "next": "^16.0.6",
     "zod": "^4.1.12"
   },

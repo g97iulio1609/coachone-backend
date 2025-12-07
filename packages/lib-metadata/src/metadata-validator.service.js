@@ -5,11 +5,11 @@
  * This service ensures that all metadata references use IDs from the database,
  * preventing inconsistencies from manual input or AI-generated variations.
  */
-import { prisma } from '@OneCoach/lib-core/prisma';
+import { prisma } from '@onecoach/lib-core/prisma';
 import { Prisma } from '@prisma/client';
-import { toSlug } from '@OneCoach/lib-shared/utils/formatters';
-import { createId } from '@OneCoach/lib-shared/utils/id-generator';
-import { SimpleCache } from '@OneCoach/lib-shared/utils/simple-cache';
+import { toSlug } from '@onecoach/lib-shared/utils/formatters';
+import { createId } from '@onecoach/lib-shared/utils/id-generator';
+import { SimpleCache } from '@onecoach/lib-shared/utils/simple-cache';
 const CACHE_TTL_MS = 1000 * 60 * 60; // 1 hour
 // Cache for name → ID lookups
 const nameToIdCache = new SimpleCache({

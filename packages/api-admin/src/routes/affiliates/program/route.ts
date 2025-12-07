@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@OneCoach/lib-core/prisma';
-import { requireAdmin } from '@OneCoach/lib-core/auth/guards';
+import { prisma } from '@onecoach/lib-core/prisma';
+import { requireAdmin } from '@onecoach/lib-core/auth/guards';
 import type { Prisma as PrismaTypes } from '@prisma/client';
 import { Prisma } from '@prisma/client';
 

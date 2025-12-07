@@ -10,7 +10,7 @@ import type {
   AnalyticsChartData,
   TimeSeriesDataPoint,
   UserGoal,
-} from '@OneCoach/types';
+} from '@onecoach/types';
 export declare function getBodyMetricsTimeSeries(
   userId: string,
   metric: 'weight' | 'bodyFat' | 'muscleMass',

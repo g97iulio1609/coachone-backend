@@ -16,16 +16,16 @@
  * 3. Per ogni alimento: match esistente o crea nuovo
  * 4. Restituisce mappa di foodItemId validi
  */
-import { FoodService, normalizeFoodName } from '@OneCoach/lib-food';
-import { prisma } from '@OneCoach/lib-core/prisma';
-import { generateId } from '@OneCoach/lib-shared/id-generator';
-import { SUPPORTED_FOOD_LOCALES } from '@OneCoach/constants';
+import { FoodService, normalizeFoodName } from '@onecoach/lib-food';
+import { prisma } from '@onecoach/lib-core/prisma';
+import { generateId } from '@onecoach/lib-shared/id-generator';
+import { SUPPORTED_FOOD_LOCALES } from '@onecoach/constants';
 import {
   safeValidateAIGeneratedFood,
   aiGeneratedFoodToFoodToCreate,
   AI_FOOD_DEFAULTS,
-} from '@OneCoach/schemas';
-import { calculateMainMacro } from '@OneCoach/lib-shared/utils/main-macro-calculator';
+} from '@onecoach/schemas';
+import { calculateMainMacro } from '@onecoach/lib-shared/utils/main-macro-calculator';
 // ============================================================================
 // CONSTANTS
 // ============================================================================

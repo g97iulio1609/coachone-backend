@@ -6,7 +6,7 @@
  *
  * @module lib-workout/services/workout-import
  */
-import type { WorkoutProgram } from '@OneCoach/types';
+import type { WorkoutProgram } from '@onecoach/types';
 import type { ImportFile, ImportOptions, ParseResult } from '../schemas/imported-workout.schema';
 import { type AIParseContext } from './file-parser.service';
 /**

@@ -6,9 +6,9 @@
  */
 
 import { prisma } from './prisma';
-import { createId } from '@OneCoach/lib-shared/id-generator';
-import type { IOnboardingService } from '@OneCoach/contracts';
-import type { OnboardingProgress, StepCompletionInput } from '@OneCoach/types';
+import { createId } from '@onecoach/lib-shared/id-generator';
+import type { IOnboardingService } from '@onecoach/contracts';
+import type { OnboardingProgress, StepCompletionInput } from '@onecoach/types';
 import type { Prisma } from '@prisma/client';
 
 type DbOnboardingProgress = Prisma.user_onboarding_progressGetPayload<object>;

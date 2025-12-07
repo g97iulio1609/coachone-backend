@@ -9,7 +9,7 @@ import {
   validateMacroCoherence,
   type Macros,
   type MacroCoherenceResult,
-} from '@OneCoach/lib-shared';
+} from '@onecoach/lib-shared';
 
 /**
  * Validation result for Atwater formula

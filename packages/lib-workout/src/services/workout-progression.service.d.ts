@@ -1,4 +1,4 @@
-import type { WorkoutProgram, Exercise, SetGroup } from '@OneCoach/types';
+import type { WorkoutProgram, Exercise, SetGroup } from '@onecoach/types';
 export type ProgressionType = 'linear_weight' | 'linear_reps' | 'linear_sets' | 'percentage' | 'rpe';
 export interface ProgressionParams {
     type: ProgressionType;

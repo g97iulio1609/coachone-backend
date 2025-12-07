@@ -9,7 +9,7 @@
 import { prisma } from './prisma';
 import { Prisma } from '@prisma/client';
 import type { user_memories } from '@prisma/client';
-import { createId } from '@OneCoach/lib-shared/id-generator';
+import { createId } from '@onecoach/lib-shared/id-generator';
 import type {
   UserMemory,
   MemoryDomain,

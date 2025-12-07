@@ -1,5 +1,5 @@
 {
-  "name": "@OneCoach/lib-visual-builder",
+  "name": "@onecoach/lib-visual-builder",
   "version": "0.0.0",
   "description": "Servizi per il dominio visual-builder",
   "main": "src/index.ts",
@@ -22,10 +22,10 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@OneCoach/types": "workspace:*",
-    "@OneCoach/schemas": "workspace:*",
-    "@OneCoach/contracts": "workspace:*",
-    "@OneCoach/lib-core": "workspace:*",
+    "@onecoach/types": "workspace:*",
+    "@onecoach/schemas": "workspace:*",
+    "@onecoach/contracts": "workspace:*",
+    "@onecoach/lib-core": "workspace:*",
     "@prisma/client": "7.0.0"
   },
   "devDependencies": {

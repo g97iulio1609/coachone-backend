@@ -6,7 +6,7 @@
  *
  * SSOT: Usa SOLO setGroups per le serie, non exercise.sets legacy.
  */
-import { generateId } from '@OneCoach/lib-shared/utils/id-generator';
+import { generateId } from '@onecoach/lib-shared/utils/id-generator';
 /**
  * Estrae dati template in base al tipo
  */

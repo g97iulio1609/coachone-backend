@@ -1,8 +1,8 @@
 /**
- * @OneCoach/lib-metadata
+ * @onecoach/lib-metadata
  *
  * Servizi per il dominio metadata
- * Implementa contratti da @OneCoach/contracts
+ * Implementa contratti da @onecoach/contracts
  */
 
 export * from './catalog-provider.service';

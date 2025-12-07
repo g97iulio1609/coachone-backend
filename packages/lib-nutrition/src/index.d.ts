@@ -1,8 +1,8 @@
 /**
- * @OneCoach/lib-nutrition
+ * @onecoach/lib-nutrition
  *
  * Servizi per il dominio nutrizione
- * Implementa contratti da @OneCoach/contracts
+ * Implementa contratti da @onecoach/contracts
  */
 export * from './nutrition.service';
 export * from './nutrition-tracking.service';

@@ -6,15 +6,15 @@
  */
 
 import { NextResponse } from 'next/server';
-import { requireAdmin } from '@OneCoach/lib-core/auth/guards';
-import { prisma } from '@OneCoach/lib-core/prisma';
-import { logError, mapErrorToApiResponse } from '@OneCoach/lib-shared/utils/error';
+import { requireAdmin } from '@onecoach/lib-core/auth/guards';
+import { prisma } from '@onecoach/lib-core/prisma';
+import { logError, mapErrorToApiResponse } from '@onecoach/lib-shared/utils/error';
 import {
   updateVercelAdminCredentials,
   updateVercelSuperAdminCredentials,
-} from '@OneCoach/lib-vercel-admin';
+} from '@onecoach/lib-vercel-admin';
 import bcrypt from 'bcryptjs';
-import { validatePassword } from '@OneCoach/lib-shared/utils/password-validation';
+import { validatePassword } from '@onecoach/lib-shared/utils/password-validation';
 
 export const dynamic = 'force-dynamic';
 
@@ -140,13 +140,13 @@ export async function PATCH(req: Request) {
       });
     } else {
       // Crea nuovo utente (dovrebbe essere raro, ma gestiamolo)
-      const { generateUUID } = await import('@OneCoach/lib-shared/id-generator');
+      const { generateUUID } = await import('@onecoach/lib-shared/id-generator');
       updatedUser = await prisma.users.create({
         data: {
           id: generateUUID(), // UUID required for Supabase Realtime compatibility
           email: email.toLowerCase().trim(),
           password: hashedPassword,
-          name: name?.trim() || (type === 'admin' ? 'Admin OneCoach' : 'Super Admin OneCoach'),
+          name: name?.trim() || (type === 'admin' ? 'Admin onecoach' : 'Super Admin onecoach'),
           role: type === 'admin' ? 'ADMIN' : 'SUPER_ADMIN',
           status: 'ACTIVE',
           credits: credits !== undefined ? Number(credits) : 10000,

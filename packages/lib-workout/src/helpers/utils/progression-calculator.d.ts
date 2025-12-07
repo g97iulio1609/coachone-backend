@@ -3,7 +3,7 @@
  *
  * Utility per calcolare progressioni nei gruppi di serie
  */
-import type { ExerciseSet, SetProgression, SetGroup } from '@OneCoach/types';
+import type { ExerciseSet, SetProgression, SetGroup } from '@onecoach/types';
 /**
  * Applica una progressione a una serie base in base al numero della serie
  */

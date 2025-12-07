@@ -6,7 +6,7 @@
  * FORCE INVALIDATION 123
  */
 
-import { NutritionStatus } from '@OneCoach/types/client';
+import { NutritionStatus } from '@onecoach/types/client';
 // Type representing a nutrition plan from Prisma database (with JSON fields)
 export type PrismaNutritionPlan = {
   id: string;
@@ -40,7 +40,7 @@ import type {
   PersonalizedPlan,
   Adaptations,
   NutritionUserProfile,
-} from '@OneCoach/types';
+} from '@onecoach/types';
 import {
   NutritionWeekSchema,
   NutritionDaySchema,
@@ -49,14 +49,14 @@ import {
   PersonalizedPlanSchema,
   AdaptationsSchema,
   NutritionPlanBaseSchema,
-} from '@OneCoach/schemas';
-import { generateId } from '@OneCoach/lib-shared/utils/id-generator';
+} from '@onecoach/schemas';
+import { generateId } from '@onecoach/lib-shared/utils/id-generator';
 import {
   calculateMacros,
   aggregateMealMacros,
   normalizeMacros,
   normalizeMacroValue,
-} from '@OneCoach/lib-shared/utils/macro-calculations';
+} from '@onecoach/lib-shared/utils/macro-calculations';
 import {
   parseCompleteMacrosSafe,
   isNutritionWeek,

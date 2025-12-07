@@ -14,7 +14,7 @@ import {
   type CreateBodyMeasurementInput,
   type UpdateBodyMeasurementInput,
 } from '../queries/body-measurements.queries';
-import type { BodyMeasurement } from '@OneCoach/types';
+import type { BodyMeasurement } from '@onecoach/types';
 
 /**
  * Hook to get body measurements list

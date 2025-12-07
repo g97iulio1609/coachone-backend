@@ -4,7 +4,7 @@
  * Clean mapping functions between Prisma entities and domain types.
  * Follows SOLID principles: Single Responsibility for mapping logic.
  */
-import { toExerciseArray } from '@OneCoach/lib-shared/utils/prisma-type-guards';
+import { toExerciseArray } from '@onecoach/lib-shared/utils/prisma-type-guards';
 /**
  * Maps Prisma workout_sessions entity to domain WorkoutSession
  *

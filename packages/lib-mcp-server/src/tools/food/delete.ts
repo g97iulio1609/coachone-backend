@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import type { McpTool, McpContext } from '../../types';
-import { prisma } from '@OneCoach/lib-core';
+import { prisma } from '@onecoach/lib-core';
 
 const deleteParameters = z.object({
   id: z.string(),

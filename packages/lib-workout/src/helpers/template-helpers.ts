@@ -15,8 +15,8 @@ import type {
   WorkoutWeek,
   ExerciseSet,
   SetGroup,
-} from '@OneCoach/types';
-import { generateId } from '@OneCoach/lib-shared/utils/id-generator';
+} from '@onecoach/types';
+import { generateId } from '@onecoach/lib-shared/utils/id-generator';
 
 /**
  * Estrae dati template in base al tipo

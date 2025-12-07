@@ -9,9 +9,9 @@
 
 import { z } from 'zod';
 import type { McpTool, McpContext } from '../../types';
-import { WorkoutStatisticsService } from '@OneCoach/lib-workout';
+import { WorkoutStatisticsService } from '@onecoach/lib-workout';
 // Importiamo lo schema Zod per validare l'input
-import { aiWorkoutProgramSchema } from '@OneCoach/schemas';
+import { aiWorkoutProgramSchema } from '@onecoach/schemas';
 import { normalizeWorkoutProgram } from './program-normalizer';
 
 /**

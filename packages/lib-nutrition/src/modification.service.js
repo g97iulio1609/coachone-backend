@@ -4,17 +4,17 @@
  * Centralized service for modifying nutrition plans and workout programs.
  * Handles day/week modifications with validation and atomic persistence.
  */
-import { prisma } from '@OneCoach/lib-core/prisma';
+import { prisma } from '@onecoach/lib-core/prisma';
 import {
   normalizeNutritionPlan,
   preparePlanForPersistence,
   normalizeAgentPayload,
 } from './helpers/plan-transform';
-import { prepareProgramForPersistence } from '@OneCoach/lib-workout/helpers/program-transform';
-import { normalizeWorkoutProgram } from '@OneCoach/lib-workout/helpers/normalizers/workout-normalizer';
-import { normalizeAgentWorkoutPayload } from '@OneCoach/lib-workout/helpers/program-server-transform';
+import { prepareProgramForPersistence } from '@onecoach/lib-workout/helpers/program-transform';
+import { normalizeWorkoutProgram } from '@onecoach/lib-workout/helpers/normalizers/workout-normalizer';
+import { normalizeAgentWorkoutPayload } from '@onecoach/lib-workout/helpers/program-server-transform';
 import { Prisma } from '@prisma/client';
-import { createId } from '@OneCoach/lib-shared';
+import { createId } from '@onecoach/lib-shared';
 /**
  * Modification Service
  * Handles all plan/program modifications with atomic persistence
@@ -36,7 +36,7 @@ export class ModificationService {
     }
     const normalizedPlanToUpdate = normalizeNutritionPlan(planToUpdate);
     const { getNutritionPlanDay, getNutritionPlanTotalDays } =
-      await import('@OneCoach/lib-shared/utils/nutrition-plan-helpers');
+      await import('@onecoach/lib-shared/utils/nutrition-plan-helpers');
     const totalDays = getNutritionPlanTotalDays(normalizedPlanToUpdate);
     if (dayNumber < 1 || dayNumber > totalDays) {
       throw new Error(`Invalid day number: ${dayNumber}. Plan has ${totalDays} day(s)`);
@@ -186,7 +186,7 @@ export class ModificationService {
       weeks: updatedWeeks,
     };
     const { calculateWeightsInProgram } =
-      await import('@OneCoach/lib-workout/workout-weight-calculator.service');
+      await import('@onecoach/lib-workout/workout-weight-calculator.service');
     const programWithSyncedWeights = await calculateWeightsInProgram(
       userId,
       programWithModifiedWeek

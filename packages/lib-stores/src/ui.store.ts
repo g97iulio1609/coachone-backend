@@ -488,7 +488,7 @@ export function useSystemThemeSync() {
     if (typeof window === 'undefined') return;
 
     try {
-      const storedTheme = localStorage.getItem('OneCoach-theme') as
+      const storedTheme = localStorage.getItem('onecoach-theme') as
         | 'light'
         | 'dark'
         | 'system'

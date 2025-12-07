@@ -2,8 +2,8 @@
 
 import { Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useUIStore, useAuthStore } from '@OneCoach/lib-stores';
-import { cn } from '@OneCoach/lib-design-system';
+import { useUIStore, useAuthStore } from '@onecoach/lib-stores';
+import { cn } from '@onecoach/lib-design-system';
 
 export function CopilotButton() {
   const { copilotVisible, toggleCopilot } = useUIStore();

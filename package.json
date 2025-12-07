@@ -1,5 +1,5 @@
 {
-  "name": "coachone-backend",
+  "name": "onecoach-backend",
   "private": true,
   "packageManager": "pnpm@10.20.0",
   "scripts": {

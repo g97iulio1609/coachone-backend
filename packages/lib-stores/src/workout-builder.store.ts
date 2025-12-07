@@ -10,7 +10,7 @@
 import { create, type StoreApi, type UseBoundStore } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 import { createJSONStorage, persist } from 'zustand/middleware';
-import type { WorkoutProgram } from '@OneCoach/types';
+import type { WorkoutProgram } from '@onecoach/types';
 
 // SSOT Types
 interface WorkoutBuilderState {

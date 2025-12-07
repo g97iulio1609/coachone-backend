@@ -5,7 +5,7 @@
  * Questi schemi garantiscono che i dati passati agli MCP tools siano
  * correttamente tipizzati prima del salvataggio nel database.
  *
- * Segue i principi DRY riutilizzando i tipi base da @OneCoach/types
+ * Segue i principi DRY riutilizzando i tipi base da @onecoach/types
  *
  * @module lib-mcp-server/schemas
  */
@@ -25,7 +25,7 @@ import {
   exerciseSchema,
   workoutDaySchema,
   workoutWeekSchema,
-} from '@OneCoach/schemas';
+} from '@onecoach/schemas';
 
 // ============================================================================
 // BASE SCHEMAS

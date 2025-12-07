@@ -1,5 +1,5 @@
 {
-  "name": "@OneCoach/lib-api-client",
+  "name": "@onecoach/lib-api-client",
   "version": "0.0.0",
   "description": "API client (core, hooks, queries, react-query) per web e native",
   "main": "src/index.ts",
@@ -42,12 +42,12 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@OneCoach/lib-core": "workspace:*",
+    "@onecoach/lib-core": "workspace:*",
     "@onecoach/lib-shared": "workspace:*",
-    "@OneCoach/lib-marketplace": "workspace:*",
-    "@OneCoach/types": "workspace:*",
+    "@onecoach/lib-marketplace": "workspace:*",
+    "@onecoach/types": "workspace:*",
     "@tanstack/react-query": "^5.0.0",
-    "@OneCoach/lib-stores": "workspace:*",
+    "@onecoach/lib-stores": "workspace:*",
     "react": "^18.3.1"
   },
   "devDependencies": {

@@ -1,5 +1,5 @@
 /**
- * @OneCoach/api-oneagenda
+ * @onecoach/api-oneagenda
  *
  * API routes per oneagenda (goals, tasks, schedule, insights, calendar)
  * Esporta route handlers che possono essere usati in apps/next/app/api/*

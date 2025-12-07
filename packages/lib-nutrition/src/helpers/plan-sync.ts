@@ -5,12 +5,12 @@
  * Segue principi KISS, DRY, SOLID
  */
 
-import type { NutritionPlan, NutritionWeek, NutritionDay, Meal, Food } from '@OneCoach/types';
+import type { NutritionPlan, NutritionWeek, NutritionDay, Meal, Food } from '@onecoach/types';
 import {
   calculateMacros,
   aggregateMealMacros,
   normalizeMacros,
-} from '@OneCoach/lib-shared/utils/macro-calculations';
+} from '@onecoach/lib-shared/utils/macro-calculations';
 
 /**
  * Sincronizza piano per il salvataggio

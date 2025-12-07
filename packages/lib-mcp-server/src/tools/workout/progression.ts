@@ -12,8 +12,8 @@ import {
   WorkoutProgressionService,
   ProgressionTemplateService,
   type ProgressionParams,
-} from '@OneCoach/lib-workout';
-import { aiWorkoutProgramSchema } from '@OneCoach/schemas';
+} from '@onecoach/lib-workout';
+import { aiWorkoutProgramSchema } from '@onecoach/schemas';
 import { normalizeWorkoutProgram } from './program-normalizer';
 
 /**

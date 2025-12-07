@@ -9,12 +9,12 @@
  * which may be used in client components. The functions themselves are only executed
  * server-side when called.
  */
-import { DifficultyLevel, WorkoutStatus } from '@OneCoach/types/client';
-import { generateId } from '@OneCoach/lib-shared/utils/id-generator';
-import { ensureArrayOfStrings, ensureNumber, ensureString, } from '@OneCoach/lib-workout/utils/type-helpers';
-import { convertWorkoutGoalNamesToIds } from '@OneCoach/lib-metadata/metadata-translation.service';
-import { normalizeDifficulty, normalizeStatus, normalizeWeek, normalizeMetadata, } from '@OneCoach/lib-workout/normalizers/workout-normalizer';
-import { createEmptyWeek } from '@OneCoach/lib-workout/program-transform';
+import { DifficultyLevel, WorkoutStatus } from '@onecoach/types/client';
+import { generateId } from '@onecoach/lib-shared/utils/id-generator';
+import { ensureArrayOfStrings, ensureNumber, ensureString, } from '@onecoach/lib-workout/utils/type-helpers';
+import { convertWorkoutGoalNamesToIds } from '@onecoach/lib-metadata/metadata-translation.service';
+import { normalizeDifficulty, normalizeStatus, normalizeWeek, normalizeMetadata, } from '@onecoach/lib-workout/normalizers/workout-normalizer';
+import { createEmptyWeek } from '@onecoach/lib-workout/program-transform';
 /**
  * Normalize workout payload and convert goal names to IDs (async version)
  * Used in backend where we need to ensure goals are saved as IDs

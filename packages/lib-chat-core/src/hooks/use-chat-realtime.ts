@@ -13,7 +13,7 @@
 'use client';
 
 import { useCallback, useRef, useEffect } from 'react';
-import { useRealtimeStore, selectIsRealtimeReady } from '@OneCoach/lib-stores';
+import { useRealtimeStore, selectIsRealtimeReady } from '@onecoach/lib-stores';
 import type {
   ChatMessage,
   UseChatRealtimeOptions,

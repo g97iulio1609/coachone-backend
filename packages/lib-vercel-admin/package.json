@@ -1,5 +1,5 @@
 {
-  "name": "@OneCoach/lib-vercel-admin",
+  "name": "@onecoach/lib-vercel-admin",
   "version": "0.0.0",
   "description": "Servizi per gestione Vercel admin (credentials, env vars)",
   "main": "src/index.ts",
@@ -18,9 +18,9 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@OneCoach/types": "workspace:*",
-    "@OneCoach/schemas": "workspace:*",
-    "@OneCoach/contracts": "workspace:*",
+    "@onecoach/types": "workspace:*",
+    "@onecoach/schemas": "workspace:*",
+    "@onecoach/contracts": "workspace:*",
     "@prisma/client": "7.0.0"
   },
   "devDependencies": {

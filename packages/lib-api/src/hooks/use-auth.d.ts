@@ -4,7 +4,7 @@
  * Custom hooks for authentication with TanStack Query and Zustand integration
  */
 import type { RefreshTokenRequest } from '../queries/auth.queries';
-import type { User } from '@OneCoach/lib-stores/auth';
+import type { User } from '@onecoach/lib-stores/auth';
 /**
  * Hook to sync NextAuth session with Zustand store
  *

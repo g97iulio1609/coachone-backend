@@ -5,11 +5,11 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { requireAdmin, requireAuth } from '@OneCoach/lib-core/auth/guards';
-import { FoodService } from '@OneCoach/lib-food';
-import { prisma } from '@OneCoach/lib-core/prisma';
-import { Prisma } from '@OneCoach/types';
-import { logError, mapErrorToApiResponse } from '@OneCoach/lib-shared/utils/error';
+import { requireAdmin, requireAuth } from '@onecoach/lib-core/auth/guards';
+import { FoodService } from '@onecoach/lib-food';
+import { prisma } from '@onecoach/lib-core/prisma';
+import { Prisma } from '@onecoach/types';
+import { logError, mapErrorToApiResponse } from '@onecoach/lib-shared/utils/error';
 
 export const dynamic = 'force-dynamic';
 

@@ -7,8 +7,8 @@
 
 import 'server-only';
 
-import { prisma } from '@OneCoach/lib-core/prisma';
-import type { BodyMeasurement } from '@OneCoach/types';
+import { prisma } from '@onecoach/lib-core/prisma';
+import type { BodyMeasurement } from '@onecoach/types';
 import { Prisma } from '@prisma/client';
 
 // Decimal is available from Prisma namespace

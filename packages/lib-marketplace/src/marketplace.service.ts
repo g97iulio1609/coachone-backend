@@ -5,7 +5,7 @@
  * Implements SOLID principles (SRP, DIP)
  */
 
-import { prisma } from '@OneCoach/lib-core/prisma';
+import { prisma } from '@onecoach/lib-core/prisma';
 import type {
   MarketplacePlanType,
   PurchaseStatus,
@@ -13,7 +13,7 @@ import type {
   plan_purchases,
   plan_ratings,
 } from '@prisma/client';
-import type { MarketplacePlanDetails as ContractMarketplacePlanDetails } from '@OneCoach/contracts';
+import type { MarketplacePlanDetails as ContractMarketplacePlanDetails } from '@onecoach/contracts';
 
 /**
  * Interface for Marketplace Service

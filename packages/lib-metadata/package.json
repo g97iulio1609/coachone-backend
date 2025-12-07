@@ -1,5 +1,5 @@
 {
-  "name": "@OneCoach/lib-metadata",
+  "name": "@onecoach/lib-metadata",
   "version": "0.0.0",
   "description": "Servizi metadata (translation, validation, catalog)",
   "main": "src/index.ts",
@@ -30,10 +30,10 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@OneCoach/types": "workspace:*",
-    "@OneCoach/schemas": "workspace:*",
-    "@OneCoach/contracts": "workspace:*",
-    "@OneCoach/lib-core": "workspace:*",
+    "@onecoach/types": "workspace:*",
+    "@onecoach/schemas": "workspace:*",
+    "@onecoach/contracts": "workspace:*",
+    "@onecoach/lib-core": "workspace:*",
     "@onecoach/lib-shared": "workspace:*",
     "@prisma/client": "7.0.0"
   },

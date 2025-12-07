@@ -14,8 +14,8 @@
 
 import { z } from 'zod';
 import type { McpTool } from '../../types';
-import { GranularSessionService } from '@OneCoach/lib-workout';
-import { workoutProgramSchema } from '@OneCoach/schemas';
+import { GranularSessionService } from '@onecoach/lib-workout';
+import { workoutProgramSchema } from '@onecoach/schemas';
 import { normalizeWorkoutProgram } from './program-normalizer';
 
 // =====================================================

@@ -8,18 +8,18 @@
 import { prisma } from './prisma';
 import { getStripe } from './stripe';
 import { SubscriptionPlan, SubscriptionStatus } from '@prisma/client';
-import type { ISubscriptionService } from '@OneCoach/contracts';
+import type { ISubscriptionService } from '@onecoach/contracts';
 import type Stripe from 'stripe';
 import { creditService } from './credit.service';
 import { SetupIntentService } from './setup-intent.service';
-import { createId } from '@OneCoach/lib-shared/id-generator';
-import { getCreditsFromPriceId } from '@OneCoach/constants/credit-packs';
-import { getSubscriptionPriceId } from '@OneCoach/constants/subscription-prices';
+import { createId } from '@onecoach/lib-shared/id-generator';
+import { getCreditsFromPriceId } from '@onecoach/constants/credit-packs';
+import { getSubscriptionPriceId } from '@onecoach/constants/subscription-prices';
 
 // TODO: Import these when they are available via interface or shared package
-// import { AffiliateService } from '@OneCoach/lib-marketplace/affiliate.service';
-// import { OpenRouterSubkeyService } from '@OneCoach/lib-ai/openrouter-subkey.service';
-// import { PromotionService } from '@OneCoach/lib-marketplace/promotion.service';
+// import { AffiliateService } from '@onecoach/lib-marketplace/affiliate.service';
+// import { OpenRouterSubkeyService } from '@onecoach/lib-ai/openrouter-subkey.service';
+// import { PromotionService } from '@onecoach/lib-marketplace/promotion.service';
 
 /**
  * Implementazione Subscription Service

@@ -13,8 +13,8 @@
  * or server components.
  */
 
-import { prisma } from '@OneCoach/lib-core/prisma';
-import { AI_FOOD_GENERATION_INSTRUCTIONS } from '@OneCoach/schemas';
+import { prisma } from '@onecoach/lib-core/prisma';
+import { AI_FOOD_GENERATION_INSTRUCTIONS } from '@onecoach/schemas';
 
 // Cache configuration for exercises (still useful for common exercises)
 const CACHE_TTL_MS = 1000 * 60 * 30; // 30 minutes
@@ -359,7 +359,7 @@ export class CatalogProviderService {
   /**
    * Get instructions for AI on how to specify foods
    * Delegates to SSOT schema instructions
-   * @deprecated Use AI_FOOD_GENERATION_INSTRUCTIONS directly from @OneCoach/schemas
+   * @deprecated Use AI_FOOD_GENERATION_INSTRUCTIONS directly from @onecoach/schemas
    */
   static getFoodInstructions(): string {
     return AI_FOOD_GENERATION_INSTRUCTIONS;

@@ -5,10 +5,10 @@
  * Implementa INutritionService contract
  */
 
-import type { NutritionPlan, ApiResponse } from '@OneCoach/types';
-import type { INutritionService } from '@OneCoach/contracts';
-import type { IStorageService } from '@OneCoach/lib-shared';
-import { generateId, getCurrentTimestamp, storageService } from '@OneCoach/lib-shared';
+import type { NutritionPlan, ApiResponse } from '@onecoach/types';
+import type { INutritionService } from '@onecoach/contracts';
+import type { IStorageService } from '@onecoach/lib-shared';
+import { generateId, getCurrentTimestamp, storageService } from '@onecoach/lib-shared';
 
 /**
  * Storage key per nutrition plans

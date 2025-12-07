@@ -10,16 +10,16 @@
  * - Dependency Inversion: Depends on Prisma abstraction
  */
 
-import { prisma } from '@OneCoach/lib-core/prisma';
+import { prisma } from '@onecoach/lib-core/prisma';
 import type {
   NutritionDayLog,
   CreateNutritionDayLogRequest,
   UpdateNutritionDayLogRequest,
   NutritionPlanStats,
   Macros,
-} from '@OneCoach/types';
+} from '@onecoach/types';
 import { Prisma, type nutrition_day_logs } from '@prisma/client';
-import { toMacros, ensureDecimalNumber } from '@OneCoach/lib-shared';
+import { toMacros, ensureDecimalNumber } from '@onecoach/lib-shared';
 
 type NutritionDayLogRecord = nutrition_day_logs;
 
@@ -58,7 +58,7 @@ function toNutritionDayLog(record: NutritionDayLogRecord): NutritionDayLog {
 import {
   normalizeNutritionPlan,
   type PrismaNutritionPlan,
-} from '@OneCoach/lib-nutrition/helpers/plan-transform';
+} from '@onecoach/lib-nutrition/helpers/plan-transform';
 
 /**
  * Create a new nutrition day log
@@ -323,9 +323,9 @@ export async function getNutritionPlanStats(
 
   // Use helper function for future-proof access to plan structure
   const { getNutritionPlanTotalDays } =
-    await import('@OneCoach/lib-shared/utils/nutrition-plan-helpers');
+    await import('@onecoach/lib-shared/utils/nutrition-plan-helpers');
   const { normalizeNutritionPlan: normalizePlanDynamic } =
-    await import('@OneCoach/lib-nutrition/helpers/plan-transform');
+    await import('@onecoach/lib-nutrition/helpers/plan-transform');
   const normalizedPlan = normalizePlanDynamic(plan as unknown as PrismaNutritionPlan);
   const totalDays = getNutritionPlanTotalDays(normalizedPlan);
 

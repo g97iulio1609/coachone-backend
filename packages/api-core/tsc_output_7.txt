@@ -1,5 +1,5 @@
 
-> @OneCoach/api-core@0.0.0 type-check
+> @onecoach/api-core@0.0.0 type-check
 > tsc --noEmit
 
 src/routes/auth/password/confirm/route.ts(80,9): error TS18047: 'resetToken.user' is possibly 'null'.
@@ -8,98 +8,98 @@ src/routes/auth/password/confirm/route.ts(91,18): error TS2322: Type 'string | n
 src/routes/auth/password/confirm/route.ts(122,61): error TS18047: 'resetToken.user' is possibly 'null'.
 src/routes/auth/register/route.ts(14,49): error TS6059: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/error/index.ts' is not under 'rootDir' '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core'. 'rootDir' is expected to contain all source files.
   The file is in the program because:
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/auth/register/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/auth/password/request/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/auth/password/confirm/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/profile/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/auth/register/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/auth/password/request/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/auth/password/confirm/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/profile/route.ts'
     Imported via './error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/index.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-vercel-admin/src/vercel-env-vars-api.service.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/ai-provider-config.service.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/profile/maxes/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/profile/maxes/[catalogExerciseId]/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/profile/maxes/[catalogExerciseId]/versions/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/profile/tax-info/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/onboarding/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/onboarding/complete-step/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/onboarding/complete-all/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/onboarding/go-to-step/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/onboarding/reset/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/payments/intent/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/payments/confirm/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/subscriptions/create/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/subscriptions/manage/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/subscriptions/setup-intent/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/credits/balance/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/credits/history/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/invitations/validate/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/policies/[slug]/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/health/summary/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/health/sync/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/iap/subscription-status/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/iap/verify-receipt/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/iap/restore-purchases/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-vercel-admin/src/vercel-env-vars-api.service.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/ai-provider-config.service.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/profile/maxes/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/profile/maxes/[catalogExerciseId]/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/profile/maxes/[catalogExerciseId]/versions/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/profile/tax-info/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/onboarding/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/onboarding/complete-step/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/onboarding/complete-all/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/onboarding/go-to-step/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/onboarding/reset/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/payments/intent/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/payments/confirm/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/subscriptions/create/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/subscriptions/manage/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/subscriptions/setup-intent/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/credits/balance/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/credits/history/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/invitations/validate/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/policies/[slug]/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/health/summary/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/health/sync/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/iap/subscription-status/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/iap/verify-receipt/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/iap/restore-purchases/route.ts'
 src/routes/auth/register/route.ts(14,49): error TS6307: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/error/index.ts' is not listed within the file list of project '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/tsconfig.json'. Projects must list all files or use an 'include' pattern.
   The file is in the program because:
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/auth/register/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/auth/password/request/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/auth/password/confirm/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/profile/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/auth/register/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/auth/password/request/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/auth/password/confirm/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/profile/route.ts'
     Imported via './error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/index.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-vercel-admin/src/vercel-env-vars-api.service.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/ai-provider-config.service.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/profile/maxes/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/profile/maxes/[catalogExerciseId]/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/profile/maxes/[catalogExerciseId]/versions/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/profile/tax-info/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/onboarding/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/onboarding/complete-step/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/onboarding/complete-all/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/onboarding/go-to-step/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/onboarding/reset/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/payments/intent/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/payments/confirm/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/subscriptions/create/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/subscriptions/manage/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/subscriptions/setup-intent/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/credits/balance/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/credits/history/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/invitations/validate/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/policies/[slug]/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/health/summary/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/health/sync/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/iap/subscription-status/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/iap/verify-receipt/route.ts'
-    Imported via '@OneCoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/iap/restore-purchases/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-vercel-admin/src/vercel-env-vars-api.service.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/ai-provider-config.service.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/profile/maxes/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/profile/maxes/[catalogExerciseId]/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/profile/maxes/[catalogExerciseId]/versions/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/profile/tax-info/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/onboarding/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/onboarding/complete-step/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/onboarding/complete-all/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/onboarding/go-to-step/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/onboarding/reset/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/payments/intent/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/payments/confirm/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/subscriptions/create/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/subscriptions/manage/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/subscriptions/setup-intent/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/credits/balance/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/credits/history/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/invitations/validate/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/policies/[slug]/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/health/summary/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/health/sync/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/iap/subscription-status/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/iap/verify-receipt/route.ts'
+    Imported via '@onecoach/lib-shared/utils/error' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/iap/restore-purchases/route.ts'
 src/routes/auth/register/route.ts(76,39): error TS2307: Cannot find module '@/flags' or its corresponding type declarations.
 src/routes/auth/register/route.ts(101,13): error TS6133: 'generateId' is declared but its value is never read.
 src/routes/auth/register/route.ts(101,55): error TS6059: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/id-generator.ts' is not under 'rootDir' '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core'. 'rootDir' is expected to contain all source files.
   The file is in the program because:
-    Imported via '@OneCoach/lib-shared/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/auth/register/route.ts'
-    Imported via '@OneCoach/lib-shared/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/auth/register/route.ts'
-    Imported via '@OneCoach/lib-shared/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/auth/password/request/route.ts'
+    Imported via '@onecoach/lib-shared/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/auth/register/route.ts'
+    Imported via '@onecoach/lib-shared/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/auth/register/route.ts'
+    Imported via '@onecoach/lib-shared/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/auth/password/request/route.ts'
     Imported via './id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/prisma-type-guards.ts'
     Imported via './id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/index.ts'
     Imported via '../id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/index.ts'
     Imported via '../id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/id-generator.ts'
-    Imported via '@OneCoach/lib-shared/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/nutrition-template.service.ts'
-    Imported via '@OneCoach/lib-shared/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-food/src/food.service.ts'
-    Imported via '@OneCoach/lib-shared/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/food-auto-creation.service.ts'
-    Imported via '@OneCoach/lib-shared/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/iap/verify-receipt/route.ts'
-    Imported via '@OneCoach/lib-shared/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/iap/restore-purchases/route.ts'
+    Imported via '@onecoach/lib-shared/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/nutrition-template.service.ts'
+    Imported via '@onecoach/lib-shared/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-food/src/food.service.ts'
+    Imported via '@onecoach/lib-shared/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/food-auto-creation.service.ts'
+    Imported via '@onecoach/lib-shared/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/iap/verify-receipt/route.ts'
+    Imported via '@onecoach/lib-shared/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/iap/restore-purchases/route.ts'
 src/routes/auth/register/route.ts(101,55): error TS6307: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/id-generator.ts' is not listed within the file list of project '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/tsconfig.json'. Projects must list all files or use an 'include' pattern.
   The file is in the program because:
-    Imported via '@OneCoach/lib-shared/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/auth/register/route.ts'
-    Imported via '@OneCoach/lib-shared/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/auth/register/route.ts'
-    Imported via '@OneCoach/lib-shared/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/auth/password/request/route.ts'
+    Imported via '@onecoach/lib-shared/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/auth/register/route.ts'
+    Imported via '@onecoach/lib-shared/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/auth/register/route.ts'
+    Imported via '@onecoach/lib-shared/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/auth/password/request/route.ts'
     Imported via './id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/prisma-type-guards.ts'
     Imported via './id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/index.ts'
     Imported via '../id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/index.ts'
     Imported via '../id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/id-generator.ts'
-    Imported via '@OneCoach/lib-shared/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/nutrition-template.service.ts'
-    Imported via '@OneCoach/lib-shared/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-food/src/food.service.ts'
-    Imported via '@OneCoach/lib-shared/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/food-auto-creation.service.ts'
-    Imported via '@OneCoach/lib-shared/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/iap/verify-receipt/route.ts'
-    Imported via '@OneCoach/lib-shared/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/iap/restore-purchases/route.ts'
+    Imported via '@onecoach/lib-shared/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/nutrition-template.service.ts'
+    Imported via '@onecoach/lib-shared/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-food/src/food.service.ts'
+    Imported via '@onecoach/lib-shared/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/food-auto-creation.service.ts'
+    Imported via '@onecoach/lib-shared/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/iap/verify-receipt/route.ts'
+    Imported via '@onecoach/lib-shared/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/iap/restore-purchases/route.ts'
 src/routes/credits/history/route.ts(25,41): error TS2339: Property 'getCreditHistory' does not exist on type 'typeof CreditService'.
 src/routes/health/summary/route.ts(2,22): error TS2307: Cannot find module '@/server/auth' or its corresponding type declarations.
 src/routes/health/summary/route.ts(3,20): error TS2307: Cannot find module '@/server/db' or its corresponding type declarations.
@@ -114,7 +114,7 @@ src/routes/iap/verify-receipt/route.ts(3,20): error TS2307: Cannot find module '
 src/routes/invitations/validate/route.ts(16,37): error TS2307: Cannot find module '@/flags' or its corresponding type declarations.
 src/routes/onboarding/complete-all/route.ts(10,20): error TS6133: 'getErrorMessage' is declared but its value is never read.
 src/routes/onboarding/complete-all/route.ts(32,46): error TS2339: Property 'completeAll' does not exist on type 'typeof OnboardingService'.
-src/routes/onboarding/complete-step/route.ts(10,39): error TS2307: Cannot find module '@OneCoach/lib-core/user/onboarding-profile.service' or its corresponding type declarations.
+src/routes/onboarding/complete-step/route.ts(10,39): error TS2307: Cannot find module '@onecoach/lib-core/user/onboarding-profile.service' or its corresponding type declarations.
 src/routes/onboarding/complete-step/route.ts(59,46): error TS2339: Property 'completeStep' does not exist on type 'typeof OnboardingService'.
 src/routes/onboarding/go-to-step/route.ts(11,20): error TS6133: 'getErrorMessage' is declared but its value is never read.
 src/routes/onboarding/go-to-step/route.ts(40,46): error TS2339: Property 'goToStep' does not exist on type 'typeof OnboardingService'.
@@ -131,30 +131,30 @@ src/routes/payments/intent/route.ts(141,56): error TS2551: Property 'validatePro
 src/routes/payments/intent/route.ts(149,50): error TS2339: Property 'createPaymentIntent' does not exist on type 'typeof PaymentService'.
 src/routes/profile/maxes/route.ts(12,34): error TS6059: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/one-rep-max.service.ts' is not under 'rootDir' '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core'. 'rootDir' is expected to contain all source files.
   The file is in the program because:
-    Imported via '@OneCoach/lib-exercise/one-rep-max.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/profile/maxes/route.ts'
+    Imported via '@onecoach/lib-exercise/one-rep-max.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/profile/maxes/route.ts'
     Imported via './one-rep-max.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/index.ts'
-    Imported via '@OneCoach/lib-exercise/one-rep-max.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/profile/maxes/[catalogExerciseId]/route.ts'
-    Imported via '@OneCoach/lib-exercise/one-rep-max.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/profile/maxes/[catalogExerciseId]/versions/route.ts'
+    Imported via '@onecoach/lib-exercise/one-rep-max.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/profile/maxes/[catalogExerciseId]/route.ts'
+    Imported via '@onecoach/lib-exercise/one-rep-max.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/profile/maxes/[catalogExerciseId]/versions/route.ts'
 src/routes/profile/maxes/route.ts(12,34): error TS6307: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/one-rep-max.service.ts' is not listed within the file list of project '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/tsconfig.json'. Projects must list all files or use an 'include' pattern.
   The file is in the program because:
-    Imported via '@OneCoach/lib-exercise/one-rep-max.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/profile/maxes/route.ts'
+    Imported via '@onecoach/lib-exercise/one-rep-max.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/profile/maxes/route.ts'
     Imported via './one-rep-max.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/index.ts'
-    Imported via '@OneCoach/lib-exercise/one-rep-max.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/profile/maxes/[catalogExerciseId]/route.ts'
-    Imported via '@OneCoach/lib-exercise/one-rep-max.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/profile/maxes/[catalogExerciseId]/versions/route.ts'
+    Imported via '@onecoach/lib-exercise/one-rep-max.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/profile/maxes/[catalogExerciseId]/route.ts'
+    Imported via '@onecoach/lib-exercise/one-rep-max.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/profile/maxes/[catalogExerciseId]/versions/route.ts'
 src/routes/profile/route.ts(21,40): error TS6059: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/prisma-type-guards.ts' is not under 'rootDir' '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core'. 'rootDir' is expected to contain all source files.
   The file is in the program because:
-    Imported via '@OneCoach/lib-shared/prisma-type-guards' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/profile/route.ts'
+    Imported via '@onecoach/lib-shared/prisma-type-guards' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/profile/route.ts'
     Imported via './prisma-type-guards' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/index.ts'
     Imported via '../prisma-type-guards' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/index.ts'
-    Imported via '@OneCoach/lib-shared/prisma-type-guards' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-analytics/src/analytics.service.ts'
-    Imported via '@OneCoach/lib-shared/prisma-type-guards' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/utils/prisma-type-guards.ts'
+    Imported via '@onecoach/lib-shared/prisma-type-guards' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-analytics/src/analytics.service.ts'
+    Imported via '@onecoach/lib-shared/prisma-type-guards' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/utils/prisma-type-guards.ts'
 src/routes/profile/route.ts(21,40): error TS6307: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/prisma-type-guards.ts' is not listed within the file list of project '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/tsconfig.json'. Projects must list all files or use an 'include' pattern.
   The file is in the program because:
-    Imported via '@OneCoach/lib-shared/prisma-type-guards' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/profile/route.ts'
+    Imported via '@onecoach/lib-shared/prisma-type-guards' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/src/routes/profile/route.ts'
     Imported via './prisma-type-guards' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/index.ts'
     Imported via '../prisma-type-guards' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/index.ts'
-    Imported via '@OneCoach/lib-shared/prisma-type-guards' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-analytics/src/analytics.service.ts'
-    Imported via '@OneCoach/lib-shared/prisma-type-guards' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/utils/prisma-type-guards.ts'
+    Imported via '@onecoach/lib-shared/prisma-type-guards' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-analytics/src/analytics.service.ts'
+    Imported via '@onecoach/lib-shared/prisma-type-guards' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/utils/prisma-type-guards.ts'
 src/routes/profile/route.ts(92,46): error TS2339: Property 'getSerialized' does not exist on type 'typeof UserProfileService'.
 src/routes/profile/route.ts(116,13): error TS7022: 'error' implicitly has type 'any' because it does not have a type annotation and is referenced directly or indirectly in its own initializer.
 src/routes/profile/route.ts(116,21): error TS2448: Block-scoped variable 'error' used before its declaration.
@@ -165,7 +165,7 @@ src/routes/subscriptions/create/route.ts(51,52): error TS2339: Property 'createS
 src/routes/subscriptions/create/route.ts(61,42): error TS2339: Property 'payment_intent' does not exist on type '{}'.
 src/routes/subscriptions/create/route.ts(63,24): error TS2339: Property 'status' does not exist on type '{}'.
 src/routes/subscriptions/create/route.ts(66,37): error TS2339: Property 'client_secret' does not exist on type '{}'.
-src/routes/subscriptions/manage/route.ts(12,27): error TS2307: Cannot find module '@OneCoach/lib-core/stripe/server' or its corresponding type declarations.
+src/routes/subscriptions/manage/route.ts(12,27): error TS2307: Cannot find module '@onecoach/lib-core/stripe/server' or its corresponding type declarations.
 src/routes/subscriptions/manage/route.ts(27,52): error TS2339: Property 'getActiveSubscription' does not exist on type 'typeof SubscriptionService'.
 src/routes/subscriptions/manage/route.ts(56,52): error TS2339: Property 'getActiveSubscription' does not exist on type 'typeof SubscriptionService'.
 src/routes/subscriptions/manage/route.ts(112,31): error TS2339: Property 'cancelSubscription' does not exist on type 'typeof SubscriptionService'.
@@ -174,20 +174,20 @@ src/routes/subscriptions/setup-intent/route.ts(31,51): error TS2339: Property 'c
   The file is in the program because:
     Imported via '@onecoach/lib-ai/ai-provider-config.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/core/providers/config.ts'
     Imported via './ai-provider-config.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/ai-model.service.ts'
-    Imported via '@OneCoach/lib-ai/ai-provider-config.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/one-agent/src/utils/ai-agent-setup.ts' with packageId '@OneCoach/lib-ai/src/ai-provider-config.service.ts@0.0.0'
+    Imported via '@onecoach/lib-ai/ai-provider-config.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/one-agent/src/utils/ai-agent-setup.ts' with packageId '@onecoach/lib-ai/src/ai-provider-config.service.ts@0.0.0'
     Imported via '../ai-provider-config.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/agent-orchestrator/fallback-executor.service.ts'
     Imported via './ai-provider-config.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/index.ts'
     Imported via '@onecoach/lib-ai/ai-provider-config.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/intent-detector.ts'
-    Imported via '@onecoach/lib-ai/ai-provider-config' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-food/src/food-vision.service.ts' with packageId '@OneCoach/lib-ai/src/ai-provider-config.service.ts@0.0.0'
+    Imported via '@onecoach/lib-ai/ai-provider-config' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-food/src/food-vision.service.ts' with packageId '@onecoach/lib-ai/src/ai-provider-config.service.ts@0.0.0'
 ../lib-ai-agents/src/core/providers/config.ts(124,52): error TS6307: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/ai-provider-config.service.ts' is not listed within the file list of project '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/tsconfig.json'. Projects must list all files or use an 'include' pattern.
   The file is in the program because:
     Imported via '@onecoach/lib-ai/ai-provider-config.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/core/providers/config.ts'
     Imported via './ai-provider-config.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/ai-model.service.ts'
-    Imported via '@OneCoach/lib-ai/ai-provider-config.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/one-agent/src/utils/ai-agent-setup.ts' with packageId '@OneCoach/lib-ai/src/ai-provider-config.service.ts@0.0.0'
+    Imported via '@onecoach/lib-ai/ai-provider-config.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/one-agent/src/utils/ai-agent-setup.ts' with packageId '@onecoach/lib-ai/src/ai-provider-config.service.ts@0.0.0'
     Imported via '../ai-provider-config.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/agent-orchestrator/fallback-executor.service.ts'
     Imported via './ai-provider-config.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/index.ts'
     Imported via '@onecoach/lib-ai/ai-provider-config.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/intent-detector.ts'
-    Imported via '@onecoach/lib-ai/ai-provider-config' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-food/src/food-vision.service.ts' with packageId '@OneCoach/lib-ai/src/ai-provider-config.service.ts@0.0.0'
+    Imported via '@onecoach/lib-ai/ai-provider-config' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-food/src/food-vision.service.ts' with packageId '@onecoach/lib-ai/src/ai-provider-config.service.ts@0.0.0'
 ../lib-ai-agents/src/core/providers/config.ts(172,11): error TS6059: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/core/models/types.ts' is not under 'rootDir' '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core'. 'rootDir' is expected to contain all source files.
   The file is in the program because:
     Imported via '../models/types' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/core/providers/config.ts'
@@ -200,20 +200,20 @@ src/routes/subscriptions/setup-intent/route.ts(31,51): error TS2339: Property 'c
   The file is in the program because:
     Imported via './config' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/core/providers/index.ts'
     Imported via './core/providers/config' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/base-agent.ts'
-    Imported via '@onecoach/lib-ai-agents/core/providers/config' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/modification-ai.service.ts' with packageId '@OneCoach/lib-ai-agents/src/core/providers/config.ts@0.0.0'
-    Imported via '@onecoach/lib-ai-agents/core/providers/config' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/ai-provider.ts' with packageId '@OneCoach/lib-ai-agents/src/core/providers/config.ts@0.0.0'
-    Imported via '@onecoach/lib-ai-agents/core/providers/config' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/helpers/macro-recalculator.ts' with packageId '@OneCoach/lib-ai-agents/src/core/providers/config.ts@0.0.0'
+    Imported via '@onecoach/lib-ai-agents/core/providers/config' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/modification-ai.service.ts' with packageId '@onecoach/lib-ai-agents/src/core/providers/config.ts@0.0.0'
+    Imported via '@onecoach/lib-ai-agents/core/providers/config' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/ai-provider.ts' with packageId '@onecoach/lib-ai-agents/src/core/providers/config.ts@0.0.0'
+    Imported via '@onecoach/lib-ai-agents/core/providers/config' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/helpers/macro-recalculator.ts' with packageId '@onecoach/lib-ai-agents/src/core/providers/config.ts@0.0.0'
     Imported via '../core/providers/config' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/orchestrator/complexity-evaluator.ts'
-    Imported via '@OneCoach/lib-ai-agents/core/providers/config' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/one-agenda/src/agentic/agentic-planner.ts'
+    Imported via '@onecoach/lib-ai-agents/core/providers/config' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/one-agenda/src/agentic/agentic-planner.ts'
 ../lib-ai-agents/src/core/providers/index.ts(159,65): error TS6307: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/core/providers/config.ts' is not listed within the file list of project '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/tsconfig.json'. Projects must list all files or use an 'include' pattern.
   The file is in the program because:
     Imported via './config' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/core/providers/index.ts'
     Imported via './core/providers/config' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/base-agent.ts'
-    Imported via '@onecoach/lib-ai-agents/core/providers/config' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/modification-ai.service.ts' with packageId '@OneCoach/lib-ai-agents/src/core/providers/config.ts@0.0.0'
-    Imported via '@onecoach/lib-ai-agents/core/providers/config' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/ai-provider.ts' with packageId '@OneCoach/lib-ai-agents/src/core/providers/config.ts@0.0.0'
-    Imported via '@onecoach/lib-ai-agents/core/providers/config' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/helpers/macro-recalculator.ts' with packageId '@OneCoach/lib-ai-agents/src/core/providers/config.ts@0.0.0'
+    Imported via '@onecoach/lib-ai-agents/core/providers/config' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/modification-ai.service.ts' with packageId '@onecoach/lib-ai-agents/src/core/providers/config.ts@0.0.0'
+    Imported via '@onecoach/lib-ai-agents/core/providers/config' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/ai-provider.ts' with packageId '@onecoach/lib-ai-agents/src/core/providers/config.ts@0.0.0'
+    Imported via '@onecoach/lib-ai-agents/core/providers/config' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/helpers/macro-recalculator.ts' with packageId '@onecoach/lib-ai-agents/src/core/providers/config.ts@0.0.0'
     Imported via '../core/providers/config' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/orchestrator/complexity-evaluator.ts'
-    Imported via '@OneCoach/lib-ai-agents/core/providers/config' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/one-agenda/src/agentic/agentic-planner.ts'
+    Imported via '@onecoach/lib-ai-agents/core/providers/config' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/one-agenda/src/agentic/agentic-planner.ts'
 ../lib-ai-agents/src/core/providers/index.ts(160,40): error TS6059: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/core/providers/provider-options.service.ts' is not under 'rootDir' '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core'. 'rootDir' is expected to contain all source files.
   The file is in the program because:
     Imported via './provider-options.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/core/providers/index.ts'
@@ -227,27 +227,27 @@ src/routes/subscriptions/setup-intent/route.ts(31,51): error TS2339: Property 'c
     Index signature for type 'string' is missing in type '{}'.
 ../lib-ai-agents/src/prompts/workout.ts(12,52): error TS6059: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/index.ts' is not under 'rootDir' '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core'. 'rootDir' is expected to contain all source files.
   The file is in the program because:
-    Imported via '@OneCoach/lib-ai' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/prompts/workout.ts' with packageId '@OneCoach/lib-ai/src/index.ts@0.0.0'
+    Imported via '@onecoach/lib-ai' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/prompts/workout.ts' with packageId '@onecoach/lib-ai/src/index.ts@0.0.0'
     Imported via '@onecoach/lib-ai' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise-admin.service.ts'
     Imported via '@onecoach/lib-ai' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/exercise-agent.ts'
-    Imported via '@OneCoach/lib-ai' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/helpers/macro-recalculator.ts' with packageId '@OneCoach/lib-ai/src/index.ts@0.0.0'
-    Imported via '@OneCoach/lib-ai' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/helpers/macro-recalculator.ts' with packageId '@OneCoach/lib-ai/src/index.ts@0.0.0'
+    Imported via '@onecoach/lib-ai' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/helpers/macro-recalculator.ts' with packageId '@onecoach/lib-ai/src/index.ts@0.0.0'
+    Imported via '@onecoach/lib-ai' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/helpers/macro-recalculator.ts' with packageId '@onecoach/lib-ai/src/index.ts@0.0.0'
     Imported via '@onecoach/lib-ai' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/index.ts'
 ../lib-ai-agents/src/prompts/workout.ts(12,52): error TS6307: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/index.ts' is not listed within the file list of project '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/tsconfig.json'. Projects must list all files or use an 'include' pattern.
   The file is in the program because:
-    Imported via '@OneCoach/lib-ai' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/prompts/workout.ts' with packageId '@OneCoach/lib-ai/src/index.ts@0.0.0'
+    Imported via '@onecoach/lib-ai' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/prompts/workout.ts' with packageId '@onecoach/lib-ai/src/index.ts@0.0.0'
     Imported via '@onecoach/lib-ai' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise-admin.service.ts'
     Imported via '@onecoach/lib-ai' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/exercise-agent.ts'
-    Imported via '@OneCoach/lib-ai' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/helpers/macro-recalculator.ts' with packageId '@OneCoach/lib-ai/src/index.ts@0.0.0'
-    Imported via '@OneCoach/lib-ai' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/helpers/macro-recalculator.ts' with packageId '@OneCoach/lib-ai/src/index.ts@0.0.0'
+    Imported via '@onecoach/lib-ai' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/helpers/macro-recalculator.ts' with packageId '@onecoach/lib-ai/src/index.ts@0.0.0'
+    Imported via '@onecoach/lib-ai' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/helpers/macro-recalculator.ts' with packageId '@onecoach/lib-ai/src/index.ts@0.0.0'
     Imported via '@onecoach/lib-ai' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/index.ts'
 ../lib-ai-agents/src/tools/exercise-tools.ts(10,38): error TS6059: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise-admin.service.ts' is not under 'rootDir' '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core'. 'rootDir' is expected to contain all source files.
   The file is in the program because:
-    Imported via '@OneCoach/lib-exercise/exercise-admin.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/tools/exercise-tools.ts'
+    Imported via '@onecoach/lib-exercise/exercise-admin.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/tools/exercise-tools.ts'
     Imported via './exercise-admin.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/index.ts'
 ../lib-ai-agents/src/tools/exercise-tools.ts(10,38): error TS6307: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise-admin.service.ts' is not listed within the file list of project '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/tsconfig.json'. Projects must list all files or use an 'include' pattern.
   The file is in the program because:
-    Imported via '@OneCoach/lib-exercise/exercise-admin.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/tools/exercise-tools.ts'
+    Imported via '@onecoach/lib-exercise/exercise-admin.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/tools/exercise-tools.ts'
     Imported via './exercise-admin.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/index.ts'
 ../lib-ai/src/agent-orchestrator/index.ts(7,15): error TS6059: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/agent-orchestrator/interfaces.ts' is not under 'rootDir' '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core'. 'rootDir' is expected to contain all source files.
 ../lib-ai/src/agent-orchestrator/index.ts(7,15): error TS6307: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/agent-orchestrator/interfaces.ts' is not listed within the file list of project '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/tsconfig.json'. Projects must list all files or use an 'include' pattern.
@@ -261,34 +261,34 @@ src/routes/subscriptions/setup-intent/route.ts(31,51): error TS2339: Property 'c
 ../lib-ai/src/agent-orchestrator/index.ts(11,15): error TS6307: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/agent-orchestrator/result-validator.service.ts' is not listed within the file list of project '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/tsconfig.json'. Projects must list all files or use an 'include' pattern.
 ../lib-ai/src/agent-orchestrator/interfaces.ts(12,8): error TS6059: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/core/providers/index.ts' is not under 'rootDir' '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core'. 'rootDir' is expected to contain all source files.
   The file is in the program because:
-    Imported via '@onecoach/lib-ai-agents/core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/agent-orchestrator/interfaces.ts' with packageId '@OneCoach/lib-ai-agents/src/core/providers/index.ts@0.0.0'
-    Imported via '@onecoach/lib-ai-agents/core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/ai-provider-config.service.ts' with packageId '@OneCoach/lib-ai-agents/src/core/providers/index.ts@0.0.0'
-    Imported via '@onecoach/lib-ai-agents/core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/ai-provider-config.service.ts' with packageId '@OneCoach/lib-ai-agents/src/core/providers/index.ts@0.0.0'
-    Imported via '@onecoach/lib-ai-agents/core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/utils/model-factory.ts' with packageId '@OneCoach/lib-ai-agents/src/core/providers/index.ts@0.0.0'
-    Imported via '@onecoach/lib-ai-agents/core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise-admin.service.ts' with packageId '@OneCoach/lib-ai-agents/src/core/providers/index.ts@0.0.0'
-    Imported via '@OneCoach/lib-ai-agents/core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/one-agent/src/utils/ai-agent-setup.ts'
-    Imported via '@onecoach/lib-ai-agents/core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/agent-orchestrator/execution-metadata.service.ts' with packageId '@OneCoach/lib-ai-agents/src/core/providers/index.ts@0.0.0'
-    Imported via '@onecoach/lib-ai-agents/core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/agent-orchestrator/fallback-executor.service.ts' with packageId '@OneCoach/lib-ai-agents/src/core/providers/index.ts@0.0.0'
-    Imported via '@onecoach/lib-ai-agents/core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/agent-orchestrator/model-chain.service.ts' with packageId '@OneCoach/lib-ai-agents/src/core/providers/index.ts@0.0.0'
+    Imported via '@onecoach/lib-ai-agents/core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/agent-orchestrator/interfaces.ts' with packageId '@onecoach/lib-ai-agents/src/core/providers/index.ts@0.0.0'
+    Imported via '@onecoach/lib-ai-agents/core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/ai-provider-config.service.ts' with packageId '@onecoach/lib-ai-agents/src/core/providers/index.ts@0.0.0'
+    Imported via '@onecoach/lib-ai-agents/core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/ai-provider-config.service.ts' with packageId '@onecoach/lib-ai-agents/src/core/providers/index.ts@0.0.0'
+    Imported via '@onecoach/lib-ai-agents/core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/utils/model-factory.ts' with packageId '@onecoach/lib-ai-agents/src/core/providers/index.ts@0.0.0'
+    Imported via '@onecoach/lib-ai-agents/core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise-admin.service.ts' with packageId '@onecoach/lib-ai-agents/src/core/providers/index.ts@0.0.0'
+    Imported via '@onecoach/lib-ai-agents/core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/one-agent/src/utils/ai-agent-setup.ts'
+    Imported via '@onecoach/lib-ai-agents/core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/agent-orchestrator/execution-metadata.service.ts' with packageId '@onecoach/lib-ai-agents/src/core/providers/index.ts@0.0.0'
+    Imported via '@onecoach/lib-ai-agents/core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/agent-orchestrator/fallback-executor.service.ts' with packageId '@onecoach/lib-ai-agents/src/core/providers/index.ts@0.0.0'
+    Imported via '@onecoach/lib-ai-agents/core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/agent-orchestrator/model-chain.service.ts' with packageId '@onecoach/lib-ai-agents/src/core/providers/index.ts@0.0.0'
     Imported via './core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/intent-detector.ts'
     Imported via '../core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/orchestrator/ai-task-orchestrator.ts'
     Imported via '../core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/orchestrator/complexity-evaluator.ts'
-    Imported via '@onecoach/lib-ai-agents/core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/oneagenda-core/src/agents/base-oneagenda-agent.ts' with packageId '@OneCoach/lib-ai-agents/src/core/providers/index.ts@0.0.0'
+    Imported via '@onecoach/lib-ai-agents/core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/oneagenda-core/src/agents/base-oneagenda-agent.ts' with packageId '@onecoach/lib-ai-agents/src/core/providers/index.ts@0.0.0'
 ../lib-ai/src/agent-orchestrator/interfaces.ts(12,8): error TS6307: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/core/providers/index.ts' is not listed within the file list of project '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/tsconfig.json'. Projects must list all files or use an 'include' pattern.
   The file is in the program because:
-    Imported via '@onecoach/lib-ai-agents/core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/agent-orchestrator/interfaces.ts' with packageId '@OneCoach/lib-ai-agents/src/core/providers/index.ts@0.0.0'
-    Imported via '@onecoach/lib-ai-agents/core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/ai-provider-config.service.ts' with packageId '@OneCoach/lib-ai-agents/src/core/providers/index.ts@0.0.0'
-    Imported via '@onecoach/lib-ai-agents/core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/ai-provider-config.service.ts' with packageId '@OneCoach/lib-ai-agents/src/core/providers/index.ts@0.0.0'
-    Imported via '@onecoach/lib-ai-agents/core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/utils/model-factory.ts' with packageId '@OneCoach/lib-ai-agents/src/core/providers/index.ts@0.0.0'
-    Imported via '@onecoach/lib-ai-agents/core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise-admin.service.ts' with packageId '@OneCoach/lib-ai-agents/src/core/providers/index.ts@0.0.0'
-    Imported via '@OneCoach/lib-ai-agents/core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/one-agent/src/utils/ai-agent-setup.ts'
-    Imported via '@onecoach/lib-ai-agents/core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/agent-orchestrator/execution-metadata.service.ts' with packageId '@OneCoach/lib-ai-agents/src/core/providers/index.ts@0.0.0'
-    Imported via '@onecoach/lib-ai-agents/core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/agent-orchestrator/fallback-executor.service.ts' with packageId '@OneCoach/lib-ai-agents/src/core/providers/index.ts@0.0.0'
-    Imported via '@onecoach/lib-ai-agents/core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/agent-orchestrator/model-chain.service.ts' with packageId '@OneCoach/lib-ai-agents/src/core/providers/index.ts@0.0.0'
+    Imported via '@onecoach/lib-ai-agents/core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/agent-orchestrator/interfaces.ts' with packageId '@onecoach/lib-ai-agents/src/core/providers/index.ts@0.0.0'
+    Imported via '@onecoach/lib-ai-agents/core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/ai-provider-config.service.ts' with packageId '@onecoach/lib-ai-agents/src/core/providers/index.ts@0.0.0'
+    Imported via '@onecoach/lib-ai-agents/core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/ai-provider-config.service.ts' with packageId '@onecoach/lib-ai-agents/src/core/providers/index.ts@0.0.0'
+    Imported via '@onecoach/lib-ai-agents/core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/utils/model-factory.ts' with packageId '@onecoach/lib-ai-agents/src/core/providers/index.ts@0.0.0'
+    Imported via '@onecoach/lib-ai-agents/core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise-admin.service.ts' with packageId '@onecoach/lib-ai-agents/src/core/providers/index.ts@0.0.0'
+    Imported via '@onecoach/lib-ai-agents/core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/one-agent/src/utils/ai-agent-setup.ts'
+    Imported via '@onecoach/lib-ai-agents/core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/agent-orchestrator/execution-metadata.service.ts' with packageId '@onecoach/lib-ai-agents/src/core/providers/index.ts@0.0.0'
+    Imported via '@onecoach/lib-ai-agents/core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/agent-orchestrator/fallback-executor.service.ts' with packageId '@onecoach/lib-ai-agents/src/core/providers/index.ts@0.0.0'
+    Imported via '@onecoach/lib-ai-agents/core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/agent-orchestrator/model-chain.service.ts' with packageId '@onecoach/lib-ai-agents/src/core/providers/index.ts@0.0.0'
     Imported via './core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/intent-detector.ts'
     Imported via '../core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/orchestrator/ai-task-orchestrator.ts'
     Imported via '../core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/orchestrator/complexity-evaluator.ts'
-    Imported via '@onecoach/lib-ai-agents/core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/oneagenda-core/src/agents/base-oneagenda-agent.ts' with packageId '@OneCoach/lib-ai-agents/src/core/providers/index.ts@0.0.0'
+    Imported via '@onecoach/lib-ai-agents/core/providers' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/oneagenda-core/src/agents/base-oneagenda-agent.ts' with packageId '@onecoach/lib-ai-agents/src/core/providers/index.ts@0.0.0'
 ../lib-ai/src/ai-framework-config.service.ts(32,7): error TS2740: Type '{ readonly workout_import: FrameworkFeature.IMPORT_MODELS; }' is missing the following properties from type 'Record<FrameworkFeature, FrameworkFeature>': consensus_system, skills_system, learning_feedback_loop, intelligent_mode_selection, and 6 more.
 ../lib-ai/src/ai-framework-config.service.ts(343,13): error TS2322: Type 'JsonValue' is not assignable to type 'NullableJsonNullValueInput | InputJsonValue | undefined'.
   Type 'null' is not assignable to type 'NullableJsonNullValueInput | InputJsonValue | undefined'.
@@ -325,11 +325,11 @@ src/routes/subscriptions/setup-intent/route.ts(31,51): error TS2339: Property 'c
 ../lib-ai/src/index.ts(13,15): error TS6059: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/ai-config.service.ts' is not under 'rootDir' '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core'. 'rootDir' is expected to contain all source files.
   The file is in the program because:
     Imported via './ai-config.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/index.ts'
-    Imported via '@OneCoach/lib-ai/ai-config.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/orchestrator/complexity-evaluator.ts' with packageId '@OneCoach/lib-ai/src/ai-config.service.ts@0.0.0'
+    Imported via '@onecoach/lib-ai/ai-config.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/orchestrator/complexity-evaluator.ts' with packageId '@onecoach/lib-ai/src/ai-config.service.ts@0.0.0'
 ../lib-ai/src/index.ts(13,15): error TS6307: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/ai-config.service.ts' is not listed within the file list of project '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/tsconfig.json'. Projects must list all files or use an 'include' pattern.
   The file is in the program because:
     Imported via './ai-config.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/index.ts'
-    Imported via '@OneCoach/lib-ai/ai-config.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/orchestrator/complexity-evaluator.ts' with packageId '@OneCoach/lib-ai/src/ai-config.service.ts@0.0.0'
+    Imported via '@onecoach/lib-ai/ai-config.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/orchestrator/complexity-evaluator.ts' with packageId '@onecoach/lib-ai/src/ai-config.service.ts@0.0.0'
 ../lib-ai/src/index.ts(15,15): error TS6059: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/chat.service.ts' is not under 'rootDir' '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core'. 'rootDir' is expected to contain all source files.
 ../lib-ai/src/index.ts(15,15): error TS6307: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/chat.service.ts' is not listed within the file list of project '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/tsconfig.json'. Projects must list all files or use an 'include' pattern.
 ../lib-ai/src/index.ts(16,15): error TS6059: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/modification-ai.service.ts' is not under 'rootDir' '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core'. 'rootDir' is expected to contain all source files.
@@ -366,11 +366,11 @@ src/routes/subscriptions/setup-intent/route.ts(31,51): error TS2339: Property 'c
 ../lib-api/src/hooks/use-exercise.ts(12,1): error TS6133: 'ExerciseApprovalStatus' is declared but its value is never read.
 ../lib-api/src/hooks/use-health-native.ts(25,8): error TS2307: Cannot find module '../../stores/health.store' or its corresponding type declarations.
 ../lib-api/src/hooks/use-health-native.ts(27,30): error TS2307: Cannot find module '../../stores/auth.store' or its corresponding type declarations.
-../lib-api/src/hooks/use-health-native.ts(30,3): error TS2305: Module '"@OneCoach/constants"' has no exported member 'APPLE_HEALTH_PERMISSIONS'.
-../lib-api/src/hooks/use-health-native.ts(31,3): error TS2305: Module '"@OneCoach/constants"' has no exported member 'ANDROID_HEALTH_PERMISSIONS'.
-../lib-api/src/hooks/use-health-native.ts(32,3): error TS2305: Module '"@OneCoach/constants"' has no exported member 'HEALTH_DATA_TYPES'.
-../lib-api/src/hooks/use-health-native.ts(33,3): error TS2305: Module '"@OneCoach/constants"' has no exported member 'DEFAULT_SYNC_DAYS'.
-../lib-api/src/hooks/use-health-native.ts(34,3): error TS2305: Module '"@OneCoach/constants"' has no exported member 'HEALTH_STORAGE_KEYS'.
+../lib-api/src/hooks/use-health-native.ts(30,3): error TS2305: Module '"@onecoach/constants"' has no exported member 'APPLE_HEALTH_PERMISSIONS'.
+../lib-api/src/hooks/use-health-native.ts(31,3): error TS2305: Module '"@onecoach/constants"' has no exported member 'ANDROID_HEALTH_PERMISSIONS'.
+../lib-api/src/hooks/use-health-native.ts(32,3): error TS2305: Module '"@onecoach/constants"' has no exported member 'HEALTH_DATA_TYPES'.
+../lib-api/src/hooks/use-health-native.ts(33,3): error TS2305: Module '"@onecoach/constants"' has no exported member 'DEFAULT_SYNC_DAYS'.
+../lib-api/src/hooks/use-health-native.ts(34,3): error TS2305: Module '"@onecoach/constants"' has no exported member 'HEALTH_STORAGE_KEYS'.
 ../lib-api/src/hooks/use-health-native.ts(36,24): error TS2307: Cannot find module '../../utils/logger' or its corresponding type declarations.
 ../lib-api/src/hooks/use-health-native.ts(37,33): error TS2307: Cannot find module '../../utils/error' or its corresponding type declarations.
 ../lib-api/src/hooks/use-health-native.ts(49,30): error TS7006: Parameter 'state' implicitly has an 'any' type.
@@ -396,8 +396,8 @@ src/routes/subscriptions/setup-intent/route.ts(31,51): error TS2339: Property 'c
 ../lib-api/src/hooks/use-iap-native.ts(22,8): error TS6133: 'Product' is declared but its value is never read.
 ../lib-api/src/hooks/use-iap-native.ts(27,3): error TS6133: 'useIAPStore' is declared but its value is never read.
 ../lib-api/src/hooks/use-iap-native.ts(31,8): error TS2307: Cannot find module '../../stores/iap.store' or its corresponding type declarations.
-../lib-api/src/hooks/use-iap-native.ts(33,10): error TS2305: Module '"@OneCoach/constants"' has no exported member 'ALL_PRODUCT_IDS'.
-../lib-api/src/hooks/use-iap-native.ts(33,27): error TS2305: Module '"@OneCoach/constants"' has no exported member 'PRODUCT_TO_PLAN_MAP'.
+../lib-api/src/hooks/use-iap-native.ts(33,10): error TS2305: Module '"@onecoach/constants"' has no exported member 'ALL_PRODUCT_IDS'.
+../lib-api/src/hooks/use-iap-native.ts(33,27): error TS2305: Module '"@onecoach/constants"' has no exported member 'PRODUCT_TO_PLAN_MAP'.
 ../lib-api/src/hooks/use-iap-native.ts(34,32): error TS2307: Cannot find module '../../stores/iap.store' or its corresponding type declarations.
 ../lib-api/src/hooks/use-iap-native.ts(35,24): error TS2307: Cannot find module '../../utils/logger' or its corresponding type declarations.
 ../lib-api/src/hooks/use-iap-native.ts(115,20): error TS18046: 'product' is of type 'unknown'.
@@ -445,14 +445,14 @@ src/routes/subscriptions/setup-intent/route.ts(31,51): error TS2339: Property 'c
 ../lib-api/src/react-query/provider.tsx(73,42): error TS18046: 'mod' is of type 'unknown'.
 ../lib-exercise/src/exercise-admin.service.ts(31,8): error TS6059: File '/Users/giulioleone/Sviluppo/CoachOne/packages/one-agent/src/index.ts' is not under 'rootDir' '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core'. 'rootDir' is expected to contain all source files.
   The file is in the program because:
-    Imported via '@OneCoach/one-agent' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise-admin.service.ts'
-    Imported via '@OneCoach/one-agent' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-food/src/food-admin.service.ts'
-    Imported via '@OneCoach/one-agent' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-food/src/food-admin.service.ts'
+    Imported via '@onecoach/one-agent' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise-admin.service.ts'
+    Imported via '@onecoach/one-agent' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-food/src/food-admin.service.ts'
+    Imported via '@onecoach/one-agent' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-food/src/food-admin.service.ts'
 ../lib-exercise/src/exercise-admin.service.ts(31,8): error TS6307: File '/Users/giulioleone/Sviluppo/CoachOne/packages/one-agent/src/index.ts' is not listed within the file list of project '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/tsconfig.json'. Projects must list all files or use an 'include' pattern.
   The file is in the program because:
-    Imported via '@OneCoach/one-agent' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise-admin.service.ts'
-    Imported via '@OneCoach/one-agent' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-food/src/food-admin.service.ts'
-    Imported via '@OneCoach/one-agent' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-food/src/food-admin.service.ts'
+    Imported via '@onecoach/one-agent' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise-admin.service.ts'
+    Imported via '@onecoach/one-agent' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-food/src/food-admin.service.ts'
+    Imported via '@onecoach/one-agent' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-food/src/food-admin.service.ts'
 ../lib-exercise/src/exercise-admin.service.ts(35,69): error TS6059: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-metadata/src/index.ts' is not under 'rootDir' '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core'. 'rootDir' is expected to contain all source files.
 ../lib-exercise/src/exercise-admin.service.ts(35,69): error TS6307: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-metadata/src/index.ts' is not listed within the file list of project '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/tsconfig.json'. Projects must list all files or use an 'include' pattern.
 ../lib-exercise/src/exercise-admin.service.ts(828,42): error TS6133: 'batchIndex' is declared but its value is never read.
@@ -471,46 +471,46 @@ src/routes/subscriptions/setup-intent/route.ts(31,51): error TS2339: Property 'c
   The file is in the program because:
     Imported via './exercise.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/index.ts'
     Imported via './exercise.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise-admin.service.ts'
-    Imported via '@OneCoach/lib-exercise/exercise.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/one-agent/src/agents/workout/sub-agents/WorkoutDayGenerationAgent.ts'
+    Imported via '@onecoach/lib-exercise/exercise.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/one-agent/src/agents/workout/sub-agents/WorkoutDayGenerationAgent.ts'
 ../lib-exercise/src/index.ts(8,15): error TS6307: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise.service.ts' is not listed within the file list of project '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/tsconfig.json'. Projects must list all files or use an 'include' pattern.
   The file is in the program because:
     Imported via './exercise.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/index.ts'
     Imported via './exercise.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise-admin.service.ts'
-    Imported via '@OneCoach/lib-exercise/exercise.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/one-agent/src/agents/workout/sub-agents/WorkoutDayGenerationAgent.ts'
+    Imported via '@onecoach/lib-exercise/exercise.service' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/one-agent/src/agents/workout/sub-agents/WorkoutDayGenerationAgent.ts'
 ../lib-exercise/src/index.ts(10,15): error TS6059: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise-id-resolver.service.ts' is not under 'rootDir' '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core'. 'rootDir' is expected to contain all source files.
 ../lib-exercise/src/index.ts(10,15): error TS6307: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise-id-resolver.service.ts' is not listed within the file list of project '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/tsconfig.json'. Projects must list all files or use an 'include' pattern.
 ../lib-exercise/src/one-rep-max.service.ts(20,26): error TS6059: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/index.ts' is not under 'rootDir' '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core'. 'rootDir' is expected to contain all source files.
   The file is in the program because:
-    Imported via '@OneCoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/one-rep-max.service.ts'
-    Imported via '@OneCoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-workout/dist/workout.service.d.ts'
-    Imported via '@OneCoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise.service.ts'
-    Imported via '@OneCoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise-admin.service.ts'
-    Imported via '@OneCoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/one-agent/src/agents/workout/sub-agents/WorkoutDayGenerationAgent.ts'
-    Imported via '@OneCoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/chat.service.ts'
-    Imported via '@OneCoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/chat.service.ts'
-    Imported via '@OneCoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/nutrition.service.ts'
-    Imported via '@OneCoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/nutrition.service.ts'
-    Imported via '@OneCoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/nutrition-tracking.service.ts'
-    Imported via '@OneCoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/macro-validation.service.ts'
-    Imported via '@OneCoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/meal-template.service.ts'
-    Imported via '@OneCoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/modification.service.ts'
-    Imported via '@OneCoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise-id-resolver.service.ts'
+    Imported via '@onecoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/one-rep-max.service.ts'
+    Imported via '@onecoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-workout/dist/workout.service.d.ts'
+    Imported via '@onecoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise.service.ts'
+    Imported via '@onecoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise-admin.service.ts'
+    Imported via '@onecoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/one-agent/src/agents/workout/sub-agents/WorkoutDayGenerationAgent.ts'
+    Imported via '@onecoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/chat.service.ts'
+    Imported via '@onecoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/chat.service.ts'
+    Imported via '@onecoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/nutrition.service.ts'
+    Imported via '@onecoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/nutrition.service.ts'
+    Imported via '@onecoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/nutrition-tracking.service.ts'
+    Imported via '@onecoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/macro-validation.service.ts'
+    Imported via '@onecoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/meal-template.service.ts'
+    Imported via '@onecoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/modification.service.ts'
+    Imported via '@onecoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise-id-resolver.service.ts'
 ../lib-exercise/src/one-rep-max.service.ts(20,26): error TS6307: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/index.ts' is not listed within the file list of project '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/tsconfig.json'. Projects must list all files or use an 'include' pattern.
   The file is in the program because:
-    Imported via '@OneCoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/one-rep-max.service.ts'
-    Imported via '@OneCoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-workout/dist/workout.service.d.ts'
-    Imported via '@OneCoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise.service.ts'
-    Imported via '@OneCoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise-admin.service.ts'
-    Imported via '@OneCoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/one-agent/src/agents/workout/sub-agents/WorkoutDayGenerationAgent.ts'
-    Imported via '@OneCoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/chat.service.ts'
-    Imported via '@OneCoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/chat.service.ts'
-    Imported via '@OneCoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/nutrition.service.ts'
-    Imported via '@OneCoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/nutrition.service.ts'
-    Imported via '@OneCoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/nutrition-tracking.service.ts'
-    Imported via '@OneCoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/macro-validation.service.ts'
-    Imported via '@OneCoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/meal-template.service.ts'
-    Imported via '@OneCoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/modification.service.ts'
-    Imported via '@OneCoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise-id-resolver.service.ts'
+    Imported via '@onecoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/one-rep-max.service.ts'
+    Imported via '@onecoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-workout/dist/workout.service.d.ts'
+    Imported via '@onecoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise.service.ts'
+    Imported via '@onecoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise-admin.service.ts'
+    Imported via '@onecoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/one-agent/src/agents/workout/sub-agents/WorkoutDayGenerationAgent.ts'
+    Imported via '@onecoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/chat.service.ts'
+    Imported via '@onecoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/chat.service.ts'
+    Imported via '@onecoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/nutrition.service.ts'
+    Imported via '@onecoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/nutrition.service.ts'
+    Imported via '@onecoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/nutrition-tracking.service.ts'
+    Imported via '@onecoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/macro-validation.service.ts'
+    Imported via '@onecoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/meal-template.service.ts'
+    Imported via '@onecoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/modification.service.ts'
+    Imported via '@onecoach/lib-shared' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise-id-resolver.service.ts'
 ../lib-exercise/src/one-rep-max.service.ts(128,11): error TS2353: Object literal may only specify known properties, and 'userId_exerciseId' does not exist in type 'user_one_rep_maxWhereUniqueInput'.
 ../lib-exercise/src/one-rep-max.service.ts(219,11): error TS2353: Object literal may only specify known properties, and 'userId_exerciseId' does not exist in type 'user_one_rep_maxWhereUniqueInput'.
 ../lib-exercise/src/one-rep-max.service.ts(236,15): error TS2322: Type 'string | null' is not assignable to type 'string'.
@@ -559,7 +559,7 @@ src/routes/subscriptions/setup-intent/route.ts(31,51): error TS2339: Property 'c
 ../lib-import-core/src/mime-router.ts(1,10): error TS1484: 'MimeRouterHandlers' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
 ../lib-import-core/src/mime-router.ts(1,30): error TS1484: 'MimeHandler' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
 ../lib-import-core/src/vision.ts(2,1): error TS6133: 'z' is declared but its value is never read.
-../lib-import-core/src/vision.ts(4,15): error TS2305: Module '"@OneCoach/lib-ai-agents/types"' has no exported member 'ModelMessage'.
+../lib-import-core/src/vision.ts(4,15): error TS2305: Module '"@onecoach/lib-ai-agents/types"' has no exported member 'ModelMessage'.
 ../lib-import-core/src/vision.ts(6,10): error TS1484: 'VisionParseParams' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
 ../lib-metadata/src/index.ts(8,15): error TS6059: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-metadata/src/catalog-provider.service.ts' is not under 'rootDir' '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core'. 'rootDir' is expected to contain all source files.
 ../lib-metadata/src/index.ts(8,15): error TS6307: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-metadata/src/catalog-provider.service.ts' is not listed within the file list of project '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/tsconfig.json'. Projects must list all files or use an 'include' pattern.
@@ -615,14 +615,14 @@ src/routes/subscriptions/setup-intent/route.ts(31,51): error TS2339: Property 'c
 ../lib-metadata/src/metadata-translation.service.ts(467,32): error TS18046: 'name' is of type 'unknown'.
 ../lib-metadata/src/metadata-validator.service.ts(11,26): error TS6059: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/id-generator.ts' is not under 'rootDir' '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core'. 'rootDir' is expected to contain all source files.
   The file is in the program because:
-    Imported via '@OneCoach/lib-shared/utils/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-metadata/src/metadata-validator.service.ts'
-    Imported via '@OneCoach/lib-shared/utils/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/helpers/plan-transform.ts'
-    Imported via '@OneCoach/lib-shared/utils/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/helpers/plan-operations.ts'
+    Imported via '@onecoach/lib-shared/utils/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-metadata/src/metadata-validator.service.ts'
+    Imported via '@onecoach/lib-shared/utils/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/helpers/plan-transform.ts'
+    Imported via '@onecoach/lib-shared/utils/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/helpers/plan-operations.ts'
 ../lib-metadata/src/metadata-validator.service.ts(11,26): error TS6307: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/id-generator.ts' is not listed within the file list of project '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/tsconfig.json'. Projects must list all files or use an 'include' pattern.
   The file is in the program because:
-    Imported via '@OneCoach/lib-shared/utils/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-metadata/src/metadata-validator.service.ts'
-    Imported via '@OneCoach/lib-shared/utils/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/helpers/plan-transform.ts'
-    Imported via '@OneCoach/lib-shared/utils/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/helpers/plan-operations.ts'
+    Imported via '@onecoach/lib-shared/utils/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-metadata/src/metadata-validator.service.ts'
+    Imported via '@onecoach/lib-shared/utils/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/helpers/plan-transform.ts'
+    Imported via '@onecoach/lib-shared/utils/id-generator' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/helpers/plan-operations.ts'
 ../lib-metadata/src/metadata-validator.service.ts(39,63): error TS18046: 'c' is of type 'unknown'.
 ../lib-metadata/src/metadata-validator.service.ts(45,21): error TS18046: 'c' is of type 'unknown'.
 ../lib-metadata/src/metadata-validator.service.ts(45,87): error TS18046: 'c' is of type 'unknown'.
@@ -742,11 +742,11 @@ src/routes/subscriptions/setup-intent/route.ts(31,51): error TS2339: Property 'c
 ../lib-shared/src/index.ts(15,15): error TS6059: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/index.ts' is not under 'rootDir' '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core'. 'rootDir' is expected to contain all source files.
   The file is in the program because:
     Imported via './utils' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/index.ts'
-    Imported via '@OneCoach/lib-shared/utils' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise.service.ts'
+    Imported via '@onecoach/lib-shared/utils' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise.service.ts'
 ../lib-shared/src/index.ts(15,15): error TS6307: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/index.ts' is not listed within the file list of project '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/tsconfig.json'. Projects must list all files or use an 'include' pattern.
   The file is in the program because:
     Imported via './utils' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/index.ts'
-    Imported via '@OneCoach/lib-shared/utils' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise.service.ts'
+    Imported via '@onecoach/lib-shared/utils' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise.service.ts'
 ../lib-shared/src/index.ts(18,15): error TS6059: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/hooks/index.ts' is not under 'rootDir' '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core'. 'rootDir' is expected to contain all source files.
 ../lib-shared/src/index.ts(18,15): error TS6307: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/hooks/index.ts' is not listed within the file list of project '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/tsconfig.json'. Projects must list all files or use an 'include' pattern.
 ../lib-shared/src/prisma-type-guards.ts(19,3): error TS6196: 'SetGroup' is declared but never used.
@@ -763,14 +763,14 @@ src/routes/subscriptions/setup-intent/route.ts(31,51): error TS2339: Property 'c
 ../lib-shared/src/prisma-type-guards.ts(528,89): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'SetJson'.
 ../lib-shared/src/utils/error/api.ts(12,42): error TS6059: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/constants.ts' is not under 'rootDir' '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core'. 'rootDir' is expected to contain all source files.
   The file is in the program because:
-    Imported via '@OneCoach/lib-ai-agents/constants' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/error/api.ts'
+    Imported via '@onecoach/lib-ai-agents/constants' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/error/api.ts'
     Imported via './constants' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/index.ts'
     Imported via '../constants' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/utils/model-factory.ts'
     Imported via '../constants' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/tools/exercise-tools.ts'
     Imported via '../constants' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/utils/credit-validator.ts'
 ../lib-shared/src/utils/error/api.ts(12,42): error TS6307: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/constants.ts' is not listed within the file list of project '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/tsconfig.json'. Projects must list all files or use an 'include' pattern.
   The file is in the program because:
-    Imported via '@OneCoach/lib-ai-agents/constants' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/error/api.ts'
+    Imported via '@onecoach/lib-ai-agents/constants' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/error/api.ts'
     Imported via './constants' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/index.ts'
     Imported via '../constants' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/utils/model-factory.ts'
     Imported via '../constants' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai-agents/src/tools/exercise-tools.ts'
@@ -801,28 +801,28 @@ src/routes/subscriptions/setup-intent/route.ts(31,51): error TS2339: Property 'c
   The file is in the program because:
     Imported via '../logger' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/error/index.ts'
     Imported via './logger' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/index.ts'
-    Imported via '@OneCoach/lib-shared/utils/logger' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-vercel-admin/src/vercel-env-vars-api.service.ts'
-    Imported via '@OneCoach/lib-shared/utils/logger' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/ai-provider-config.service.ts'
-    Imported via '@OneCoach/lib-shared/utils/logger' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/nutrition-import.service.ts'
-    Imported via '@OneCoach/lib-shared/utils/logger' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-import-core/src/tracked-ai-context.ts'
-    Imported via '@OneCoach/lib-shared/utils/logger' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/oneagenda-core/src/db.ts'
+    Imported via '@onecoach/lib-shared/utils/logger' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-vercel-admin/src/vercel-env-vars-api.service.ts'
+    Imported via '@onecoach/lib-shared/utils/logger' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/ai-provider-config.service.ts'
+    Imported via '@onecoach/lib-shared/utils/logger' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/nutrition-import.service.ts'
+    Imported via '@onecoach/lib-shared/utils/logger' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-import-core/src/tracked-ai-context.ts'
+    Imported via '@onecoach/lib-shared/utils/logger' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/oneagenda-core/src/db.ts'
 ../lib-shared/src/utils/error/index.ts(67,26): error TS6307: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/logger/index.ts' is not listed within the file list of project '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/tsconfig.json'. Projects must list all files or use an 'include' pattern.
   The file is in the program because:
     Imported via '../logger' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/error/index.ts'
     Imported via './logger' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/index.ts'
-    Imported via '@OneCoach/lib-shared/utils/logger' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-vercel-admin/src/vercel-env-vars-api.service.ts'
-    Imported via '@OneCoach/lib-shared/utils/logger' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/ai-provider-config.service.ts'
-    Imported via '@OneCoach/lib-shared/utils/logger' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/nutrition-import.service.ts'
-    Imported via '@OneCoach/lib-shared/utils/logger' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-import-core/src/tracked-ai-context.ts'
-    Imported via '@OneCoach/lib-shared/utils/logger' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/oneagenda-core/src/db.ts'
+    Imported via '@onecoach/lib-shared/utils/logger' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-vercel-admin/src/vercel-env-vars-api.service.ts'
+    Imported via '@onecoach/lib-shared/utils/logger' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-ai/src/ai-provider-config.service.ts'
+    Imported via '@onecoach/lib-shared/utils/logger' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-nutrition/src/nutrition-import.service.ts'
+    Imported via '@onecoach/lib-shared/utils/logger' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-import-core/src/tracked-ai-context.ts'
+    Imported via '@onecoach/lib-shared/utils/logger' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/oneagenda-core/src/db.ts'
 ../lib-shared/src/utils/index.ts(11,15): error TS6059: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/formatters.ts' is not under 'rootDir' '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core'. 'rootDir' is expected to contain all source files.
   The file is in the program because:
     Imported via './formatters' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/index.ts'
-    Imported via '@OneCoach/lib-shared/utils/formatters' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-metadata/src/metadata-validator.service.ts'
+    Imported via '@onecoach/lib-shared/utils/formatters' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-metadata/src/metadata-validator.service.ts'
 ../lib-shared/src/utils/index.ts(11,15): error TS6307: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/formatters.ts' is not listed within the file list of project '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/tsconfig.json'. Projects must list all files or use an 'include' pattern.
   The file is in the program because:
     Imported via './formatters' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/index.ts'
-    Imported via '@OneCoach/lib-shared/utils/formatters' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-metadata/src/metadata-validator.service.ts'
+    Imported via '@onecoach/lib-shared/utils/formatters' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-metadata/src/metadata-validator.service.ts'
 ../lib-shared/src/utils/index.ts(14,15): error TS6059: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/validators.ts' is not under 'rootDir' '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core'. 'rootDir' is expected to contain all source files.
 ../lib-shared/src/utils/index.ts(14,15): error TS6307: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/validators.ts' is not listed within the file list of project '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/tsconfig.json'. Projects must list all files or use an 'include' pattern.
 ../lib-shared/src/utils/index.ts(20,15): error TS6059: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/http.ts' is not under 'rootDir' '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core'. 'rootDir' is expected to contain all source files.
@@ -834,55 +834,55 @@ src/routes/subscriptions/setup-intent/route.ts(31,51): error TS2339: Property 'c
 ../lib-shared/src/utils/index.ts(38,72): error TS6059: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/api-error-handler.ts' is not under 'rootDir' '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core'. 'rootDir' is expected to contain all source files.
   The file is in the program because:
     Imported via './api-error-handler' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/index.ts'
-    Imported via '@OneCoach/lib-shared/utils/api-error-handler' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/hooks/use-async-state.ts'
-    Imported via '@OneCoach/lib-shared/utils/api-error-handler' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/hooks/use-form.ts'
-    Imported via '@OneCoach/lib-shared/utils/api-error-handler' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-api/src/hooks/use-fetch.ts'
+    Imported via '@onecoach/lib-shared/utils/api-error-handler' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/hooks/use-async-state.ts'
+    Imported via '@onecoach/lib-shared/utils/api-error-handler' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/hooks/use-form.ts'
+    Imported via '@onecoach/lib-shared/utils/api-error-handler' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-api/src/hooks/use-fetch.ts'
 ../lib-shared/src/utils/index.ts(38,72): error TS6307: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/api-error-handler.ts' is not listed within the file list of project '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/tsconfig.json'. Projects must list all files or use an 'include' pattern.
   The file is in the program because:
     Imported via './api-error-handler' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/index.ts'
-    Imported via '@OneCoach/lib-shared/utils/api-error-handler' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/hooks/use-async-state.ts'
-    Imported via '@OneCoach/lib-shared/utils/api-error-handler' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/hooks/use-form.ts'
-    Imported via '@OneCoach/lib-shared/utils/api-error-handler' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-api/src/hooks/use-fetch.ts'
+    Imported via '@onecoach/lib-shared/utils/api-error-handler' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/hooks/use-async-state.ts'
+    Imported via '@onecoach/lib-shared/utils/api-error-handler' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/hooks/use-form.ts'
+    Imported via '@onecoach/lib-shared/utils/api-error-handler' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-api/src/hooks/use-fetch.ts'
 ../lib-shared/src/utils/index.ts(50,8): error TS6059: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/validation.ts' is not under 'rootDir' '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core'. 'rootDir' is expected to contain all source files.
   The file is in the program because:
     Imported via './validation' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/index.ts'
-    Imported via '@OneCoach/lib-shared/utils/validation' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/hooks/use-form.ts'
+    Imported via '@onecoach/lib-shared/utils/validation' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/hooks/use-form.ts'
 ../lib-shared/src/utils/index.ts(50,8): error TS6307: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/validation.ts' is not listed within the file list of project '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/tsconfig.json'. Projects must list all files or use an 'include' pattern.
   The file is in the program because:
     Imported via './validation' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/index.ts'
-    Imported via '@OneCoach/lib-shared/utils/validation' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/hooks/use-form.ts'
+    Imported via '@onecoach/lib-shared/utils/validation' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/hooks/use-form.ts'
 ../lib-shared/src/utils/index.ts(57,15): error TS6059: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/batch-processing.ts' is not under 'rootDir' '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core'. 'rootDir' is expected to contain all source files.
   The file is in the program because:
     Imported via './batch-processing' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/index.ts'
-    Imported via '@OneCoach/lib-shared/batch-processing' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise-admin.service.ts' with packageId '@OneCoach/lib-shared/src/utils/batch-processing.ts@0.0.0'
-    Imported via '@OneCoach/lib-shared/batch-processing' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-food/src/food-admin.service.ts' with packageId '@OneCoach/lib-shared/src/utils/batch-processing.ts@0.0.0'
+    Imported via '@onecoach/lib-shared/batch-processing' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise-admin.service.ts' with packageId '@onecoach/lib-shared/src/utils/batch-processing.ts@0.0.0'
+    Imported via '@onecoach/lib-shared/batch-processing' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-food/src/food-admin.service.ts' with packageId '@onecoach/lib-shared/src/utils/batch-processing.ts@0.0.0'
 ../lib-shared/src/utils/index.ts(57,15): error TS6307: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/batch-processing.ts' is not listed within the file list of project '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/tsconfig.json'. Projects must list all files or use an 'include' pattern.
   The file is in the program because:
     Imported via './batch-processing' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/index.ts'
-    Imported via '@OneCoach/lib-shared/batch-processing' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise-admin.service.ts' with packageId '@OneCoach/lib-shared/src/utils/batch-processing.ts@0.0.0'
-    Imported via '@OneCoach/lib-shared/batch-processing' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-food/src/food-admin.service.ts' with packageId '@OneCoach/lib-shared/src/utils/batch-processing.ts@0.0.0'
+    Imported via '@onecoach/lib-shared/batch-processing' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise-admin.service.ts' with packageId '@onecoach/lib-shared/src/utils/batch-processing.ts@0.0.0'
+    Imported via '@onecoach/lib-shared/batch-processing' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-food/src/food-admin.service.ts' with packageId '@onecoach/lib-shared/src/utils/batch-processing.ts@0.0.0'
 ../lib-shared/src/utils/index.ts(60,15): error TS6059: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/url-normalizer.ts' is not under 'rootDir' '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core'. 'rootDir' is expected to contain all source files.
   The file is in the program because:
     Imported via './url-normalizer' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/index.ts'
-    Imported via '@OneCoach/lib-shared/url-normalizer' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise-admin.service.ts' with packageId '@OneCoach/lib-shared/src/utils/url-normalizer.ts@0.0.0'
-    Imported via '@OneCoach/lib-shared/url-normalizer' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-food/src/food-admin.service.ts' with packageId '@OneCoach/lib-shared/src/utils/url-normalizer.ts@0.0.0'
+    Imported via '@onecoach/lib-shared/url-normalizer' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise-admin.service.ts' with packageId '@onecoach/lib-shared/src/utils/url-normalizer.ts@0.0.0'
+    Imported via '@onecoach/lib-shared/url-normalizer' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-food/src/food-admin.service.ts' with packageId '@onecoach/lib-shared/src/utils/url-normalizer.ts@0.0.0'
 ../lib-shared/src/utils/index.ts(60,15): error TS6307: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/url-normalizer.ts' is not listed within the file list of project '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/tsconfig.json'. Projects must list all files or use an 'include' pattern.
   The file is in the program because:
     Imported via './url-normalizer' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/index.ts'
-    Imported via '@OneCoach/lib-shared/url-normalizer' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise-admin.service.ts' with packageId '@OneCoach/lib-shared/src/utils/url-normalizer.ts@0.0.0'
-    Imported via '@OneCoach/lib-shared/url-normalizer' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-food/src/food-admin.service.ts' with packageId '@OneCoach/lib-shared/src/utils/url-normalizer.ts@0.0.0'
+    Imported via '@onecoach/lib-shared/url-normalizer' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-exercise/src/exercise-admin.service.ts' with packageId '@onecoach/lib-shared/src/utils/url-normalizer.ts@0.0.0'
+    Imported via '@onecoach/lib-shared/url-normalizer' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-food/src/food-admin.service.ts' with packageId '@onecoach/lib-shared/src/utils/url-normalizer.ts@0.0.0'
 ../lib-shared/src/utils/index.ts(63,15): error TS6059: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/dialog-global.ts' is not under 'rootDir' '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core'. 'rootDir' is expected to contain all source files.
 ../lib-shared/src/utils/index.ts(63,15): error TS6307: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/dialog-global.ts' is not listed within the file list of project '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/tsconfig.json'. Projects must list all files or use an 'include' pattern.
 ../lib-shared/src/utils/index.ts(66,15): error TS6059: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/simple-cache.ts' is not under 'rootDir' '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core'. 'rootDir' is expected to contain all source files.
   The file is in the program because:
     Imported via './simple-cache' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/index.ts'
-    Imported via '@OneCoach/lib-shared/utils/simple-cache' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-metadata/src/metadata-id-resolver.service.ts'
-    Imported via '@OneCoach/lib-shared/utils/simple-cache' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-metadata/src/metadata-validator.service.ts'
+    Imported via '@onecoach/lib-shared/utils/simple-cache' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-metadata/src/metadata-id-resolver.service.ts'
+    Imported via '@onecoach/lib-shared/utils/simple-cache' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-metadata/src/metadata-validator.service.ts'
 ../lib-shared/src/utils/index.ts(66,15): error TS6307: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/simple-cache.ts' is not listed within the file list of project '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/tsconfig.json'. Projects must list all files or use an 'include' pattern.
   The file is in the program because:
     Imported via './simple-cache' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/index.ts'
-    Imported via '@OneCoach/lib-shared/utils/simple-cache' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-metadata/src/metadata-id-resolver.service.ts'
-    Imported via '@OneCoach/lib-shared/utils/simple-cache' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-metadata/src/metadata-validator.service.ts'
+    Imported via '@onecoach/lib-shared/utils/simple-cache' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-metadata/src/metadata-id-resolver.service.ts'
+    Imported via '@onecoach/lib-shared/utils/simple-cache' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-metadata/src/metadata-validator.service.ts'
 ../lib-shared/src/utils/index.ts(69,15): error TS6059: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/ai-model-mapper.ts' is not under 'rootDir' '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core'. 'rootDir' is expected to contain all source files.
 ../lib-shared/src/utils/index.ts(69,15): error TS6307: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/ai-model-mapper.ts' is not listed within the file list of project '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/tsconfig.json'. Projects must list all files or use an 'include' pattern.
 ../lib-shared/src/utils/logger/index.ts(22,75): error TS6059: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/logger/core.ts' is not under 'rootDir' '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core'. 'rootDir' is expected to contain all source files.
@@ -919,18 +919,18 @@ src/routes/subscriptions/setup-intent/route.ts(31,51): error TS2339: Property 'c
   The file is in the program because:
     Imported via './auth.store' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-stores/src/index.ts'
     Imported via './auth.store' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-stores/src/index.ts'
-    Imported via '@OneCoach/lib-stores/auth' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-api/src/hooks/use-auth.ts' with packageId '@OneCoach/lib-stores/src/auth.store.ts@0.0.0'
-    Imported via '@OneCoach/lib-stores/auth' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-api/src/hooks/use-auth.ts' with packageId '@OneCoach/lib-stores/src/auth.store.ts@0.0.0'
-    Imported via '@OneCoach/lib-stores/auth' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-api/src/hooks/use-auth-unified.ts' with packageId '@OneCoach/lib-stores/src/auth.store.ts@0.0.0'
-    Imported via '@OneCoach/lib-stores/auth' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-api/src/hooks/use-auth-unified.ts' with packageId '@OneCoach/lib-stores/src/auth.store.ts@0.0.0'
+    Imported via '@onecoach/lib-stores/auth' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-api/src/hooks/use-auth.ts' with packageId '@onecoach/lib-stores/src/auth.store.ts@0.0.0'
+    Imported via '@onecoach/lib-stores/auth' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-api/src/hooks/use-auth.ts' with packageId '@onecoach/lib-stores/src/auth.store.ts@0.0.0'
+    Imported via '@onecoach/lib-stores/auth' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-api/src/hooks/use-auth-unified.ts' with packageId '@onecoach/lib-stores/src/auth.store.ts@0.0.0'
+    Imported via '@onecoach/lib-stores/auth' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-api/src/hooks/use-auth-unified.ts' with packageId '@onecoach/lib-stores/src/auth.store.ts@0.0.0'
 ../lib-stores/src/index.ts(8,30): error TS6307: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-stores/src/auth.store.ts' is not listed within the file list of project '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/tsconfig.json'. Projects must list all files or use an 'include' pattern.
   The file is in the program because:
     Imported via './auth.store' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-stores/src/index.ts'
     Imported via './auth.store' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-stores/src/index.ts'
-    Imported via '@OneCoach/lib-stores/auth' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-api/src/hooks/use-auth.ts' with packageId '@OneCoach/lib-stores/src/auth.store.ts@0.0.0'
-    Imported via '@OneCoach/lib-stores/auth' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-api/src/hooks/use-auth.ts' with packageId '@OneCoach/lib-stores/src/auth.store.ts@0.0.0'
-    Imported via '@OneCoach/lib-stores/auth' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-api/src/hooks/use-auth-unified.ts' with packageId '@OneCoach/lib-stores/src/auth.store.ts@0.0.0'
-    Imported via '@OneCoach/lib-stores/auth' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-api/src/hooks/use-auth-unified.ts' with packageId '@OneCoach/lib-stores/src/auth.store.ts@0.0.0'
+    Imported via '@onecoach/lib-stores/auth' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-api/src/hooks/use-auth.ts' with packageId '@onecoach/lib-stores/src/auth.store.ts@0.0.0'
+    Imported via '@onecoach/lib-stores/auth' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-api/src/hooks/use-auth.ts' with packageId '@onecoach/lib-stores/src/auth.store.ts@0.0.0'
+    Imported via '@onecoach/lib-stores/auth' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-api/src/hooks/use-auth-unified.ts' with packageId '@onecoach/lib-stores/src/auth.store.ts@0.0.0'
+    Imported via '@onecoach/lib-stores/auth' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-api/src/hooks/use-auth-unified.ts' with packageId '@onecoach/lib-stores/src/auth.store.ts@0.0.0'
 ../lib-stores/src/index.ts(16,8): error TS6059: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-stores/src/ui.store.ts' is not under 'rootDir' '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core'. 'rootDir' is expected to contain all source files.
   The file is in the program because:
     Imported via './ui.store' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-stores/src/index.ts'
@@ -965,22 +965,22 @@ src/routes/subscriptions/setup-intent/route.ts(31,51): error TS2339: Property 'c
   The file is in the program because:
     Imported via './dialog.store' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-stores/src/index.ts'
     Imported via './dialog.store' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-stores/src/index.ts'
-    Imported via '@OneCoach/lib-stores/dialog.store' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/dialog-global.ts'
+    Imported via '@onecoach/lib-stores/dialog.store' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/dialog-global.ts'
 ../lib-stores/src/index.ts(51,59): error TS6307: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-stores/src/dialog.store.ts' is not listed within the file list of project '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/tsconfig.json'. Projects must list all files or use an 'include' pattern.
   The file is in the program because:
     Imported via './dialog.store' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-stores/src/index.ts'
     Imported via './dialog.store' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-stores/src/index.ts'
-    Imported via '@OneCoach/lib-stores/dialog.store' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/dialog-global.ts'
+    Imported via '@onecoach/lib-stores/dialog.store' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/dialog-global.ts'
 ../lib-stores/src/index.ts(60,36): error TS6059: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-stores/src/onboarding.store.ts' is not under 'rootDir' '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core'. 'rootDir' is expected to contain all source files.
   The file is in the program because:
     Imported via './onboarding.store' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-stores/src/index.ts'
     Imported via './onboarding.store' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-stores/src/index.ts'
-    Imported via '@OneCoach/lib-stores/onboarding' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-api/src/hooks/use-onboarding.ts' with packageId '@OneCoach/lib-stores/src/onboarding.store.ts@0.0.0'
+    Imported via '@onecoach/lib-stores/onboarding' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-api/src/hooks/use-onboarding.ts' with packageId '@onecoach/lib-stores/src/onboarding.store.ts@0.0.0'
 ../lib-stores/src/index.ts(60,36): error TS6307: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-stores/src/onboarding.store.ts' is not listed within the file list of project '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core/tsconfig.json'. Projects must list all files or use an 'include' pattern.
   The file is in the program because:
     Imported via './onboarding.store' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-stores/src/index.ts'
     Imported via './onboarding.store' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-stores/src/index.ts'
-    Imported via '@OneCoach/lib-stores/onboarding' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-api/src/hooks/use-onboarding.ts' with packageId '@OneCoach/lib-stores/src/onboarding.store.ts@0.0.0'
+    Imported via '@onecoach/lib-stores/onboarding' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-api/src/hooks/use-onboarding.ts' with packageId '@onecoach/lib-stores/src/onboarding.store.ts@0.0.0'
 ../lib-stores/src/index.ts(71,31): error TS6059: File '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-stores/src/admin.store.ts' is not under 'rootDir' '/Users/giulioleone/Sviluppo/CoachOne/packages/api-core'. 'rootDir' is expected to contain all source files.
   The file is in the program because:
     Imported via './admin.store' from file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-stores/src/index.ts'

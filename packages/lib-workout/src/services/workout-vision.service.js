@@ -16,10 +16,10 @@
 import { streamText, Output } from 'ai';
 import { AIProviderConfigService, PROVIDER_MAP } from '@onecoach/lib-ai/ai-provider-config';
 import { AIFrameworkConfigService, FrameworkFeature, } from '@onecoach/lib-ai/ai-framework-config.service';
-import { creditService } from '@OneCoach/lib-core/credit.service';
-import { prisma } from '@OneCoach/lib-core/prisma';
+import { creditService } from '@onecoach/lib-core/credit.service';
+import { prisma } from '@onecoach/lib-core/prisma';
 import { parseJsonResponse } from '@onecoach/lib-ai-agents/utils/json-parser';
-import { TOKEN_LIMITS } from '@OneCoach/constants';
+import { TOKEN_LIMITS } from '@onecoach/constants';
 import { ImportedWorkoutProgramSchema, } from '../schemas/imported-workout.schema';
 // ==================== LOGGING ====================
 function traceLog(message, context) {
@@ -510,7 +510,7 @@ Parse this data and return ONLY valid JSON.`;
                 baseURL: 'https://openrouter.ai/api/v1',
                 headers: {
                     'HTTP-Referer': process.env.OPENROUTER_SITE_URL || 'https://onecoach.ai',
-                    'X-Title': process.env.OPENROUTER_SITE_NAME || 'OneCoach AI',
+                    'X-Title': process.env.OPENROUTER_SITE_NAME || 'onecoach AI',
                 },
             });
             const model = openai(modelId);

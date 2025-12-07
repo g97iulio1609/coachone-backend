@@ -4,7 +4,7 @@ import {
   ImportFile,
   ImportOptions,
   ImportProgress,
-} from '@OneCoach/lib-import-core';
+} from '@onecoach/lib-import-core';
 import { ImportedNutritionPlan } from './helpers/imported-nutrition.schema';
 declare const NutritionImportOptionsSchema: z.ZodObject<
   {

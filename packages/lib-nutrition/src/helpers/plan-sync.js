@@ -8,7 +8,7 @@ import {
   calculateMacros,
   aggregateMealMacros,
   normalizeMacros,
-} from '@OneCoach/lib-shared/utils/macro-calculations';
+} from '@onecoach/lib-shared/utils/macro-calculations';
 /**
  * Sincronizza piano per il salvataggio
  * Normalizza tutti i valori numerici, calcola macro totali, pulisce array

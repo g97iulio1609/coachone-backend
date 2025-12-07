@@ -8,7 +8,7 @@
  * because Prisma's Json type is a branded type that requires explicit conversion.
  * These helpers ensure type safety at the call site while maintaining Prisma compatibility.
  */
-import { Prisma } from '@OneCoach/types';
+import { Prisma } from '@onecoach/types';
 import type {
   Adaptations,
   CompleteMacros,
@@ -17,7 +17,7 @@ import type {
   NutritionWeek,
   PersonalizedPlan,
   NutritionUserProfile,
-} from '@OneCoach/types';
+} from '@onecoach/types';
 /**
  * Convert Macros to Prisma Json format (type-safe)
  *

@@ -5,13 +5,13 @@
  * Follows SOLID principles with single responsibility.
  */
 import 'server-only';
-import { prisma } from '@OneCoach/lib-core/prisma';
-import { getExerciseSets } from '@OneCoach/lib-workout';
+import { prisma } from '@onecoach/lib-core/prisma';
+import { getExerciseSets } from '@onecoach/lib-workout';
 import {
   toExerciseArrayTyped,
   toMacros,
   calculateSetVolume,
-} from '@OneCoach/lib-shared/prisma-type-guards';
+} from '@onecoach/lib-shared/prisma-type-guards';
 const MAX_RANGE_DAYS = 365;
 const MAX_RANGE_MS = MAX_RANGE_DAYS * 24 * 60 * 60 * 1000;
 function clampDateRange(startDate, endDate) {

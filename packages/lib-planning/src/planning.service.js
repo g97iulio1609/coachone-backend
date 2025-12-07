@@ -13,7 +13,7 @@
  *
  * @version 2.0.0 - AI SDK v6 Integration
  */
-import { prisma } from '@OneCoach/lib-core/prisma';
+import { prisma } from '@onecoach/lib-core/prisma';
 /**
  * Mapping tra TaskStatus (types) e PlanningStatus (Prisma enum)
  */
@@ -577,7 +577,7 @@ export class PlanningServiceV2 {
    */
   static async createSubSubTasksInTransaction(tx, subTaskId, mealsPerDay) {
     const { inferMealType, getDefaultMealName } =
-      await import('@OneCoach/lib-ai-agents/schemas/meal-schemas');
+      await import('@onecoach/lib-ai-agents/schemas/meal-schemas');
     for (let mealNumber = 1; mealNumber <= mealsPerDay; mealNumber++) {
       const mealType = inferMealType(mealNumber);
       const mealName = getDefaultMealName(mealNumber, mealType);

@@ -3,7 +3,7 @@
  *
  * Centralized service for macro validation and coherence checking.
  */
-import { calculateCaloriesFromMacros, validateMacroCoherence } from '@OneCoach/lib-shared';
+import { calculateCaloriesFromMacros, validateMacroCoherence } from '@onecoach/lib-shared';
 /**
  * MacroValidationService
  */

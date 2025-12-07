@@ -5,9 +5,9 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { requireAuth } from '@OneCoach/lib-core/auth/guards';
-import { OneRepMaxService } from '@OneCoach/lib-exercise/one-rep-max.service';
-import { logError, mapErrorToApiResponse } from '@OneCoach/lib-shared/utils/error';
+import { requireAuth } from '@onecoach/lib-core/auth/guards';
+import { OneRepMaxService } from '@onecoach/lib-exercise/one-rep-max.service';
+import { logError, mapErrorToApiResponse } from '@onecoach/lib-shared/utils/error';
 
 export const dynamic = 'force-dynamic';
 

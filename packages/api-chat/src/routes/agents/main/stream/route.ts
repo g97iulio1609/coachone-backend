@@ -10,9 +10,9 @@
 import { NextRequest } from 'next/server';
 import { z } from 'zod';
 import { createAgentCoordinator } from '@onecoach/lib-ai/agents';
-import { createAIModel } from '@OneCoach/lib-ai-agents/utils/model-factory';
-import { auth } from '@OneCoach/lib-core/auth';
-import { TOKEN_LIMITS } from '@OneCoach/constants/models';
+import { createAIModel } from '@onecoach/lib-ai-agents/utils/model-factory';
+import { auth } from '@onecoach/lib-core/auth';
+import { TOKEN_LIMITS } from '@onecoach/constants/models';
 
 /**
  * Request schema validation

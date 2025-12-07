@@ -4,7 +4,7 @@
  * CRUD operations for marketplace plans, purchases, and ratings
  * Implements SOLID principles (SRP, DIP)
  */
-import { prisma } from '@OneCoach/lib-core/prisma';
+import { prisma } from '@onecoach/lib-core/prisma';
 /**
  * Implementation Marketplace Service
  */

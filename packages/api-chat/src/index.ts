@@ -1,5 +1,5 @@
 /**
- * @OneCoach/api-chat
+ * @onecoach/api-chat
  *
  * API routes per chat, conversations, copilot e agents
  * Esporta route handlers che possono essere usati in apps/next/app/api/*

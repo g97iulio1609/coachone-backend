@@ -8,8 +8,8 @@
 
 import { z } from 'zod';
 import type { McpTool, McpContext } from '../../types';
-import { userMemoryService, timelineService } from '@OneCoach/lib-core';
-import type { MemoryDomain } from '@OneCoach/lib-core';
+import { userMemoryService, timelineService } from '@onecoach/lib-core';
+import type { MemoryDomain } from '@onecoach/lib-core';
 
 // ============================================================================
 // GET MEMORY TOOL

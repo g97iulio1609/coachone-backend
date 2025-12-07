@@ -4,7 +4,7 @@
  * CRUD operations per workout programs
  * Implementa IWorkoutService contract
  */
-import { generateId, getCurrentTimestamp, storageService } from '@OneCoach/lib-shared';
+import { generateId, getCurrentTimestamp, storageService } from '@onecoach/lib-shared';
 /**
  * Storage key per workouts
  */

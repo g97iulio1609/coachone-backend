@@ -3,7 +3,7 @@
  *
  * Funzioni per normalizzare dati esercizi da formati vari (JSON, AI, etc.)
  */
-import type { Exercise, ExerciseSet, SetGroup, SetProgression } from '@OneCoach/types';
+import type { Exercise, ExerciseSet, SetGroup, SetProgression } from '@onecoach/types';
 /**
  * Normalizza i gruppi muscolari da un valore sconosciuto
  */

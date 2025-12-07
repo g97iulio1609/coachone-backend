@@ -4,7 +4,7 @@
  * CRUD operations for coach profiles and vetting
  * Implements SOLID principles (SRP, DIP)
  */
-import { prisma } from '@OneCoach/lib-core/prisma';
+import { prisma } from '@onecoach/lib-core/prisma';
 /**
  * Implementation Coach Service
  */

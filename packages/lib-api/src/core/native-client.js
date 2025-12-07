@@ -4,7 +4,7 @@
  * Implementazione native di BaseApiClient per React Native con refresh token
  */
 import { BaseApiClient } from './base-client';
-import { NativeSession } from '@OneCoach/lib-core';
+import { NativeSession } from '@onecoach/lib-core';
 export class NativeApiClient extends BaseApiClient {
     refreshPromise = null;
     getDefaultBaseUrl() {

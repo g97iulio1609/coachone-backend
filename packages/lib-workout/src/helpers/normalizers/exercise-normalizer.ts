@@ -4,7 +4,7 @@
  * Funzioni per normalizzare dati esercizi da formati vari (JSON, AI, etc.)
  */
 
-import type { Exercise, ExerciseSet, MuscleGroup, SetGroup, SetProgression } from '@OneCoach/types';
+import type { Exercise, ExerciseSet, MuscleGroup, SetGroup, SetProgression } from '@onecoach/types';
 import { DEFAULT_SET, ALLOWED_CATEGORIES } from '../constants';
 import {
   ensureArray,
@@ -14,8 +14,8 @@ import {
   parseFirstNumber,
 } from '../utils/type-helpers';
 import { getMuscleGroupFromName } from '../utils/muscle-group';
-import { generateId } from '@OneCoach/lib-shared/utils/id-generator';
-import { kgToLbs, lbsToKg } from '@OneCoach/lib-workout/intensity-calculator';
+import { generateId } from '@onecoach/lib-shared/utils/id-generator';
+import { kgToLbs, lbsToKg } from '@onecoach/lib-workout/intensity-calculator';
 
 type RawJson = Record<string, unknown>;
 

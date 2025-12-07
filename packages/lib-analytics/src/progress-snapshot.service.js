@@ -5,8 +5,8 @@
  * Snapshots are used for historical tracking and performance optimization.
  * Follows SOLID principles with single responsibility.
  */
-import { prisma } from '@OneCoach/lib-core/prisma';
-import { getExerciseSets } from '@OneCoach/lib-workout';
+import { prisma } from '@onecoach/lib-core/prisma';
+import { getExerciseSets } from '@onecoach/lib-workout';
 import { Prisma } from '@prisma/client';
 // ============================================
 // SNAPSHOT GENERATION

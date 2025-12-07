@@ -13,7 +13,7 @@
  */
 
 import type { McpSuccessResponse, McpTool } from '../types';
-import { handleMemoryEvent } from '@OneCoach/lib-core';
+import { handleMemoryEvent } from '@onecoach/lib-core';
 
 // ============================================================================
 // VALIDATION HELPERS

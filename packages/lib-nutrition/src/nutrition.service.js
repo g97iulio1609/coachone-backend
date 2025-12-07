@@ -4,7 +4,7 @@
  * CRUD operations per nutrition plans
  * Implementa INutritionService contract
  */
-import { generateId, getCurrentTimestamp, storageService } from '@OneCoach/lib-shared';
+import { generateId, getCurrentTimestamp, storageService } from '@onecoach/lib-shared';
 /**
  * Storage key per nutrition plans
  */

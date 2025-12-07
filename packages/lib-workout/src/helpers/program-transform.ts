@@ -1,4 +1,4 @@
-import { DifficultyLevel, WorkoutStatus } from '@OneCoach/types/client';
+import { DifficultyLevel, WorkoutStatus } from '@onecoach/types/client';
 import type {
   Exercise,
   WorkoutDay,
@@ -6,11 +6,11 @@ import type {
   WorkoutWeek,
   ExerciseSet,
   SetGroup,
-} from '@OneCoach/types';
-import { generateId } from '@OneCoach/lib-shared/utils/id-generator';
+} from '@onecoach/types';
+import { generateId } from '@onecoach/lib-shared/utils/id-generator';
 import { DEFAULT_SET } from './constants';
 import { ensureArrayOfStrings, ensureNumber, ensureString } from './utils/type-helpers';
-import { syncWeightUnits } from '@OneCoach/lib-shared/utils/weight-converter';
+import { syncWeightUnits } from '@onecoach/lib-shared/utils/weight-converter';
 import {
   normalizeDifficulty,
   normalizeStatus,

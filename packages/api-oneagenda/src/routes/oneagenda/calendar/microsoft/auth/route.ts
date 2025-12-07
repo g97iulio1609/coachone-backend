@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { auth } from '@OneCoach/lib-core/auth';
+import { auth } from '@onecoach/lib-core/auth';
 
 const MICROSOFT_CLIENT_ID = process.env.MICROSOFT_CLIENT_ID || '';
 const MICROSOFT_REDIRECT_URI =

@@ -13,7 +13,7 @@
  * only executed server-side when called from API routes or server components.
  */
 
-import { prisma } from '@OneCoach/lib-core/prisma';
+import { prisma } from '@onecoach/lib-core/prisma';
 import { createId } from '@paralleldrive/cuid2';
 
 const DEFAULT_LOCALE = 'en';

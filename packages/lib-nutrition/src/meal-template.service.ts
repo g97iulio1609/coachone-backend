@@ -5,10 +5,10 @@
  * Segue pattern FoodService per consistenza
  */
 
-import { prisma } from '@OneCoach/lib-core/prisma';
+import { prisma } from '@onecoach/lib-core/prisma';
 import { Prisma } from '@prisma/client';
-import { generateId } from '@OneCoach/lib-shared';
-import type { MealTemplate, Meal } from '@OneCoach/types';
+import { generateId } from '@onecoach/lib-shared';
+import type { MealTemplate, Meal } from '@onecoach/types';
 
 export class MealTemplateService {
   /**

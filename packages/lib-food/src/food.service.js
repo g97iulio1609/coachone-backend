@@ -10,10 +10,10 @@
  * or server components. Pure utility functions like normalizeFoodName can be
  * safely used in client components.
  */
-import { prisma } from '@OneCoach/lib-core/prisma';
+import { prisma } from '@onecoach/lib-core/prisma';
 import { Prisma } from '@prisma/client';
-import { generateId } from '@OneCoach/lib-shared/id-generator';
-import { SUPPORTED_FOOD_LOCALES } from '@OneCoach/constants/supported-locales';
+import { generateId } from '@onecoach/lib-shared/id-generator';
+import { SUPPORTED_FOOD_LOCALES } from '@onecoach/constants/supported-locales';
 const DEFAULT_LOCALE = 'it';
 // Cache per average document length (BM25)
 let cachedAvgDocLength = null;

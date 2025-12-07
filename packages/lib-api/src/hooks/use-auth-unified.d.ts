@@ -10,7 +10,7 @@
  * - Eliminates duplication
  * - Simplifies authentication checks
  */
-import type { User } from '@OneCoach/lib-stores/auth';
+import type { User } from '@onecoach/lib-stores/auth';
 /**
  * Unified auth hook return type
  */

@@ -6,19 +6,19 @@
  */
 
 import { NextResponse } from 'next/server';
-import { requireAuth } from '@OneCoach/lib-core/auth/guards';
-import { userProfileService } from '@OneCoach/lib-core';
-import { prisma } from '@OneCoach/lib-core/prisma';
+import { requireAuth } from '@onecoach/lib-core/auth/guards';
+import { userProfileService } from '@onecoach/lib-core';
+import { prisma } from '@onecoach/lib-core/prisma';
 import { z } from 'zod';
-import { ActivityLevel, Sex, WeightUnit, DietType } from '@OneCoach/types';
+import { ActivityLevel, Sex, WeightUnit, DietType } from '@onecoach/types';
 import {
   logError,
   mapErrorToApiResponse,
   isError,
   isPrismaError,
   isZodError,
-} from '@OneCoach/lib-shared/utils/error';
-import { convertDecimalToNumber } from '@OneCoach/lib-shared/prisma-type-guards';
+} from '@onecoach/lib-shared/utils/error';
+import { convertDecimalToNumber } from '@onecoach/lib-shared/prisma-type-guards';
 
 export const dynamic = 'force-dynamic';
 

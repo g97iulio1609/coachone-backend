@@ -1,5 +1,5 @@
 {
-  "name": "@OneCoach/lib-chat-core",
+  "name": "@onecoach/lib-chat-core",
   "version": "0.0.0",
   "description": "Core condiviso per Chat e Copilot - SSOT, AI SDK v6, Supabase Realtime",
   "main": "src/index.ts",
@@ -30,9 +30,9 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@OneCoach/lib-design-system": "workspace:*",
-    "@OneCoach/lib-stores": "workspace:*",
-    "@OneCoach/types": "workspace:*",
+    "@onecoach/lib-design-system": "workspace:*",
+    "@onecoach/lib-stores": "workspace:*",
+    "@onecoach/types": "workspace:*",
     "@ai-sdk/react": "3.0.0-beta.124",
     "@supabase/supabase-js": "^2.50.0",
     "ai": "6.0.0-beta.124",

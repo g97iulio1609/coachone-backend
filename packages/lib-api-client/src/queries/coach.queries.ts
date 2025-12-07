@@ -14,7 +14,7 @@ type MarketplacePlanCardProps = {
   isPublished: boolean;
   [key: string]: unknown;
 };
-import type { MarketplacePlanType } from '@OneCoach/types';
+import type { MarketplacePlanType } from '@onecoach/types';
 
 export interface CoachDashboardPlansFilters {
   planType?: MarketplacePlanType;

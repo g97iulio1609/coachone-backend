@@ -4,7 +4,7 @@
  * Funzioni pure per operazioni CRUD su piani nutrizionali
  * Segue principi KISS, DRY, SOLID
  */
-import type { NutritionPlan, NutritionDay, Meal, Food } from '@OneCoach/types';
+import type { NutritionPlan, NutritionDay, Meal, Food } from '@onecoach/types';
 /**
  * Aggiunge una nuova settimana al piano
  */

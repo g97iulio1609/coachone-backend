@@ -8,12 +8,12 @@
 import { type CoreMessage } from 'ai';
 import { z } from 'zod';
 import { AIProviderConfigService, PROVIDER_MAP } from '@onecoach/lib-ai/ai-provider-config';
-import { creditService } from '@OneCoach/lib-core/credit.service';
-import { prisma } from '@OneCoach/lib-core/prisma';
-import type { LabelExtractionResult, DishSegmentationResult } from '@OneCoach/types';
+import { creditService } from '@onecoach/lib-core/credit.service';
+import { prisma } from '@onecoach/lib-core/prisma';
+import type { LabelExtractionResult, DishSegmentationResult } from '@onecoach/types';
 import { streamText, Output } from 'ai';
-import { parseJsonResponse } from '@OneCoach/lib-ai-utils/json-parser';
-import { TOKEN_LIMITS } from '@OneCoach/constants/models';
+import { parseJsonResponse } from '@onecoach/lib-ai-utils/json-parser';
+import { TOKEN_LIMITS } from '@onecoach/constants/models';
 
 // Default models configurabili admin
 const DEFAULT_LABEL_MODEL = 'google/gemini-2.5-flash-lite';
@@ -168,7 +168,7 @@ export class FoodVisionService {
 
     try {
       // Crea modello OpenRouter usando ProviderFactory
-      const { createModel } = await import('@OneCoach/lib-ai-utils/model-factory');
+      const { createModel } = await import('@onecoach/lib-ai-utils/model-factory');
       const modelConfig = {
         provider: 'openrouter' as const,
         model: config.model,
@@ -262,7 +262,7 @@ export class FoodVisionService {
 
     try {
       // Crea modello OpenRouter usando ProviderFactory
-      const { createModel } = await import('@OneCoach/lib-ai-utils/model-factory');
+      const { createModel } = await import('@onecoach/lib-ai-utils/model-factory');
       const modelConfig = {
         provider: 'openrouter' as const,
         model: config.model,

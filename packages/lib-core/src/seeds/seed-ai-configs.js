@@ -1,5 +1,5 @@
-import { createId } from '@OneCoach/lib-shared/utils/id-generator';
-import { TOKEN_LIMITS, AI_REASONING_CONFIG } from '@OneCoach/constants/models';
+import { createId } from '@onecoach/lib-shared/utils/id-generator';
+import { TOKEN_LIMITS, AI_REASONING_CONFIG } from '@onecoach/constants/models';
 export async function seedAIConfigs(prisma, adminUserId) {
   const configs = [
     {

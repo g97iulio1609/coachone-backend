@@ -4,7 +4,7 @@
  * Servizio per calcolare e aggiornare i pesi nei programmi di allenamento
  * basandosi sugli 1RM dell'utente e le percentuali di intensità
  */
-import type { WorkoutProgram, ExerciseSet } from '@OneCoach/types';
+import type { WorkoutProgram, ExerciseSet } from '@onecoach/types';
 /**
  * Calculate weights for a single set based on 1RM
  * Extracted common logic for reuse (DRY principle)

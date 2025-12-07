@@ -5,8 +5,8 @@
  * basandosi sugli 1RM dell'utente e le percentuali di intensità
  */
 import { calculateWeightFromIntensity, calculateIntensityFromWeight, kgToLbs, } from './helpers/intensity-calculator';
-import { OneRepMaxService } from '@OneCoach/lib-exercise/one-rep-max.service';
-import { prisma } from '@OneCoach/lib-core/prisma';
+import { OneRepMaxService } from '@onecoach/lib-exercise/one-rep-max.service';
+import { prisma } from '@onecoach/lib-core/prisma';
 import { prepareProgramForPersistence } from './helpers/program-transform';
 import { normalizeWorkoutProgram } from './helpers/normalizers/workout-normalizer';
 import { Prisma } from '@prisma/client';

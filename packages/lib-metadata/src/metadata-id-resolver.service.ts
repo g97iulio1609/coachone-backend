@@ -6,8 +6,8 @@
  * for improved performance.
  */
 
-import { prisma } from '@OneCoach/lib-core/prisma';
-import { SimpleCache } from '@OneCoach/lib-shared/utils/simple-cache';
+import { prisma } from '@onecoach/lib-core/prisma';
+import { SimpleCache } from '@onecoach/lib-shared/utils/simple-cache';
 
 const DEFAULT_LOCALE = 'en';
 const CACHE_TTL_MS = 1000 * 60 * 10; // 10 minutes

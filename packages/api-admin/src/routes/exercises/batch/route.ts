@@ -1,9 +1,9 @@
 import { NextResponse } from 'next/server';
-import { requireAdmin } from '@OneCoach/lib-core/auth/guards';
-import { ExerciseService } from '@OneCoach/lib-exercise.service';
-import { ExerciseApprovalStatus } from '@OneCoach/types';
+import { requireAdmin } from '@onecoach/lib-core/auth/guards';
+import { ExerciseService } from '@onecoach/lib-exercise.service';
+import { ExerciseApprovalStatus } from '@onecoach/types';
 import { z } from 'zod';
-import { logError, getErrorMessage, mapErrorToApiResponse } from '@OneCoach/lib-shared/utils/error';
+import { logError, getErrorMessage, mapErrorToApiResponse } from '@onecoach/lib-shared/utils/error';
 
 export const dynamic = 'force-dynamic';
 

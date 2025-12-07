@@ -1,4 +1,4 @@
-import type { CreateExerciseInput, ExerciseQueryParams, UpdateExerciseInput } from '@OneCoach/schemas/exercise.schema';
+import type { CreateExerciseInput, ExerciseQueryParams, UpdateExerciseInput } from '@onecoach/schemas/exercise.schema';
 import { ExerciseApprovalStatus, ExerciseRelationType, MuscleRole } from '@prisma/client';
 export interface ExerciseTranslationView {
     locale: string;
@@ -51,7 +51,7 @@ export interface LocalizedExercise {
         direction: 'inbound' | 'outbound';
     }>;
 }
-import type { ExercisesResponse } from '@OneCoach/lib-api';
+import type { ExercisesResponse } from '@onecoach/lib-api';
 type ExerciseListResult = Omit<ExercisesResponse, 'data'> & {
     data: LocalizedExercise[];
     page: number;

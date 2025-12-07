@@ -7,7 +7,7 @@
  * @module lib-import-core/tracked-ai-context
  */
 
-import { logger as baseLogger } from '@OneCoach/lib-shared/utils/logger';
+import { logger as baseLogger } from '@onecoach/lib-shared/utils/logger';
 import type { AIParseContext } from './types';
 
 export interface TrackedAIContextOptions {

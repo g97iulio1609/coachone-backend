@@ -15,7 +15,7 @@ import type {
   UpdateNutritionDayLogRequest,
   NutritionPlanStats,
   Macros,
-} from '@OneCoach/types';
+} from '@onecoach/types';
 /**
  * Create a new nutrition day log
  *

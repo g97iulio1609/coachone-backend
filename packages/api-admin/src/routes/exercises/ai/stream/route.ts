@@ -5,8 +5,8 @@
  * Provides real-time progress updates via Server-Sent Events (SSE).
  */
 
-import { AgentRole } from '@OneCoach/one-agent';
-import { ExerciseAdminService } from '@OneCoach/lib-exercise-admin.service';
+import { AgentRole } from '@onecoach/one-agent';
+import { ExerciseAdminService } from '@onecoach/lib-exercise-admin.service';
 import { createStreamingHandler } from '@onecoach/lib-api/utils/streaming-handler';
 
 interface ExerciseStreamInput {
@@ -80,7 +80,7 @@ export const POST = createStreamingHandler<
 
     // Fetch metadata first to get all muscle groups if needed
     const { getAllMetadataForLocale } = await import(
-      '@OneCoach/lib-metadata/metadata-translation.service'
+      '@onecoach/lib-metadata/metadata-translation.service'
     );
     const metadata = await getAllMetadataForLocale('en');
 

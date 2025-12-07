@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import type { McpTool, McpContext } from '../../types';
-import { IMPORT_LIMITS } from '@OneCoach/lib-import-core';
+import { IMPORT_LIMITS } from '@onecoach/lib-import-core';
 import { OneAgendaImportService, createOneAgendaAIContext } from '../../services/oneagenda';
 
 const importFileSchema = z.object({

@@ -9,7 +9,7 @@ import { type VerifyReceiptRequest, type RestorePurchasesRequest } from '../quer
  *
  * Automatically syncs with Zustand store
  */
-export declare function useSubscriptionStatus(): import("@tanstack/react-query").UseQueryResult<import("@OneCoach/lib-stores").SubscriptionStatus, Error>;
+export declare function useSubscriptionStatus(): import("@tanstack/react-query").UseQueryResult<import("@onecoach/lib-stores").SubscriptionStatus, Error>;
 /**
  * Hook to verify receipt and purchase product
  *

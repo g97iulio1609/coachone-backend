@@ -10,7 +10,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createAgentCoordinator } from '@onecoach/lib-ai/agents';
 import { createAIModel } from '../../../lib/services/ai/model-factory';
-import { auth } from '@OneCoach/lib-core/auth';
+import { auth } from '@onecoach/lib-core/auth';
 
 /**
  * GET /api/agents/status

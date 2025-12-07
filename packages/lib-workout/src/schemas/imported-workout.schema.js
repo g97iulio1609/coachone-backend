@@ -7,8 +7,8 @@
  *
  * @module lib-workout/schemas/imported-workout
  */
-import { createId } from '@OneCoach/lib-shared/utils';
-import { cuid2Schema } from '@OneCoach/schemas';
+import { createId } from '@onecoach/lib-shared/utils';
+import { cuid2Schema } from '@onecoach/schemas';
 import { z } from 'zod';
 /**
  * Schema per una singola serie importata (formato semplificato)

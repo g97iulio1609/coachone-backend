@@ -1,8 +1,8 @@
 /**
- * @OneCoach/lib-food
+ * @onecoach/lib-food
  *
  * Servizi per il dominio alimenti
- * Implementa contratti da @OneCoach/contracts
+ * Implementa contratti da @onecoach/contracts
  */
 export * from './food.service';
 export * from './food-admin.service';

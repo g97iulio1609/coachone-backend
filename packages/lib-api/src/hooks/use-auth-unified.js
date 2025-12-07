@@ -12,8 +12,8 @@
  */
 'use client';
 import { useSyncAuth } from './use-auth';
-import { useAuthStore } from '@OneCoach/lib-stores/auth';
-import { isAdminRole, isCoachRole, normalizeRole, roleSatisfies, } from '@OneCoach/lib-core';
+import { useAuthStore } from '@onecoach/lib-stores/auth';
+import { isAdminRole, isCoachRole, normalizeRole, roleSatisfies, } from '@onecoach/lib-core';
 /**
  * Main authentication hook
  *

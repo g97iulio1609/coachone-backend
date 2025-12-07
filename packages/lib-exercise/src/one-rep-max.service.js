@@ -7,12 +7,12 @@
  * NOMENCLATURA:
  * - catalogExerciseId: ID dell'esercizio nel catalogo (exercises.id)
  *
- * La validazione usa lo schema Zod centralizzato da @OneCoach/schemas
+ * La validazione usa lo schema Zod centralizzato da @onecoach/schemas
  */
-import { prisma } from '@OneCoach/lib-core/prisma';
+import { prisma } from '@onecoach/lib-core/prisma';
 import { Prisma } from '@prisma/client';
-import { createId } from '@OneCoach/lib-shared';
-import { OneRepMaxInputSchema } from '@OneCoach/schemas';
+import { createId } from '@onecoach/lib-shared';
+import { OneRepMaxInputSchema } from '@onecoach/schemas';
 export class OneRepMaxService {
     /**
      * Valida l'input usando lo schema Zod centralizzato.

@@ -4,8 +4,8 @@
  * Servizio per gestione template pasti (meals) salvabili e riutilizzabili
  * Segue pattern FoodService per consistenza
  */
-import { prisma } from '@OneCoach/lib-core/prisma';
-import { generateId } from '@OneCoach/lib-shared';
+import { prisma } from '@onecoach/lib-core/prisma';
+import { generateId } from '@onecoach/lib-shared';
 export class MealTemplateService {
   /**
    * Crea nuovo template pasto

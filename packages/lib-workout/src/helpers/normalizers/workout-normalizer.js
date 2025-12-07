@@ -3,7 +3,7 @@
  *
  * Funzioni per normalizzare dati workout programs da formati vari
  */
-import { DifficultyLevel, WorkoutStatus } from '@OneCoach/types/client';
+import { DifficultyLevel, WorkoutStatus } from '@onecoach/types/client';
 import { ensureArray, ensureArrayOfStrings, ensureNumber, ensureString, parseJsonIfString, } from '../utils/type-helpers';
 import { normalizeExercise } from './exercise-normalizer';
 /**

@@ -1,8 +1,8 @@
 /**
- * @OneCoach/lib-workout
+ * @onecoach/lib-workout
  *
  * Servizi per il dominio workout
- * Implementa contratti da @OneCoach/contracts
+ * Implementa contratti da @onecoach/contracts
  */
 export * from './workout.service';
 export * from './helpers';

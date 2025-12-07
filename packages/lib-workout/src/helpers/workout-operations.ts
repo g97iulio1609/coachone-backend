@@ -12,15 +12,15 @@ import type {
   Exercise,
   SetGroup,
   ExerciseSet,
-} from '@OneCoach/types';
+} from '@onecoach/types';
 import { createEmptyWeek, createEmptyDay, createEmptyExercise } from './program-transform';
-import { generateId } from '@OneCoach/lib-shared/utils/id-generator';
+import { generateId } from '@onecoach/lib-shared/utils/id-generator';
 import { DEFAULT_SET } from './constants';
 import { kgToLbs } from './intensity-calculator';
 import {
   getWorkoutProgramWeek,
   getWorkoutProgramDayByWeek,
-} from '@OneCoach/lib-shared/utils/workout-program-helpers';
+} from '@onecoach/lib-shared/utils/workout-program-helpers';
 
 /**
  * Aggiunge una nuova settimana al programma

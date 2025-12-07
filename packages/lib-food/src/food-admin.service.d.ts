@@ -30,9 +30,9 @@ export declare const foodImportSchema: z.ZodObject<
     categoryIds: z.ZodOptional<z.ZodArray<z.ZodString>>;
     mainMacro: z.ZodOptional<
       z.ZodType<
-        import('@OneCoach/types').MainMacro,
+        import('@onecoach/types').MainMacro,
         unknown,
-        z.core.$ZodTypeInternals<import('@OneCoach/types').MainMacro, unknown>
+        z.core.$ZodTypeInternals<import('@onecoach/types').MainMacro, unknown>
       >
     >;
     translations: z.ZodOptional<

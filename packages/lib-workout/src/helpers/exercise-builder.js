@@ -7,7 +7,7 @@
  * - catalogExerciseId: ID dell'esercizio nel catalogo database (unico standard)
  * - id: ID temporaneo dell'istanza dell'esercizio nel workout
  */
-import { generateId } from '@OneCoach/lib-shared/utils/id-generator';
+import { generateId } from '@onecoach/lib-shared/utils/id-generator';
 import { getMuscleGroupFromName } from './utils/muscle-group';
 import { DEFAULT_SET } from './constants';
 /**

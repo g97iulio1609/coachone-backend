@@ -3,7 +3,7 @@
  *
  * Constants condivise per workout programs
  */
-import type { ExerciseSet, MuscleGroup } from '@OneCoach/types';
+import type { ExerciseSet, MuscleGroup } from '@onecoach/types';
 /**
  * Default values per ExerciseSet
  * Tutti i campi required sono presenti anche se null (per allineamento con tipo)

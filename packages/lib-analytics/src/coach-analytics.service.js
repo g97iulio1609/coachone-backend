@@ -4,7 +4,7 @@
  * Analytics calculations for coach dashboard
  * Implements SOLID principles (SRP)
  */
-import { prisma } from '@OneCoach/lib-core/prisma';
+import { prisma } from '@onecoach/lib-core/prisma';
 /**
  * Calculate date range from period
  */

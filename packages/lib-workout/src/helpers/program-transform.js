@@ -1,8 +1,8 @@
-import { DifficultyLevel, WorkoutStatus } from '@OneCoach/types/client';
-import { generateId } from '@OneCoach/lib-shared/utils/id-generator';
+import { DifficultyLevel, WorkoutStatus } from '@onecoach/types/client';
+import { generateId } from '@onecoach/lib-shared/utils/id-generator';
 import { DEFAULT_SET } from './constants';
 import { ensureArrayOfStrings, ensureNumber, ensureString } from './utils/type-helpers';
-import { syncWeightUnits } from '@OneCoach/lib-shared/utils/weight-converter';
+import { syncWeightUnits } from '@onecoach/lib-shared/utils/weight-converter';
 import { normalizeDifficulty, normalizeStatus, normalizeWeek, normalizeMetadata, } from './normalizers/workout-normalizer';
 export function createEmptyExercise() {
     return {

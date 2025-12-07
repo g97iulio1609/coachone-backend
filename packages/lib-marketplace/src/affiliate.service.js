@@ -1,4 +1,4 @@
-import { prisma } from '@OneCoach/lib-core/prisma';
+import { prisma } from '@onecoach/lib-core/prisma';
 // Utility locale per generare codici senza dipendenze esterne
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 function generateCode(length) {
@@ -15,7 +15,7 @@ import {
   Prisma,
   ReferralAttributionStatus,
 } from '@prisma/client';
-import { CreditService } from '@OneCoach/lib-core';
+import { CreditService } from '@onecoach/lib-core';
 import { affiliateLogger } from './affiliate-logger.service';
 const creditService = new CreditService();
 const REFERRAL_CODE_LENGTH = 10;

@@ -6,7 +6,7 @@
 
 import { BaseApiClient } from './base-client';
 import type { RequestOptions } from './types';
-import { NativeSession } from '@OneCoach/lib-core';
+import { NativeSession } from '@onecoach/lib-core';
 
 export class NativeApiClient extends BaseApiClient {
   private refreshPromise: Promise<void> | null = null;

@@ -4,16 +4,16 @@
  * Hooks for React Native/Expo that handle native IAP integration
  * Combines Zustand store + native IAP APIs + TanStack Query
  */
-import type { ProductId } from '@OneCoach/lib-stores/iap.store';
+import type { ProductId } from '@onecoach/lib-stores/iap.store';
 /**
  * Hook to manage IAP in React Native
  * Replaces IAPProvider context
  */
 export declare function useIAP(): {
-    products: import("@OneCoach/lib-stores").IAPProduct[];
-    subscriptionStatus: import("@OneCoach/lib-stores").SubscriptionStatus | null;
-    purchaseState: import("@OneCoach/lib-stores").PurchaseState;
-    error: import("@OneCoach/lib-stores").IAPError | null;
+    products: import("@onecoach/lib-stores").IAPProduct[];
+    subscriptionStatus: import("@onecoach/lib-stores").SubscriptionStatus | null;
+    purchaseState: import("@onecoach/lib-stores").PurchaseState;
+    error: import("@onecoach/lib-stores").IAPError | null;
     loadProducts: () => Promise<void>;
     purchaseProduct: (productId: ProductId) => Promise<boolean>;
     restorePurchases: () => Promise<{

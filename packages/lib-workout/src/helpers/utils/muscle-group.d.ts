@@ -3,7 +3,7 @@
  *
  * Utility functions per normalizzazione gruppi muscolari
  */
-import type { MuscleGroup } from '@OneCoach/types';
+import type { MuscleGroup } from '@onecoach/types';
 /**
  * Normalizza un nome di gruppo muscolare al valore standard
  */

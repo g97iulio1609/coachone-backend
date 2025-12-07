@@ -9,8 +9,8 @@
  * - Open/Closed: Extendable without modification
  * - Dependency Inversion: Depends on Prisma abstraction
  */
-import { prisma } from '@OneCoach/lib-core/prisma';
-import { toMacros, ensureDecimalNumber, toJsonArray } from '@OneCoach/lib-shared';
+import { prisma } from '@onecoach/lib-core/prisma';
+import { toMacros, ensureDecimalNumber, toJsonArray } from '@onecoach/lib-shared';
 const db = prisma;
 /**
  * Helper: Extract day from weeks structure type-safely
@@ -77,7 +77,7 @@ function toNutritionDayLog(record) {
     updatedAt: record.updatedAt,
   };
 }
-import { normalizeNutritionPlan } from '@OneCoach/lib-nutrition/helpers/plan-transform';
+import { normalizeNutritionPlan } from '@onecoach/lib-nutrition/helpers/plan-transform';
 /**
  * Create a new nutrition day log
  *
@@ -277,8 +277,8 @@ export async function getNutritionPlanStats(planId, userId) {
   });
   // Use helper function for future-proof access to plan structure
   const { getNutritionPlanTotalDays } =
-    await import('@OneCoach/lib-shared/utils/nutrition-plan-helpers');
-  const { normalizeNutritionPlan } = await import('@OneCoach/lib-nutrition/helpers/plan-transform');
+    await import('@onecoach/lib-shared/utils/nutrition-plan-helpers');
+  const { normalizeNutritionPlan } = await import('@onecoach/lib-nutrition/helpers/plan-transform');
   const normalizedPlan = normalizeNutritionPlan(plan);
   const totalDays = getNutritionPlanTotalDays(normalizedPlan);
   const loggedDays = logs.length;

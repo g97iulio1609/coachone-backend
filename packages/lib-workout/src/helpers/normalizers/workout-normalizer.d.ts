@@ -3,9 +3,9 @@
  *
  * Funzioni per normalizzare dati workout programs da formati vari
  */
-import { DifficultyLevel, WorkoutStatus } from '@OneCoach/types/client';
+import { DifficultyLevel, WorkoutStatus } from '@onecoach/types/client';
 import type { workout_programs as PrismaWorkoutProgram, workout_program_versions as PrismaWorkoutProgramVersion } from '@prisma/client';
-import type { WorkoutDay, WorkoutProgram, WorkoutWeek } from '@OneCoach/types';
+import type { WorkoutDay, WorkoutProgram, WorkoutWeek } from '@onecoach/types';
 type RawJson = Record<string, unknown>;
 /**
  * Normalizza il livello di difficoltà

@@ -5,8 +5,8 @@
 
 import { z } from 'zod';
 import { getModelByTier, createCustomModel } from './utils/model-factory';
-import { AIProviderConfigService } from '@OneCoach/lib-ai/ai-provider-config.service';
-import { TOKEN_LIMITS } from '@OneCoach/constants/models';
+import { AIProviderConfigService } from '@onecoach/lib-ai/ai-provider-config.service';
+import { TOKEN_LIMITS } from '@onecoach/constants/models';
 
 interface ExtractionContext {
   message: string;

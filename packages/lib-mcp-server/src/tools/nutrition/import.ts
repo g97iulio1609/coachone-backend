@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import type { McpTool, McpContext } from '../../types';
-import { NutritionImportService, createNutritionAIContext } from '@OneCoach/lib-nutrition';
-import { IMPORT_LIMITS } from '@OneCoach/lib-import-core';
+import { NutritionImportService, createNutritionAIContext } from '@onecoach/lib-nutrition';
+import { IMPORT_LIMITS } from '@onecoach/lib-import-core';
 
 const importFileSchema = z.object({
   name: z.string(),

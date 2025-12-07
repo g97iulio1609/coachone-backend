@@ -12,7 +12,7 @@ import type {
   IPaymentService,
   CreatePaymentIntentParams,
   ConfirmPaymentIntentParams,
-} from '@OneCoach/contracts';
+} from '@onecoach/contracts';
 
 /**
  * Payment Service

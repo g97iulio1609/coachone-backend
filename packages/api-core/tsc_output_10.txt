@@ -1,5 +1,5 @@
 
-> @OneCoach/api-core@0.0.0 type-check
+> @onecoach/api-core@0.0.0 type-check
 > tsc --noEmit
 
 src/routes/auth/password/confirm/route.ts(8,24): error TS6305: Output file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-core/dist/lib-core/src/prisma.d.ts' has not been built from source file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-core/src/prisma.ts'.
@@ -50,7 +50,7 @@ src/routes/onboarding/complete-all/route.ts(10,20): error TS6133: 'getErrorMessa
 src/routes/onboarding/complete-all/route.ts(10,66): error TS6305: Output file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/dist/utils/error/index.d.ts' has not been built from source file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/error/index.ts'.
 src/routes/onboarding/complete-step/route.ts(8,29): error TS6305: Output file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-core/dist/lib-core/src/auth/guards.d.ts' has not been built from source file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-core/src/auth/guards.ts'.
 src/routes/onboarding/complete-step/route.ts(9,66): error TS6305: Output file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-core/dist/lib-core/src/index.d.ts' has not been built from source file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-core/src/index.ts'.
-src/routes/onboarding/complete-step/route.ts(10,39): error TS2307: Cannot find module '@OneCoach/lib-core/user/onboarding-profile.service' or its corresponding type declarations.
+src/routes/onboarding/complete-step/route.ts(10,39): error TS2307: Cannot find module '@onecoach/lib-core/user/onboarding-profile.service' or its corresponding type declarations.
 src/routes/onboarding/complete-step/route.ts(12,43): error TS6305: Output file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/dist/utils/error/index.d.ts' has not been built from source file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/error/index.ts'.
 src/routes/onboarding/go-to-step/route.ts(8,29): error TS6305: Output file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-core/dist/lib-core/src/auth/guards.d.ts' has not been built from source file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-core/src/auth/guards.ts'.
 src/routes/onboarding/go-to-step/route.ts(9,48): error TS6305: Output file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-core/dist/lib-core/src/index.d.ts' has not been built from source file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-core/src/index.ts'.
@@ -108,7 +108,7 @@ src/routes/subscriptions/create/route.ts(63,24): error TS2339: Property 'status'
 src/routes/subscriptions/create/route.ts(66,37): error TS2339: Property 'client_secret' does not exist on type '{}'.
 src/routes/subscriptions/manage/route.ts(10,29): error TS6305: Output file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-core/dist/lib-core/src/auth/guards.d.ts' has not been built from source file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-core/src/auth/guards.ts'.
 src/routes/subscriptions/manage/route.ts(11,37): error TS6305: Output file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-core/dist/lib-core/src/index.d.ts' has not been built from source file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-core/src/index.ts'.
-src/routes/subscriptions/manage/route.ts(12,27): error TS2307: Cannot find module '@OneCoach/lib-core/stripe/server' or its corresponding type declarations.
+src/routes/subscriptions/manage/route.ts(12,27): error TS2307: Cannot find module '@onecoach/lib-core/stripe/server' or its corresponding type declarations.
 src/routes/subscriptions/manage/route.ts(13,24): error TS6305: Output file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-core/dist/lib-core/src/prisma.d.ts' has not been built from source file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-core/src/prisma.ts'.
 src/routes/subscriptions/manage/route.ts(15,66): error TS6305: Output file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/dist/utils/error/index.d.ts' has not been built from source file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-shared/src/utils/error/index.ts'.
 src/routes/subscriptions/setup-intent/route.ts(8,29): error TS6305: Output file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-core/dist/lib-core/src/auth/guards.d.ts' has not been built from source file '/Users/giulioleone/Sviluppo/CoachOne/packages/lib-core/src/auth/guards.ts'.

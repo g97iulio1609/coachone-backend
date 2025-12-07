@@ -5,8 +5,8 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { requireAuth } from '@OneCoach/lib-core/auth/guards';
-import { generateAnalyticsReport } from '@OneCoach/lib-analytics/analytics.service';
+import { requireAuth } from '@onecoach/lib-core/auth/guards';
+import { generateAnalyticsReport } from '@onecoach/lib-analytics/analytics.service';
 import { z } from 'zod';
 
 export const dynamic = 'force-dynamic';

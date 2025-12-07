@@ -5,10 +5,10 @@
  */
 
 import { NextResponse } from 'next/server';
-import { requireAuth } from '@OneCoach/lib-core/auth/guards';
-import { onboardingService, TOTAL_STEPS } from '@OneCoach/lib-core';
+import { requireAuth } from '@onecoach/lib-core/auth/guards';
+import { onboardingService, TOTAL_STEPS } from '@onecoach/lib-core';
 import { z } from 'zod';
-import { logError, mapErrorToApiResponse } from '@OneCoach/lib-shared/utils/error';
+import { logError, mapErrorToApiResponse } from '@onecoach/lib-shared/utils/error';
 
 export const dynamic = 'force-dynamic';
 

@@ -5,11 +5,11 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { auth } from '@OneCoach/lib-core/auth';
-import { IntelligentAssistantService } from '@OneCoach/oneagenda-core';
-import { oneagendaDB } from '@OneCoach/oneagenda-core/db';
-import { logger } from '@OneCoach/lib-shared/utils/logger';
-import { prisma } from '@OneCoach/lib-core/prisma';
+import { auth } from '@onecoach/lib-core/auth';
+import { IntelligentAssistantService } from '@onecoach/oneagenda-core';
+import { oneagendaDB } from '@onecoach/oneagenda-core/db';
+import { logger } from '@onecoach/lib-shared/utils/logger';
+import { prisma } from '@onecoach/lib-core/prisma';
 
 const assistant = new IntelligentAssistantService();
 

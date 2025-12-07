@@ -12,8 +12,8 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { requireAdmin } from '@OneCoach/lib-core/auth/guards';
-import { logError, mapErrorToApiResponse } from '@OneCoach/lib-shared/utils/error';
+import { requireAdmin } from '@onecoach/lib-core/auth/guards';
+import { logError, mapErrorToApiResponse } from '@onecoach/lib-shared/utils/error';
 
 /**
  * Configurazione per generation handler

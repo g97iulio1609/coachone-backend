@@ -1,5 +1,5 @@
 {
-  "name": "@OneCoach/api-workout",
+  "name": "@onecoach/api-workout",
   "version": "0.0.0",
   "description": "API routes per il dominio workout",
   "main": "src/index.ts",
@@ -8,10 +8,10 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@OneCoach/contracts": "workspace:*",
-    "@OneCoach/schemas": "workspace:*",
-    "@OneCoach/lib-registry": "workspace:*",
-    "@OneCoach/lib-workout": "workspace:*",
+    "@onecoach/contracts": "workspace:*",
+    "@onecoach/schemas": "workspace:*",
+    "@onecoach/lib-registry": "workspace:*",
+    "@onecoach/lib-workout": "workspace:*",
     "next": "^16.0.6"
   },
   "devDependencies": {

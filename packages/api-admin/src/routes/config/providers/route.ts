@@ -7,10 +7,10 @@
  */
 
 import { NextResponse } from 'next/server';
-import { requireAdmin } from '@OneCoach/lib-core/auth/guards';
+import { requireAdmin } from '@onecoach/lib-core/auth/guards';
 import { AIProviderConfigService, PROVIDER_MAP, type ProviderName } from '@onecoach/lib-ai';
-import { deleteEnvVar, getEnvVarByKey } from '@OneCoach/lib-vercel-admin';
-import { logError, mapErrorToApiResponse } from '@OneCoach/lib-shared/utils/error';
+import { deleteEnvVar, getEnvVarByKey } from '@onecoach/lib-vercel-admin';
+import { logError, mapErrorToApiResponse } from '@onecoach/lib-shared/utils/error';
 
 export const dynamic = 'force-dynamic';
 

@@ -4,8 +4,8 @@
  * Servizio unificato per gestione template nutrizionali (Meal, Day, Week)
  * Segue principi SOLID: Single Responsibility, Open/Closed, DRY
  */
-import { prisma } from '@OneCoach/lib-core/prisma';
-import { generateId } from '@OneCoach/lib-shared/id-generator';
+import { prisma } from '@onecoach/lib-core/prisma';
+import { generateId } from '@onecoach/lib-shared/id-generator';
 /**
  * Validazione template data in base al tipo
  */

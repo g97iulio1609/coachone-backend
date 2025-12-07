@@ -5,10 +5,10 @@
  */
 
 import { NextResponse } from 'next/server';
-import { requireAdmin } from '@OneCoach/lib-core/auth/guards';
-import { AffiliateService } from '@OneCoach/lib-marketplace/affiliate.service';
-import { prisma } from '@OneCoach/lib-core/prisma';
-import { AffiliateRewardStatus } from '@OneCoach/types';
+import { requireAdmin } from '@onecoach/lib-core/auth/guards';
+import { AffiliateService } from '@onecoach/lib-marketplace/affiliate.service';
+import { prisma } from '@onecoach/lib-core/prisma';
+import { AffiliateRewardStatus } from '@onecoach/types';
 
 export const dynamic = 'force-dynamic';
 

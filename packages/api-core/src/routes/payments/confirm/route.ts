@@ -5,9 +5,9 @@
  */
 
 import { NextResponse } from 'next/server';
-import { requireAuth } from '@OneCoach/lib-core/auth/guards';
-import { paymentService } from '@OneCoach/lib-core';
-import { logError, mapErrorToApiResponse, getErrorMessage } from '@OneCoach/lib-shared/utils/error';
+import { requireAuth } from '@onecoach/lib-core/auth/guards';
+import { paymentService } from '@onecoach/lib-core';
+import { logError, mapErrorToApiResponse, getErrorMessage } from '@onecoach/lib-shared/utils/error';
 
 export const dynamic = 'force-dynamic';
 

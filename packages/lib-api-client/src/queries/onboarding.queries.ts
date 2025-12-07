@@ -4,7 +4,7 @@
  * Standardized query keys and query functions for onboarding queries
  */
 
-import type { OnboardingProgress } from '@OneCoach/lib-stores';
+import type { OnboardingProgress } from '@onecoach/lib-stores';
 
 /**
  * Onboarding API response

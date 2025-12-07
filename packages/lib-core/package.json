@@ -1,5 +1,5 @@
 {
-  "name": "@OneCoach/lib-core",
+  "name": "@onecoach/lib-core",
   "version": "0.0.0",
   "description": "Servizi core (auth, credit, subscription, prisma)",
   "main": "src/index.ts",
@@ -142,12 +142,12 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@OneCoach/contracts": "workspace:*",
-    "@OneCoach/lib-config": "workspace:*",
+    "@onecoach/contracts": "workspace:*",
+    "@onecoach/lib-config": "workspace:*",
     "@onecoach/lib-shared": "workspace:*",
-    "@OneCoach/schemas": "workspace:*",
-    "@OneCoach/constants": "workspace:*",
-    "@OneCoach/types": "workspace:*",
+    "@onecoach/schemas": "workspace:*",
+    "@onecoach/constants": "workspace:*",
+    "@onecoach/types": "workspace:*",
     "@auth/prisma-adapter": "^2.0.0",
     "@prisma/adapter-pg": "7.0.0",
     "@prisma/client": "7.0.0",

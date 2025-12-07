@@ -5,16 +5,16 @@
  * Segue principi SOLID: Single Responsibility, Open/Closed, DRY
  */
 
-import { prisma } from '@OneCoach/lib-core/prisma';
+import { prisma } from '@onecoach/lib-core/prisma';
 import { Prisma } from '@prisma/client';
-import { generateId } from '@OneCoach/lib-shared/id-generator';
+import { generateId } from '@onecoach/lib-shared/id-generator';
 import type {
   WorkoutTemplate,
   WorkoutTemplateType,
   Exercise,
   WorkoutDay,
   WorkoutWeek,
-} from '@OneCoach/types';
+} from '@onecoach/types';
 
 interface ListTemplatesOptions {
   type?: WorkoutTemplateType;

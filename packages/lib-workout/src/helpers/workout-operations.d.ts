@@ -4,7 +4,7 @@
  * Funzioni pure per operazioni CRUD su workout programs
  * Segue il pattern di lib/nutrition/plan-operations.ts
  */
-import type { WorkoutProgram, WorkoutWeek, WorkoutDay, Exercise, ExerciseSet } from '@OneCoach/types';
+import type { WorkoutProgram, WorkoutWeek, WorkoutDay, Exercise, ExerciseSet } from '@onecoach/types';
 /**
  * Aggiunge una nuova settimana al programma
  */

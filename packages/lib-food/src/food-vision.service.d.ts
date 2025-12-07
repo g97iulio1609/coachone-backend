@@ -4,7 +4,7 @@
  * Servizio per analisi immagini con OpenRouter + Gemini
  * Supporta estrazione etichette e segmentazione piatti
  */
-import type { LabelExtractionResult, DishSegmentationResult } from '@OneCoach/types';
+import type { LabelExtractionResult, DishSegmentationResult } from '@onecoach/types';
 /**
  * Salva configurazione modelli Vision nel metadata OpenRouter
  */

@@ -1,8 +1,8 @@
-import { prisma } from '@OneCoach/lib-core/prisma';
-import { generateId, toSlug } from '@OneCoach/lib-shared/utils';
+import { prisma } from '@onecoach/lib-core/prisma';
+import { generateId, toSlug } from '@onecoach/lib-shared/utils';
 import { ExerciseApprovalStatus, ExerciseRelationType, MuscleRole, Prisma } from '@prisma/client';
 import { compare } from 'fast-json-patch';
-import { SimpleCache } from '@OneCoach/lib-shared';
+import { SimpleCache } from '@onecoach/lib-shared';
 const DEFAULT_LOCALE = 'en';
 // Cache disabilitata per debug e consistenza dati
 const LIST_CACHE_TTL_MS = 0;

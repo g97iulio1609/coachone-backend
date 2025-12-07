@@ -1,5 +1,5 @@
 {
-  "name": "@OneCoach/api-oneagenda",
+  "name": "@onecoach/api-oneagenda",
   "version": "0.0.0",
   "description": "API routes per oneagenda (goals, tasks, schedule, insights, calendar)",
   "main": "src/index.ts",
@@ -8,13 +8,13 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@OneCoach/contracts": "workspace:*",
-    "@OneCoach/schemas": "workspace:*",
-    "@OneCoach/lib-registry": "workspace:*",
-    "@OneCoach/lib-core": "workspace:*",
-    "@OneCoach/oneagenda-core": "workspace:*",
-    "@OneCoach/oneagenda-ui": "workspace:*",
-    "@OneCoach/types": "workspace:*",
+    "@onecoach/contracts": "workspace:*",
+    "@onecoach/schemas": "workspace:*",
+    "@onecoach/lib-registry": "workspace:*",
+    "@onecoach/lib-core": "workspace:*",
+    "@onecoach/oneagenda-core": "workspace:*",
+    "@onecoach/oneagenda-ui": "workspace:*",
+    "@onecoach/types": "workspace:*",
     "next": "^16.0.6",
     "zod": "^4.1.12"
   },

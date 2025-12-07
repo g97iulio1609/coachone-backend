@@ -5,10 +5,10 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@OneCoach/lib-core/prisma';
+import { prisma } from '@onecoach/lib-core/prisma';
 import bcrypt from 'bcryptjs';
 import crypto from 'crypto';
-import { logError, mapErrorToApiResponse } from '@OneCoach/lib-shared/utils/error';
+import { logError, mapErrorToApiResponse } from '@onecoach/lib-shared/utils/error';
 
 export const dynamic = 'force-dynamic';
 

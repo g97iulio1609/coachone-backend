@@ -7,11 +7,11 @@
     "noEmit": false,
     "skipLibCheck": true,
     "paths": {
-      "@OneCoach/lib-shared": [
-        "../../coachone-shared/packages/lib-shared/src/index.ts"
+      "@onecoach/lib-shared": [
+        "../../onecoach-shared/packages/lib-shared/src/index.ts"
       ],
-      "@OneCoach/lib-shared/*": [
-        "../../coachone-shared/packages/lib-shared/src/*"
+      "@onecoach/lib-shared/*": [
+        "../../onecoach-shared/packages/lib-shared/src/*"
       ]
     }
   },

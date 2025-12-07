@@ -13,7 +13,7 @@ import type {
   TimelineEvent,
   TimelineEventType,
   MemoryVersion,
-} from '@OneCoach/lib-core/user-memory/types';
+} from '@onecoach/lib-core/user-memory/types';
 
 /**
  * Get user memory

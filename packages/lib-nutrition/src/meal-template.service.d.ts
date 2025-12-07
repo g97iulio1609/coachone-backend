@@ -4,7 +4,7 @@
  * Servizio per gestione template pasti (meals) salvabili e riutilizzabili
  * Segue pattern FoodService per consistenza
  */
-import type { MealTemplate, Meal } from '@OneCoach/types';
+import type { MealTemplate, Meal } from '@onecoach/types';
 export declare class MealTemplateService {
   /**
    * Crea nuovo template pasto

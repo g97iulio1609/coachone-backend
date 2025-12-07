@@ -7,9 +7,9 @@
  * NOMENCLATURA:
  * - catalogExerciseId: ID dell'esercizio nel catalogo (exercises.id)
  *
- * La validazione usa lo schema Zod centralizzato da @OneCoach/schemas
+ * La validazione usa lo schema Zod centralizzato da @onecoach/schemas
  */
-import type { UserOneRepMax, UserOneRepMaxWithExercise, UserOneRepMaxVersion } from '@OneCoach/types';
+import type { UserOneRepMax, UserOneRepMaxWithExercise, UserOneRepMaxVersion } from '@onecoach/types';
 /**
  * Input per creare/aggiornare un massimale
  */

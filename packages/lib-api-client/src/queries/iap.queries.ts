@@ -5,7 +5,7 @@
  */
 
 import { apiClient } from '../client';
-import type { SubscriptionStatus, ProductId } from '@OneCoach/lib-stores/iap.store';
+import type { SubscriptionStatus, ProductId } from '@onecoach/lib-stores/iap.store';
 
 /**
  * IAP query keys factory

@@ -1,8 +1,8 @@
 /**
- * @OneCoach/lib-vercel-admin
+ * @onecoach/lib-vercel-admin
  *
  * Servizi per gestione Vercel admin (credentials, env vars)
- * Implementa contratti da @OneCoach/contracts
+ * Implementa contratti da @onecoach/contracts
  */
 
 export * from './vercel-admin-credentials-api.service';

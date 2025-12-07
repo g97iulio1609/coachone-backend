@@ -6,16 +6,16 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { requireAdmin } from '@OneCoach/lib-core/auth/guards';
-import { FoodService } from '@OneCoach/lib-food.service';
-import { createAIProvider } from '@OneCoach/one-agent';
-import { logError, mapErrorToApiResponse } from '@OneCoach/lib-shared/utils/error';
-import { createFoodSchema } from '@OneCoach/schemas/food.schema';
-import { ensureMacrosArePer100g } from '@OneCoach/lib-shared/utils/macro-normalization';
-import type { Macros } from '@OneCoach/types';
+import { requireAdmin } from '@onecoach/lib-core/auth/guards';
+import { FoodService } from '@onecoach/lib-food.service';
+import { createAIProvider } from '@onecoach/one-agent';
+import { logError, mapErrorToApiResponse } from '@onecoach/lib-shared/utils/error';
+import { createFoodSchema } from '@onecoach/schemas/food.schema';
+import { ensureMacrosArePer100g } from '@onecoach/lib-shared/utils/macro-normalization';
+import type { Macros } from '@onecoach/types';
 import { AIConfigService } from '@onecoach/lib-ai/ai-config.service';
 import { AIProviderConfigService } from '@onecoach/lib-ai/ai-provider-config.service';
-import { TOKEN_LIMITS } from '@OneCoach/constants/models';
+import { TOKEN_LIMITS } from '@onecoach/constants/models';
 
 export const dynamic = 'force-dynamic';
 

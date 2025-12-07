@@ -7,13 +7,13 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { requireAuth } from '@OneCoach/lib-core/auth/guards';
+import { requireAuth } from '@onecoach/lib-core/auth/guards';
 import {
   getBodyMeasurementById,
   updateBodyMeasurement,
   deleteBodyMeasurement,
-} from '@OneCoach/lib-analytics/body-measurements.service';
-import type { UpdateBodyMeasurementInput } from '@OneCoach/lib-analytics/body-measurements.service';
+} from '@onecoach/lib-analytics/body-measurements.service';
+import type { UpdateBodyMeasurementInput } from '@onecoach/lib-analytics/body-measurements.service';
 import { z } from 'zod';
 
 export const dynamic = 'force-dynamic';

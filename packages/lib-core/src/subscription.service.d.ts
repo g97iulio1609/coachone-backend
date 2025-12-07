@@ -5,7 +5,7 @@
  * Implementa ISubscriptionService contract
  */
 import { SubscriptionPlan, SubscriptionStatus } from '@prisma/client';
-import type { ISubscriptionService } from '@OneCoach/contracts';
+import type { ISubscriptionService } from '@onecoach/contracts';
 import type Stripe from 'stripe';
 /**
  * Implementazione Subscription Service

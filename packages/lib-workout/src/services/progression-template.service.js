@@ -1,4 +1,4 @@
-import { prisma } from '@OneCoach/lib-core/prisma';
+import { prisma } from '@onecoach/lib-core/prisma';
 const PROGRESSION_TEMPLATE_TYPE = 'week';
 export class ProgressionTemplateService {
     /**

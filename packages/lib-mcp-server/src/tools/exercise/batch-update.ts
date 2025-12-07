@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import type { McpTool, McpContext, BatchResult } from '../../types';
-import { exerciseService } from '@OneCoach/lib-exercise';
-import { updateExerciseSchema } from '@OneCoach/schemas';
+import { exerciseService } from '@onecoach/lib-exercise';
+import { updateExerciseSchema } from '@onecoach/schemas';
 
 const batchUpdateParameters = z.object({
   items: z

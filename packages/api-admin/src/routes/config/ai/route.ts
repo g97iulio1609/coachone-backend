@@ -6,10 +6,10 @@
  */
 
 import { NextResponse } from 'next/server';
-import { requireAdmin } from '@OneCoach/lib-core/auth/guards';
+import { requireAdmin } from '@onecoach/lib-core/auth/guards';
 import { AIConfigService } from '@onecoach/lib-ai/ai-config.service';
-import { OperationType, AIModel } from '@OneCoach/types';
-import { logError, mapErrorToApiResponse } from '@OneCoach/lib-shared/utils/error';
+import { OperationType, AIModel } from '@onecoach/types';
+import { logError, mapErrorToApiResponse } from '@onecoach/lib-shared/utils/error';
 
 export const dynamic = 'force-dynamic';
 

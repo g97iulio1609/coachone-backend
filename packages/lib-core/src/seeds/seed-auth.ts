@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcryptjs';
-import { createId } from '@OneCoach/lib-shared/utils/id-generator';
+import { createId } from '@onecoach/lib-shared/utils/id-generator';
 import { seedAdminsFromEnv } from '../auth/admin-seed';
 
 // Stable UUID for seed data (idempotent)
@@ -57,9 +57,9 @@ export async function seedAuth(prisma: PrismaClient) {
   // DEVELOPMENT ONLY: Crea default admin per seed dati demo
   if (!admin && !isProduction) {
     console.warn('⚠️ No admin found. Creating default development admin...');
-    const defaultEmail = 'admin@OneCoach.com';
+    const defaultEmail = 'admin@onecoach.com';
     const defaultPassword = 'Admin123!';
-    const defaultName = 'Admin OneCoach';
+    const defaultName = 'Admin onecoach';
     const defaultCredits = 10000;
 
     const hashedPassword = await bcrypt.hash(defaultPassword, 10);
@@ -96,7 +96,7 @@ export async function seedAuth(prisma: PrismaClient) {
   // Demo user (only in development, skip in production)
   let demoUser;
   if (!isProduction) {
-    const demoEmail = 'demo@OneCoach.com';
+    const demoEmail = 'demo@onecoach.com';
     const demoPassword = await bcrypt.hash('Demo123!', 10);
 
     demoUser = await prisma.users.upsert({
@@ -133,7 +133,7 @@ export async function seedAuth(prisma: PrismaClient) {
   } else {
     // In production, find existing demo user or create placeholder
     demoUser = await prisma.users.findFirst({
-      where: { email: 'demo@OneCoach.com' },
+      where: { email: 'demo@onecoach.com' },
     });
   }
 

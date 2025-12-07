@@ -1,4 +1,4 @@
-import { createId } from '@OneCoach/lib-shared/utils/id-generator';
+import { createId } from '@onecoach/lib-shared/utils/id-generator';
 export async function seedExerciseCatalog(prisma, adminUserId) {
   const exerciseTypes = [
     { name: 'Strength', imageUrl: null },

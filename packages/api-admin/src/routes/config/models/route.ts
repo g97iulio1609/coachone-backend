@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
-import { requireAdmin } from '@OneCoach/lib-core/auth/guards';
-import { AIModelService } from '@OneCoach/lib-ai/ai-model.service';
-import { logError, mapErrorToApiResponse } from '@OneCoach/lib-shared/utils/error';
+import { requireAdmin } from '@onecoach/lib-core/auth/guards';
+import { AIModelService } from '@onecoach/lib-ai/ai-model.service';
+import { logError, mapErrorToApiResponse } from '@onecoach/lib-shared/utils/error';
 
 export const dynamic = 'force-dynamic';
 

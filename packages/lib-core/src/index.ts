@@ -1,8 +1,8 @@
 /**
- * @OneCoach/lib-core
+ * @onecoach/lib-core
  *
  * Servizi core (auth, credit, subscription, prisma, profile, payment, onboarding)
- * Implementa contratti da @OneCoach/contracts
+ * Implementa contratti da @onecoach/contracts
  */
 
 export * from './prisma';

@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import type { McpTool, McpContext } from '../../types';
-import { exerciseService } from '@OneCoach/lib-exercise';
+import { exerciseService } from '@onecoach/lib-exercise';
 
 const deleteParameters = z.object({
   id: z.string(),

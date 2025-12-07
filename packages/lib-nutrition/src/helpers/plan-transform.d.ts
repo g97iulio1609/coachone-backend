@@ -4,7 +4,7 @@
  * Clean, refactored version without backward compatibility.
  * Follows KISS, SOLID, DRY principles.
  */
-import { NutritionStatus } from '@OneCoach/types/client';
+import { NutritionStatus } from '@onecoach/types/client';
 type PrismaNutritionPlan = {
   id: string;
   name: string;
@@ -35,7 +35,7 @@ import type {
   PersonalizedPlan,
   Adaptations,
   NutritionUserProfile,
-} from '@OneCoach/types';
+} from '@onecoach/types';
 /**
  * Parse and validate NutritionStatus from string or enum value
  */

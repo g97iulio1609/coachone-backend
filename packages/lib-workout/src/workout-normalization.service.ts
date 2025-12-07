@@ -12,8 +12,8 @@ import type {
   Exercise,
   ExerciseSet,
   SetGroup,
-} from '@OneCoach/types';
-import { OneRepMaxService } from '@OneCoach/lib-exercise/one-rep-max.service';
+} from '@onecoach/types';
+import { OneRepMaxService } from '@onecoach/lib-exercise/one-rep-max.service';
 import { normalizeAgentWorkoutPayload } from './helpers/program-server-transform';
 import { calculateSetWeights } from './workout-weight-calculator.service';
 import { getExerciseSets, generateSetGroupId } from './helpers/utils/set-group-helpers';

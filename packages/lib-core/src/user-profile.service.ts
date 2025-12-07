@@ -8,8 +8,8 @@
 import { prisma } from './prisma';
 import { Prisma } from '@prisma/client';
 import type { user_profiles } from '@prisma/client';
-import type { IUserProfileService, UserProfileInput } from '@OneCoach/contracts';
-import { createId } from '@OneCoach/lib-shared/id-generator';
+import type { IUserProfileService, UserProfileInput } from '@onecoach/contracts';
+import { createId } from '@onecoach/lib-shared/id-generator';
 
 function sanitizeStringArray(values?: string[] | null): string[] {
   if (!values || values.length === 0) {

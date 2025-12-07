@@ -16,8 +16,8 @@
  * 3. Per ogni alimento: match esistente o crea nuovo
  * 4. Restituisce mappa di foodItemId validi
  */
-import type { Macros, NutritionPlan } from '@OneCoach/types';
-import { type AIGeneratedFood } from '@OneCoach/schemas';
+import type { Macros, NutritionPlan } from '@onecoach/types';
+import { type AIGeneratedFood } from '@onecoach/schemas';
 /**
  * Food da processare dall'output AI
  * Estende AIGeneratedFood con campi aggiuntivi per il processing

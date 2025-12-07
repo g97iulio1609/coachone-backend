@@ -31,7 +31,7 @@ export interface UpdateCredentialsResult {
 async function updateEdgeConfigValue(key: string, value: string): Promise<void> {
   // Prova prima il servizio Next.js
   try {
-    const edgeConfigModule = await import('@OneCoach/lib-core/edge-config.service');
+    const edgeConfigModule = await import('@onecoach/lib-core/edge-config.service');
     if (edgeConfigModule.setEdgeConfigValue) {
       const result = await edgeConfigModule.setEdgeConfigValue(key, value);
       if (result.success) return;
@@ -82,7 +82,7 @@ async function updateCredentialsInEdgeConfig(
       { key: `${prefix}_EMAIL`, value: credentials.email },
       {
         key: `${prefix}_DEFAULT_NAME`,
-        value: credentials.name || (prefix === 'ADMIN' ? 'Admin OneCoach' : 'Super Admin OneCoach'),
+        value: credentials.name || (prefix === 'ADMIN' ? 'Admin onecoach' : 'Super Admin onecoach'),
       },
     ];
 

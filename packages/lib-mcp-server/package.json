@@ -1,7 +1,7 @@
 {
-  "name": "@OneCoach/lib-mcp-server",
+  "name": "@onecoach/lib-mcp-server",
   "version": "0.0.0",
-  "description": "Centralized MCP Server for OneCoach HTTP tools",
+  "description": "Centralized MCP Server for onecoach HTTP tools",
   "main": "src/index.ts",
   "types": "src/index.ts",
   "exports": {
@@ -18,12 +18,12 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@OneCoach/lib-core": "workspace:*",
-    "@OneCoach/lib-import-core": "workspace:*",
-    "@OneCoach/lib-exercise": "workspace:*",
-    "@OneCoach/lib-food": "workspace:*",
-    "@OneCoach/schemas": "workspace:*",
-    "@OneCoach/types": "workspace:*",
+    "@onecoach/lib-core": "workspace:*",
+    "@onecoach/lib-import-core": "workspace:*",
+    "@onecoach/lib-exercise": "workspace:*",
+    "@onecoach/lib-food": "workspace:*",
+    "@onecoach/schemas": "workspace:*",
+    "@onecoach/types": "workspace:*",
     "@modelcontextprotocol/sdk": "^1.23.0",
     "@prisma/client": "7.0.0",
     "ai": "6.0.0-beta.124",

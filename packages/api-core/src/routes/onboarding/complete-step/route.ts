@@ -5,11 +5,11 @@
  */
 
 import { NextResponse } from 'next/server';
-import { requireAuth } from '@OneCoach/lib-core/auth/guards';
-import { onboardingService, TOTAL_STEPS, ONBOARDING_STEPS } from '@OneCoach/lib-core';
-import { saveOnboardingProfile } from '@OneCoach/lib-core/user/onboarding-profile.service';
+import { requireAuth } from '@onecoach/lib-core/auth/guards';
+import { onboardingService, TOTAL_STEPS, ONBOARDING_STEPS } from '@onecoach/lib-core';
+import { saveOnboardingProfile } from '@onecoach/lib-core/user/onboarding-profile.service';
 import { z } from 'zod';
-import { logError, getErrorMessage } from '@OneCoach/lib-shared/utils/error';
+import { logError, getErrorMessage } from '@onecoach/lib-shared/utils/error';
 
 export const dynamic = 'force-dynamic';
 

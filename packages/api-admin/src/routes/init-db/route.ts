@@ -6,7 +6,7 @@
  */
 
 import { NextResponse } from 'next/server';
-import { prisma } from '@OneCoach/lib-core/prisma';
+import { prisma } from '@onecoach/lib-core/prisma';
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';

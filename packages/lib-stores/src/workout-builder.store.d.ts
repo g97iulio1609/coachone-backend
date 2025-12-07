@@ -7,7 +7,7 @@
  * TODO: Refactor per dependency injection di supabase client e workout API
  */
 import { type StoreApi, type UseBoundStore } from 'zustand';
-import type { WorkoutProgram } from '@OneCoach/types';
+import type { WorkoutProgram } from '@onecoach/types';
 interface WorkoutBuilderState {
     activeProgram: WorkoutProgram | null;
     isLoading: boolean;

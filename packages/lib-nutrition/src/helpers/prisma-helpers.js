@@ -8,7 +8,7 @@
  * because Prisma's Json type is a branded type that requires explicit conversion.
  * These helpers ensure type safety at the call site while maintaining Prisma compatibility.
  */
-import { Prisma } from '@OneCoach/types';
+import { Prisma } from '@onecoach/types';
 /**
  * Convert Macros to Prisma Json format (type-safe)
  *

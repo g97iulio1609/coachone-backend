@@ -2,7 +2,7 @@
  * Food Items Seed Data
  * Catalogo alimenti comuni italiani con traduzioni
  */
-import { createId } from '@OneCoach/lib-shared/utils/id-generator';
+import { createId } from '@onecoach/lib-shared/utils/id-generator';
 /**
  * Calculate main macro from macros
  */

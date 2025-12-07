@@ -17,22 +17,22 @@
  * 4. Restituisce mappa di foodItemId validi
  */
 
-import { FoodService, normalizeFoodName } from '@OneCoach/lib-food';
-import type { Macros, NutritionPlan } from '@OneCoach/types';
-import { prisma } from '@OneCoach/lib-core/prisma';
-import { generateId } from '@OneCoach/lib-shared/id-generator';
-import { SUPPORTED_FOOD_LOCALES } from '@OneCoach/constants';
+import { FoodService, normalizeFoodName } from '@onecoach/lib-food';
+import type { Macros, NutritionPlan } from '@onecoach/types';
+import { prisma } from '@onecoach/lib-core/prisma';
+import { generateId } from '@onecoach/lib-shared/id-generator';
+import { SUPPORTED_FOOD_LOCALES } from '@onecoach/constants';
 import { Prisma } from '@prisma/client';
 import {
   type AIGeneratedFood,
   safeValidateAIGeneratedFood,
   aiGeneratedFoodToFoodToCreate,
   AI_FOOD_DEFAULTS,
-} from '@OneCoach/schemas';
+} from '@onecoach/schemas';
 import {
   calculateMainMacro,
   type MainMacro,
-} from '@OneCoach/lib-shared/utils/main-macro-calculator';
+} from '@onecoach/lib-shared/utils/main-macro-calculator';
 
 // ============================================================================
 // CONSTANTS

@@ -7,9 +7,9 @@
  * @module lib-workout/services/workout-import
  */
 
-import { prisma } from '@OneCoach/lib-core/prisma';
-import { createId } from '@OneCoach/lib-shared/utils';
-import { logger as baseLogger } from '@OneCoach/lib-shared/utils/logger';
+import { prisma } from '@onecoach/lib-core/prisma';
+import { createId } from '@onecoach/lib-shared/utils';
+import { logger as baseLogger } from '@onecoach/lib-shared/utils/logger';
 import type {
   WorkoutProgram,
   WorkoutWeek,
@@ -17,7 +17,7 @@ import type {
   Exercise,
   SetGroup,
   ExerciseSet,
-} from '@OneCoach/types';
+} from '@onecoach/types';
 
 import type {
   ImportFile,

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import type { McpTool, McpContext } from '../../types';
-import { foodService } from '@OneCoach/lib-food';
-import { foodQuerySchema } from '@OneCoach/schemas';
+import { foodService } from '@onecoach/lib-food';
+import { foodQuerySchema } from '@onecoach/schemas';
 
 const readParameters = foodQuerySchema.extend({
   id: z.string().optional(),

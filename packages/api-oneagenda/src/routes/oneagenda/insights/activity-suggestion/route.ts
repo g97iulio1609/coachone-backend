@@ -5,10 +5,10 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { auth } from '@OneCoach/lib-core/auth';
-import { IntelligentAssistantService, TaskStatus } from '@OneCoach/oneagenda-core';
-import { oneagendaDB } from '@OneCoach/oneagenda-core/db';
-import { logger } from '@OneCoach/lib-shared/utils/logger';
+import { auth } from '@onecoach/lib-core/auth';
+import { IntelligentAssistantService, TaskStatus } from '@onecoach/oneagenda-core';
+import { oneagendaDB } from '@onecoach/oneagenda-core/db';
+import { logger } from '@onecoach/lib-shared/utils/logger';
 
 /**
  * POST /api/oneagenda/insights/activity-suggestion

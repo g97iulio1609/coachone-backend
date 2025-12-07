@@ -7,8 +7,8 @@
  * Principi: KISS, SOLID, DRY, YAGNI
  */
 
-import { logError } from '@OneCoach/lib-shared/utils/error';
-import { logger } from '@OneCoach/lib-shared/utils/logger';
+import { logError } from '@onecoach/lib-shared/utils/error';
+import { logger } from '@onecoach/lib-shared/utils/logger';
 
 export type VercelEnvironment = 'production' | 'preview' | 'development';
 

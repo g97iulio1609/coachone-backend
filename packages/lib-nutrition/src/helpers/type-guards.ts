@@ -5,7 +5,7 @@
  * Used to validate Json fields from Prisma and unknown data from external sources.
  */
 
-import type { Macros, NutritionWeek, NutritionDay, Meal, Food, PersonalizedPlan, Adaptations } from '@OneCoach/types';
+import type { Macros, NutritionWeek, NutritionDay, Meal, Food, PersonalizedPlan, Adaptations } from '@onecoach/types';
 import {
   MacrosSchema,
   CompleteMacrosSchema,
@@ -13,7 +13,7 @@ import {
   MealSchema,
   NutritionDaySchema,
   NutritionWeekSchema,
-} from '@OneCoach/schemas';
+} from '@onecoach/schemas';
 
 /**
  * Macros type guard

@@ -4,7 +4,7 @@
  * Clean mapping functions between Prisma entities and domain types.
  * Follows SOLID principles: Single Responsibility for mapping logic.
  */
-import type { WorkoutSession } from '@OneCoach/types';
+import type { WorkoutSession } from '@onecoach/types';
 import type { workout_sessions } from '@prisma/client';
 /**
  * Maps Prisma workout_sessions entity to domain WorkoutSession

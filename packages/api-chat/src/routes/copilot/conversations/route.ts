@@ -5,8 +5,8 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getCurrentUser } from '@OneCoach/lib-core/auth/session';
-import { prisma } from '@OneCoach/lib-core/prisma';
+import { getCurrentUser } from '@onecoach/lib-core/auth/session';
+import { prisma } from '@onecoach/lib-core/prisma';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';

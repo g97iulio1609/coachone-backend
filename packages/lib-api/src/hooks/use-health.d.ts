@@ -9,7 +9,7 @@ import { type HealthSyncRequest } from '../queries/health.queries';
  *
  * Automatically syncs with Zustand store
  */
-export declare function useHealthSummaryQuery(): import("@tanstack/react-query").UseQueryResult<import("@OneCoach/lib-stores").HealthSummary, Error>;
+export declare function useHealthSummaryQuery(): import("@tanstack/react-query").UseQueryResult<import("@onecoach/lib-stores").HealthSummary, Error>;
 /**
  * Hook to sync health data
  *
@@ -19,4 +19,4 @@ export declare function useSyncHealthData(): import("@tanstack/react-query").Use
 /**
  * Hook to check if health sync is in progress
  */
-export declare function useHealthSyncStatus(): import("@OneCoach/lib-stores").SyncStatus;
+export declare function useHealthSyncStatus(): import("@onecoach/lib-stores").SyncStatus;

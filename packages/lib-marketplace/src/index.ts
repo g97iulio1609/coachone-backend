@@ -1,8 +1,8 @@
 /**
- * @OneCoach/lib-marketplace
+ * @onecoach/lib-marketplace
  *
  * Servizi per il dominio marketplace
- * Implementa contratti da @OneCoach/contracts
+ * Implementa contratti da @onecoach/contracts
  */
 
 export * from './affiliate.service';

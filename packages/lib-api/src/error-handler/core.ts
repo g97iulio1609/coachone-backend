@@ -2,7 +2,7 @@
  * Error Handler Core - Cross-Platform Interfaces
  *
  * Re-exports from lib-shared for backwards compatibility.
- * The actual implementation now lives in @OneCoach/lib-shared/utils/error/core-types
+ * The actual implementation now lives in @onecoach/lib-shared/utils/error/core-types
  * to avoid cyclic dependencies.
  */
 
@@ -12,12 +12,12 @@ export type {
   CreateErrorResponseParams,
   ErrorCode,
   HttpStatus,
-} from '@OneCoach/lib-shared/utils/error/core-types';
+} from '@onecoach/lib-shared/utils/error/core-types';
 
 export {
   createErrorResponseObject,
   createApiResponseObject,
   ERROR_CODES,
   HTTP_STATUS,
-} from '@OneCoach/lib-shared/utils/error/core-types';
+} from '@onecoach/lib-shared/utils/error/core-types';
 

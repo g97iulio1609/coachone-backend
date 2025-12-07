@@ -9,7 +9,7 @@
  * which may be used in client components. The functions themselves are only executed
  * server-side when called.
  */
-import type { WorkoutProgram } from '@OneCoach/types';
+import type { WorkoutProgram } from '@onecoach/types';
 /**
  * Normalize workout payload and convert goal names to IDs (async version)
  * Used in backend where we need to ensure goals are saved as IDs

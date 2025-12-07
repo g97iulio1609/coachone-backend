@@ -18,7 +18,7 @@ export * from './utils/dialog-global';
 export * from './sidebar.store';
 export * from './workout-builder.store';
 
-// Theme exports from @OneCoach/lib-theme (single source of truth)
+// Theme exports from @onecoach/lib-theme (single source of truth)
 export {
   useTheme,
   useSystemThemeSync,
@@ -29,14 +29,14 @@ export {
   cn,
   darkModeClasses,
   THEME_STORAGE_KEY,
-} from '@OneCoach/lib-theme';
+} from '@onecoach/lib-theme';
 
 export type {
   ThemePreference,
   ResolvedTheme,
   ThemeColors,
   ThemeProviderProps,
-} from '@OneCoach/lib-theme';
+} from '@onecoach/lib-theme';
 
 export {
   useHealthStore,

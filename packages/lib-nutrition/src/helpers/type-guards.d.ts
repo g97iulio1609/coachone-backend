@@ -4,7 +4,7 @@
  * Type-safe runtime validation for nutrition data structures.
  * Used to validate Json fields from Prisma and unknown data from external sources.
  */
-import type { Macros, NutritionWeek, NutritionDay, Meal, Food } from '@OneCoach/types';
+import type { Macros, NutritionWeek, NutritionDay, Meal, Food } from '@onecoach/types';
 /**
  * Macros type guard
  */

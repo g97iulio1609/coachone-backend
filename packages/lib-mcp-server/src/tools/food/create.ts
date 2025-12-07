@@ -1,6 +1,6 @@
 import type { McpTool, McpContext } from '../../types';
-import { foodService } from '@OneCoach/lib-food';
-import { createFoodSchema } from '@OneCoach/schemas';
+import { foodService } from '@onecoach/lib-food';
+import { createFoodSchema } from '@onecoach/schemas';
 
 export const foodCreateTool: McpTool = {
   name: 'food_create',

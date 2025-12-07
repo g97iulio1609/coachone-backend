@@ -4,9 +4,9 @@
  * CRUD operations per nutrition plans
  * Implementa INutritionService contract
  */
-import type { NutritionPlan, ApiResponse } from '@OneCoach/types';
-import type { INutritionService } from '@OneCoach/contracts';
-import type { IStorageService } from '@OneCoach/lib-shared';
+import type { NutritionPlan, ApiResponse } from '@onecoach/types';
+import type { INutritionService } from '@onecoach/contracts';
+import type { IStorageService } from '@onecoach/lib-shared';
 /**
  * Implementazione Nutrition Service
  */

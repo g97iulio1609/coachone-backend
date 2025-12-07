@@ -4,7 +4,7 @@
  * Centralized service for normalizing workout programs and calculating weights
  * based on user's 1RM. Follows SOLID principles with single responsibility.
  */
-import { OneRepMaxService } from '@OneCoach/lib-exercise/one-rep-max.service';
+import { OneRepMaxService } from '@onecoach/lib-exercise/one-rep-max.service';
 import { normalizeAgentWorkoutPayload } from './helpers/program-server-transform';
 import { calculateSetWeights } from './workout-weight-calculator.service';
 import { getExerciseSets, generateSetGroupId } from './helpers/utils/set-group-helpers';

@@ -1,4 +1,4 @@
-import type { Exercise, WorkoutDay, WorkoutProgram, WorkoutWeek, ExerciseSet } from '@OneCoach/types';
+import type { Exercise, WorkoutDay, WorkoutProgram, WorkoutWeek, ExerciseSet } from '@onecoach/types';
 export declare function createEmptyExercise(): Exercise;
 export declare function createEmptyDay(_weekNumber: number, dayNumber: number): WorkoutDay;
 export declare function createEmptyWeek(weekNumber: number): WorkoutWeek;
@@ -38,8 +38,8 @@ export declare function prepareProgramForPersistence(program: WorkoutProgram): {
                 id: string;
                 name: string;
                 description: string;
-                category: import("@OneCoach/types").ExerciseCategory;
-                muscleGroups: import("@OneCoach/types").MuscleGroup[];
+                category: import("@onecoach/types").ExerciseCategory;
+                muscleGroups: import("@onecoach/types").MuscleGroup[];
                 notes: string;
                 type: string;
                 repRange: string;
@@ -66,7 +66,7 @@ export declare function prepareProgramForPersistence(program: WorkoutProgram): {
                         intensityPercent: number | null;
                         rpe: number | null;
                     };
-                    progression: import("@OneCoach/types").SetProgression | null;
+                    progression: import("@onecoach/types").SetProgression | null;
                     sets: {
                         reps: number | null;
                         duration: number | null;

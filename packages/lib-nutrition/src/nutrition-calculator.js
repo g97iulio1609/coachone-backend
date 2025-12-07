@@ -1,5 +1,5 @@
 /**
- * @OneCoach/lib-nutrition - Nutrition Calculator (SSOT)
+ * @onecoach/lib-nutrition - Nutrition Calculator (SSOT)
  *
  * Single Source of Truth per tutti i calcoli nutrizionali.
  * Questo modulo centralizza:

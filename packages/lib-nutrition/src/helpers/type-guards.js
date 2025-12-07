@@ -11,7 +11,7 @@ import {
   MealSchema,
   NutritionDaySchema,
   NutritionWeekSchema,
-} from '@OneCoach/schemas';
+} from '@onecoach/schemas';
 /**
  * Macros type guard
  */

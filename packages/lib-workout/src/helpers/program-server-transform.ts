@@ -10,22 +10,22 @@
  * server-side when called.
  */
 
-import { DifficultyLevel, WorkoutStatus } from '@OneCoach/types/client';
-import type { WorkoutProgram } from '@OneCoach/types';
-import { generateId } from '@OneCoach/lib-shared/utils/id-generator';
+import { DifficultyLevel, WorkoutStatus } from '@onecoach/types/client';
+import type { WorkoutProgram } from '@onecoach/types';
+import { generateId } from '@onecoach/lib-shared/utils/id-generator';
 import {
   ensureArrayOfStrings,
   ensureNumber,
   ensureString,
-} from '@OneCoach/lib-workout/utils/type-helpers';
-import { convertWorkoutGoalNamesToIds } from '@OneCoach/lib-metadata/metadata-translation.service';
+} from '@onecoach/lib-workout/utils/type-helpers';
+import { convertWorkoutGoalNamesToIds } from '@onecoach/lib-metadata/metadata-translation.service';
 import {
   normalizeDifficulty,
   normalizeStatus,
   normalizeWeek,
   normalizeMetadata,
-} from '@OneCoach/lib-workout/normalizers/workout-normalizer';
-import { createEmptyWeek } from '@OneCoach/lib-workout/program-transform';
+} from '@onecoach/lib-workout/normalizers/workout-normalizer';
+import { createEmptyWeek } from '@onecoach/lib-workout/program-transform';
 
 type RawJson = Record<string, unknown>;
 

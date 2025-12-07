@@ -5,8 +5,8 @@
  */
 
 import { NextResponse } from 'next/server';
-import { PolicyService } from '@OneCoach/lib-core/policy.service';
-import { logError, mapErrorToApiResponse } from '@OneCoach/lib-shared/utils/error';
+import { PolicyService } from '@onecoach/lib-core/policy.service';
+import { logError, mapErrorToApiResponse } from '@onecoach/lib-shared/utils/error';
 
 export const dynamic = 'force-dynamic';
 

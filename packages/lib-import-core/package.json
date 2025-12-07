@@ -1,5 +1,5 @@
 {
-  "name": "@OneCoach/lib-import-core",
+  "name": "@onecoach/lib-import-core",
   "version": "0.0.0",
   "description": "Core utilities condivisi per i flussi di import AI multi-dominio",
   "main": "src/index.ts",

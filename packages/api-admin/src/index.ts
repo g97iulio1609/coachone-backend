@@ -1,5 +1,5 @@
 /**
- * @OneCoach/api-admin
+ * @onecoach/api-admin
  *
  * API routes per admin (users, feature-flags, policies, invitations, metadata, affiliates, promotions, config, etc.)
  *

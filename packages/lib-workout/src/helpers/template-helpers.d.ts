@@ -6,7 +6,7 @@
  *
  * SSOT: Usa SOLO setGroups per le serie, non exercise.sets legacy.
  */
-import type { WorkoutTemplate, WorkoutTemplateType, Exercise, WorkoutDay, WorkoutWeek } from '@OneCoach/types';
+import type { WorkoutTemplate, WorkoutTemplateType, Exercise, WorkoutDay, WorkoutWeek } from '@onecoach/types';
 /**
  * Estrae dati template in base al tipo
  */

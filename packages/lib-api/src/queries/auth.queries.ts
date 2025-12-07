@@ -4,7 +4,7 @@
  * Standardized query keys and query functions for authentication
  */
 
-import type { User } from '@OneCoach/lib-stores/auth.store';
+import type { User } from '@onecoach/lib-stores/auth.store';
 
 /**
  * Login credentials

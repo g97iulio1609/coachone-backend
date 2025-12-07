@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import type { McpTool, McpContext } from '../../types';
-import { FoodAdminService, foodImportSchema } from '@OneCoach/lib-food/food-admin.service';
+import { FoodAdminService, foodImportSchema } from '@onecoach/lib-food/food-admin.service';
 
 const batchCreateParameters = z.object({
   items: z.array(foodImportSchema).max(100),

@@ -5,9 +5,9 @@
  * Segue principi KISS, DRY, SOLID
  */
 import { createEmptyDay, createEmptyWeek } from './plan-transform';
-import { getNutritionPlanTotalDays } from '@OneCoach/lib-shared/utils/nutrition-plan-helpers';
-import { calculateMacros, recalculateDay } from '@OneCoach/lib-shared/utils/macro-calculations';
-import { generateId } from '@OneCoach/lib-shared/utils/id-generator';
+import { getNutritionPlanTotalDays } from '@onecoach/lib-shared/utils/nutrition-plan-helpers';
+import { calculateMacros, recalculateDay } from '@onecoach/lib-shared/utils/macro-calculations';
+import { generateId } from '@onecoach/lib-shared/utils/id-generator';
 /**
  * Aggiunge una nuova settimana al piano
  */

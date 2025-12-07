@@ -1,12 +1,12 @@
 import bcrypt from 'bcryptjs';
-import { createId } from '@OneCoach/lib-shared/utils/id-generator';
+import { createId } from '@onecoach/lib-shared/utils/id-generator';
 // Stable UUIDs for seed data (idempotent)
 // Generated once and kept constant to allow repeated seeding
 const SEED_PLAN_WORKOUT_ID = '00000000-0000-4000-8000-000000000001';
 const SEED_PLAN_NUTRITION_ID = '00000000-0000-4000-8000-000000000002';
 export async function seedMarketplace(prisma) {
   // Create coach
-  const coachEmail = 'coach@OneCoach.com';
+  const coachEmail = 'coach@onecoach.com';
   const coachPassword = await bcrypt.hash('Coach123!', 10);
   const coach = await prisma.users.upsert({
     where: { email: coachEmail },

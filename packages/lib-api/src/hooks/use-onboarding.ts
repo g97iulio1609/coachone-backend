@@ -10,7 +10,7 @@
 import { useEffect } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { onboardingKeys, onboardingQueries } from '../queries/onboarding.queries';
-import { useOnboardingStore } from '@OneCoach/lib-stores/onboarding';
+import { useOnboardingStore } from '@onecoach/lib-stores/onboarding';
 import type { CompleteStepPayload, GoToStepPayload } from '../queries/onboarding.queries';
 
 /**

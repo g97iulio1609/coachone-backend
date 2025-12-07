@@ -7,18 +7,18 @@
  * NOMENCLATURA:
  * - catalogExerciseId: ID dell'esercizio nel catalogo (exercises.id)
  *
- * La validazione usa lo schema Zod centralizzato da @OneCoach/schemas
+ * La validazione usa lo schema Zod centralizzato da @onecoach/schemas
  */
 
-import { prisma } from '@OneCoach/lib-core/prisma';
+import { prisma } from '@onecoach/lib-core/prisma';
 import type {
   UserOneRepMax,
   UserOneRepMaxWithExercise,
   UserOneRepMaxVersion,
-} from '@OneCoach/types';
+} from '@onecoach/types';
 import { Prisma } from '@prisma/client';
-import { createId } from '@OneCoach/lib-shared';
-import { OneRepMaxInputSchema, type OneRepMaxInput } from '@OneCoach/schemas';
+import { createId } from '@onecoach/lib-shared';
+import { OneRepMaxInputSchema, type OneRepMaxInput } from '@onecoach/schemas';
 
 /**
  * Input per creare/aggiornare un massimale

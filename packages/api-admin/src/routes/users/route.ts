@@ -6,12 +6,12 @@
  */
 
 import { NextResponse } from 'next/server';
-import { requireAdmin, requireSuperAdmin } from '@OneCoach/lib-core/auth/guards';
-import { prisma } from '@OneCoach/lib-core/prisma';
-import { logError, mapErrorToApiResponse } from '@OneCoach/lib-shared/utils/error';
+import { requireAdmin, requireSuperAdmin } from '@onecoach/lib-core/auth/guards';
+import { prisma } from '@onecoach/lib-core/prisma';
+import { logError, mapErrorToApiResponse } from '@onecoach/lib-shared/utils/error';
 import bcrypt from 'bcryptjs';
-import { generateUUID } from '@OneCoach/lib-shared/id-generator';
-import type { UserRole, UserStatus } from '@OneCoach/types';
+import { generateUUID } from '@onecoach/lib-shared/id-generator';
+import type { UserRole, UserStatus } from '@onecoach/types';
 
 export const dynamic = 'force-dynamic';
 

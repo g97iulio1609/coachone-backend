@@ -6,7 +6,7 @@
  * 2. BM25 search (relevance-based)
  * 3. Fuzzy match (Levenshtein distance)
  */
-import type { FoodItem, LabelExtractionResult } from '@OneCoach/types';
+import type { FoodItem, LabelExtractionResult } from '@onecoach/types';
 export declare class FoodMatchingService {
   /**
    * Trova o crea alimento usando sistema a 3 livelli

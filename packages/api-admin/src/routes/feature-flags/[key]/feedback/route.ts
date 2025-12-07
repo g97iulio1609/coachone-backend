@@ -6,9 +6,9 @@
  */
 
 import { NextResponse } from 'next/server';
-import { requireAdmin, requireAuth } from '@OneCoach/lib-core/auth/guards';
+import { requireAdmin, requireAuth } from '@onecoach/lib-core/auth/guards';
 import { featureFlagsService } from '@/lib/services/feature-flags.service';
-import { logError, mapErrorToApiResponse } from '@OneCoach/lib-shared/utils/error';
+import { logError, mapErrorToApiResponse } from '@onecoach/lib-shared/utils/error';
 
 export const dynamic = 'force-dynamic';
 

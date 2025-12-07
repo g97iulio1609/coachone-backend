@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { requireAdmin, requireAuth } from '@OneCoach/lib-core/auth/guards';
-import { ExerciseService } from '@OneCoach/lib-exercise.service';
-import { extractSearchParams } from '@OneCoach/lib-shared/utils';
-import { exerciseDetailQuerySchema, updateExerciseSchema } from '@OneCoach/schemas/exercise.schema';
-import { ExerciseApprovalStatus } from '@OneCoach/types';
-import { logError, mapErrorToApiResponse } from '@OneCoach/lib-shared/utils/error';
+import { requireAdmin, requireAuth } from '@onecoach/lib-core/auth/guards';
+import { ExerciseService } from '@onecoach/lib-exercise.service';
+import { extractSearchParams } from '@onecoach/lib-shared/utils';
+import { exerciseDetailQuerySchema, updateExerciseSchema } from '@onecoach/schemas/exercise.schema';
+import { ExerciseApprovalStatus } from '@onecoach/types';
+import { logError, mapErrorToApiResponse } from '@onecoach/lib-shared/utils/error';
 
 export const dynamic = 'force-dynamic';
 

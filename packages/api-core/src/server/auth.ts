@@ -1,3 +1,3 @@
-import { auth } from '@OneCoach/lib-core/auth/config';
+import { auth } from '@onecoach/lib-core/auth/config';
 
 export { auth };

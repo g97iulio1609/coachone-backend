@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import { requireAuth } from '@OneCoach/lib-core/auth/guards';
-import { ExerciseService } from '@OneCoach/lib-exercise.service';
+import { requireAuth } from '@onecoach/lib-core/auth/guards';
+import { ExerciseService } from '@onecoach/lib-exercise.service';
 
 export const dynamic = 'force-dynamic';
 

@@ -21,7 +21,7 @@ import type {
   PlanningProgress,
   PlanningPlanParams,
   TaskStatus,
-} from '@OneCoach/types';
+} from '@onecoach/types';
 /**
  * Planning Service v2
  * Gestisce piani di lavoro multi-task con persistenza database

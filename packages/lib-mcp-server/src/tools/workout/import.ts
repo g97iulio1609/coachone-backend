@@ -19,7 +19,7 @@ import {
   type ImportProgress,
   type AIParseContext,
   type ImportedWorkoutProgram,
-} from '@OneCoach/lib-workout';
+} from '@onecoach/lib-workout';
 import { randomUUID } from 'crypto';
 
 /**

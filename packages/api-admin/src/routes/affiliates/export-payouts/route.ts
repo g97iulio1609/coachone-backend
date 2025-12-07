@@ -5,9 +5,9 @@
  */
 
 import { NextResponse } from 'next/server';
-import { requireAdmin } from '@OneCoach/lib-core/auth/guards';
-import { prisma } from '@OneCoach/lib-core/prisma';
-import { AffiliateRewardStatus, Prisma } from '@OneCoach/types';
+import { requireAdmin } from '@onecoach/lib-core/auth/guards';
+import { prisma } from '@onecoach/lib-core/prisma';
+import { AffiliateRewardStatus, Prisma } from '@onecoach/types';
 
 export const dynamic = 'force-dynamic';
 

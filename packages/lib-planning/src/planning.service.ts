@@ -14,7 +14,7 @@
  * @version 2.0.0 - AI SDK v6 Integration
  */
 
-import { prisma } from '@OneCoach/lib-core/prisma';
+import { prisma } from '@onecoach/lib-core/prisma';
 import { Prisma } from '@prisma/client';
 import type { $Enums } from '@prisma/client';
 import type {
@@ -25,7 +25,7 @@ import type {
   PlanningProgress,
   PlanningPlanParams,
   TaskStatus,
-} from '@OneCoach/types';
+} from '@onecoach/types';
 
 // Type aliases for Prisma models with their relations
 type DbSubSubTask = Prisma.planning_sub_sub_tasksGetPayload<{}>;
@@ -720,7 +720,7 @@ export class PlanningServiceV2 {
     mealsPerDay: number
   ): Promise<void> {
     const { inferMealType, getDefaultMealName } =
-      await import('@OneCoach/lib-ai-agents/schemas/meal-schemas');
+      await import('@onecoach/lib-ai-agents/schemas/meal-schemas');
 
     for (let mealNumber = 1; mealNumber <= mealsPerDay; mealNumber++) {
       const mealType = inferMealType(mealNumber);

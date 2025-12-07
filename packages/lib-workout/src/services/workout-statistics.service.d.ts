@@ -1,4 +1,4 @@
-import type { WorkoutProgram } from '@OneCoach/types';
+import type { WorkoutProgram } from '@onecoach/types';
 export interface WeeklyStats {
     week: number;
     volumeLoad: number;

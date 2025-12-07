@@ -1,5 +1,5 @@
 {
-  "name": "@OneCoach/lib-config",
+  "name": "@onecoach/lib-config",
   "version": "0.0.0",
   "description": "Environment variables e configurazione",
   "main": "src/index.ts",

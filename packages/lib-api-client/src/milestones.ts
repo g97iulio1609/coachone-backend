@@ -1,5 +1,5 @@
 import { apiClient } from './client';
-import type { Milestone } from '@OneCoach/types';
+import type { Milestone } from '@onecoach/types';
 
 export interface MilestoneResponse {
   milestone: Milestone;

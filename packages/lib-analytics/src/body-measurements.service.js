@@ -5,7 +5,7 @@
  * Follows SOLID principles with single responsibility.
  */
 import 'server-only';
-import { prisma } from '@OneCoach/lib-core/prisma';
+import { prisma } from '@onecoach/lib-core/prisma';
 import { Prisma } from '@prisma/client';
 // Decimal is available from Prisma namespace
 const { Decimal } = Prisma;

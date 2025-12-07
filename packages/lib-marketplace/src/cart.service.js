@@ -4,8 +4,8 @@
  * Gestione carrello, totali, promozioni e offerte cross/upsell.
  * Segue principi KISS/SOLID: una singola responsabilità per operazioni di cart.
  */
-import { prisma } from '@OneCoach/lib-core/prisma';
-import { findCreditPackOption } from '@OneCoach/constants/credit-packs';
+import { prisma } from '@onecoach/lib-core/prisma';
+import { findCreditPackOption } from '@onecoach/constants/credit-packs';
 import { marketplaceService } from './marketplace.service';
 import { PromotionService } from './promotion.service';
 class CartService {

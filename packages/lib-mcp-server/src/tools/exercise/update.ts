@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import type { McpTool, McpContext } from '../../types';
-import { exerciseService } from '@OneCoach/lib-exercise';
-import { updateExerciseSchema } from '@OneCoach/schemas';
+import { exerciseService } from '@onecoach/lib-exercise';
+import { updateExerciseSchema } from '@onecoach/schemas';
 
 const updateParameters = z.object({
   id: z.string(),

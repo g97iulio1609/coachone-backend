@@ -22,9 +22,9 @@ import {
   useHealthSync,
   useHealthSummary,
   type HealthSummary,
-} from '@OneCoach/lib-stores/health.store';
+} from '@onecoach/lib-stores/health.store';
 import { useSyncHealthData, useHealthSummaryQuery } from './use-health';
-import { useAuthStore } from '@OneCoach/lib-stores/auth.store';
+import { useAuthStore } from '@onecoach/lib-stores/auth.store';
 import type { HealthDataType } from '../queries/health.queries';
 import {
   APPLE_HEALTH_PERMISSIONS,
@@ -32,9 +32,9 @@ import {
   HEALTH_DATA_TYPES,
   DEFAULT_SYNC_DAYS,
   HEALTH_STORAGE_KEYS,
-} from '@OneCoach/constants/health.config';
-import { logger } from '@OneCoach/lib-shared/utils/logger';
-import { getErrorMessage } from '@OneCoach/lib-shared/utils/error';
+} from '@onecoach/constants/health.config';
+import { logger } from '@onecoach/lib-shared/utils/logger';
+import { getErrorMessage } from '@onecoach/lib-shared/utils/error';
 
 /**
  * Hook to initialize and manage Health Kit/Connect

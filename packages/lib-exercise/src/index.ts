@@ -1,8 +1,8 @@
 /**
- * @OneCoach/lib-exercise
+ * @onecoach/lib-exercise
  *
  * Servizi per il dominio esercizi
- * Implementa contratti da @OneCoach/contracts
+ * Implementa contratti da @onecoach/contracts
  */
 
 export * from './exercise.service';

@@ -5,23 +5,23 @@
  * - Import/export in formato JSON con deduplica
  * - Operazioni batch (CRUD) e automazioni AI
  */
-import { prisma } from '@OneCoach/lib-core';
+import { prisma } from '@onecoach/lib-core';
 import { ExerciseService } from './exercise.service';
 import { ExerciseApprovalStatus, ExerciseRelationType, MuscleRole, Prisma } from '@prisma/client';
-import { toSlug } from '@OneCoach/lib-shared';
-import { createExerciseSchema, updateExerciseSchema, } from '@OneCoach/schemas';
+import { toSlug } from '@onecoach/lib-shared';
+import { createExerciseSchema, updateExerciseSchema, } from '@onecoach/schemas';
 import { getModelByTier } from '@onecoach/lib-ai-agents/core/providers';
 import { createCustomModel } from '@onecoach/lib-ai-agents/utils/model-factory';
 import { AIProviderConfigService } from '@onecoach/lib-ai';
 import { streamText, Output, stepCountIs } from 'ai';
 import { parseJsonResponse } from '@onecoach/lib-ai-agents/utils/json-parser';
 import { z } from 'zod';
-import { ExerciseGenerationAgent, createAgentInstance, createAIAgentConfig, } from '@OneCoach/one-agent';
-import { AIConfigService } from '@OneCoach/lib-core';
-import { processBatchesInParallel } from '@OneCoach/lib-shared/batch-processing';
-import { normalizeUrl } from '@OneCoach/lib-shared/url-normalizer';
-import { getAllMetadataForLocale, validateExerciseTypeByName } from '@OneCoach/lib-metadata';
-import { TOKEN_LIMITS } from '@OneCoach/constants/models';
+import { ExerciseGenerationAgent, createAgentInstance, createAIAgentConfig, } from '@onecoach/one-agent';
+import { AIConfigService } from '@onecoach/lib-core';
+import { processBatchesInParallel } from '@onecoach/lib-shared/batch-processing';
+import { normalizeUrl } from '@onecoach/lib-shared/url-normalizer';
+import { getAllMetadataForLocale, validateExerciseTypeByName } from '@onecoach/lib-metadata';
+import { TOKEN_LIMITS } from '@onecoach/constants/models';
 const DEFAULT_LOCALE = 'en';
 const DEFAULT_APPROVED_STATUS = (ExerciseApprovalStatus?.APPROVED ??
     'APPROVED');

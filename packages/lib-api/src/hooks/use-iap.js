@@ -7,8 +7,8 @@
 import { useEffect } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { iapKeys, iapQueries, } from '../queries/iap.queries';
-import { useIAPStore } from '@OneCoach/lib-stores/iap.store';
-import { getErrorMessage } from '@OneCoach/lib-shared/utils/error';
+import { useIAPStore } from '@onecoach/lib-stores/iap.store';
+import { getErrorMessage } from '@onecoach/lib-shared/utils/error';
 /**
  * Hook to get subscription status
  *

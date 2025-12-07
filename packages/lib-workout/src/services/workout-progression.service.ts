@@ -1,4 +1,4 @@
-import type { WorkoutProgram, Exercise, ExerciseSet, SetGroup } from '@OneCoach/types';
+import type { WorkoutProgram, Exercise, ExerciseSet, SetGroup } from '@onecoach/types';
 import {
   calculateWeightFromIntensity,
   calculateIntensityFromWeight,

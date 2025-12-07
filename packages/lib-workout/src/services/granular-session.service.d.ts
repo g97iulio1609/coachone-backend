@@ -13,7 +13,7 @@
  *
  * @module lib-workout/services/granular-session.service
  */
-import type { WorkoutProgram, SetGroup } from '@OneCoach/types';
+import type { WorkoutProgram, SetGroup } from '@onecoach/types';
 /**
  * Target identifier for a specific location in the program
  */

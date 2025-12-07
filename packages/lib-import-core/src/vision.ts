@@ -1,6 +1,6 @@
 import { Output, streamText, type CoreMessage } from 'ai';
-import { parseJsonResponse } from '@OneCoach/lib-ai-utils/json-parser';
-import { createModel } from '@OneCoach/lib-ai-utils/model-factory';
+import { parseJsonResponse } from '@onecoach/lib-ai-utils/json-parser';
+import { createModel } from '@onecoach/lib-ai-utils/model-factory';
 import type { VisionParseParams } from './types';
 
 function base64ToDataUrl(base64: string, mimeType: string): string {

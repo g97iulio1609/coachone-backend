@@ -12,7 +12,7 @@ import Google from 'next-auth/providers/google';
 import Apple from 'next-auth/providers/apple';
 import bcrypt from 'bcryptjs';
 import { prisma } from '../prisma';
-import { generateId, generateUUID } from '@OneCoach/lib-shared/id-generator';
+import { generateId, generateUUID } from '@onecoach/lib-shared/id-generator';
 import type { UserRole } from '@prisma/client';
 
 // Production-safe: require explicit env vars, no hardcoded defaults
@@ -37,11 +37,11 @@ const ENABLE_AUTO_PROVISION =
 // Defaults solo per development
 const DEFAULT_ADMIN_EMAIL = isProduction
   ? ''
-  : (process.env.ADMIN_EMAIL ?? 'admin@OneCoach.com').trim().toLowerCase();
+  : (process.env.ADMIN_EMAIL ?? 'admin@onecoach.com').trim().toLowerCase();
 const DEFAULT_ADMIN_PASSWORD = isProduction
   ? ''
   : (process.env.ADMIN_DEFAULT_PASSWORD ?? 'Admin123!').trim();
-const DEFAULT_ADMIN_NAME = process.env.ADMIN_DEFAULT_NAME?.trim() || 'Admin OneCoach';
+const DEFAULT_ADMIN_NAME = process.env.ADMIN_DEFAULT_NAME?.trim() || 'Admin onecoach';
 const DEFAULT_ADMIN_CREDITS = Number(process.env.ADMIN_DEFAULT_CREDITS ?? 10000) || 10000;
 
 // Validazione AUTH_SECRET (NextAuth v5 usa AUTH_SECRET, con fallback a NEXTAUTH_SECRET)
@@ -257,7 +257,7 @@ const nextAuth: NextAuthReturn = NextAuth({
               }
 
               const superAdminName =
-                process.env.SUPER_ADMIN_DEFAULT_NAME?.trim() || 'Super Admin OneCoach';
+                process.env.SUPER_ADMIN_DEFAULT_NAME?.trim() || 'Super Admin onecoach';
               const superAdminCredits =
                 Number(process.env.SUPER_ADMIN_DEFAULT_CREDITS ?? 10000) || 10000;
 
@@ -295,7 +295,7 @@ const nextAuth: NextAuthReturn = NextAuth({
               console.warn('⚙️ Auto-provisioning Admin in production');
             }
 
-            const adminName = process.env.ADMIN_DEFAULT_NAME?.trim() || 'Admin OneCoach';
+            const adminName = process.env.ADMIN_DEFAULT_NAME?.trim() || 'Admin onecoach';
             const adminCredits = Number(process.env.ADMIN_DEFAULT_CREDITS ?? 10000) || 10000;
 
             user = await provisionAdmin(
@@ -353,7 +353,7 @@ const nextAuth: NextAuthReturn = NextAuth({
             }
             const hashedPassword = await bcrypt.hash(SUPER_ADMIN_PASSWORD, 10);
             const superAdminName =
-              process.env.SUPER_ADMIN_DEFAULT_NAME?.trim() || 'Super Admin OneCoach';
+              process.env.SUPER_ADMIN_DEFAULT_NAME?.trim() || 'Super Admin onecoach';
             const superAdminCredits =
               Number(process.env.SUPER_ADMIN_DEFAULT_CREDITS ?? 10000) || 10000;
 
@@ -371,7 +371,7 @@ const nextAuth: NextAuthReturn = NextAuth({
           } else {
             // Password corrisponde, ma sincronizza altri campi se necessario
             const superAdminName =
-              process.env.SUPER_ADMIN_DEFAULT_NAME?.trim() || 'Super Admin OneCoach';
+              process.env.SUPER_ADMIN_DEFAULT_NAME?.trim() || 'Super Admin onecoach';
             const superAdminCredits =
               Number(process.env.SUPER_ADMIN_DEFAULT_CREDITS ?? 10000) || 10000;
 
@@ -404,7 +404,7 @@ const nextAuth: NextAuthReturn = NextAuth({
               console.warn('⚠️ Admin password out of sync. Updating from env vars.');
             }
             const hashedPassword = await bcrypt.hash(ADMIN_PASSWORD, 10);
-            const adminName = process.env.ADMIN_DEFAULT_NAME?.trim() || 'Admin OneCoach';
+            const adminName = process.env.ADMIN_DEFAULT_NAME?.trim() || 'Admin onecoach';
             const adminCredits = Number(process.env.ADMIN_DEFAULT_CREDITS ?? 10000) || 10000;
 
             user = await prisma.users.update({
@@ -420,7 +420,7 @@ const nextAuth: NextAuthReturn = NextAuth({
             });
           } else {
             // Password corrisponde, ma sincronizza altri campi se necessario
-            const adminName = process.env.ADMIN_DEFAULT_NAME?.trim() || 'Admin OneCoach';
+            const adminName = process.env.ADMIN_DEFAULT_NAME?.trim() || 'Admin onecoach';
             const adminCredits = Number(process.env.ADMIN_DEFAULT_CREDITS ?? 10000) || 10000;
 
             if (

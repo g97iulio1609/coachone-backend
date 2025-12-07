@@ -3,7 +3,7 @@
  *
  * API functions per nutrition plans
  */
-import type { NutritionPlan } from '@OneCoach/types';
+import type { NutritionPlan } from '@onecoach/types';
 export interface NutritionPlanResponse {
     plan: NutritionPlan;
 }

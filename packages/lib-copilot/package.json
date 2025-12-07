@@ -1,5 +1,5 @@
 {
-  "name": "@OneCoach/lib-copilot",
+  "name": "@onecoach/lib-copilot",
   "version": "0.0.0",
   "description": "Copilot context builders per AI agents",
   "main": "src/index.ts",
@@ -8,15 +8,15 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@OneCoach/lib-ai": "workspace:*",
-    "@OneCoach/lib-ai-agents": "workspace:*",
-    "@OneCoach/lib-chat-core": "workspace:*",
-    "@OneCoach/lib-core": "workspace:*",
-    "@OneCoach/lib-design-system": "workspace:*",
+    "@onecoach/lib-ai": "workspace:*",
+    "@onecoach/lib-ai-agents": "workspace:*",
+    "@onecoach/lib-chat-core": "workspace:*",
+    "@onecoach/lib-core": "workspace:*",
+    "@onecoach/lib-design-system": "workspace:*",
     "@onecoach/lib-shared": "workspace:*",
-    "@OneCoach/lib-stores": "workspace:*",
-    "@OneCoach/schemas": "workspace:*",
-    "@OneCoach/types": "workspace:*",
+    "@onecoach/lib-stores": "workspace:*",
+    "@onecoach/schemas": "workspace:*",
+    "@onecoach/types": "workspace:*",
     "framer-motion": "^12.23.24",
     "lucide-react": "^0.553.0"
   },

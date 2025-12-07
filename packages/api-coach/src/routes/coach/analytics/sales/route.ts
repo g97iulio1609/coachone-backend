@@ -4,10 +4,10 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { auth, roleSatisfies } from '@OneCoach/lib-core/auth';
-import { prisma } from '@OneCoach/lib-core/prisma';
-import { getSalesTrends, type Period } from '@OneCoach/lib-analytics/coach-analytics.service';
-import { logError, mapErrorToApiResponse } from '@OneCoach/lib-shared/utils/error';
+import { auth, roleSatisfies } from '@onecoach/lib-core/auth';
+import { prisma } from '@onecoach/lib-core/prisma';
+import { getSalesTrends, type Period } from '@onecoach/lib-analytics/coach-analytics.service';
+import { logError, mapErrorToApiResponse } from '@onecoach/lib-shared/utils/error';
 
 export const dynamic = 'force-dynamic';
 

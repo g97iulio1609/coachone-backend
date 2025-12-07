@@ -1,4 +1,4 @@
-import { ExerciseAdminService } from '@OneCoach/lib-exercise-admin.service';
+import { ExerciseAdminService } from '@onecoach/lib-exercise-admin.service';
 import { createGenerationHandler } from '@onecoach/lib-api/utils/generation-handler';
 import { z } from 'zod';
 
