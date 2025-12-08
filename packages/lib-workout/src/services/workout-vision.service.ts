@@ -24,7 +24,6 @@ import {
 } from '@onecoach/lib-ai/ai-framework-config.service';
 import { creditService } from '@onecoach/lib-core/credit.service';
 import { prisma } from '@onecoach/lib-core/prisma';
-import { parseJsonResponse } from '@onecoach/lib-ai-agents/utils/json-parser';
 import { TOKEN_LIMITS } from '@onecoach/constants';
 import {
   ImportedWorkoutProgramSchema,
@@ -644,11 +643,16 @@ Parse this data and return ONLY valid JSON.`;
       const model = openai(modelId);
 
       // Alcuni modelli (reasoning models) non supportano temperature
-      // Detect based on model name patterns
+      // Detect based on model name patterns - includes OpenAI o1/o3 series and gpt-oss models
+      const modelLower = modelId.toLowerCase();
       const isReasoningModel =
-        modelId.toLowerCase().includes('reasoning') ||
-        modelId.toLowerCase().includes('think') ||
-        modelId.toLowerCase().includes('reflect');
+        modelLower.includes('reasoning') ||
+        modelLower.includes('think') ||
+        modelLower.includes('reflect') ||
+        modelLower.includes('gpt-oss') ||
+        modelLower.includes('/o1') ||
+        modelLower.includes('/o3') ||
+        modelLower.match(/\/o[13]-/) !== null; // matches o1-preview, o3-mini etc
 
       console.log('[WorkoutVision] 🚀 Calling AI with streamText + Output.object()...', {
         modelId,
@@ -657,58 +661,125 @@ Parse this data and return ONLY valid JSON.`;
         isReasoningModel,
       });
 
-      // Usa streamObject per structured output - più affidabile di streamText+Output.object
-      // e evita problemi di bundling Turbopack con il namespace Output
+      // TIMEOUT per evitare che l'AI rimanga in stallo
+      const AI_TIMEOUT_MS = 600000; // 10 minuti
+
+      // Usa streamObject come workout-generation-orchestrator.service.ts
+      // Questo garantisce oggetti completi con validazione Zod
+      console.log('[WorkoutVision] 📡 Using streamObject for structured output...');
+
       const streamResult = streamObject({
         model,
         schema: ImportedWorkoutProgramSchema,
         prompt: fullPrompt,
-        maxTokens: TOKEN_LIMITS.DEFAULT_MAX_TOKENS,
-        // Solo passa temperature per modelli non-reasoning
+        abortSignal: AbortSignal.timeout(AI_TIMEOUT_MS),
+        // Reasoning models non supportano temperature
         ...(isReasoningModel ? {} : { temperature: 0.2 }),
-        experimental_providerMetadata: {
+        providerOptions: {
           openrouter: {
             usage: { include: true },
           },
         },
       });
 
-      // Raccogli i progressi per debug
+      // Track progress from partial stream (per UI updates e debugging)
       let partialCount = 0;
+      let lastWeeksCount = 0;
+      let lastDaysCount = 0;
 
-      console.log('[WorkoutVision] 📡 Streaming structured response...');
+      const progressPromise = (async () => {
+        for await (const partial of streamResult.partialObjectStream) {
+          partialCount++;
 
-      for await (const partial of streamResult.partialObjectStream) {
-        partialCount++;
-        // Log progress ogni 10 partial updates
-        if (partialCount % 10 === 0) {
-          console.log(
-            `[WorkoutVision] 📊 Stream progress: ${partialCount} partial updates, ` +
-            `weeks: ${partial?.weeks?.length || 0}`
-          );
+          // Calcola il progresso basato su settimane e giorni generati
+          const weeksArray = partial?.weeks;
+          const weeksCount = weeksArray?.length || 0;
+          let daysCount = 0;
+          if (weeksArray) {
+            for (const w of weeksArray) {
+              if (w?.days) {
+                daysCount += w.days.length;
+              }
+            }
+          }
+
+          // Log progress ogni 20 update o quando cambiano settimane/giorni
+          if (partialCount % 20 === 0 || weeksCount !== lastWeeksCount || daysCount !== lastDaysCount) {
+            console.log(
+              `[WorkoutVision] 📊 Stream progress: ${partialCount} partials, ` +
+              `${weeksCount} weeks, ${daysCount} days`
+            );
+            lastWeeksCount = weeksCount;
+            lastDaysCount = daysCount;
+          }
         }
+      })();
+
+      // Attendi l'oggetto COMPLETO - streamResult.object è una Promise
+      // che si risolve quando l'oggetto è stato completamente generato e validato contro lo schema
+      const completeObject = await Promise.race([
+        (async () => {
+          await progressPromise; // Attendi che il tracking finisca
+          return await streamResult.object; // Ottieni l'oggetto COMPLETO validato
+        })(),
+        new Promise<never>((_, reject) => {
+          setTimeout(
+            () => reject(new Error(`AI timeout dopo ${AI_TIMEOUT_MS}ms`)),
+            AI_TIMEOUT_MS
+          );
+        }),
+      ]).catch((error: unknown) => {
+        console.error('[WorkoutVision] ❌ streamObject failed:', {
+          error: error instanceof Error ? error.message : String(error),
+          stack: error instanceof Error ? error.stack : undefined,
+          partialCount,
+        });
+        throw error;
+      });
+
+      if (!completeObject) {
+        console.error('[WorkoutVision] ❌ streamObject returned null/undefined');
+        throw new Error('AI returned empty response');
       }
 
-      // Ottieni l'oggetto finale validato
-      const parsedOutput = await streamResult.object;
+      // L'oggetto è già validato dallo schema Zod in streamObject
+      // Ma facciamo un double-check per sicurezza
+      const parsedOutput = ImportedWorkoutProgramSchema.parse(completeObject);
+
+      // Calcola statistiche
+      const totalWeeks = parsedOutput.weeks?.length || 0;
+      const totalDays = parsedOutput.weeks.reduce((sum, w) => sum + (w.days?.length || 0), 0);
+      const totalExercises = parsedOutput.weeks.reduce(
+        (sum, w) => sum + w.days.reduce((dSum, d) => dSum + (d.exercises?.length || 0), 0),
+        0
+      );
 
       console.log('[WorkoutVision] ✅ Stream completed:', {
         partialCount,
         durationMs: Date.now() - startTime,
-        programName: parsedOutput?.name,
-        weeksCount: parsedOutput?.weeks?.length,
+        programName: parsedOutput.name,
+        totalWeeks,
+        totalDays,
+        totalExercises,
       });
 
-      if (!parsedOutput) {
-        console.error('[WorkoutVision] ❌ No valid output obtained');
-        throw new Error('AI returned empty or invalid response');
+      // Valida che non sia un programma vuoto
+      if (totalDays === 0) {
+        console.error('[WorkoutVision] ❌ Parsed program has no days!');
+        throw new Error(
+          'AI generated a program with no days. The model may have truncated the output. ' +
+          'Try using a different model in Admin > AI Settings > Vision & Import Models.'
+        );
       }
 
       traceLog('callTextAI.end', {
         model: modelId,
         durationMs: Date.now() - startTime,
         partialCount,
-        hasOutput: Boolean(parsedOutput),
+        totalWeeks,
+        totalDays,
+        totalExercises,
+        hasOutput: true,
         mode: 'streamObject',
       });
 
@@ -877,32 +948,25 @@ Parse this data and return ONLY valid JSON.`;
       mimeType,
     });
 
-    const result = await streamText({
+    // Usa streamObject per ottenere output strutturato validato
+    const streamResult = streamObject({
       model,
+      schema: ImportedWorkoutProgramSchema,
       messages,
-      experimental_output: Output.object({
-        schema: ImportedWorkoutProgramSchema,
-      }),
       temperature: 0.3,
     });
 
-    // Estrai testo completo
-    const fullText = await result.text;
-    if (!fullText || fullText.trim() === '') {
+    // Attendi l'oggetto completo
+    const validated = await streamResult.object;
+
+    if (!validated) {
       throw new Error('AI returned empty response');
     }
-
-    // Parse JSON response
-    const parsed = parseJsonResponse(fullText);
-
-    // Valida con schema Zod
-    const validated = ImportedWorkoutProgramSchema.parse(parsed);
 
     traceLog('callVisionAI.end', {
       model: modelId,
       durationMs: Date.now() - startTime,
-      responseLength: fullText.length,
-      usage: result.usage,
+      hasOutput: Boolean(validated),
     });
 
     return validated;
