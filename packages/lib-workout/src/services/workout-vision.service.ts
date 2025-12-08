@@ -369,10 +369,19 @@ async function getVisionModelConfig(type: ImportFileType): Promise<{
   const maxRetries = Math.max(0, typedConfig.maxRetries ?? 0);
   const retryDelayBaseMs = Math.max(0, typedConfig.retryDelayBaseMs ?? 0);
 
+  // Enhanced logging for debugging model selection issue
+  console.log(`[WorkoutVision] ⚙️ RAW Config from DB:`, JSON.stringify(typedConfig, null, 2));
   console.log(`[WorkoutVision] ⚙️ Model config loaded for ${type}:`, {
     type,
+    modelKey,
     model,
     fallbackModel,
+    allModels: {
+      spreadsheetModel: typedConfig.spreadsheetModel,
+      imageModel: typedConfig.imageModel,
+      pdfModel: typedConfig.pdfModel,
+      documentModel: typedConfig.documentModel,
+    },
     configuredFromDB: true,
     creditCost,
     maxRetries,
@@ -642,17 +651,8 @@ Parse this data and return ONLY valid JSON.`;
 
       const model = openai(modelId);
 
-      // Alcuni modelli (reasoning models) non supportano temperature
-      // Detect based on model name patterns - includes OpenAI o1/o3 series and gpt-oss models
-      const modelLower = modelId.toLowerCase();
-      const isReasoningModel =
-        modelLower.includes('reasoning') ||
-        modelLower.includes('think') ||
-        modelLower.includes('reflect') ||
-        modelLower.includes('gpt-oss') ||
-        modelLower.includes('/o1') ||
-        modelLower.includes('/o3') ||
-        modelLower.match(/\/o[13]-/) !== null; // matches o1-preview, o3-mini etc
+      // Usiamo esclusivamente modelli reasoning, quindi temperatura non supportata
+      const isReasoningModel = true;
 
       console.log('[WorkoutVision] 🚀 Calling AI with streamText + Output.object()...', {
         modelId,

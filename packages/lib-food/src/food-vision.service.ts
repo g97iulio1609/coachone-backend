@@ -5,15 +5,19 @@
  * Supporta estrazione etichette e segmentazione piatti
  */
 
-import { Output, streamText, type CoreMessage } from 'ai';
+import { streamObject, type CoreMessage } from 'ai';
 import { z } from 'zod';
 import { AIProviderConfigService, PROVIDER_MAP } from '@onecoach/lib-ai/ai-provider-config';
 import { creditService } from '@onecoach/lib-core/credit.service';
 import { prisma } from '@onecoach/lib-core/prisma';
 import type { LabelExtractionResult, DishSegmentationResult } from '@onecoach/types';
 
-import { parseJsonResponse } from '@onecoach/lib-ai-utils/json-parser';
 import { TOKEN_LIMITS } from '@onecoach/constants/models';
+
+// Configurazione AI centralizzata per import
+const AI_IMPORT_CONFIG = {
+  TIMEOUT_MS: 600000, // 10 minuti
+};
 
 // Default models configurabili admin
 const DEFAULT_LABEL_MODEL = 'google/gemini-2.5-flash-lite';
@@ -123,8 +127,12 @@ export async function updateVisionModelConfig(
   }
 
   // Aggiorna metadata con visionModels usando update diretto
+  const openrouterProvider = PROVIDER_MAP.openrouter;
+  if (!openrouterProvider) {
+    throw new Error('OpenRouter provider not configured');
+  }
   await prisma.ai_provider_configs.update({
-    where: { provider: PROVIDER_MAP.openrouter.enum },
+    where: { provider: openrouterProvider.enum },
     data: {
       metadata: {
         ...metadata,
@@ -173,18 +181,18 @@ export class FoodVisionService {
         provider: 'openrouter' as const,
         model: config.model,
         maxTokens: TOKEN_LIMITS.DEFAULT_MAX_TOKENS,
-        temperature: 0.3,
-        reasoningEnabled: false,
+        temperature: 0, // Ignorato da modelli reasoning
+        reasoningEnabled: true,
         creditsPerRequest: creditCost,
       };
-      const model = createModel(modelConfig, config.apiKey, 0.3);
+      const model = createModel(modelConfig, config.apiKey);
 
       // Converti immagine in data URL se necessario
       const imageDataUrl = imageBase64.startsWith('data:')
         ? imageBase64
         : base64ToDataUrl(imageBase64);
 
-      // Chiama AI con immagine usando streamText + output (AI SDK 6 native)
+      // Chiama AI con immagine usando streamObject (AI SDK 6)
       const messages: CoreMessage[] = [
         {
           role: 'user',
@@ -201,24 +209,20 @@ export class FoodVisionService {
         },
       ];
 
-      const result = await streamText({
+      const streamResult = streamObject({
         model,
+        schema: labelExtractionSchema,
         messages,
-        output: Output.object({
-          schema: labelExtractionSchema,
-        }),
-        temperature: 0.3,
+        abortSignal: AbortSignal.timeout(AI_IMPORT_CONFIG.TIMEOUT_MS),
       });
 
-      // Get structured output from text
-      const fullText = await result.text;
-      if (!fullText) {
+      // Attendi oggetto completo validato
+      const validated = await streamResult.object;
+      if (!validated) {
         throw new Error('Failed to generate structured output');
       }
 
-      // Parse JSON from text
-      const parsed = parseJsonResponse(fullText);
-      return labelExtractionSchema.parse(parsed) as LabelExtractionResult;
+      return validated as LabelExtractionResult;
     } catch (error: unknown) {
       console.error('Error extracting label data:', error);
       // Rimborsa crediti in caso di errore
@@ -267,18 +271,18 @@ export class FoodVisionService {
         provider: 'openrouter' as const,
         model: config.model,
         maxTokens: TOKEN_LIMITS.DEFAULT_MAX_TOKENS,
-        temperature: 0.5,
-        reasoningEnabled: false,
+        temperature: 0, // Ignorato da modelli reasoning
+        reasoningEnabled: true,
         creditsPerRequest: creditCost,
       };
-      const model = createModel(modelConfig, config.apiKey, 0.5);
+      const model = createModel(modelConfig, config.apiKey);
 
       // Converti immagine in data URL se necessario
       const imageDataUrl = imageBase64.startsWith('data:')
         ? imageBase64
         : base64ToDataUrl(imageBase64);
 
-      // Chiama AI con immagine usando streamText + output (AI SDK 6 native)
+      // Chiama AI con immagine usando streamObject (AI SDK 6)
       const messages: CoreMessage[] = [
         {
           role: 'user',
@@ -295,24 +299,18 @@ export class FoodVisionService {
         },
       ];
 
-      const result = await streamText({
+      const streamResult = streamObject({
         model,
+        schema: dishSegmentationSchema,
         messages,
-        output: Output.object({
-          schema: dishSegmentationSchema,
-        }),
-        temperature: 0.5,
+        abortSignal: AbortSignal.timeout(AI_IMPORT_CONFIG.TIMEOUT_MS),
       });
 
-      // Get structured output from text
-      const fullText = await result.text;
-      if (!fullText) {
+      // Attendi oggetto completo validato
+      const segmentationResult = await streamResult.object;
+      if (!segmentationResult) {
         throw new Error('Failed to generate structured output');
       }
-
-      // Parse JSON from text
-      const parsed = parseJsonResponse(fullText);
-      const segmentationResult = dishSegmentationSchema.parse(parsed);
 
       // Filtra item con confidence < 0.5
       const filteredItems = segmentationResult.items.filter(

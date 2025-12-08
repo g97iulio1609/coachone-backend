@@ -5,6 +5,7 @@
  * Uses dynamic imports for provider flexibility.
  */
 
+import { type LanguageModel } from 'ai';
 import { createOpenAI } from '@ai-sdk/openai';
 import { MODEL_CONSTANTS, type ModelConfig, type ProviderName } from './constants';
 
@@ -19,7 +20,7 @@ interface ModelOptions {
 /**
  * Get an AI language model based on provider
  */
-function getProviderModel(options: ModelOptions) {
+function getProviderModel(options: ModelOptions): LanguageModel {
     const { provider, model, apiKey } = options;
 
     switch (provider) {
@@ -54,7 +55,7 @@ export function createModel(
     modelConfig: ModelConfig,
     apiKey?: string,
     temperatureOverride?: number
-) {
+): LanguageModel {
     return getProviderModel({
         provider: modelConfig.provider,
         model: modelConfig.model,
@@ -71,7 +72,7 @@ export function createReasoningModel(
     modelConfig: ModelConfig,
     apiKey?: string,
     enableReasoning: boolean = true
-) {
+): LanguageModel {
     const maxTokens = enableReasoning ? MODEL_CONSTANTS.REASONING_MAX_TOKENS : modelConfig.maxTokens;
 
     return getProviderModel({

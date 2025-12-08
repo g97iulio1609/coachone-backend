@@ -31,7 +31,7 @@
       "path": "../../../lib-ai"
     },
     {
-      "path": "../../../../packages/lib-ai-agents"
+      "path": "../../../lib-ai-agents"
     },
     {
       "path": "../lib-exercise"
@@ -41,6 +41,9 @@
     },
     {
       "path": "../../../onecoach-shared/packages/types"
+    },
+    {
+      "path": "../lib-ai-utils"
     }
   ]
 }
