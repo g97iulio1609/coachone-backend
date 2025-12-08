@@ -55,6 +55,7 @@ export function useUnifiedChat(options: UseUnifiedChatOptions = {}): UseUnifiedC
     initialConversations = [],
     onContextUpdate,
     reasoningEnabled = false,
+    initialModelId,
   } = options;
 
   // Try to get context from provider (may be null if not in provider)
@@ -66,7 +67,9 @@ export function useUnifiedChat(options: UseUnifiedChatOptions = {}): UseUnifiedC
   const [localCurrentConversation, setLocalCurrentConversation] = useState<string | null>(
     initialConversationId
   );
-  const [localSelectedModel, setLocalSelectedModel] = useState<string | null>(null);
+  const [localSelectedModel, setLocalSelectedModel] = useState<string | null>(
+    initialModelId || null
+  );
   const [localIsOpen, setLocalIsOpen] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
 
@@ -87,15 +90,24 @@ export function useUnifiedChat(options: UseUnifiedChatOptions = {}): UseUnifiedC
 
   // Build request body with screen context
   const requestBody = useMemo(() => {
+    // FIX: Lookup inside useMemo to ensure reactivity when models/selectedModel change
+    const selectedModelObject = models.find(m => m.id === selectedModel);
+
     const body: Record<string, unknown> = {
       tier: 'balanced',
       enableTools: true,
       reasoning: reasoningEnabled, // Use toggle state, not features flag
     };
 
-    // Add model if selected
-    if (selectedModel) {
+    // Add model if selected - use modelId (API name) not id (database PK)
+    if (selectedModelObject) {
+      body.model = selectedModelObject.modelId;
+      console.warn(`🎯 [useUnifiedChat] Sending model: ${selectedModelObject.modelId} (id: ${selectedModel})`);
+    } else if (selectedModel) {
+      // Fallback: if selectedModel doesn't match any model.id, try using it directly
+      // (in case it's already a modelId like 'zhipu-ai/glm-4.6v')
       body.model = selectedModel;
+      console.warn(`⚠️ [useUnifiedChat] Model not found in models array, using selectedModel directly: ${selectedModel}`);
     }
 
     // Add screen context
@@ -110,7 +122,7 @@ export function useUnifiedChat(options: UseUnifiedChatOptions = {}): UseUnifiedC
     }
 
     return body;
-  }, [selectedModel, screenContext, reasoningEnabled]);
+  }, [models, selectedModel, screenContext, reasoningEnabled]);
 
   // Fetch conversations
   const fetchConversations = useCallback(async () => {

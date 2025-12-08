@@ -107,14 +107,17 @@ export function useChatCore(options: UseChatCoreOptions = {}): UseChatCoreResult
   // Prepare body for useChat - this will be sent with each request
   // Following AI SDK v6 pattern: useChat() without custom transport
   // The body is passed to sendMessage() options
+  // FIX: model can come from options.model OR staticBody.model (from useUnifiedChat)
+  const effectiveModel = model || (staticBody as { model?: string }).model;
+
   const requestBody = useMemo(() => {
     return {
       ...staticBody,
-      model,
+      model: effectiveModel, // Use effective model (from options or body)
       systemPrompt,
       conversationId,
     };
-  }, [model, systemPrompt, staticBody, conversationId]);
+  }, [effectiveModel, systemPrompt, staticBody, conversationId]);
 
   // Convert legacy initialMessages to AI SDK v6 format
   const aiInitialMessages = useMemo<UIMessage[]>(() => {

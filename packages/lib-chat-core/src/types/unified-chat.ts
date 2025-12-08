@@ -189,6 +189,8 @@ export interface UseUnifiedChatOptions {
   onContextUpdate?: (data: Record<string, unknown>) => void;
   /** Override reasoning feature (toggle) */
   reasoningEnabled?: boolean;
+  /** Initial model ID */
+  initialModelId?: string;
 }
 
 /**

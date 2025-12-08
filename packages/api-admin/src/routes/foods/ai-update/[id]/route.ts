@@ -118,29 +118,26 @@ export async function PUT(request: NextRequest, context: { params: RouteParams }
 
     // Get model configuration from database (same as nutrition/workout generation)
     const foodConfig = await AIConfigService.getActiveConfigByOperationType('PLAN_GENERATION');
-    let modelId = 'x-ai/grok-4.1-fast'; // fallback - using grok-4.1-fast (released Nov 19, 2025) with 2M context and 65% fewer hallucinations
+    let modelId: string | null = foodConfig?.model ?? null;
 
-    if (foodConfig) {
-      // Model is already a string in the database (migrated from enum)
-      modelId = foodConfig.model;
-      // Normalize model for provider - supports ANY OpenRouter model
-      if (modelId.startsWith('openrouter-')) {
-        const modelName = modelId.replace('openrouter-', '');
-        modelId = `openrouter/${modelName}`;
-      }
-      // If already in provider/model format (e.g., 'anthropic/claude-4-5-sonnet'), use as is
-    } else {
-      // Try OpenRouter default as secondary fallback
-      const openRouterConfig = await AIProviderConfigService.getConfig('openrouter');
-      if (openRouterConfig?.defaultModel) {
-        modelId = openRouterConfig.defaultModel;
-        // Normalize if needed
-        if (modelId.startsWith('openrouter-')) {
-          const modelName = modelId.replace('openrouter-', '');
-          modelId = `openrouter/${modelName}`;
-        }
-      } else {
-      }
+    if (!modelId) {
+      modelId = await AIProviderConfigService.getDefaultModel('openrouter');
+    }
+
+    if (!modelId) {
+      return NextResponse.json(
+        {
+          error:
+            'Nessun modello configurato in admin. Configura un modello predefinito in /admin/ai-settings.',
+        },
+        { status: 500 }
+      );
+    }
+
+    // Normalize model for provider - supports ANY OpenRouter model
+    if (modelId.startsWith('openrouter-')) {
+      const modelName = modelId.replace('openrouter-', '');
+      modelId = `openrouter/${modelName}`;
     }
 
     // Create AI provider

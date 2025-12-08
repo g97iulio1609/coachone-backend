@@ -654,7 +654,7 @@ Parse this data and return ONLY valid JSON.`;
       // Usiamo esclusivamente modelli reasoning, quindi temperatura non supportata
       const isReasoningModel = true;
 
-      console.log('[WorkoutVision] 🚀 Calling AI with streamText + Output.object()...', {
+      console.log('[WorkoutVision] 🚀 Calling AI with streamObject (structured output)...', {
         modelId,
         maxOutputTokens: TOKEN_LIMITS.DEFAULT_MAX_TOKENS,
         temperature: isReasoningModel ? 'N/A (reasoning model)' : 0.2,
