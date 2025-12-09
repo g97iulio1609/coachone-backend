@@ -49,12 +49,19 @@ export function useExercise(id: string | null | undefined) {
  * Hook to create an exercise
  */
 export function useCreateExercise() {
-  const queryClient = useQueryClient();
+  let queryClient: QueryClient | undefined;
+  try {
+    if (typeof window !== 'undefined') {
+      queryClient = useQueryClient();
+    }
+  } catch (e) {
+    // Ignore error during SSR
+  }
 
   return useMutation({
     mutationFn: (data: unknown) => exerciseApi.create(data),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: exerciseKeys.lists() });
+      queryClient?.invalidateQueries({ queryKey: exerciseKeys.lists() });
     },
   });
 }
@@ -63,13 +70,20 @@ export function useCreateExercise() {
  * Hook to update an exercise
  */
 export function useUpdateExercise() {
-  const queryClient = useQueryClient();
+  let queryClient: QueryClient | undefined;
+  try {
+    if (typeof window !== 'undefined') {
+      queryClient = useQueryClient();
+    }
+  } catch (e) {
+    // Ignore error during SSR
+  }
 
   return useMutation({
     mutationFn: ({ id, data }: { id: string; data: unknown }) => exerciseApi.update(id, data),
     onSuccess: (_, variables) => {
-      queryClient.invalidateQueries({ queryKey: exerciseKeys.lists() });
-      queryClient.invalidateQueries({ queryKey: exerciseKeys.detail(variables.id) });
+      queryClient?.invalidateQueries({ queryKey: exerciseKeys.lists() });
+      queryClient?.invalidateQueries({ queryKey: exerciseKeys.detail(variables.id) });
     },
   });
 }
@@ -78,12 +92,19 @@ export function useUpdateExercise() {
  * Hook to delete an exercise
  */
 export function useDeleteExercise() {
-  const queryClient = useQueryClient();
+  let queryClient: QueryClient | undefined;
+  try {
+    if (typeof window !== 'undefined') {
+      queryClient = useQueryClient();
+    }
+  } catch (e) {
+    // Ignore error during SSR
+  }
 
   return useMutation({
     mutationFn: (id: string) => exerciseApi.delete(id),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: exerciseKeys.lists() });
+      queryClient?.invalidateQueries({ queryKey: exerciseKeys.lists() });
     },
   });
 }
@@ -97,7 +118,14 @@ export function useDeleteExercise() {
  * useRealtimeStore (Zustand) per una singola subscription condivisa.
  */
 export function useBatchExerciseOperations() {
-  const queryClient = useQueryClient();
+  let queryClient: QueryClient | undefined;
+  try {
+    if (typeof window !== 'undefined') {
+      queryClient = useQueryClient();
+    }
+  } catch (e) {
+    // Ignore error during SSR
+  }
 
   return useMutation({
     mutationFn: ({ action, ids }: { action: 'approve' | 'reject' | 'delete'; ids: string[] }) =>
@@ -105,7 +133,7 @@ export function useBatchExerciseOperations() {
     onSuccess: () => {
       // Il realtime (Zustand) aggiornerà automaticamente il cache quando le modifiche
       // arrivano dal database. Invalidiamo per sicurezza in caso di problemi di sincronizzazione.
-      queryClient.invalidateQueries({ queryKey: exerciseKeys.lists() });
+      queryClient?.invalidateQueries({ queryKey: exerciseKeys.lists() });
     },
   });
 }

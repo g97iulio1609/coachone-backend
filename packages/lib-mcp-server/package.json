@@ -22,6 +22,7 @@
     "@onecoach/lib-import-core": "workspace:*",
     "@onecoach/lib-exercise": "workspace:*",
     "@onecoach/lib-food": "workspace:*",
+    "@onecoach/lib-metadata": "workspace:*",
     "@onecoach/schemas": "workspace:*",
     "@onecoach/types": "workspace:*",
     "@modelcontextprotocol/sdk": "^1.23.0",
