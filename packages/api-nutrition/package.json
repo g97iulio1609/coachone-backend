@@ -9,10 +9,10 @@
   },
   "dependencies": {
     "@onecoach/contracts": "workspace:*",
-    "@onecoach/schemas": "workspace:*",
-    "@onecoach/lib-registry": "workspace:*",
     "@onecoach/lib-nutrition": "workspace:*",
-    "next": "^16.0.6"
+    "@onecoach/lib-registry": "workspace:*",
+    "@onecoach/schemas": "workspace:*",
+    "next": "16.0.8"
   },
   "devDependencies": {
     "typescript": "^5.9.3"

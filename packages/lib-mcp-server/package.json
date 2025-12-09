@@ -18,24 +18,24 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.24.3",
     "@onecoach/lib-core": "workspace:*",
-    "@onecoach/lib-import-core": "workspace:*",
     "@onecoach/lib-exercise": "workspace:*",
     "@onecoach/lib-food": "workspace:*",
+    "@onecoach/lib-import-core": "workspace:*",
     "@onecoach/lib-metadata": "workspace:*",
     "@onecoach/schemas": "workspace:*",
     "@onecoach/types": "workspace:*",
-    "@modelcontextprotocol/sdk": "^1.23.0",
     "@prisma/client": "7.1.0",
     "ai": "6.0.0-beta.124",
-    "zod": "^4.1.13",
+    "zod": "4.1.13",
     "zod-to-json-schema": "^3.25.0"
   },
   "peerDependencies": {
     "zod": "^4.1.13"
   },
   "devDependencies": {
-    "@types/node": "^20.19.25",
+    "@types/node": "^24.10.2",
     "typescript": "^5.9.3"
   }
 }

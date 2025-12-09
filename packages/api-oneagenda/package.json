@@ -9,17 +9,17 @@
   },
   "dependencies": {
     "@onecoach/contracts": "workspace:*",
-    "@onecoach/schemas": "workspace:*",
-    "@onecoach/lib-registry": "workspace:*",
     "@onecoach/lib-core": "workspace:*",
+    "@onecoach/lib-registry": "workspace:*",
     "@onecoach/oneagenda-core": "workspace:*",
     "@onecoach/oneagenda-ui": "workspace:*",
+    "@onecoach/schemas": "workspace:*",
     "@onecoach/types": "workspace:*",
-    "next": "^16.0.6",
-    "zod": "^4.1.12"
+    "next": "16.0.8",
+    "zod": "4.1.13"
   },
   "devDependencies": {
-    "@types/node": "^24.10.1",
+    "@types/node": "^24.10.2",
     "typescript": "^5.9.3"
   },
   "sideEffects": false

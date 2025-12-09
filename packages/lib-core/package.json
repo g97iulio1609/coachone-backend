@@ -142,19 +142,19 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@auth/prisma-adapter": "^2.11.1",
+    "@onecoach/constants": "workspace:*",
     "@onecoach/contracts": "workspace:*",
     "@onecoach/lib-config": "workspace:*",
     "@onecoach/lib-shared": "workspace:*",
     "@onecoach/schemas": "workspace:*",
-    "@onecoach/constants": "workspace:*",
     "@onecoach/types": "workspace:*",
-    "@auth/prisma-adapter": "^2.0.0",
-    "@prisma/adapter-pg": "7.0.0",
+    "@prisma/adapter-pg": "7.1.0",
     "@prisma/client": "7.1.0",
-    "bcryptjs": "^2.4.3",
-    "next": "^16.0.6",
+    "bcryptjs": "^3.0.3",
+    "next": "16.0.8",
     "next-auth": "5.0.0-beta.30",
-    "pg": "^8.13.1",
+    "pg": "^8.16.3",
     "stripe": "^20.0.0"
   },
   "devDependencies": {

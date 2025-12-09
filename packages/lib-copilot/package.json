@@ -17,11 +17,11 @@
     "@onecoach/lib-stores": "workspace:*",
     "@onecoach/schemas": "workspace:*",
     "@onecoach/types": "workspace:*",
-    "framer-motion": "^12.23.24",
-    "lucide-react": "^0.553.0"
+    "framer-motion": "^12.23.25",
+    "lucide-react": "^0.556.0"
   },
   "devDependencies": {
-    "@types/node": "^24.10.1",
+    "@types/node": "^24.10.2",
     "typescript": "^5.9.3"
   },
   "sideEffects": false

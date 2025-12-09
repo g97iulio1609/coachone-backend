@@ -43,16 +43,16 @@
   },
   "dependencies": {
     "@onecoach/lib-core": "workspace:*",
-    "@onecoach/lib-shared": "workspace:*",
     "@onecoach/lib-marketplace": "workspace:*",
-    "@onecoach/types": "workspace:*",
-    "@tanstack/react-query": "^5.0.0",
+    "@onecoach/lib-shared": "workspace:*",
     "@onecoach/lib-stores": "workspace:*",
-    "react": "^18.3.1"
+    "@onecoach/types": "workspace:*",
+    "@tanstack/react-query": "^5.90.12",
+    "react": "^19.2.1"
   },
   "devDependencies": {
-    "@types/node": "^24.10.1",
-    "@types/react": "^18.3.0",
+    "@types/node": "^24.10.2",
+    "@types/react": "19.2.7",
     "typescript": "^5.9.3"
   },
   "peerDependencies": {
