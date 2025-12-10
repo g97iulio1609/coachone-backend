@@ -147,16 +147,16 @@ export function useChatCore(options: UseChatCoreOptions = {}): UseChatCoreResult
   }, [initialMessages]);
 
   // Transport configuration with DefaultChatTransport - AI SDK v6 pattern
-  // https://ai-sdk.dev/docs/ai-sdk-ui/chatbot#custom-headers-body-and-credentials
   const transport = useMemo(() => {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const { DefaultChatTransport } = require('ai');
     return new DefaultChatTransport({
       api,
       credentials: 'include' as RequestCredentials,
-      body: requestBody, // Static body merged with each request
+      body: requestBody,
     });
   }, [api, requestBody]);
+
 
   // AI SDK v6 useChat - requires transport for request configuration
   const chatConfig = useMemo(() => ({

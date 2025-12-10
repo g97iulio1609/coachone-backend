@@ -13,7 +13,7 @@
 
 'use client';
 
-import { useState, useCallback, useEffect, useMemo } from 'react';
+import { useState, useCallback, useEffect, useMemo, useRef } from 'react';
 import type { UIMessage } from '@ai-sdk/react';
 import { useChatCore } from './use-chat-core';
 import { useUnifiedChatContextSafe } from '../providers/unified-chat-provider';
@@ -135,19 +135,26 @@ export function useUnifiedChat(options: UseUnifiedChatOptions = {}): UseUnifiedC
     return body;
   }, [selectedModelName, screenContext, reasoningEnabled]);
 
-  // Fetch conversations
-  const fetchConversations = useCallback(async () => {
-    if (!userId) return;
+  // Fetch conversations and optionally return the latest conversation ID
+  const fetchConversations = useCallback(async (): Promise<string | null> => {
+    if (!userId) return null;
     try {
       const response = await fetch(`/api/copilot/conversations?userId=${userId}`);
       if (response.ok) {
         const data = await response.json();
-        setLocalConversations(data.conversations || []);
+        const convs = data.conversations || [];
+        setLocalConversations(convs);
+        // Return the latest conversation ID (first in list, sorted by lastMessageAt desc)
+        return convs.length > 0 ? convs[0].id : null;
       }
     } catch (error) {
       console.error('Error fetching conversations:', error);
     }
+    return null;
   }, [userId]);
+
+  // Track if we're waiting for a new conversation ID
+  const pendingNewConversationRef = useRef(false);
 
   // Use chat core with unified body
   const {
@@ -168,17 +175,30 @@ export function useUnifiedChat(options: UseUnifiedChatOptions = {}): UseUnifiedC
     body: requestBody,
     onConversationCreated: (newConvId) => {
       setLocalCurrentConversation(newConvId);
+      pendingNewConversationRef.current = false;
     },
-    onFinish: () => {
-      fetchConversations();
+    onFinish: async () => {
+      // Fetch conversations and auto-select new one if we were in "new conversation" mode
+      const latestConvId = await fetchConversations();
+
+      // If we were waiting for a new conversation (currentConversation was null)
+      // and now we have a latest conversation, select it
+      if (pendingNewConversationRef.current && latestConvId && !currentConversation) {
+        console.log('[useUnifiedChat] Auto-selecting new conversation:', latestConvId);
+        setLocalCurrentConversation(latestConvId);
+        pendingNewConversationRef.current = false;
+      }
+
       if (screenContext?.type === 'oneagenda' && onContextUpdate) {
         setTimeout(() => onContextUpdate({}), 500);
       }
     },
     onError: (err) => {
       console.error('Chat error:', err);
+      pendingNewConversationRef.current = false;
     },
   });
+
 
   // Initialize conversations on mount
   useEffect(() => {
@@ -231,17 +251,24 @@ export function useUnifiedChat(options: UseUnifiedChatOptions = {}): UseUnifiedC
       const messageText = options?.text?.trim() || input.trim();
       if (!messageText || isLoading) return;
 
+      // Mark that we're expecting a new conversation if we don't have one
+      if (!currentConversation) {
+        pendingNewConversationRef.current = true;
+      }
+
       setInput('');
 
       try {
         await coreSendMessage({ text: messageText });
       } catch (err) {
         console.error('Error sending message:', err);
+        pendingNewConversationRef.current = false;
         setInput(messageText);
       }
     },
-    [input, isLoading, coreSendMessage, setInput]
+    [input, isLoading, coreSendMessage, setInput, currentConversation]
   );
+
 
   const loadConversation = useCallback(
     async (conversationId: string) => {
