@@ -131,4 +131,20 @@ export const foodApi = {
   ): Promise<FoodResponse> {
     return apiClient.put<FoodResponse>(`/api/admin/foods/ai-update/${id}`, data);
   },
+
+  /**
+   * Batch operations (delete, update)
+   */
+  async batch(
+    action: 'delete' | 'update',
+    ids: string[],
+    data?: Record<string, unknown>
+  ): Promise<{
+    success: boolean;
+    results: Array<{ id: string; success: boolean; error?: string }>;
+    deleted?: number;
+    updated?: number;
+  }> {
+    return apiClient.post('/api/admin/foods/batch', { action, ids, data });
+  },
 };

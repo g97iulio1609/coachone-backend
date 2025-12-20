@@ -32,6 +32,11 @@ export type {
   PublicCoachProfileResponse,
   CoachProfile,
   PublicCoachProfile,
+  CoachDashboardStats,
+  CoachClient,
+  CoachDashboardPlansFilters,
+  CoachClientsFilters,
+  MarketplacePlanCardProps,
 } from './coach';
 export type { OneRepMaxResponse } from './profile';
 export type {
