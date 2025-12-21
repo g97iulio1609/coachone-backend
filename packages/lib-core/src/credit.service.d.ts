@@ -64,14 +64,15 @@ export declare class CreditService implements ICreditService {
     }>;
     private hasUnlimitedCredits;
     getCreditHistory(userId: string, limit?: number): Promise<{
+        description: string;
+        type: import("@prisma/client").$Enums.TransactionType;
         id: string;
         createdAt: Date;
         userId: string | null;
-        description: string;
         metadata: Prisma.JsonValue | null;
-        type: import("@prisma/client").$Enums.TransactionType;
         amount: number;
         balanceAfter: number;
     }[]>;
 }
 export declare const creditService: CreditService;
+//# sourceMappingURL=credit.service.d.ts.map

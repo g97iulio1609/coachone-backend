@@ -1,4 +1,4 @@
-import { streamText, Output, type CoreMessage } from 'ai';
+import { streamText, Output, type ModelMessage } from 'ai';
 import { createModel } from '@onecoach/lib-ai-utils/model-factory';
 import type { VisionParseParams } from './types';
 
@@ -27,7 +27,7 @@ export async function parseWithVisionAI<T>(params: VisionParseParams<T>): Promis
   const model = createModel(modelConfig, apiKey ?? process.env.OPENROUTER_API_KEY);
   const dataUrl = base64ToDataUrl(contentBase64, mimeType);
 
-  const messages: CoreMessage[] = [
+  const messages: ModelMessage[] = [
     {
       role: 'user',
       content: [

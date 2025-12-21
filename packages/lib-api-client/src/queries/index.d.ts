@@ -16,4 +16,3 @@ export * from './oneagenda.queries';
 export * from './health.queries';
 export * from './iap.queries';
 export * from './direct-messaging.queries';
-//# sourceMappingURL=index.d.ts.map

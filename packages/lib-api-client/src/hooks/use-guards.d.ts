@@ -44,4 +44,3 @@ export declare function useRequireAdmin(redirectTo?: string): {
     user: import("@onecoach/lib-stores").User | null;
 };
 export {};
-//# sourceMappingURL=use-guards.d.ts.map

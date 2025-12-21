@@ -2,10 +2,10 @@
   "extends": "../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDir": "../../../..",
+
     "baseUrl": "../..",
     "noEmit": false,
-    "composite": true,
     "declaration": true,
     "declarationMap": true
   },
@@ -21,7 +21,6 @@
     { "path": "../lib-core" },
     { "path": "../../../onecoach-shared/packages/constants" },
     { "path": "../../../onecoach-shared/packages/schemas" },
-    { "path": "../../../lib-ai" },
     { "path": "../../../onecoach-shared/packages/types" },
     { "path": "../../../onecoach-shared/packages/lib-shared" }
   ]

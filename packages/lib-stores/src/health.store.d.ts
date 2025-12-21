@@ -147,3 +147,4 @@ export declare const useHealthSummary: () => {
     healthSummary: HealthSummary | null;
     setHealthSummary: (summary: HealthSummary | null) => void;
 };
+//# sourceMappingURL=health.store.d.ts.map

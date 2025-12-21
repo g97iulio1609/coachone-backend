@@ -14,7 +14,8 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@onecoach/lib-ai-utils": "workspace:*"
+    "@onecoach/lib-ai-utils": "workspace:*",
+    "ai": "6.0.0-beta.159"
   },
   "devDependencies": {
     "@types/node": "^25.0.3",

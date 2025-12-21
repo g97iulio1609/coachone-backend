@@ -13,4 +13,3 @@ export declare const projectsApi: {
     update: (id: string, input: Partial<CreateProjectInput>) => Promise<Project>;
     delete: (id: string) => Promise<void>;
 };
-//# sourceMappingURL=projects.d.ts.map

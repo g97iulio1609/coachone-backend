@@ -6,14 +6,10 @@
     "composite": true,
     "strict": true
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"],
   "references": [
     { "path": "../../../lib-ai-agents" },
     { "path": "../../../one-agent" },
-    { "path": "../../../lib-ai" },
     { "path": "../lib-core" },
-    { "path": "../lib-registry" },
     { "path": "../../../onecoach-shared/packages/contracts" },
     { "path": "../../../onecoach-shared/packages/schemas" },
     { "path": "../../../onecoach-shared/packages/types" }

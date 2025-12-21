@@ -12,15 +12,15 @@ export declare function useExercises<T extends Exercise = Exercise>(params?: Exe
 /**
  * Hook to get an exercise by ID
  */
-export declare function useExercise(id: string | null | undefined): import("@tanstack/react-query").UseQueryResult<import("..").ExerciseResponse, Error>;
+export declare function useExercise(id: string | null | undefined): import("@tanstack/react-query").UseQueryResult<import("../exercise").ExerciseResponse, Error>;
 /**
  * Hook to create an exercise
  */
-export declare function useCreateExercise(): import("@tanstack/react-query").UseMutationResult<import("..").ExerciseResponse, Error, unknown, unknown>;
+export declare function useCreateExercise(): import("@tanstack/react-query").UseMutationResult<import("../exercise").ExerciseResponse, Error, unknown, unknown>;
 /**
  * Hook to update an exercise
  */
-export declare function useUpdateExercise(): import("@tanstack/react-query").UseMutationResult<import("..").ExerciseResponse, Error, {
+export declare function useUpdateExercise(): import("@tanstack/react-query").UseMutationResult<import("../exercise").ExerciseResponse, Error, {
     id: string;
     data: unknown;
 }, unknown>;
@@ -50,3 +50,4 @@ export declare function useBatchExerciseOperations(): import("@tanstack/react-qu
     action: "approve" | "reject" | "delete";
     ids: string[];
 }, unknown>;
+//# sourceMappingURL=use-exercise.d.ts.map

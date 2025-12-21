@@ -69,3 +69,4 @@ export declare class OneRepMaxService {
      */
     static getBatchByExercises(userId: string, catalogExerciseIds: string[]): Promise<ServiceResult<Map<string, UserOneRepMax>>>;
 }
+//# sourceMappingURL=one-rep-max.service.d.ts.map

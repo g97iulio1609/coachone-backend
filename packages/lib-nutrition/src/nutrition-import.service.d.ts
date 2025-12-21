@@ -5,8 +5,8 @@ import type { nutrition_plans } from '@prisma/client';
 import type { ImportedNutritionPlan } from './helpers/imported-nutrition.schema';
 declare const NutritionImportOptionsSchema: z.ZodObject<{
     mode: z.ZodDefault<z.ZodEnum<{
-        auto: "auto";
         review: "review";
+        auto: "auto";
     }>>;
     locale: z.ZodOptional<z.ZodString>;
 }, z.core.$strip>;

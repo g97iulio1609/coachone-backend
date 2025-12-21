@@ -16,10 +16,11 @@ export declare function useDashboardData(): {
         weightChange30Days: number;
         totalVolumeThisMonth: number;
     } | undefined;
-    credits: import("..").CreditBalanceResponse | undefined;
-    activities: import("..").DashboardActivity[];
+    credits: import("../queries/credits.queries").CreditBalanceResponse | undefined;
+    activities: import("../queries/dashboard.queries").DashboardActivity[];
     isLoading: boolean;
     isError: boolean;
     error: Error | null;
     refetch: () => void;
 };
+//# sourceMappingURL=use-dashboard.d.ts.map

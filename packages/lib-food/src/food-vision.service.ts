@@ -5,7 +5,7 @@
  * Supporta estrazione etichette e segmentazione piatti
  */
 
-import { streamText, Output, type CoreMessage } from 'ai';
+import { streamText, Output, type ModelMessage } from 'ai';
 import { z } from 'zod';
 import { AIProviderConfigService, PROVIDER_MAP } from '@onecoach/lib-ai/ai-provider-config';
 import { creditService } from '@onecoach/lib-core/credit.service';
@@ -193,7 +193,7 @@ export class FoodVisionService {
         : base64ToDataUrl(imageBase64);
 
       // Chiama AI con immagine usando streamText con Output.object() (AI SDK 6)
-      const messages: CoreMessage[] = [
+      const messages: ModelMessage[] = [
         {
           role: 'user',
           content: [
@@ -288,7 +288,7 @@ export class FoodVisionService {
         : base64ToDataUrl(imageBase64);
 
       // Chiama AI con immagine usando streamText con Output.object() (AI SDK 6)
-      const messages: CoreMessage[] = [
+      const messages: ModelMessage[] = [
         {
           role: 'user',
           content: [

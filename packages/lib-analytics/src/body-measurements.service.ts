@@ -141,7 +141,7 @@ export async function createBodyMeasurement(
       calf: prepareDecimalField(data.calf),
       neck: prepareDecimalField(data.neck),
       shoulders: prepareDecimalField(data.shoulders),
-      height: prepareDecimalField(data.height),
+      // height: prepareDecimalField(data.height), // Removed as it's not in DB
       visceralFat: prepareDecimalField(data.visceralFat),
       waterPercentage: prepareDecimalField(data.waterPercentage),
       boneMass: prepareDecimalField(data.boneMass),
@@ -273,7 +273,7 @@ export async function updateBodyMeasurement(
       ...(data.calf !== undefined && { calf: prepareDecimalField(data.calf) }),
       ...(data.neck !== undefined && { neck: prepareDecimalField(data.neck) }),
       ...(data.shoulders !== undefined && { shoulders: prepareDecimalField(data.shoulders) }),
-      ...(data.height !== undefined && { height: prepareDecimalField(data.height) }),
+      // ...(data.height !== undefined && { height: prepareDecimalField(data.height) }),
       ...(data.visceralFat !== undefined && { visceralFat: prepareDecimalField(data.visceralFat) }),
       ...(data.waterPercentage !== undefined && { waterPercentage: prepareDecimalField(data.waterPercentage) }),
       ...(data.boneMass !== undefined && { boneMass: prepareDecimalField(data.boneMass) }),

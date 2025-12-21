@@ -25,11 +25,11 @@ export declare class SubscriptionService implements ISubscriptionService {
     getActiveSubscription(userId: string): Promise<{
         id: string;
         status: import("@prisma/client").$Enums.SubscriptionStatus;
-        stripeCustomerId: string | null;
         createdAt: Date;
         updatedAt: Date;
         userId: string | null;
         plan: import("@prisma/client").$Enums.SubscriptionPlan;
+        stripeCustomerId: string | null;
         stripeSubscriptionId: string | null;
         stripePriceId: string | null;
         currentPeriodStart: Date;
@@ -52,3 +52,4 @@ export declare class SubscriptionService implements ISubscriptionService {
  * Singleton instance
  */
 export declare const subscriptionService: SubscriptionService;
+//# sourceMappingURL=subscription.service.d.ts.map

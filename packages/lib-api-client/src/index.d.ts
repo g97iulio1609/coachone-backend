@@ -27,4 +27,3 @@ export type { TemplateResponse, TemplatesResponse } from './templates';
 export type { MarketplacePlan, MarketplacePlansResponse, MarketplacePlanResponse, } from './marketplace';
 export type { MilestoneResponse, MilestonesResponse } from './milestones';
 export type { TaskResponse, TasksResponse } from './tasks';
-//# sourceMappingURL=index.d.ts.map

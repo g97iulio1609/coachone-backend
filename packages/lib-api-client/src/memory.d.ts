@@ -61,4 +61,3 @@ export declare function createTimelineEvent(event: {
     data?: Record<string, unknown>;
     date: string;
 }): Promise<TimelineEvent>;
-//# sourceMappingURL=memory.d.ts.map

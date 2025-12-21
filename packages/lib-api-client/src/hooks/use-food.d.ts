@@ -38,4 +38,3 @@ export declare function useUpdateFoodWithAI(): import("@tanstack/react-query").U
         customPrompt?: string;
     };
 }, unknown>;
-//# sourceMappingURL=use-food.d.ts.map

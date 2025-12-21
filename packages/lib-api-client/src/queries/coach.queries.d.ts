@@ -84,4 +84,3 @@ export declare const coachQueries: {
     getClients: (filters?: CoachClientsFilters) => Promise<CoachClientsResponse>;
 };
 export {};
-//# sourceMappingURL=coach.queries.d.ts.map

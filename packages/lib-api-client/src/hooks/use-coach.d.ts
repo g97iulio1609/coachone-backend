@@ -31,4 +31,3 @@ export declare function useCoachDashboardPlans(filters?: CoachDashboardPlansFilt
  * @returns Query result with clients data
  */
 export declare function useCoachClients(filters?: CoachClientsFilters): import("@tanstack/react-query").UseQueryResult<import("..").CoachClientsResponse, Error>;
-//# sourceMappingURL=use-coach.d.ts.map

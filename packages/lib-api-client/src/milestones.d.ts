@@ -24,4 +24,3 @@ export declare const milestonesApi: {
     }>) => Promise<Milestone>;
     delete: (id: string) => Promise<void>;
 };
-//# sourceMappingURL=milestones.d.ts.map

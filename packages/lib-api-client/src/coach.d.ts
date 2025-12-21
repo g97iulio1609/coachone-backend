@@ -119,4 +119,3 @@ export declare const coachApi: {
      */
     getClients(filters?: CoachClientsFilters): Promise<CoachClientsResponse>;
 };
-//# sourceMappingURL=coach.d.ts.map

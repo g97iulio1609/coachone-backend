@@ -6,11 +6,11 @@
 /**
  * Hook to get all nutrition plans
  */
-export declare function useNutritionPlans(): import("@tanstack/react-query").UseQueryResult<import("..").NutritionPlansResponse, Error>;
+export declare function useNutritionPlans(): import("@tanstack/react-query").UseQueryResult<import("../nutrition").NutritionPlansResponse, Error>;
 /**
  * Hook to get a nutrition plan by ID
  */
-export declare function useNutritionPlan(id: string | null | undefined): import("@tanstack/react-query").UseQueryResult<import("..").NutritionPlanResponse, Error>;
+export declare function useNutritionPlan(id: string | null | undefined): import("@tanstack/react-query").UseQueryResult<import("../nutrition").NutritionPlanResponse, Error>;
 /**
  * Hook to get nutrition plan versions
  */
@@ -26,11 +26,11 @@ export declare function useNutritionDayLog(logId: string | null | undefined): im
 /**
  * Hook to create a nutrition plan
  */
-export declare function useCreateNutritionPlan(): import("@tanstack/react-query").UseMutationResult<import("..").NutritionPlanResponse, Error, unknown, unknown>;
+export declare function useCreateNutritionPlan(): import("@tanstack/react-query").UseMutationResult<import("../nutrition").NutritionPlanResponse, Error, unknown, unknown>;
 /**
  * Hook to update a nutrition plan
  */
-export declare function useUpdateNutritionPlan(): import("@tanstack/react-query").UseMutationResult<import("..").NutritionPlanResponse, Error, {
+export declare function useUpdateNutritionPlan(): import("@tanstack/react-query").UseMutationResult<import("../nutrition").NutritionPlanResponse, Error, {
     id: string;
     data: unknown;
 }, unknown>;
@@ -59,3 +59,4 @@ export declare function useUpdateNutritionDayLog(): import("@tanstack/react-quer
     logId: string;
     data: unknown;
 }, unknown>;
+//# sourceMappingURL=use-nutrition.d.ts.map

@@ -149,7 +149,7 @@ class CoachService implements ICoachService {
 
     return {
       id: profile.id,
-      userId: profile.userId,
+      userId: profile.userId!,
       bio: profile.bio,
       credentials: profile.credentials,
       coachingStyle: profile.coachingStyle,
@@ -161,8 +161,8 @@ class CoachService implements ICoachService {
       averageRating: profile.averageRating ? Number(profile.averageRating) : null,
       totalReviews: profile.totalReviews,
       user: {
-        name: profile.users.name,
-        image: profile.users.image,
+        name: profile.users?.name || null,
+        image: profile.users?.image || null,
       },
     };
   }
@@ -213,17 +213,17 @@ class CoachService implements ICoachService {
     });
 
     // Update coach profile verification status if approved
-    if (status === 'APPROVED') {
+    if (status === 'APPROVED' && request.userId) {
       await prisma.coach_profiles.update({
-        where: { userId: request.userId },
+        where: { userId: request.userId! },
         data: {
           verificationStatus: 'APPROVED',
           updatedAt: new Date(),
         },
       });
-    } else if (status === 'REJECTED') {
+    } else if (status === 'REJECTED' && request.userId) {
       await prisma.coach_profiles.update({
-        where: { userId: request.userId },
+        where: { userId: request.userId! },
         data: {
           verificationStatus: 'REJECTED',
           updatedAt: new Date(),
@@ -251,7 +251,7 @@ class CoachService implements ICoachService {
 
     // Calculate total sales
     const totalSales = plans.reduce(
-      (sum: unknown, plan: unknown) => sum + plan.plan_purchases.length,
+      (sum, plan) => sum + plan.plan_purchases.length,
       0
     );
 
@@ -260,7 +260,7 @@ class CoachService implements ICoachService {
     const totalReviews = allRatings.length;
     const averageRating =
       totalReviews > 0
-        ? allRatings.reduce((sum: unknown, r: unknown) => sum + r.rating, 0) / totalReviews
+        ? allRatings.reduce((sum, r) => sum + r.rating, 0) / totalReviews
         : null;
 
     // Update coach profile

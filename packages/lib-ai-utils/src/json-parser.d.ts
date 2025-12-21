@@ -11,3 +11,4 @@
  * @returns Parsed JSON object or null if parsing fails
  */
 export declare function parseJsonResponse<T = unknown>(text: string): T | null;
+//# sourceMappingURL=json-parser.d.ts.map

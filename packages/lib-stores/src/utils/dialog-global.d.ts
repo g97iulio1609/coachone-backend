@@ -19,4 +19,3 @@ export declare const dialog: {
     warning: (message: string, title?: string) => Promise<void>;
     error: (message: string, title?: string) => Promise<void>;
 };
-//# sourceMappingURL=dialog-global.d.ts.map

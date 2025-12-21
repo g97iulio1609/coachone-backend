@@ -28,4 +28,3 @@ export declare const profileApi: {
      */
     deleteOneRepMax(catalogExerciseId: string): Promise<void>;
 };
-//# sourceMappingURL=profile.d.ts.map

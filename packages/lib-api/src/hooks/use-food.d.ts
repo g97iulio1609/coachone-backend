@@ -15,15 +15,15 @@ export declare function useFoods(params?: FoodListParams, initialData?: FoodsRes
 /**
  * Hook to get a food by ID
  */
-export declare function useFood(id: string | null | undefined): import("@tanstack/react-query").UseQueryResult<import("..").FoodResponse, Error>;
+export declare function useFood(id: string | null | undefined): import("@tanstack/react-query").UseQueryResult<import("../food").FoodResponse, Error>;
 /**
  * Hook to create a food
  */
-export declare function useCreateFood(): import("@tanstack/react-query").UseMutationResult<import("..").FoodResponse, Error, unknown, unknown>;
+export declare function useCreateFood(): import("@tanstack/react-query").UseMutationResult<import("../food").FoodResponse, Error, unknown, unknown>;
 /**
  * Hook to update a food
  */
-export declare function useUpdateFood(): import("@tanstack/react-query").UseMutationResult<import("..").FoodResponse, Error, {
+export declare function useUpdateFood(): import("@tanstack/react-query").UseMutationResult<import("../food").FoodResponse, Error, {
     id: string;
     data: unknown;
 }, unknown>;
@@ -34,7 +34,7 @@ export declare function useDeleteFood(): import("@tanstack/react-query").UseMuta
 /**
  * Hook to update a food using AI
  */
-export declare function useUpdateFoodWithAI(): import("@tanstack/react-query").UseMutationResult<import("..").FoodResponse, Error, {
+export declare function useUpdateFoodWithAI(): import("@tanstack/react-query").UseMutationResult<import("../food").FoodResponse, Error, {
     id: string;
     data: {
         description: string;
@@ -63,3 +63,4 @@ export declare function useBatchFoodOperations(): import("@tanstack/react-query"
     ids: string[];
     data?: Record<string, unknown>;
 }, unknown>;
+//# sourceMappingURL=use-food.d.ts.map

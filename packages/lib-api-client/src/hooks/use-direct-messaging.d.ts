@@ -35,15 +35,15 @@ export declare function useDirectMessages(conversationId: string | null, page?: 
  * @returns Mutation function
  */
 export declare function useCreateDirectConversation(): import("@tanstack/react-query").UseMutationResult<{
+    title: string | null;
     id: string;
     createdAt: Date;
     updatedAt: Date;
-    title: string | null;
-    priority: import("@prisma/client").$Enums.ConversationPriority;
     coachId: string;
+    priority: import("@prisma/client").$Enums.ConversationPriority;
     athleteId: string;
-    isMuted: boolean;
     lastMessageAt: Date | null;
+    isMuted: boolean;
 }, Error, {
     athleteId: string;
     title?: string;
@@ -114,3 +114,4 @@ export declare function useMarkMessageAsRead(): import("@tanstack/react-query").
     messageId: string;
     conversationId: string;
 }, unknown>;
+//# sourceMappingURL=use-direct-messaging.d.ts.map

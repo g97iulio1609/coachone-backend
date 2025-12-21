@@ -48,4 +48,3 @@ export declare function useBatchExerciseOperations(): import("@tanstack/react-qu
 }, {
     previousQueries: Map<any, any>;
 }>;
-//# sourceMappingURL=use-exercise.d.ts.map

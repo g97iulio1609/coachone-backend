@@ -186,4 +186,3 @@ export declare function useSystemThemeSync(): void;
  */
 export declare function useSystemThemeSyncNative(nativeColorScheme: 'light' | 'dark' | null | undefined): void;
 export {};
-//# sourceMappingURL=ui.store.d.ts.map

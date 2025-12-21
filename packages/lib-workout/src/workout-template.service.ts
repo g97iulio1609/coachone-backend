@@ -186,7 +186,9 @@ export class WorkoutTemplateService {
         skip: options.offset || 0,
       });
 
-      return templates.map((t: any) => this.mapToWorkoutTemplate(t));
+      return templates.map((t: Prisma.workout_templatesGetPayload<Prisma.workout_templatesDefaultArgs>) =>
+        this.mapToWorkoutTemplate(t)
+      );
     } catch (error: unknown) {
       console.error('[WorkoutTemplateService] Error listing templates:', error);
       console.error('[WorkoutTemplateService] where clause:', JSON.stringify(where, null, 2));

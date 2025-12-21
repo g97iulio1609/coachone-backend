@@ -2,24 +2,11 @@
   "extends": "../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "./dist",
-    "rootDir": "./src",
-    "composite": true,
+    "rootDir": "../../../..",
     "noEmit": false,
     "strict": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"],
-  "references": [
-    { "path": "../../../onecoach-shared/packages/constants" },
-    { "path": "../../../onecoach-shared/packages/contracts" },
-    { "path": "../../../onecoach-shared/packages/schemas" },
-    { "path": "../../../onecoach-shared/packages/types" },
-    { "path": "../../../onecoach-shared/packages/lib-shared" },
-    { "path": "../lib-core" },
-    { "path": "../lib-metadata" },
-    { "path": "../../../lib-ai" },
-    { "path": "../../../lib-ai-agents" },
-    { "path": "../../../one-agent" },
-    { "path": "../lib-api" }
-  ]
+
 }

@@ -5,6 +5,7 @@
  * Implements SOLID principles (SRP, DIP)
  */
 
+import { Prisma } from '@prisma/client';
 import { prisma } from '@onecoach/lib-core/prisma';
 import type {
   MarketplacePlanType,
@@ -216,6 +217,8 @@ class MarketplaceService implements IMarketplaceService {
         ? {
             id: plan.coach.id,
             userId: plan.coach.id, // coach.id is users.id
+            name: plan.coach.name,
+            image: plan.coach.image,
             bio: plan.coach.coach_profile?.bio || null,
           }
         : undefined,
@@ -231,7 +234,7 @@ class MarketplaceService implements IMarketplaceService {
     const skip = (page - 1) * limit;
 
     // Build where clause
-    const where: unknown = { isPublished: true };
+    const where: Prisma.marketplace_plansWhereInput = { isPublished: true };
 
     if (filters.planType) {
       where.planType = filters.planType;
@@ -242,9 +245,10 @@ class MarketplaceService implements IMarketplaceService {
     }
 
     if (filters.minPrice || filters.maxPrice) {
-      where.price = {};
-      if (filters.minPrice) where.price.gte = filters.minPrice;
-      if (filters.maxPrice) where.price.lte = filters.maxPrice;
+      where.price = {
+        ...(filters.minPrice ? { gte: filters.minPrice } : {}),
+        ...(filters.maxPrice ? { lte: filters.maxPrice } : {}),
+      };
     }
 
     if (filters.minRating) {
@@ -259,7 +263,7 @@ class MarketplaceService implements IMarketplaceService {
     }
 
     // Build orderBy clause
-    let orderBy: unknown = { createdAt: 'desc' };
+    let orderBy: Prisma.marketplace_plansOrderByWithRelationInput = { createdAt: 'desc' };
     if (filters.sortBy) {
       switch (filters.sortBy) {
         case 'rating':
@@ -310,6 +314,8 @@ class MarketplaceService implements IMarketplaceService {
         ? {
             id: plan.coach.id,
             userId: plan.coach.id, // coach.id is users.id
+            name: plan.coach.name,
+            image: plan.coach.image,
             bio: plan.coach.coach_profile?.bio || null,
           }
         : undefined,
@@ -429,7 +435,7 @@ class MarketplaceService implements IMarketplaceService {
           userId: data.userId,
           marketplacePlanId: data.marketplacePlanId,
         },
-      },
+      } as any,
       update: {
         rating: data.rating,
         review: data.review,
@@ -468,7 +474,7 @@ class MarketplaceService implements IMarketplaceService {
     const totalReviews = ratings.length;
     const averageRating =
       totalReviews > 0
-        ? ratings.reduce((sum: unknown, r: unknown) => sum + r.rating, 0) / totalReviews
+        ? ratings.reduce((sum: number, r: plan_ratings) => sum + r.rating, 0) / totalReviews
         : null;
 
     return await prisma.marketplace_plans.update({

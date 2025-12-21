@@ -81,4 +81,3 @@ export declare const profileQueries: {
      */
     update: (payload: ProfileUpdatePayload) => Promise<UserProfileData>;
 };
-//# sourceMappingURL=profile.queries.d.ts.map

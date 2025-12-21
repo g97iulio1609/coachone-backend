@@ -16,4 +16,3 @@ export declare const affiliateKeys: {
     stats: readonly ["affiliate", "stats"];
 };
 export declare function useAffiliateStats(): import("@tanstack/react-query").UseQueryResult<AffiliateStats, Error>;
-//# sourceMappingURL=use-affiliate.d.ts.map

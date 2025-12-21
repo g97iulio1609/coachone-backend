@@ -30,3 +30,4 @@ export interface TrackedAIContextOptions {
  * );
  */
 export declare function createTrackedAIContext<T>(delegate: AIParseContext<T>, options: TrackedAIContextOptions): AIParseContext<T>;
+//# sourceMappingURL=tracked-ai-context.d.ts.map

@@ -216,11 +216,12 @@ export declare const ImportedNutritionPlanSchema: z.ZodObject<{
     restrictions: z.ZodDefault<z.ZodArray<z.ZodString>>;
     preferences: z.ZodDefault<z.ZodArray<z.ZodString>>;
     status: z.ZodDefault<z.ZodEnum<{
-        ACTIVE: "ACTIVE";
         DRAFT: "DRAFT";
+        ACTIVE: "ACTIVE";
         COMPLETED: "COMPLETED";
         ARCHIVED: "ARCHIVED";
     }>>;
     metadata: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
 }, z.core.$strip>;
 export type ImportedNutritionPlan = z.infer<typeof ImportedNutritionPlanSchema>;
+//# sourceMappingURL=imported-nutrition.schema.d.ts.map

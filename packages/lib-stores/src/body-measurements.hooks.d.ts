@@ -21,4 +21,3 @@ export declare function useBodyMeasurementsRealtime({ userId, enabled, }?: UseBo
  */
 export declare function useAllBodyMeasurementsRealtime(userId?: string): void;
 export {};
-//# sourceMappingURL=body-measurements.hooks.d.ts.map

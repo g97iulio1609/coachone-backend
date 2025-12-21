@@ -96,4 +96,3 @@ export declare const useSelectedModel: () => AIModel | null;
  */
 export declare const useAvailableModels: () => AIModel[];
 export {};
-//# sourceMappingURL=ai-models.store.d.ts.map

@@ -40,11 +40,11 @@ export declare function getExerciseTypesWithTranslations(locale?: string): Promi
     imageUrl: string | null;
     localizedName: string;
     translations: {
-        id: string;
         description: string | null;
+        name: string;
+        id: string;
         createdAt: Date;
         updatedAt: Date;
-        name: string;
         exerciseTypeId: string;
         locale: string;
     }[];
@@ -59,11 +59,11 @@ export declare function getMusclesWithTranslations(locale?: string): Promise<{
     imageUrl: string | null;
     localizedName: string;
     translations: {
-        id: string;
         description: string | null;
+        name: string;
+        id: string;
         createdAt: Date;
         updatedAt: Date;
-        name: string;
         locale: string;
         muscleId: string;
     }[];
@@ -78,11 +78,11 @@ export declare function getBodyPartsWithTranslations(locale?: string): Promise<{
     imageUrl: string | null;
     localizedName: string;
     translations: {
-        id: string;
         description: string | null;
+        name: string;
+        id: string;
         createdAt: Date;
         updatedAt: Date;
-        name: string;
         locale: string;
         bodyPartId: string;
     }[];
@@ -97,11 +97,11 @@ export declare function getEquipmentWithTranslations(locale?: string): Promise<{
     imageUrl: string | null;
     localizedName: string;
     translations: {
-        id: string;
         description: string | null;
+        name: string;
+        id: string;
         createdAt: Date;
         updatedAt: Date;
-        name: string;
         locale: string;
         equipmentId: string;
     }[];
@@ -115,11 +115,11 @@ export declare function getWorkoutGoalsWithTranslations(locale?: string): Promis
     slug: string;
     localizedName: string;
     translations: {
-        id: string;
         description: string | null;
+        name: string;
+        id: string;
         createdAt: Date;
         updatedAt: Date;
-        name: string;
         locale: string;
         workoutGoalId: string;
     }[];
@@ -128,11 +128,11 @@ export declare function getWorkoutGoalsWithTranslations(locale?: string): Promis
  * Create or update ExerciseType translation
  */
 export declare function upsertExerciseTypeTranslation(exerciseTypeId: string, locale: string, name: string, description?: string): Promise<{
-    id: string;
     description: string | null;
+    name: string;
+    id: string;
     createdAt: Date;
     updatedAt: Date;
-    name: string;
     exerciseTypeId: string;
     locale: string;
 }>;
@@ -140,11 +140,11 @@ export declare function upsertExerciseTypeTranslation(exerciseTypeId: string, lo
  * Create or update Muscle translation
  */
 export declare function upsertMuscleTranslation(muscleId: string, locale: string, name: string, description?: string): Promise<{
-    id: string;
     description: string | null;
+    name: string;
+    id: string;
     createdAt: Date;
     updatedAt: Date;
-    name: string;
     locale: string;
     muscleId: string;
 }>;
@@ -152,11 +152,11 @@ export declare function upsertMuscleTranslation(muscleId: string, locale: string
  * Create or update BodyPart translation
  */
 export declare function upsertBodyPartTranslation(bodyPartId: string, locale: string, name: string, description?: string): Promise<{
-    id: string;
     description: string | null;
+    name: string;
+    id: string;
     createdAt: Date;
     updatedAt: Date;
-    name: string;
     locale: string;
     bodyPartId: string;
 }>;
@@ -164,11 +164,11 @@ export declare function upsertBodyPartTranslation(bodyPartId: string, locale: st
  * Create or update Equipment translation
  */
 export declare function upsertEquipmentTranslation(equipmentId: string, locale: string, name: string, description?: string): Promise<{
-    id: string;
     description: string | null;
+    name: string;
+    id: string;
     createdAt: Date;
     updatedAt: Date;
-    name: string;
     locale: string;
     equipmentId: string;
 }>;
@@ -197,11 +197,11 @@ export declare function getAllMetadataForLocale(locale?: string): Promise<{
         imageUrl: string | null;
         localizedName: string;
         translations: {
-            id: string;
             description: string | null;
+            name: string;
+            id: string;
             createdAt: Date;
             updatedAt: Date;
-            name: string;
             exerciseTypeId: string;
             locale: string;
         }[];
@@ -213,11 +213,11 @@ export declare function getAllMetadataForLocale(locale?: string): Promise<{
         imageUrl: string | null;
         localizedName: string;
         translations: {
-            id: string;
             description: string | null;
+            name: string;
+            id: string;
             createdAt: Date;
             updatedAt: Date;
-            name: string;
             locale: string;
             muscleId: string;
         }[];
@@ -229,11 +229,11 @@ export declare function getAllMetadataForLocale(locale?: string): Promise<{
         imageUrl: string | null;
         localizedName: string;
         translations: {
-            id: string;
             description: string | null;
+            name: string;
+            id: string;
             createdAt: Date;
             updatedAt: Date;
-            name: string;
             locale: string;
             bodyPartId: string;
         }[];
@@ -245,11 +245,11 @@ export declare function getAllMetadataForLocale(locale?: string): Promise<{
         imageUrl: string | null;
         localizedName: string;
         translations: {
-            id: string;
             description: string | null;
+            name: string;
+            id: string;
             createdAt: Date;
             updatedAt: Date;
-            name: string;
             locale: string;
             equipmentId: string;
         }[];
@@ -260,13 +260,14 @@ export declare function getAllMetadataForLocale(locale?: string): Promise<{
         slug: string;
         localizedName: string;
         translations: {
-            id: string;
             description: string | null;
+            name: string;
+            id: string;
             createdAt: Date;
             updatedAt: Date;
-            name: string;
             locale: string;
             workoutGoalId: string;
         }[];
     }[];
 }>;
+//# sourceMappingURL=metadata-translation.service.d.ts.map

@@ -96,4 +96,3 @@ export declare const useDialogState: () => {
     handleCancel: () => void;
     setInputValue: (value: string) => void;
 };
-//# sourceMappingURL=dialog.store.d.ts.map

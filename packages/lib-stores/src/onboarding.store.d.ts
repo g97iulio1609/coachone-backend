@@ -67,3 +67,4 @@ export declare const useOnboardingStore: import("zustand").UseBoundStore<Omit<im
         cleanup: () => void;
     };
 }>;
+//# sourceMappingURL=onboarding.store.d.ts.map

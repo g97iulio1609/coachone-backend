@@ -17,4 +17,3 @@ export declare function usePromoCodeValidation({ code, userId, enabled, debounce
     error: string | null;
 };
 export {};
-//# sourceMappingURL=use-promo-code-validation.d.ts.map

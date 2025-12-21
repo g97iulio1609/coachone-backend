@@ -26,4 +26,3 @@ interface WorkoutBuilderState {
 }
 export declare const useWorkoutBuilderStore: UseBoundStore<StoreApi<WorkoutBuilderState>>;
 export {};
-//# sourceMappingURL=workout-builder.store.d.ts.map

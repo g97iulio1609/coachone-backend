@@ -31,4 +31,3 @@ export declare const selectLatestMeasurement: (state: BodyMeasurementsStore) => 
 export declare const selectAllMeasurements: (state: BodyMeasurementsStore) => BodyMeasurement[];
 export declare const selectMeasurementsLoading: (state: BodyMeasurementsStore) => boolean;
 export {};
-//# sourceMappingURL=body-measurements.store.d.ts.map

@@ -32,4 +32,3 @@ export declare const analyticsKeys: {
     overview: (period: string) => readonly ["analytics", "overview", string];
 };
 export declare function useAnalyticsOverview(period?: string): import("@tanstack/react-query").UseQueryResult<AnalyticsReport, Error>;
-//# sourceMappingURL=use-analytics.d.ts.map

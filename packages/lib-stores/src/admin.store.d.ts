@@ -146,4 +146,3 @@ export declare const useAdminStore: import("zustand").UseBoundStore<Omit<Omit<im
         }, unknown>>;
     };
 }>;
-//# sourceMappingURL=admin.store.d.ts.map

@@ -165,8 +165,8 @@ export declare const ImportedWorkoutProgramSchema: z.ZodObject<{
     name: z.ZodString;
     description: z.ZodOptional<z.ZodString>;
     difficulty: z.ZodOptional<z.ZodEnum<{
-        BEGINNER: "BEGINNER";
         INTERMEDIATE: "INTERMEDIATE";
+        BEGINNER: "BEGINNER";
         ADVANCED: "ADVANCED";
         EXPERT: "EXPERT";
     }>>;
@@ -234,8 +234,8 @@ export declare const ParseResultSchema: z.ZodObject<{
         name: z.ZodString;
         description: z.ZodOptional<z.ZodString>;
         difficulty: z.ZodOptional<z.ZodEnum<{
-            BEGINNER: "BEGINNER";
             INTERMEDIATE: "INTERMEDIATE";
+            BEGINNER: "BEGINNER";
             ADVANCED: "ADVANCED";
             EXPERT: "EXPERT";
         }>>;
@@ -318,8 +318,8 @@ export type ParseResult = z.infer<typeof ParseResultSchema>;
  */
 export declare const ImportOptionsSchema: z.ZodObject<{
     mode: z.ZodDefault<z.ZodEnum<{
-        auto: "auto";
         review: "review";
+        auto: "auto";
     }>>;
     createMissingExercises: z.ZodDefault<z.ZodBoolean>;
     matchThreshold: z.ZodDefault<z.ZodNumber>;
@@ -359,8 +359,8 @@ export declare const ImportRequestSchema: z.ZodObject<{
     }, z.core.$strip>>;
     options: z.ZodOptional<z.ZodObject<{
         mode: z.ZodDefault<z.ZodEnum<{
-            auto: "auto";
             review: "review";
+            auto: "auto";
         }>>;
         createMissingExercises: z.ZodDefault<z.ZodBoolean>;
         matchThreshold: z.ZodDefault<z.ZodNumber>;

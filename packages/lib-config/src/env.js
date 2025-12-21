@@ -22,6 +22,8 @@ export function getAIProviderKey(provider) {
             return process.env.XAI_API_KEY;
         case 'openrouter':
             return process.env.OPENROUTER_API_KEY;
+        case 'minimax':
+            return process.env.MINIMAX_API_KEY;
         default:
             return undefined;
     }

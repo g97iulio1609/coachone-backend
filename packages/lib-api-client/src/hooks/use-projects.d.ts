@@ -37,4 +37,3 @@ export declare function useUpdateProject(): import("@tanstack/react-query").UseM
  * Hook to delete a project
  */
 export declare function useDeleteProject(): import("@tanstack/react-query").UseMutationResult<void, Error, string, unknown>;
-//# sourceMappingURL=use-projects.d.ts.map

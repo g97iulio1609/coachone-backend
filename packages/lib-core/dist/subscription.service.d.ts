@@ -24,11 +24,11 @@ export declare class SubscriptionService implements ISubscriptionService {
     updateSubscription(userId: string, plan: SubscriptionPlan): Promise<Stripe.Subscription>;
     getActiveSubscription(userId: string): Promise<{
         id: string;
-        userId: string | null;
-        status: import("@prisma/client").$Enums.SubscriptionStatus;
-        stripeCustomerId: string | null;
         createdAt: Date;
         updatedAt: Date;
+        status: import("@prisma/client").$Enums.SubscriptionStatus;
+        userId: string | null;
+        stripeCustomerId: string | null;
         plan: import("@prisma/client").$Enums.SubscriptionPlan;
         stripeSubscriptionId: string | null;
         stripePriceId: string | null;

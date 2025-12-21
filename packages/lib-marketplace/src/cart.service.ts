@@ -327,7 +327,7 @@ class CartService {
         currency: pack.currency,
         title: `${pack.credits} crediti`,
         description: `Pacchetto ${pack.credits} crediti`,
-        image: pack.image,
+
       };
     }
 

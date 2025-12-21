@@ -11,14 +11,15 @@ import type { HealthDataType } from '../queries/health.queries';
  * Replaces HealthProvider context
  */
 export declare function useHealth(): {
-    permissions: import("@onecoach/lib-stores/health.store").HealthPermissions | null;
+    permissions: import("@onecoach/lib-stores").HealthPermissions | null;
     requestPermissions: () => Promise<boolean>;
     hasAllPermissions: () => boolean;
-    syncStatus: import("@onecoach/lib-stores/health.store").SyncStatus;
+    syncStatus: import("@onecoach/lib-stores").SyncStatus;
     syncHealthData: (dataTypes?: HealthDataType[]) => Promise<void>;
     healthSummary: HealthSummary | null;
     isAvailable: boolean;
-    platform: import("@onecoach/lib-stores/health.store").HealthPlatform | null;
+    platform: import("@onecoach/lib-stores").HealthPlatform | null;
     isAutoSyncEnabled: boolean;
     getHealthData: (_dataType: HealthDataType, _startDate: Date, _endDate: Date) => Promise<unknown[]>;
 };
+//# sourceMappingURL=use-health-native.d.ts.map

@@ -51,8 +51,8 @@ export declare const exerciseImportSchema: z.ZodIntersection<z.ZodObject<{
     isUserGenerated: z.ZodOptional<z.ZodBoolean>;
 }, z.core.$strip>, z.ZodObject<{
     approvalStatus: z.ZodOptional<z.ZodEnum<{
-        APPROVED: "APPROVED";
         PENDING: "PENDING";
+        APPROVED: "APPROVED";
     }>>;
 }, z.core.$strip>>;
 /**
@@ -100,8 +100,8 @@ export declare const exerciseAiPlanSchema: z.ZodObject<{
         isUserGenerated: z.ZodOptional<z.ZodBoolean>;
     }, z.core.$strip>, z.ZodObject<{
         approvalStatus: z.ZodOptional<z.ZodEnum<{
-            APPROVED: "APPROVED";
             PENDING: "PENDING";
+            APPROVED: "APPROVED";
         }>>;
     }, z.core.$strip>>>>;
     update: z.ZodDefault<z.ZodArray<z.ZodObject<{
@@ -159,8 +159,8 @@ export declare const exerciseAiPlanSchema: z.ZodObject<{
     approve: z.ZodDefault<z.ZodArray<z.ZodObject<{
         slug: z.ZodString;
         status: z.ZodDefault<z.ZodEnum<{
-            APPROVED: "APPROVED";
             PENDING: "PENDING";
+            APPROVED: "APPROVED";
         }>>;
     }, z.core.$strip>>>;
     summary: z.ZodOptional<z.ZodString>;
@@ -312,4 +312,3 @@ export declare class ExerciseAdminService {
     private static formatExportRecord;
 }
 export {};
-//# sourceMappingURL=exercise-admin.service.d.ts.map

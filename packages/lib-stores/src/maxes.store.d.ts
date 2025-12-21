@@ -95,4 +95,3 @@ export declare const useMaxHistory: (exerciseId: string) => MaxVersion[];
 export declare const useMaxesLoading: () => boolean;
 /** Hook per l'errore */
 export declare const useMaxesError: () => string | null;
-//# sourceMappingURL=maxes.store.d.ts.map

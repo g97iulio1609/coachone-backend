@@ -27,6 +27,7 @@ import {
   useChatStore,
   selectConversations,
   selectCurrentConversationId,
+  useCopilotStore,
 } from '@onecoach/lib-stores';
 
 // ============================================================================
@@ -144,6 +145,9 @@ export function useUnifiedChat(options: UseUnifiedChatOptions = {}): UseUnifiedC
   // Uses Zustand store selector for modelName (already converted from database ID)
   // IMPORTANTE: Include sempre il conversationId corrente (che può essere nuovo) nel body
   // anche se non lo passiamo a useChatCore per evitare reset dei messaggi
+  // CONTEXT-AWARE: Legge mcpContext da CopilotStore per contesto granulare (planId, programId, ecc.)
+  const mcpContext = useCopilotStore((state) => state.mcpContext);
+
   const requestBody = useMemo(() => {
     const body: Record<string, unknown> = {
       tier: 'balanced',
@@ -157,8 +161,26 @@ export function useUnifiedChat(options: UseUnifiedChatOptions = {}): UseUnifiedC
       console.warn(`🎯 [useUnifiedChat] Sending model from store: ${selectedModelName}`);
     }
 
-    // Add screen context
-    if (screenContext) {
+    // Add full MCP context from CopilotStore (includes planId, programId, taskId, etc.)
+    // This takes priority over basic screenContext for context-aware operations
+    if (mcpContext && mcpContext.domain) {
+      body.domain = mcpContext.domain;
+      body.context = {
+        domain: mcpContext.domain,
+        userId: mcpContext.userId,
+        athleteId: mcpContext.athleteId,
+        coachId: mcpContext.coachId,
+        isAdmin: mcpContext.isAdmin,
+        nutrition: mcpContext.nutrition,
+        workout: mcpContext.workout,
+        oneAgenda: mcpContext.oneAgenda,
+        exercise: mcpContext.exercise,
+        analytics: mcpContext.analytics,
+        route: mcpContext.route,
+        locale: mcpContext.locale,
+      };
+    } else if (screenContext) {
+      // Fallback to basic screenContext for backward compatibility
       body.domain = screenContext.type;
       body.context = {
         type: screenContext.type,
@@ -177,7 +199,7 @@ export function useUnifiedChat(options: UseUnifiedChatOptions = {}): UseUnifiedC
     }
 
     return body;
-  }, [selectedModelName, screenContext, reasoningEnabled, newConversationId, chatStoreCurrentConversationId, initialConversationId]);
+  }, [selectedModelName, mcpContext, screenContext, reasoningEnabled, newConversationId, chatStoreCurrentConversationId, initialConversationId]);
 
   // Fetch conversations non più necessario - ChatStore viene aggiornato via Realtime
   // Mantenuto solo per retrocompatibilità se necessario

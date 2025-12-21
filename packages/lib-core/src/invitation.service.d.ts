@@ -22,14 +22,14 @@ export declare class InvitationService {
      * Create a new invitation
      */
     static createInvitation(input: CreateInvitationInput): Promise<{
+        type: import("@prisma/client").$Enums.InvitationType;
         id: string;
         status: import("@prisma/client").$Enums.InvitationStatus;
+        code: string;
         createdAt: Date;
         updatedAt: Date;
-        metadata: Prisma.JsonValue | null;
-        type: import("@prisma/client").$Enums.InvitationType;
-        code: string;
         expiresAt: Date | null;
+        metadata: Prisma.JsonValue | null;
         createdById: string | null;
         maxUses: number;
         usedCount: number;
@@ -42,14 +42,14 @@ export declare class InvitationService {
      * Use an invitation (to be called during registration)
      */
     static useInvitation(code: string, userId: string): Promise<{
+        type: import("@prisma/client").$Enums.InvitationType;
         id: string;
         status: import("@prisma/client").$Enums.InvitationStatus;
+        code: string;
         createdAt: Date;
         updatedAt: Date;
-        metadata: Prisma.JsonValue | null;
-        type: import("@prisma/client").$Enums.InvitationType;
-        code: string;
         expiresAt: Date | null;
+        metadata: Prisma.JsonValue | null;
         createdById: string | null;
         maxUses: number;
         usedCount: number;
@@ -58,14 +58,14 @@ export declare class InvitationService {
      * Revoke an invitation
      */
     static revokeInvitation(id: string): Promise<{
+        type: import("@prisma/client").$Enums.InvitationType;
         id: string;
         status: import("@prisma/client").$Enums.InvitationStatus;
+        code: string;
         createdAt: Date;
         updatedAt: Date;
-        metadata: Prisma.JsonValue | null;
-        type: import("@prisma/client").$Enums.InvitationType;
-        code: string;
         expiresAt: Date | null;
+        metadata: Prisma.JsonValue | null;
         createdById: string | null;
         maxUses: number;
         usedCount: number;
@@ -85,18 +85,18 @@ export declare class InvitationService {
                 uses: number;
             };
             createdBy: {
-                email: string;
                 name: string | null;
+                email: string;
             } | null;
         } & {
+            type: import("@prisma/client").$Enums.InvitationType;
             id: string;
             status: import("@prisma/client").$Enums.InvitationStatus;
+            code: string;
             createdAt: Date;
             updatedAt: Date;
-            metadata: Prisma.JsonValue | null;
-            type: import("@prisma/client").$Enums.InvitationType;
-            code: string;
             expiresAt: Date | null;
+            metadata: Prisma.JsonValue | null;
             createdById: string | null;
             maxUses: number;
             usedCount: number;
@@ -111,3 +111,4 @@ export declare class InvitationService {
      */
     static expireInvitations(): Promise<number>;
 }
+//# sourceMappingURL=invitation.service.d.ts.map

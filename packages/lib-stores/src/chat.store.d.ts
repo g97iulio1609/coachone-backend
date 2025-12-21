@@ -148,4 +148,3 @@ export declare const selectHasConversations: (state: ChatStore) => boolean;
 export declare const selectConversationsCount: (state: ChatStore) => number;
 /** Selettore per il conteggio dei messaggi nella conversazione corrente */
 export declare const selectMessageCount: (state: ChatStore) => number;
-//# sourceMappingURL=chat.store.d.ts.map

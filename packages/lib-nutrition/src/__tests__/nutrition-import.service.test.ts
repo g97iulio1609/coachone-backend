@@ -58,7 +58,7 @@ describe('NutritionImportService', () => {
 
     const service = new NutritionImportService({
       aiContext,
-      context: { userId: 'user_1' },
+      context: { userId: 'user_1', requestId: 'test-req-1' },
     });
 
     const result = await service.import(

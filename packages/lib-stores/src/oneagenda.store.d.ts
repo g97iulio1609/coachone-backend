@@ -23,4 +23,3 @@ export declare const useOneAgendaStore: import("zustand").UseBoundStore<Omit<imp
     };
 }>;
 export {};
-//# sourceMappingURL=oneagenda.store.d.ts.map

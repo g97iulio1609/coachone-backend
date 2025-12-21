@@ -182,6 +182,6 @@ export declare const selectCurrentAthleteId: (state: CopilotState) => string | n
 /**
  * Get the active context based on current domain
  */
-export declare const selectActiveDomainContext: (state: CopilotState) => NutritionContext | WorkoutContext | OneAgendaContext | MarketplaceContext | ExerciseContext | AnalyticsContext | null;
+export declare const selectActiveDomainContext: (state: CopilotState) => NutritionContext | WorkoutContext | ExerciseContext | OneAgendaContext | MarketplaceContext | AnalyticsContext | null;
 export {};
 //# sourceMappingURL=copilot.store.d.ts.map

@@ -114,4 +114,3 @@ export declare const selectIsRealtimeReady: (state: RealtimeStore) => boolean;
 /** Selettore per l'ultimo errore */
 export declare const selectRealtimeError: (state: RealtimeStore) => Error | null;
 export {};
-//# sourceMappingURL=realtime.store.d.ts.map

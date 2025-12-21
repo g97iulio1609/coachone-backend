@@ -29,13 +29,13 @@ export declare function useMe(): {
  *
  * Automatically updates Zustand store and TanStack Query cache
  */
-export declare function useLogin(): import("@tanstack/react-query").UseMutationResult<import("..").AuthResponse, Error, import("..").LoginCredentials, void>;
+export declare function useLogin(): import("@tanstack/react-query").UseMutationResult<import("../queries/auth.queries").AuthResponse, Error, import("../queries/auth.queries").LoginCredentials, void>;
 /**
  * Hook to register
  *
  * Automatically updates Zustand store and TanStack Query cache
  */
-export declare function useRegister(): import("@tanstack/react-query").UseMutationResult<import("..").AuthResponse, Error, import("..").RegisterData, void>;
+export declare function useRegister(): import("@tanstack/react-query").UseMutationResult<import("../queries/auth.queries").AuthResponse, Error, import("../queries/auth.queries").RegisterData, void>;
 /**
  * Hook to logout
  *
@@ -56,7 +56,7 @@ export declare function useSignOut(): (options?: {
 /**
  * Hook to refresh access token
  */
-export declare function useRefreshToken(): import("@tanstack/react-query").UseMutationResult<import("..").RefreshTokenResponse, Error, RefreshTokenRequest, unknown>;
+export declare function useRefreshToken(): import("@tanstack/react-query").UseMutationResult<import("../queries/auth.queries").RefreshTokenResponse, Error, RefreshTokenRequest, unknown>;
 /**
  * Hook to check if user is authenticated
  */
@@ -89,3 +89,4 @@ export declare function useIsCoach(): boolean;
  */
 export declare function useIsAthlete(): boolean;
 export {};
+//# sourceMappingURL=use-auth.d.ts.map
