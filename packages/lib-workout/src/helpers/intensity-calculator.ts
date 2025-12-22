@@ -202,24 +202,28 @@ export function estimateOneRMFromReps(reps: number, weight: number, rpe: number 
 
 /**
  * Converte chilogrammi in libbre
+ * Gestisce gracefully valori nulli, undefined, NaN o negativi ritornando 0
  * @param kg - Peso in chilogrammi
- * @returns Peso in libbre
+ * @returns Peso in libbre (0 se input invalido)
  */
-export function kgToLbs(kg: number): number {
-  if (kg < 0) {
-    throw new Error('Invalid parameter: kg must be >= 0');
+export function kgToLbs(kg: number | null | undefined): number {
+  // Defensive: gestisci null, undefined, NaN e valori negativi
+  if (kg === null || kg === undefined || Number.isNaN(kg) || kg < 0) {
+    return 0;
   }
   return kg * 2.20462;
 }
 
 /**
  * Converte libbre in chilogrammi
+ * Gestisce gracefully valori nulli, undefined, NaN o negativi ritornando 0
  * @param lbs - Peso in libbre
- * @returns Peso in chilogrammi
+ * @returns Peso in chilogrammi (0 se input invalido)
  */
-export function lbsToKg(lbs: number): number {
-  if (lbs < 0) {
-    throw new Error('Invalid parameter: lbs must be >= 0');
+export function lbsToKg(lbs: number | null | undefined): number {
+  // Defensive: gestisci null, undefined, NaN e valori negativi
+  if (lbs === null || lbs === undefined || Number.isNaN(lbs) || lbs < 0) {
+    return 0;
   }
   return lbs / 2.20462;
 }
