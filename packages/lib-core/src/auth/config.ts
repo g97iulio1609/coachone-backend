@@ -691,39 +691,55 @@ const nextAuth: NextAuthReturn = NextAuth({
         token.credits = session.credits;
       }
 
-      // Refresh user data every time to keep credits updated
+      // Refresh user data every 5 minutes to keep credits updated without exhausting the DB pool
+      // This is crucial to avoid "Connection terminated due to connection timeout" errors
+      // caused by pool exhaustion when every single session request hits the DB.
       if (token.id) {
-        const dbUser = await prisma.users.findUnique({
-          where: { id: token.id as string },
-          select: {
-            id: true,
-            email: true,
-            name: true,
-            role: true,
-            credits: true,
-            image: true,
-            status: true,
-            copilotEnabled: true,
-          },
-        });
+        const now = Date.now();
+        const lastRefresh = (token.lastRefresh as number) || 0;
+        const REFRESH_INTERVAL = 5 * 60 * 1000; // 5 minutes
 
-        if (!dbUser) {
-          // L'utente non esiste più nel database - invalida il token
-          console.warn(`[Auth] User ${token.id} not found in database, invalidating token`);
-          return null; // Questo causerà il logout
-        }
+        // Only query DB if cache is expired or partial data
+        if (now - lastRefresh > REFRESH_INTERVAL) {
+          try {
+            const dbUser = await prisma.users.findUnique({
+              where: { id: token.id as string },
+              select: {
+                id: true,
+                email: true,
+                name: true,
+                role: true,
+                credits: true,
+                image: true,
+                status: true,
+                copilotEnabled: true,
+              },
+            });
 
-        if (dbUser.status === 'ACTIVE') {
-          token.credits = dbUser.credits;
-          token.role = dbUser.role;
-          token.name = dbUser.name || '';
-          token.copilotEnabled = dbUser.copilotEnabled;
-        } else {
-          // Utente non attivo - invalida il token
-          console.warn(
-            `[Auth] User ${token.id} is not ACTIVE (status: ${dbUser.status}), invalidating token`
-          );
-          return null;
+            if (!dbUser) {
+              // L'utente non esiste più nel database - invalida il token
+              console.warn(`[Auth] User ${token.id} not found in database, invalidating token`);
+              return null; // Questo causerà il logout
+            }
+
+            if (dbUser.status === 'ACTIVE') {
+              token.credits = dbUser.credits;
+              token.role = dbUser.role;
+              token.name = dbUser.name || '';
+              token.copilotEnabled = dbUser.copilotEnabled;
+              token.lastRefresh = now;
+            } else {
+              // Utente non attivo - invalida il token
+              console.warn(
+                `[Auth] User ${token.id} is not ACTIVE (status: ${dbUser.status}), invalidating token`
+              );
+              return null;
+            }
+          } catch (error) {
+            console.error('[Auth] Error refreshing user data:', error);
+            // In case of DB error, keep using the token data if available
+            // but don't update lastRefresh so we try again next time
+          }
         }
       }
 

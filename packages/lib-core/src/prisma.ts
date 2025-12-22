@@ -100,6 +100,15 @@ function getPrismaClient(): PrismaClient {
     const connectionTimeoutMillis = Number(process.env.PG_CONNECTION_TIMEOUT_MS ?? 30000);
     const idleTimeoutMillis = Number(process.env.PG_IDLE_TIMEOUT_MS ?? 30000);
 
+    if (process.env.NODE_ENV === 'development') {
+      console.warn('[Prisma] Initializing connection pool:', {
+        max: Number(process.env.PG_POOL_MAX ?? defaultPoolSize),
+        connectionTimeoutMillis,
+        idleTimeoutMillis,
+        isServerless: !!isServerless,
+      });
+    }
+
     // Reuse a single Pool across hot reloads to avoid exhausting connections
     const pool =
       globalForPrisma.pool ??
@@ -138,11 +147,43 @@ function getPrismaClient(): PrismaClient {
   return globalForPrisma.prisma_updated;
 }
 
-// Export con Proxy per lazy initialization
-export const prisma = new Proxy({} as PrismaClient, {
+// =============================================================================
+// EXPORTS
+// =============================================================================
+
+// IMPORTANTE: Prisma 7 con driver adapter richiede che il PrismaClient sia
+// inizializzato LAZY, cioè solo quando viene effettivamente usato.
+// Questo è necessario perché:
+// 1. Le variabili d'ambiente potrebbero non essere caricate al momento dell'import
+// 2. Il singleton deve essere condiviso correttamente tra hot reloads
+// 3. I model accessors (es. 'generation_states') sono getters sul prototype
+
+// Singleton cache nel modulo
+let _prismaInstance: PrismaClient | undefined;
+
+/**
+ * Get the singleton PrismaClient instance.
+ * Creates the client on first call, then reuses it.
+ */
+export function getPrisma(): PrismaClient {
+  if (!_prismaInstance) {
+    _prismaInstance = getPrismaClient();
+  }
+  return _prismaInstance;
+}
+
+/**
+ * Prisma client getter - LAZY initialization.
+ * Uses a getter function to defer client creation until first access.
+ * 
+ * @example
+ * import { prisma } from '@onecoach/lib-core';
+ * const users = await prisma.users.findMany(); // Client created here
+ */
+export const prisma: PrismaClient = new Proxy({} as PrismaClient, {
   get(_target, prop) {
-    const client = getPrismaClient();
-    const value = client[prop as keyof PrismaClient];
+    const client = getPrisma();
+    const value = (client as unknown as Record<string | symbol, unknown>)[prop];
     if (typeof value === 'function') {
       return value.bind(client);
     }
@@ -151,11 +192,14 @@ export const prisma = new Proxy({} as PrismaClient, {
 });
 
 export async function disconnectPrisma() {
+  if (_prismaInstance) {
+    await _prismaInstance.$disconnect();
+    _prismaInstance = undefined;
+  }
   if (globalForPrisma.prisma_updated) {
     await globalForPrisma.prisma_updated.$disconnect();
     globalForPrisma.prisma_updated = undefined;
   }
-
   if (globalForPrisma.pool) {
     await globalForPrisma.pool.end();
     globalForPrisma.pool = undefined;
