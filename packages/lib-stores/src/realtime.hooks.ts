@@ -9,10 +9,7 @@
 
 import { useEffect, useRef, useCallback, useState } from 'react';
 import { useRealtimeStore, selectIsRealtimeReady, type RealtimeListener } from './realtime.store';
-
-// ============================================================================
-// useMagicAnimation - Hook per animazioni "magiche" su aggiornamenti Realtime
-// ============================================================================
+import type { QueryClient, QueryKey } from '@tanstack/react-query';
 
 export type MagicAnimationType = 'glow' | 'shimmer' | 'pulse' | 'border' | 'ripple' | 'update';
 
@@ -543,7 +540,37 @@ export interface UseRealtimeSyncWithClientOptions<T extends { id: string | numbe
  * });
  * ```
  */
-export function useRealtimeSyncWithClient<T extends { id: string | number }>({
+// --- Logger Factory ---
+const createRealtimeLogger = (context: string) => {
+  return {
+    log: (message: string, data?: unknown) => {
+      if (process.env.NODE_ENV === 'development') {
+        console.log(`[Realtime][${context}] ${message}`, data || '');
+      }
+    },
+    warn: (message: string, data?: unknown) => {
+      if (process.env.NODE_ENV === 'development') {
+        console.warn(`[Realtime][${context}] ${message}`, data || '');
+      }
+    },
+    error: (message: string, error?: unknown) => {
+      console.error(`[Realtime][${context}] ${message}`, error || '');
+    },
+  };
+};
+
+export interface UseRealtimeListSyncOptions<T> extends UseRealtimeSubscriptionOptions<T> {
+  queryKey: QueryKey;
+  queryClient: QueryClient;
+  transform?: (record: Record<string, unknown>) => T;
+  onSynced?: (event: 'INSERT' | 'UPDATE' | 'DELETE', record: T) => void;
+}
+
+/**
+ * Hook standardizzato per sincronizzare liste di record.
+ * Gestisce automaticamente INSERT (append), UPDATE (replace), DELETE (remove).
+ */
+export function useRealtimeListSync<T extends { id: string | number }>({
   table,
   queryKey,
   queryClient,
@@ -552,19 +579,24 @@ export function useRealtimeSyncWithClient<T extends { id: string | number }>({
   transform,
   onError,
   onSynced,
-}: UseRealtimeSyncWithClientOptions<T>) {
+}: UseRealtimeListSyncOptions<T>) {
+  const logger = createRealtimeLogger(`ListSync:${table}`);
+
   const handleInsert = useCallback(
     (rawRecord: Record<string, unknown>) => {
       const record = (transform ? transform(rawRecord) : rawRecord) as T;
-
+      
       queryClient.setQueryData(queryKey, (oldData: T[] | undefined) => {
         if (!oldData) return [record];
+        // Evita duplicati
         if (oldData.some((item) => item.id === record.id)) return oldData;
         return [...oldData, record];
       });
+      
+      logger.log('Synced INSERT', record.id);
       onSynced?.('INSERT', record);
     },
-    [queryClient, queryKey, transform, onSynced]
+    [queryClient, queryKey, transform, onSynced, logger]
   );
 
   const handleUpdate = useCallback(
@@ -573,11 +605,13 @@ export function useRealtimeSyncWithClient<T extends { id: string | number }>({
 
       queryClient.setQueryData(queryKey, (oldData: T[] | undefined) => {
         if (!oldData) return [record];
-        return oldData.map((item: any) => (item.id === record.id ? record : item));
+        return oldData.map((item) => (item.id === record.id ? record : item));
       });
+
+      logger.log('Synced UPDATE', record.id);
       onSynced?.('UPDATE', record);
     },
-    [queryClient, queryKey, transform, onSynced]
+    [queryClient, queryKey, transform, onSynced, logger]
   );
 
   const handleDelete = useCallback(
@@ -586,23 +620,33 @@ export function useRealtimeSyncWithClient<T extends { id: string | number }>({
 
       queryClient.setQueryData(queryKey, (oldData: T[] | undefined) => {
         if (!oldData) return [];
-        return oldData.filter((item: any) => item.id !== record.id);
+        return oldData.filter((item) => item.id !== record.id);
       });
+
+      logger.log('Synced DELETE', record.id);
       onSynced?.('DELETE', record);
     },
-    [queryClient, queryKey, transform, onSynced]
+    [queryClient, queryKey, transform, onSynced, logger]
   );
 
-  useRealtimeSubscription<Record<string, unknown>>({
+  useRealtimeSubscription({
     table,
     filter,
     enabled,
     onInsert: handleInsert,
     onUpdate: handleUpdate,
     onDelete: handleDelete,
-    onError,
+    onError: (err) => {
+      logger.error('Subscription error', err);
+      onError?.(err);
+    },
   });
 }
+
+/**
+ * @deprecated Use useRealtimeListSync instead
+ */
+export const useRealtimeSyncWithClient = useRealtimeListSync;
 
 // ============================================================================
 // useRealtimeSyncSingle - Hook per singolo record (non lista)

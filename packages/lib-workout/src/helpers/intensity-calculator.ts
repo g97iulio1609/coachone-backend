@@ -1,8 +1,7 @@
 /**
- * Intensity Calculator
- *
  * Utility pure per calcoli di intensità, peso e 1RM
  */
+import { kgToLbs, lbsToKg } from '@onecoach/lib-shared';
 
 // =====================================================
 // RPE to Intensity Lookup Table
@@ -200,33 +199,7 @@ export function estimateOneRMFromReps(reps: number, weight: number, rpe: number 
   return weight * (1 + effectiveReps / 30);
 }
 
-/**
- * Converte chilogrammi in libbre
- * Gestisce gracefully valori nulli, undefined, NaN o negativi ritornando 0
- * @param kg - Peso in chilogrammi
- * @returns Peso in libbre (0 se input invalido)
- */
-export function kgToLbs(kg: number | null | undefined): number {
-  // Defensive: gestisci null, undefined, NaN e valori negativi
-  if (kg === null || kg === undefined || Number.isNaN(kg) || kg < 0) {
-    return 0;
-  }
-  return kg * 2.20462;
-}
-
-/**
- * Converte libbre in chilogrammi
- * Gestisce gracefully valori nulli, undefined, NaN o negativi ritornando 0
- * @param lbs - Peso in libbre
- * @returns Peso in chilogrammi (0 se input invalido)
- */
-export function lbsToKg(lbs: number | null | undefined): number {
-  // Defensive: gestisci null, undefined, NaN e valori negativi
-  if (lbs === null || lbs === undefined || Number.isNaN(lbs) || lbs < 0) {
-    return 0;
-  }
-  return lbs / 2.20462;
-}
+// Note: kgToLbs and lbsToKg are now imported from @onecoach/lib-shared
 
 // =====================================================
 // Sync Helpers

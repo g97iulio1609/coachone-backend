@@ -14,9 +14,9 @@ import type {
   ExerciseSet,
 } from '@onecoach/types';
 import { createEmptyWeek, createEmptyDay, createEmptyExercise } from './program-transform';
-import { generateId } from '@onecoach/lib-shared/utils/id-generator';
+import { createId } from '@onecoach/lib-shared/utils/id-generator';
 import { DEFAULT_SET } from './constants';
-import { kgToLbs } from './intensity-calculator';
+import { kgToLbs } from '@onecoach/lib-shared';
 import {
   getWorkoutProgramWeek,
   getWorkoutProgramDayByWeek,
@@ -281,7 +281,7 @@ export function addSetGroupToExercise(
   count: number
 ): WorkoutProgram {
   const newGroup: SetGroup = {
-    id: generateId('setgroup'),
+    id: createId('setgroup'),
     count,
     baseSet,
     sets: Array.from({ length: count }, () => ({ ...baseSet })),
@@ -369,7 +369,7 @@ export function groupSelectedSets(
   };
 
   const newGroup: SetGroup = {
-    id: generateId('setgroup'),
+    id: createId('setgroup'),
     count: setIndices.length,
     baseSet,
     sets: selectedSets,
@@ -383,7 +383,7 @@ export function groupSelectedSets(
   if (remainingSets.length > 0) {
     // Crea un gruppo per le serie rimanenti
     updatedSetGroups.push({
-      id: generateId('setgroup'),
+      id: createId('setgroup'),
       count: remainingSets.length,
       baseSet: remainingSets[0] || DEFAULT_SET,
       sets: remainingSets,
@@ -427,7 +427,7 @@ export function splitSetGroup(
   let newGroups: SetGroup[];
   if (freedSets.length > 0) {
     const freedGroup: SetGroup = {
-      id: generateId('setgroup'),
+      id: createId('setgroup'),
       count: freedSets.length,
       baseSet: freedSets[0] || DEFAULT_SET,
       sets: freedSets,
@@ -490,7 +490,7 @@ export function duplicateSetGroup(
 
   const duplicatedGroup: SetGroup = {
     ...group,
-    id: generateId('setgroup'),
+    id: createId('setgroup'),
     sets: group.sets.map((s: ExerciseSet) => ({ ...s })),
   };
 

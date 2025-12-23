@@ -7,7 +7,7 @@
 
 import { prisma } from '@onecoach/lib-core/prisma';
 import { Prisma } from '@prisma/client';
-import { generateId } from '@onecoach/lib-shared/id-generator';
+import { createId } from '@onecoach/lib-shared/id-generator';
 import type {
   WorkoutTemplate,
   WorkoutTemplateType,
@@ -97,7 +97,7 @@ export class WorkoutTemplateService {
 
     const template = await prisma.workout_templates.create({
       data: {
-        id: generateId('workout_template'),
+        id: createId('workout_template'),
         userId,
         type: data.type,
         name: data.name.trim(),

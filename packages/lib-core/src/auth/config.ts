@@ -12,7 +12,7 @@ import Google from 'next-auth/providers/google';
 import Apple from 'next-auth/providers/apple';
 import bcrypt from 'bcryptjs';
 import { prisma } from '../prisma';
-import { generateId, generateUUID } from '@onecoach/lib-shared/id-generator';
+import { createId, generateUUID } from '@onecoach/lib-shared/id-generator';
 import type { UserRole } from '@prisma/client';
 
 // Production-safe: require explicit env vars, no hardcoded defaults
@@ -101,7 +101,7 @@ async function provisionAdmin(
       updatedAt: new Date(),
     },
     create: {
-      id: generateId('user_profile'),
+      id: createId('user_profile'),
       userId: user.id,
       createdAt: new Date(),
       updatedAt: new Date(),

@@ -459,7 +459,7 @@ export function UnifiedChat({
           <textarea
             ref={inputRef}
             value={input}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInput(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setInput(e.target.value)}
             onKeyDown={(e) => {
               if (e.key === 'Enter' && !e.shiftKey) {
                 e.preventDefault();
@@ -622,7 +622,7 @@ export function UnifiedChat({
               <SettingsIcon className="h-4 w-4 text-neutral-400" />
               <select
                 value={selectedModel || ''}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
                   setSelectedModel(e.target.value)
                 }
                 className="rounded-lg border border-neutral-200 bg-white px-2 py-1 text-sm dark:border-neutral-700 dark:bg-neutral-800 dark:text-white"

@@ -8,7 +8,7 @@
 import type { WorkoutProgram, ApiResponse } from '@onecoach/types';
 import type { IWorkoutService } from '@onecoach/contracts';
 import type { IStorageService } from '@onecoach/lib-shared';
-import { generateId, getCurrentTimestamp, storageService } from '@onecoach/lib-shared';
+import { createId, getCurrentTimestamp, storageService } from '@onecoach/lib-shared';
 
 /**
  * Storage key per workouts
@@ -28,7 +28,7 @@ export class WorkoutService implements IWorkoutService {
       const now = getCurrentTimestamp();
       const newWorkout: WorkoutProgram = {
         ...workout,
-        id: generateId('workout'),
+        id: createId('workout'),
         createdAt: now,
         updatedAt: now,
       };

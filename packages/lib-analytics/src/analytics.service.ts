@@ -185,7 +185,7 @@ export async function getWorkoutVolumeTimeSeries(
     const totalVolume = exercises.reduce((sum: number, exercise) => {
       const sets = getExerciseSets(exercise);
       const exerciseVolume = sets.reduce((setSum: number, set) => {
-        return setSum + calculateSetVolume(set);
+        return setSum + calculateSetVolume({ ...set, weight: set.weight ?? 0 } as any);
       }, 0);
       return sum + exerciseVolume;
     }, 0);
@@ -265,7 +265,7 @@ export async function calculateWorkoutMetrics(userId: string, startDate: Date, e
     const sessionVolume = exercises.reduce((exSum: number, exercise) => {
       const sets = getExerciseSets(exercise);
       const exerciseVolume = sets.reduce((setSum: number, set) => {
-        return setSum + calculateSetVolume(set);
+        return setSum + calculateSetVolume({ ...set, weight: set.weight ?? 0 } as any);
       }, 0);
       return exSum + exerciseVolume;
     }, 0);

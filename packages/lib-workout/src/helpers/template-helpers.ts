@@ -16,7 +16,7 @@ import type {
   ExerciseSet,
   SetGroup,
 } from '@onecoach/types';
-import { generateId } from '@onecoach/lib-shared/utils/id-generator';
+import { createId } from '@onecoach/lib-shared/utils/id-generator';
 
 /**
  * Estrae dati template in base al tipo
@@ -40,10 +40,10 @@ export function reIdTemplateData<T extends Exercise | WorkoutDay | WorkoutWeek>(
       // SSOT: Solo setGroups, non exercise.sets
       return {
         ...exercise,
-        id: generateId('exercise'),
+        id: createId('exercise'),
         setGroups: exercise.setGroups?.map((group: SetGroup) => ({
           ...group,
-          id: generateId('setgroup'),
+          id: createId('setgroup'),
           sets: group.sets.map((set: ExerciseSet) => ({ ...set })),
         })),
       } as T;
@@ -55,10 +55,10 @@ export function reIdTemplateData<T extends Exercise | WorkoutDay | WorkoutWeek>(
         ...day,
         exercises: day.exercises.map((exercise: Exercise) => ({
           ...exercise,
-          id: generateId('exercise'),
+          id: createId('exercise'),
           setGroups: exercise.setGroups?.map((group: SetGroup) => ({
             ...group,
-            id: generateId('setgroup'),
+            id: createId('setgroup'),
             sets: group.sets.map((set: ExerciseSet) => ({ ...set })),
           })),
         })),
@@ -73,10 +73,10 @@ export function reIdTemplateData<T extends Exercise | WorkoutDay | WorkoutWeek>(
           ...day,
           exercises: day.exercises.map((exercise: Exercise) => ({
             ...exercise,
-            id: generateId('exercise'),
+            id: createId('exercise'),
             setGroups: exercise.setGroups?.map((group: SetGroup) => ({
               ...group,
-              id: generateId('setgroup'),
+              id: createId('setgroup'),
               sets: group.sets.map((set: ExerciseSet) => ({ ...set })),
             })),
           })),

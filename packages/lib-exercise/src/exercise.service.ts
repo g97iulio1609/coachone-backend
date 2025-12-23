@@ -1,5 +1,5 @@
 import { prisma } from '@onecoach/lib-core/prisma';
-import { generateId, toSlug } from '@onecoach/lib-shared/utils';
+import { createId, toSlug } from '@onecoach/lib-shared/utils';
 import type {
   CreateExerciseInput,
   ExerciseQueryParams,
@@ -490,7 +490,7 @@ export class ExerciseService {
                 },
               },
               create: {
-                id: generateId('ext'),
+                id: createId('ext'),
                 exerciseId: id,
                 ...translation,
                 updatedAt: new Date(),
@@ -1187,7 +1187,7 @@ export class ExerciseService {
 
     const slug = payload.slug?.trim() || toSlug((englishTranslation as any).name);
 
-    const exerciseId = generateId('exr');
+    const exerciseId = createId('exr');
 
     const approvalStatus = options.autoApprove
       ? ExerciseApprovalStatus.APPROVED
@@ -1217,7 +1217,7 @@ export class ExerciseService {
         updatedAt: new Date(),
       },
       translations: translations.map((translation: any) => ({
-        id: generateId('ext'),
+        id: createId('ext'),
         locale: translation.locale,
         name: translation.name,
         shortName: translation.shortName ?? null,
@@ -1346,7 +1346,7 @@ export class ExerciseService {
     }
 
     const normalizedRelations = relations.map((relation: any) => ({
-      id: generateId('exr'),
+      id: createId('exr'),
       fromId: exerciseId,
       toId: relation.id,
       relation: relation.relation,

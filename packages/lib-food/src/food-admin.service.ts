@@ -16,7 +16,7 @@ import { processBatchesInParallel } from '@onecoach/lib-shared/batch-processing'
 import { normalizeUrl } from '@onecoach/lib-shared/url-normalizer';
 import type { Macros } from '@onecoach/types';
 import { TOKEN_LIMITS } from '@onecoach/constants/models';
-import { MODEL_CONSTANTS } from '@onecoach/lib-ai-utils';
+import { MODEL_CONSTANTS } from '@onecoach/lib-ai-agents/constants';
 
 type GeneratedFood = {
   name: string;

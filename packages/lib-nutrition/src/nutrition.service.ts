@@ -8,7 +8,7 @@
 import type { NutritionPlan, ApiResponse } from '@onecoach/types';
 import type { INutritionService } from '@onecoach/contracts';
 import type { IStorageService } from '@onecoach/lib-shared';
-import { generateId, getCurrentTimestamp, storageService } from '@onecoach/lib-shared';
+import { createId, getCurrentTimestamp, storageService } from '@onecoach/lib-shared';
 
 /**
  * Storage key per nutrition plans
@@ -29,7 +29,7 @@ export class NutritionService implements INutritionService {
       const now = getCurrentTimestamp();
       const newPlan: NutritionPlan = {
         ...plan,
-        id: generateId('nutrition'),
+        id: createId('nutrition'),
         createdAt: now,
         updatedAt: now,
         status: plan.status ?? ('DRAFT' as NutritionPlan['status']),

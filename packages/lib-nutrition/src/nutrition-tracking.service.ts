@@ -381,10 +381,11 @@ export async function getNutritionPlanStats(
  * Uses actualMacros if present, otherwise uses planned macros.
  */
 export function calculateActualDailyMacros(meals: Array<Record<string, unknown>>): Macros {
-  return meals.reduce(
+  return meals.reduce<Macros>(
     (dailyTotal: Macros, meal: Record<string, unknown>) => {
-      const mealMacros = ((meal.foods as Array<Record<string, unknown>>) || []).reduce(
-        (mealTotal: Macros, food: Record<string, unknown>) => {
+      const foods = (meal.foods as Array<Record<string, unknown>>) || [];
+      const mealMacros = foods.reduce<Macros>(
+        (mealTotal, food) => {
           const macros =
             (food.actualMacros as Macros | undefined) || (food.macros as Macros | undefined);
           return {

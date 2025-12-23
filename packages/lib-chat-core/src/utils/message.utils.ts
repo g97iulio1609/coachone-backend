@@ -10,7 +10,7 @@
  * - DRY: Logica centralizzata
  */
 
-import type { ChatMessage, ChatRole, MessagePart, TextPart } from '../types';
+import type { ChatMessage, ChatRole, MessagePart } from '../types';
 
 // ============================================================================
 // Type Guards
@@ -19,7 +19,7 @@ import type { ChatMessage, ChatRole, MessagePart, TextPart } from '../types';
 /**
  * Verifica se una parte è di tipo testo.
  */
-export function isTextPart(part: MessagePart): part is TextPart {
+export function isTextPart(part: MessagePart): part is MessagePart & { type: 'text'; text: string } {
   return part.type === 'text';
 }
 

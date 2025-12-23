@@ -7,7 +7,7 @@
 
 import { prisma } from '@onecoach/lib-core/prisma';
 import { Prisma } from '@prisma/client';
-import { generateId } from '@onecoach/lib-shared';
+import { createId } from '@onecoach/lib-shared';
 import type { MealTemplate, Meal } from '@onecoach/types';
 
 export class MealTemplateService {
@@ -34,7 +34,7 @@ export class MealTemplateService {
 
     const template = await prisma.meal_templates.create({
       data: {
-        id: generateId('meal_template'),
+        id: createId('meal_template'),
         userId,
         name: data.name.trim(),
         description: data.description?.trim() || null,

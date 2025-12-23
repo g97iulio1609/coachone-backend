@@ -50,7 +50,7 @@ import {
   AdaptationsSchema,
   NutritionPlanBaseSchema,
 } from '@onecoach/schemas';
-import { generateId } from '@onecoach/lib-shared/utils/id-generator';
+import { createId } from '@onecoach/lib-shared/utils/id-generator';
 import {
   calculateMacros,
   aggregateMealMacros,
@@ -369,7 +369,7 @@ function normalizeWeek(week: unknown, index: number): NutritionWeek {
   }
 
   return {
-    id: rawWeek.id || generateId(`week_${index}`),
+    id: rawWeek.id || createId(`week_${index}`),
     weekNumber: rawWeek.weekNumber ?? index + 1,
     days: normalizedDays,
     weeklyAverageMacros,
@@ -398,7 +398,7 @@ function normalizeDay(day: unknown, index: number): NutritionDay {
     : aggregateMealMacros(normalizedMeals);
 
   return {
-    id: rawDay.id || generateId(`day_${index}`),
+    id: rawDay.id || createId(`day_${index}`),
     dayNumber: rawDay.dayNumber ?? index + 1,
     dayName: rawDay.dayName || `Day ${index + 1}`,
     meals: normalizedMeals,
@@ -420,7 +420,7 @@ function normalizeMeal(meal: unknown, dayNumber: number, index: number): Meal {
   const rawMeal = meal as RawMeal;
   const foods = Array.isArray(rawMeal.foods) ? rawMeal.foods : [];
   const normalizedFoods = foods.map((f: unknown, i: number) =>
-    normalizeFood(f, generateId(`food_${dayNumber}_${index}_${i}`))
+    normalizeFood(f, createId(`food_${dayNumber}_${index}_${i}`))
   );
 
   const totalMacros = rawMeal.totalMacros
@@ -428,7 +428,7 @@ function normalizeMeal(meal: unknown, dayNumber: number, index: number): Meal {
     : calculateMacros(normalizedFoods);
 
   return {
-    id: rawMeal.id || generateId(`meal_${dayNumber}_${index}`),
+    id: rawMeal.id || createId(`meal_${dayNumber}_${index}`),
     name: rawMeal.name || `Meal ${index + 1}`,
     type: (rawMeal.type || 'lunch') as MealType,
     time: rawMeal.time,
@@ -651,12 +651,12 @@ export function preparePlanForPersistence(plan: NutritionPlan): {
 
 export function createEmptyDay(dayNumber: number): NutritionDay {
   return {
-    id: generateId(`day_${dayNumber}`),
+    id: createId(`day_${dayNumber}`),
     dayNumber,
     dayName: `Day ${dayNumber}`,
     meals: [
       {
-        id: generateId('meal_default'),
+        id: createId('meal_default'),
         name: 'Breakfast',
         type: 'breakfast',
         foods: [],
@@ -669,7 +669,7 @@ export function createEmptyDay(dayNumber: number): NutritionDay {
 
 export function createEmptyWeek(weekNumber: number): NutritionWeek {
   return {
-    id: generateId(`week_${weekNumber}`),
+    id: createId(`week_${weekNumber}`),
     weekNumber,
     days: Array.from({ length: 7 }, (_, i) => createEmptyDay(i + 1)),
     weeklyAverageMacros: { ...DEFAULT_MACROS },
@@ -678,7 +678,7 @@ export function createEmptyWeek(weekNumber: number): NutritionWeek {
 
 export function createEmptyPlan(userId?: string): NutritionPlan {
   return {
-    id: generateId('nutrition_temp'),
+    id: createId('nutrition_temp'),
     name: 'New Nutrition Plan',
     description: '',
     goals: ['MAINTENANCE'], // Use standard enum value instead of internal key
@@ -771,7 +771,7 @@ export function normalizeAgentPayload(
 
   // Build the plan object
   const planData = {
-    id: base?.id ?? generateId('nutrition_agent'),
+    id: base?.id ?? createId('nutrition_agent'),
     name: raw.name || base?.name || 'Nutrition Plan',
     description: raw.description || base?.description || '',
     goals: parseGoals(normalizedGoals),

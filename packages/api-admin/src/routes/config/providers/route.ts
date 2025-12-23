@@ -8,7 +8,8 @@
 
 import { NextResponse } from 'next/server';
 import { requireAdmin } from '@onecoach/lib-core/auth/guards';
-import { AIProviderConfigService, PROVIDER_MAP, type ProviderName } from '@onecoach/lib-ai';
+import { AIProviderConfigService, PROVIDER_MAP } from '@onecoach/lib-ai';
+import type { ProviderName } from '@onecoach/lib-ai-agents/core/providers/types';
 import { deleteEnvVar, getEnvVarByKey } from '@onecoach/lib-vercel-admin';
 import { logError, mapErrorToApiResponse } from '@onecoach/lib-shared/utils/error';
 
@@ -25,8 +26,9 @@ export async function GET() {
 
   try {
     const configs = await AIProviderConfigService.listConfigs();
-    const providers = AIProviderConfigService.listProviderMeta().map((meta: unknown) => {
-      const match = configs.find((config: unknown) => config.provider === meta.provider);
+    const providerMeta = AIProviderConfigService.listProviderMeta();
+    const providers = providerMeta.map((meta) => {
+      const match = configs.find((config) => config.provider === meta.provider);
       return {
         ...meta,
         defaultModel: match?.defaultModel ?? meta.defaultModel ?? null,
@@ -115,10 +117,7 @@ export async function PUT(_req: Request) {
     });
   } catch (error: unknown) {
     logError("Errore nell'aggiornamento della configurazione provider", error);
-    const { response, status } = mapErrorToApiResponse(
-      error,
-      "Errore nell'aggiornamento della configurazione provider"
-    );
+    const { response, status } = mapErrorToApiResponse(error);
     return NextResponse.json(response, { status });
   }
 }
@@ -191,10 +190,7 @@ export async function DELETE(req: Request) {
     });
   } catch (error: unknown) {
     logError("Errore nell'eliminazione della API key provider", error);
-    const { response, status } = mapErrorToApiResponse(
-      error,
-      "Errore nell'eliminazione della API key provider"
-    );
+    const { response, status } = mapErrorToApiResponse(error);
     return NextResponse.json(response, { status });
   }
 }

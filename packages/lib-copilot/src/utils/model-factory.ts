@@ -1,12 +1,5 @@
-import { createGoogleGenerativeAI } from '@ai-sdk/google';
-import { createAnthropic } from '@ai-sdk/anthropic';
-import { createOpenAI } from '@ai-sdk/openai';
-import { createXai } from '@ai-sdk/xai';
-import { createOpenRouter } from '@openrouter/ai-sdk-provider';
-
-// Generic LanguageModel type that works with all AI SDK providers
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type LanguageModel = any;
+import { AIProviderFactory } from '@onecoach/lib-core/ai';
+import type { LanguageModel } from 'ai';
 
 export interface ModelConfig {
   provider: string;
@@ -24,25 +17,7 @@ export function createCustomModel(
   _options: CustomModelOptions = {}, // Unused in model creation
   apiKey?: string
 ): LanguageModel {
-  switch (config.provider) {
-    case 'google':
-      const google = createGoogleGenerativeAI({ apiKey });
-      return google(config.model);
-    case 'anthropic':
-      const anthropic = createAnthropic({ apiKey });
-      return anthropic(config.model);
-    case 'openai':
-      const openai = createOpenAI({ apiKey });
-      return openai(config.model);
-    case 'xai':
-      const xai = createXai({ apiKey });
-      return xai(config.model);
-    case 'openrouter':
-      const openrouter = createOpenRouter({ apiKey });
-      return openrouter(config.model);
-    default:
-      throw new Error(`Unknown provider: ${config.provider}`);
-  }
+  return AIProviderFactory.getModel(config.provider as any, config.model, { apiKey });
 }
 
 export function getModelByTier(tier: 'fast' | 'balanced' | 'quality'): ModelConfig {

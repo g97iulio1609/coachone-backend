@@ -176,7 +176,7 @@ export class FoodVisionService {
 
     try {
       // Crea modello OpenRouter usando ProviderFactory
-      const { createModel } = await import('@onecoach/lib-ai-utils/model-factory');
+      const { createModel } = await import('@onecoach/lib-ai-agents/utils/model-factory');
       const modelConfig = {
         provider: 'openrouter' as const,
         model: config.model,
@@ -271,7 +271,7 @@ export class FoodVisionService {
 
     try {
       // Crea modello OpenRouter usando ProviderFactory
-      const { createModel } = await import('@onecoach/lib-ai-utils/model-factory');
+      const { createModel } = await import('@onecoach/lib-ai-agents/utils/model-factory');
       const modelConfig = {
         provider: 'openrouter' as const,
         model: config.model,

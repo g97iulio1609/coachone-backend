@@ -20,7 +20,7 @@
 import { FoodService, normalizeFoodName } from '@onecoach/lib-food';
 import type { Macros, NutritionPlan } from '@onecoach/types';
 import { prisma } from '@onecoach/lib-core/prisma';
-import { generateId } from '@onecoach/lib-shared/id-generator';
+import { createId } from '@onecoach/lib-shared/id-generator';
 import { SUPPORTED_FOOD_LOCALES } from '@onecoach/constants';
 import { Prisma } from '@prisma/client';
 import {
@@ -268,7 +268,7 @@ export class FoodAutoCreationService {
   private static async createFoodInDatabase(
     food: FoodToProcess
   ): Promise<{ id: string; name: string }> {
-    const foodId = generateId('food');
+    const foodId = createId('food');
     const nameNormalized = normalizeFoodName(food.name);
 
     // Calcola percentuali macro (REQUIRED dal DB)
@@ -316,7 +316,7 @@ export class FoodAutoCreationService {
       ...(food.barcode && String(food.barcode).trim() !== '' && { barcode: food.barcode }),
       food_item_translations: {
         create: SUPPORTED_FOOD_LOCALES.map((locale: string) => ({
-          id: generateId('food_trans'),
+          id: createId('food_trans'),
           locale,
           name: food.name,
           description: description,
@@ -365,7 +365,7 @@ export class FoodAutoCreationService {
 
       const newBrand = await prisma.food_brands.create({
         data: {
-          id: generateId('brand'),
+          id: createId('brand'),
           name: brandName,
           nameNormalized: brandNameNormalized,
         },

@@ -25,6 +25,12 @@ import {
   exerciseSchema,
   workoutDaySchema,
   workoutWeekSchema,
+  workoutProgramSchema,
+  aiWorkoutProgramSchema,
+  aiWorkoutWeekSchema,
+  aiWorkoutDaySchema,
+  aiExerciseSchema,
+  aiSetGroupSchema,
 } from '@onecoach/schemas';
 
 // ============================================================================
@@ -116,46 +122,23 @@ export const SetGroupSchema = setGroupSchema;
 /**
  * Schema Exercise per MCP
  */
-export const ExerciseSchema = exerciseSchema.extend({
-  description: exerciseSchema.shape.description.optional(),
-  setGroups: z.array(SetGroupSchema).min(1),
-});
+export const ExerciseSchema = exerciseSchema;
 
 /**
  * Schema WorkoutDay per MCP
  */
-export const WorkoutDaySchema = workoutDaySchema.extend({
-  dayName: workoutDaySchema.shape.dayName.optional(),
-  name: workoutDaySchema.shape.name.optional(),
-  exercises: z.array(ExerciseSchema),
-  targetMuscles: z.array(z.string()),
-  notes: z.string().optional(),
-  cooldown: z.string().optional(),
-});
+export const WorkoutDaySchema = workoutDaySchema;
 
 /**
  * Schema WorkoutWeek per MCP
  */
-export const WorkoutWeekSchema = workoutWeekSchema.extend({
-  name: z.string().optional(),
-  isDeload: z.boolean().default(false),
-  days: z.array(WorkoutDaySchema),
-});
+export const WorkoutWeekSchema = workoutWeekSchema;
 
 /**
  * Schema completo WorkoutProgram per input MCP
  * Usato per validare programmi generati da AI prima del salvataggio
  */
-export const WorkoutProgramInputSchema = z.object({
-  name: z.string().min(3).max(100),
-  description: z.string().max(1000).optional(),
-  difficulty: z.enum(['BEGINNER', 'INTERMEDIATE', 'ADVANCED']),
-  durationWeeks: z.number().int().min(1).max(52),
-  goals: z.array(z.string()).min(1),
-  weeks: z.array(WorkoutWeekSchema).min(1),
-  status: z.enum(['ACTIVE', 'INACTIVE', 'COMPLETED', 'ARCHIVED']).default('ACTIVE'),
-  metadata: z.record(z.string(), z.unknown()).optional(),
-});
+export const WorkoutProgramInputSchema = workoutProgramSchema;
 
 // ============================================================================
 // INFERRED TYPES

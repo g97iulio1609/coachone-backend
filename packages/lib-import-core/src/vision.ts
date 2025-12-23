@@ -1,5 +1,5 @@
 import { streamText, Output, type ModelMessage } from 'ai';
-import { createModel } from '@onecoach/lib-ai-utils/model-factory';
+import { createModel } from '@onecoach/lib-ai-agents/utils/model-factory';
 import type { VisionParseParams } from './types';
 
 // Configurazione centralizzata per import AI

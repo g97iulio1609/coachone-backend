@@ -18,12 +18,11 @@ import type { WorkoutProgram, Exercise, SetGroup, ExerciseSet } from '@onecoach/
 import {
   calculateWeightFromIntensity,
   calculateIntensityFromWeight,
-  kgToLbs,
-  lbsToKg,
 } from '../helpers/intensity-calculator';
+import { kgToLbs, lbsToKg } from '@onecoach/lib-shared';
 import { generateSetsFromGroup } from '../helpers/utils/progression-calculator';
 import { deepClone } from '../helpers/utils';
-import { generateId } from '@onecoach/lib-shared/id-generator';
+import { createId } from '@onecoach/lib-shared/id-generator';
 
 // =====================================================
 // Types & Interfaces
@@ -433,7 +432,7 @@ export class GranularSessionService {
 
     // Create default setGroup if not provided
     const newSetGroup: SetGroup = {
-      id: setGroup.id || generateId('setgroup'),
+      id: setGroup.id || createId('setgroup'),
       count: setGroup.count || 3,
       baseSet: setGroup.baseSet || {
         reps: 10,
@@ -512,7 +511,7 @@ export class GranularSessionService {
     if (!setGroup) return { success: false, error: 'SetGroup not found' };
 
     const newSetGroup = deepClone(setGroup);
-    newSetGroup.id = generateId('setgroup');
+    newSetGroup.id = createId('setgroup');
 
     return this.addSetGroup(program, target, newSetGroup);
   }

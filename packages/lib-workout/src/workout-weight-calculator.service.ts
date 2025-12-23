@@ -16,8 +16,8 @@ import type {
 import {
   calculateWeightFromIntensity,
   calculateIntensityFromWeight,
-  kgToLbs,
 } from './helpers/intensity-calculator';
+import { kgToLbs } from '@onecoach/lib-shared';
 import { OneRepMaxService } from '@onecoach/lib-exercise/one-rep-max.service';
 import { prisma } from '@onecoach/lib-core/prisma';
 import { prepareProgramForPersistence } from './helpers/program-transform';

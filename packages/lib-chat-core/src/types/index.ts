@@ -109,75 +109,18 @@ export function getUIMessageText(parts: { type: string; text?: string }[]): stri
 /**
  * Ruoli supportati nei messaggi.
  * Allineato con AI SDK v6 (user, assistant, system).
- * 'tool' rimosso - i tool sono parts[] dei messaggi assistant.
  */
 export type ChatRole = 'user' | 'assistant' | 'system';
 
 /**
- * Tipi di parti del messaggio (AI SDK v6).
- * I messaggi ora usano parts[] invece di content string.
- * @deprecated Usa UIMessagePart da 'ai' per nuovi componenti
+ * Parte generica del messaggio per compatibilità DB.
+ * Per UI/Rendering, preferire i tipi di 'ai' SDK.
  */
-export type MessagePartType = 'text' | 'tool-invocation' | 'tool-result' | 'file' | 'reasoning';
-
-/**
- * Parte di testo di un messaggio.
- * @deprecated Usa TextUIPart da 'ai' per nuovi componenti
- */
-export interface TextPart {
-  type: 'text';
-  text: string;
+export interface MessagePart {
+  type: string;
+  text?: string;
+  [key: string]: unknown;
 }
-
-/**
- * Parte di invocazione tool.
- * @deprecated Usa ToolUIPart da 'ai' per nuovi componenti
- */
-export interface ToolInvocationPart {
-  type: 'tool-invocation';
-  toolInvocationId: string;
-  toolName: string;
-  args: Record<string, unknown>;
-  state: 'pending' | 'result' | 'error';
-  result?: unknown;
-}
-
-/**
- * Parte di risultato tool.
- * @deprecated Usa ToolUIPart da 'ai' per nuovi componenti
- */
-export interface ToolResultPart {
-  type: 'tool-result';
-  toolInvocationId: string;
-  result: unknown;
-}
-
-/**
- * Parte file (per upload/attachment).
- * @deprecated Usa FileUIPart da 'ai' per nuovi componenti
- */
-export interface FilePart {
-  type: 'file';
-  name: string;
-  mimeType: string;
-  url: string;
-  size?: number;
-}
-
-/**
- * Parte di reasoning (chain-of-thought).
- * @deprecated Usa ReasoningUIPart da 'ai' per nuovi componenti
- */
-export interface ReasoningPart {
-  type: 'reasoning';
-  text: string;
-}
-
-/**
- * Union type per tutte le parti di messaggio.
- * @deprecated Usa UIMessagePart da 'ai' per nuovi componenti
- */
-export type MessagePart = TextPart | ToolInvocationPart | ToolResultPart | FilePart | ReasoningPart;
 
 /**
  * Messaggio chat unificato.

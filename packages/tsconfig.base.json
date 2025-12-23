@@ -125,12 +125,6 @@
       "@onecoach/lib-ai-agents/*": [
         "../lib-ai-agents/src/*"
       ],
-      "@onecoach/lib-ai-utils": [
-        "./packages/lib-ai-utils/src/index.ts"
-      ],
-      "@onecoach/lib-ai-utils/*": [
-        "./packages/lib-ai-utils/src/*"
-      ],
       "@onecoach/lib-import-core": [
         "./packages/lib-import-core/src/index.ts"
       ],

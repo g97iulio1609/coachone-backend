@@ -6,7 +6,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@onecoach/lib-core/prisma';
-import { generateId } from '@onecoach/lib-shared/id-generator';
+import { createId } from '@onecoach/lib-shared/id-generator';
 import crypto from 'crypto';
 import { logError, mapErrorToApiResponse } from '@onecoach/lib-shared/utils/error';
 
@@ -95,7 +95,7 @@ export async function POST(request: NextRequest) {
     // Create new reset token
     await prisma.password_reset_tokens.create({
       data: {
-        id: generateId('reset'),
+        id: createId('reset'),
         userId: user.id,
         token: hashedToken,
         expiresAt,
