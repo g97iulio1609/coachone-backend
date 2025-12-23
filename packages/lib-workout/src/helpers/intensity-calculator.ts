@@ -1,7 +1,7 @@
 /**
  * Utility pure per calcoli di intensità, peso e 1RM
  */
-import { kgToLbs, lbsToKg } from '@onecoach/lib-shared';
+import { kgToLbs, roundToPlateIncrement } from '@onecoach/lib-shared';
 
 // =====================================================
 // RPE to Intensity Lookup Table
@@ -229,6 +229,7 @@ export type FocusField = 'weight' | 'intensity' | 'rpe';
  * @param values - Valori correnti
  * @param oneRepMax - 1RM per i calcoli
  * @param reps - Reps per calcolo RPE (opzionale)
+ * @param weightIncrement - Plate increment for rounding weights (optional, default 2.5)
  */
 export function syncSetValues(
   focusField: FocusField,
@@ -241,11 +242,15 @@ export function syncSetValues(
     rpeMax?: number | null;
   },
   oneRepMax?: number,
-  reps?: number
+  reps?: number,
+  weightIncrement?: number
 ): SyncedValues {
   const result: SyncedValues = {};
 
   if (!oneRepMax || oneRepMax <= 0) return result;
+
+  // Use provided increment or default to 2.5
+  const increment = weightIncrement ?? 2.5;
 
   switch (focusField) {
     case 'weight':
@@ -274,9 +279,9 @@ export function syncSetValues(
     case 'intensity':
       // Intensity → Weight, RPE
       if (values.intensityPercent && values.intensityPercent > 0) {
-        result.weight = roundTo(
+        result.weight = roundToPlateIncrement(
           calculateWeightFromIntensity(oneRepMax, values.intensityPercent),
-          1
+          increment
         );
         result.weightLbs = roundTo(kgToLbs(result.weight), 1);
         if (reps) {
@@ -284,9 +289,9 @@ export function syncSetValues(
         }
       }
       if (values.intensityPercentMax && values.intensityPercentMax > 0) {
-        result.weightMax = roundTo(
+        result.weightMax = roundToPlateIncrement(
           calculateWeightFromIntensity(oneRepMax, values.intensityPercentMax),
-          1
+          increment
         );
         if (reps) {
           result.rpeMax = calculateRPEFromIntensity(values.intensityPercentMax, reps);
@@ -299,13 +304,19 @@ export function syncSetValues(
       if (values.rpe && values.rpe >= 6.5 && reps) {
         const intensity = calculateIntensityFromRPE(reps, values.rpe);
         result.intensityPercent = roundTo(intensity, 1);
-        result.weight = roundTo(calculateWeightFromIntensity(oneRepMax, intensity), 1);
+        result.weight = roundToPlateIncrement(
+          calculateWeightFromIntensity(oneRepMax, intensity),
+          increment
+        );
         result.weightLbs = roundTo(kgToLbs(result.weight), 1);
       }
       if (values.rpeMax && values.rpeMax >= 6.5 && reps) {
         const intensityMax = calculateIntensityFromRPE(reps, values.rpeMax);
         result.intensityPercentMax = roundTo(intensityMax, 1);
-        result.weightMax = roundTo(calculateWeightFromIntensity(oneRepMax, intensityMax), 1);
+        result.weightMax = roundToPlateIncrement(
+          calculateWeightFromIntensity(oneRepMax, intensityMax),
+          increment
+        );
       }
       break;
   }

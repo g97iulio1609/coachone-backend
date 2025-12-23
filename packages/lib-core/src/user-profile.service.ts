@@ -83,6 +83,7 @@ export class UserProfileService implements IUserProfileService {
           createdAt: true,
           updatedAt: true,
           weightUnit: true,
+          weightIncrement: true,
           workoutGoals: true,
           nutritionGoals: true,
         },
@@ -117,6 +118,7 @@ export class UserProfileService implements IUserProfileService {
           createdAt: true,
           updatedAt: true,
           weightUnit: true,
+          weightIncrement: true,
           workoutGoals: true,
           nutritionGoals: true,
         },
@@ -171,6 +173,9 @@ export class UserProfileService implements IUserProfileService {
       }
       if (input.weightUnit !== undefined && input.weightUnit !== null) {
         updateData.weightUnit = input.weightUnit;
+      }
+      if (input.weightIncrement !== undefined) {
+        updateData.weightIncrement = input.weightIncrement !== null ? input.weightIncrement : null;
       }
       if (input.activityLevel !== undefined) {
         updateData.activityLevel = input.activityLevel !== null ? input.activityLevel : null;

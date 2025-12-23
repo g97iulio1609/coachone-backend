@@ -17,9 +17,10 @@ import {
   calculateWeightFromIntensity,
   calculateIntensityFromWeight,
 } from './helpers/intensity-calculator';
-import { kgToLbs } from '@onecoach/lib-shared';
+import { kgToLbs, roundToPlateIncrement } from '@onecoach/lib-shared';
 import { OneRepMaxService } from '@onecoach/lib-exercise/one-rep-max.service';
 import { prisma } from '@onecoach/lib-core/prisma';
+import { userProfileService } from '@onecoach/lib-core/user-profile.service';
 import { prepareProgramForPersistence } from './helpers/program-transform';
 import { normalizeWorkoutProgram } from './helpers/normalizers/workout-normalizer';
 import { Prisma } from '@prisma/client';
@@ -29,9 +30,14 @@ import { Prisma } from '@prisma/client';
  * Extracted common logic for reuse (DRY principle)
  * @param set - Exercise set to calculate weights for
  * @param oneRepMaxKg - User's 1RM for the exercise in kg
+ * @param weightIncrement - Plate increment for rounding (default 2.5)
  * @returns Updated set with calculated weight, weightLbs, and intensityPercent
  */
-export function calculateSetWeights(set: ExerciseSet, oneRepMaxKg: number): ExerciseSet {
+export function calculateSetWeights(
+  set: ExerciseSet,
+  oneRepMaxKg: number,
+  weightIncrement: number = 2.5
+): ExerciseSet {
   let newWeight: number | null = set.weight ?? null;
   let newWeightLbs: number | null = set.weightLbs ?? null;
   let newIntensityPercent: number | null = set.intensityPercent ?? null;
@@ -39,6 +45,8 @@ export function calculateSetWeights(set: ExerciseSet, oneRepMaxKg: number): Exer
   // Priority: use intensityPercent to calculate weight if available
   if (set.intensityPercent !== null && set.intensityPercent !== undefined && oneRepMaxKg > 0) {
     newWeight = calculateWeightFromIntensity(oneRepMaxKg, set.intensityPercent);
+    // Apply plate rounding
+    newWeight = roundToPlateIncrement(newWeight, weightIncrement);
     newWeightLbs = kgToLbs(newWeight);
   }
   // Fallback: calculate intensityPercent from weight
@@ -106,6 +114,15 @@ export async function calculateWeightsInProgram(
     }
   }
 
+  // Fetch user profile to get weightIncrement preference
+  const userProfile = await userProfileService.getOrCreate(userId);
+  const weightIncrement =
+    userProfile.weightIncrement !== null && userProfile.weightIncrement !== undefined
+      ? typeof userProfile.weightIncrement === 'object' && 'toNumber' in userProfile.weightIncrement
+        ? (userProfile.weightIncrement as { toNumber: () => number }).toNumber()
+        : Number(userProfile.weightIncrement)
+      : 2.5;
+
   const updatedProgram: WorkoutProgram = {
     ...program,
     weeks: program.weeks.map((week: WorkoutWeek) => ({
@@ -127,8 +144,10 @@ export async function calculateWeightsInProgram(
           // SSOT: Update setGroups with calculated weights
           const updatedSetGroups = exercise.setGroups?.map((group: SetGroup) => ({
             ...group,
-            baseSet: calculateSetWeights(group.baseSet, oneRepMaxKg),
-            sets: group.sets.map((set: ExerciseSet) => calculateSetWeights(set, oneRepMaxKg)),
+            baseSet: calculateSetWeights(group.baseSet, oneRepMaxKg, weightIncrement),
+            sets: group.sets.map((set: ExerciseSet) =>
+              calculateSetWeights(set, oneRepMaxKg, weightIncrement)
+            ),
           }));
 
           return {
