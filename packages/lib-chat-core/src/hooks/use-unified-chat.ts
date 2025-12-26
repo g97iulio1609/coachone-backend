@@ -28,7 +28,7 @@ import {
   useChatStore,
   selectConversations,
   selectCurrentConversationId,
-  useCopilotStore,
+  useCopilotActiveContextStore,
 } from '@onecoach/lib-stores';
 
 // ============================================================================
@@ -146,8 +146,12 @@ export function useUnifiedChat(options: UseUnifiedChatOptions = {}): UseUnifiedC
   // Uses Zustand store selector for modelName (already converted from database ID)
   // IMPORTANTE: Include sempre il conversationId corrente (che può essere nuovo) nel body
   // anche se non lo passiamo a useChatCore per evitare reset dei messaggi
-  // CONTEXT-AWARE: Legge mcpContext da CopilotStore per contesto granulare (planId, programId, ecc.)
-  const mcpContext = useCopilotStore((state) => state.mcpContext);
+  // CONTEXT-AWARE: Legge activeContext dal nuovo CopilotActiveContextStore per contesto granulare
+  // Usiamo i singoli selettori invece di selectMcpActiveContext per evitare re-render infiniti
+  const domain = useCopilotActiveContextStore((s) => s.domain);
+  const workoutContext = useCopilotActiveContextStore((s) => s.workout);
+  const nutritionContext = useCopilotActiveContextStore((s) => s.nutrition);
+  const oneAgendaContext = useCopilotActiveContextStore((s) => s.oneAgenda);
 
   const requestBody = useMemo(() => {
     const body: Record<string, unknown> = {
@@ -162,24 +166,53 @@ export function useUnifiedChat(options: UseUnifiedChatOptions = {}): UseUnifiedC
       logger.warn(`🎯 [useUnifiedChat] Sending model from store: ${selectedModelName}`);
     }
 
-    // Add full MCP context from CopilotStore (includes planId, programId, taskId, etc.)
-    // This takes priority over basic screenContext for context-aware operations
-    if (mcpContext && mcpContext.domain) {
-      body.domain = mcpContext.domain;
-      body.context = {
-        domain: mcpContext.domain,
-        userId: mcpContext.userId,
-        athleteId: mcpContext.athleteId,
-        coachId: mcpContext.coachId,
-        isAdmin: mcpContext.isAdmin,
-        nutrition: mcpContext.nutrition,
-        workout: mcpContext.workout,
-        oneAgenda: mcpContext.oneAgenda,
-        exercise: mcpContext.exercise,
-        analytics: mcpContext.analytics,
-        route: mcpContext.route,
-        locale: mcpContext.locale,
-      };
+    // Add full active context from CopilotActiveContextStore
+    // Maps new granular context to API format
+    if (domain) {
+      body.domain = domain;
+      
+      // Build context object, only including non-null domain contexts
+      const contextObj: Record<string, unknown> = { domain };
+      
+      // Workout context mapping (only if present)
+      if (workoutContext) {
+        contextObj.workout = {
+          programId: workoutContext.programId,
+          weekNumber: workoutContext.weekIndex !== null ? workoutContext.weekIndex + 1 : null,
+          dayNumber: workoutContext.dayIndex !== null ? workoutContext.dayIndex + 1 : null,
+          exerciseIndex: workoutContext.selectedExercise?.index ?? null,
+          selectedExerciseName: workoutContext.selectedExercise?.name ?? null,
+        };
+      }
+      
+      // Nutrition context mapping (only if present)
+      if (nutritionContext) {
+        contextObj.nutrition = {
+          planId: nutritionContext.planId,
+          dayNumber: nutritionContext.dayIndex !== null ? nutritionContext.dayIndex + 1 : null,
+          mealIndex: nutritionContext.selectedMeal?.index ?? null,
+          selectedMealName: nutritionContext.selectedMeal?.name ?? null,
+        };
+      }
+      
+      // OneAgenda context mapping (only if present)
+      if (oneAgendaContext) {
+        contextObj.oneAgenda = {
+          projectId: oneAgendaContext.projectId,
+          taskId: oneAgendaContext.selectedTask?.id ?? null,
+          selectedTaskTitle: oneAgendaContext.selectedTask?.title ?? null,
+          milestoneId: oneAgendaContext.selectedMilestone?.id ?? null,
+        };
+      }
+      
+      body.context = contextObj;
+      
+      logger.info('[useUnifiedChat] 📍 Active context:', {
+        domain,
+        workout: workoutContext?.programId,
+        nutrition: nutritionContext?.planId,
+        oneAgenda: oneAgendaContext?.projectId,
+      });
     } else if (screenContext) {
       // Fallback to basic screenContext for backward compatibility
       body.domain = screenContext.type;
@@ -200,7 +233,7 @@ export function useUnifiedChat(options: UseUnifiedChatOptions = {}): UseUnifiedC
     }
 
     return body;
-  }, [selectedModelName, mcpContext, screenContext, reasoningEnabled, newConversationId, chatStoreCurrentConversationId, initialConversationId]);
+  }, [selectedModelName, domain, workoutContext, nutritionContext, oneAgendaContext, screenContext, reasoningEnabled, newConversationId, chatStoreCurrentConversationId, initialConversationId]);
 
   // Fetch conversations non più necessario - ChatStore viene aggiornato via Realtime
   // Mantenuto solo per retrocompatibilità se necessario

@@ -14,3 +14,6 @@ export * from './components';
 
 // Hooks for route sync and context management
 export * from './hooks';
+
+// Providers for domain context
+export * from './providers';

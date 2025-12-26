@@ -49,19 +49,23 @@ const workoutExerciseToolsRecord = workoutTools.workoutExerciseTools
  * Tutti i tool MCP come oggetto chiave-valore
  */
 export const allTools: Record<string, McpTool> = {
-  // Food domain tools
+  // Food domain tools - use tool.name as key for filter compatibility
   ...(Object.fromEntries(
-    Object.entries(foodTools).filter(([, v]) => typeof v === 'object' && 'execute' in v)
+    Object.entries(foodTools)
+      .filter(([, v]) => typeof v === 'object' && 'execute' in v)
+      .map(([, v]) => [(v as McpTool).name, v])
   ) as Record<string, McpTool>),
-  // Exercise domain tools
+  // Exercise domain tools - use tool.name as key for filter compatibility
   ...(Object.fromEntries(
-    Object.entries(exerciseTools).filter(([, v]) => typeof v === 'object' && 'execute' in v)
+    Object.entries(exerciseTools)
+      .filter(([, v]) => typeof v === 'object' && 'execute' in v)
+      .map(([, v]) => [(v as McpTool).name, v])
   ) as Record<string, McpTool>),
-  // Workout domain tools (legacy exports)
+  // Workout domain tools (legacy exports) - use tool.name as key for filter compatibility
   ...(Object.fromEntries(
-    Object.entries(workoutTools).filter(
-      ([, v]) => typeof v === 'object' && 'execute' in v && !Array.isArray(v)
-    )
+    Object.entries(workoutTools)
+      .filter(([, v]) => typeof v === 'object' && 'execute' in v && !Array.isArray(v))
+      .map(([, v]) => [(v as McpTool).name, v])
   ) as Record<string, McpTool>),
   // Workout program generation tools
   ...workoutProgramToolsRecord,
@@ -85,9 +89,11 @@ export const allTools: Record<string, McpTool> = {
   ...memoryToolsRecord,
   // Profile tools
   ...profileToolsRecord,
-  // Body Measurements tools
+  // Body Measurements tools - use tool.name as key for filter compatibility
   ...(Object.fromEntries(
-    Object.entries(bodyMeasurementsTools).filter(([, v]) => typeof v === 'object' && 'execute' in v)
+    Object.entries(bodyMeasurementsTools)
+      .filter(([, v]) => typeof v === 'object' && 'execute' in v)
+      .map(([, v]) => [(v as McpTool).name, v])
   ) as Record<string, McpTool>),
 };
 

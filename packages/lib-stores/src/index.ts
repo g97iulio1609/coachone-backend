@@ -264,3 +264,32 @@ export {
   useAllBodyMeasurementsRealtime,
   bodyMeasurementsKeys,
 } from './body-measurements.hooks';
+
+// Copilot Active Context Store (Event-driven context for AI tools)
+export {
+  useCopilotActiveContextStore,
+  selectActiveDomain,
+  selectWorkoutContext as selectActiveWorkoutContext,
+  selectNutritionContext as selectActiveNutritionContext,
+  selectOneAgendaContext as selectActiveOneAgendaContext,
+  selectSelectedExercise,
+  selectSelectedSetGroup,
+  selectSelectedMeal,
+  selectSelectedFood,
+  selectSelectedTask,
+  selectMcpActiveContext,
+} from './copilot-active-context.store';
+export type {
+  SelectedExercise,
+  SelectedSetGroup,
+  SelectedMeal,
+  SelectedFood,
+  SelectedTask,
+  SelectedMilestone,
+  HoveredElement,
+  WorkoutActiveContext,
+  NutritionActiveContext,
+  OneAgendaActiveContext,
+  ActiveDomain,
+  CopilotActiveContextStore,
+} from './copilot-active-context.store';
