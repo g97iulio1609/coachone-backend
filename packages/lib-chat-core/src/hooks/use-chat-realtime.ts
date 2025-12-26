@@ -231,9 +231,9 @@ export function useChatConversationsRealtime(options: UseConversationsRealtimeOp
 // ============================================================================
 
 import { useChatCore } from './use-chat-core';
+import { logger } from '@onecoach/lib-core';
 
-i
-import { logger } from '@onecoach/lib-core';nterface UseChatWithRealtimeOptions extends UseChatCoreOptions {
+interface UseChatWithRealtimeOptions extends UseChatCoreOptions {
   userId?: string;
   realtimeEnabled?: boolean;
 }
