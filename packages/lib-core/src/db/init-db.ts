@@ -7,7 +7,7 @@
 
 import { PrismaClient } from '@prisma/client';
 
-import { logger } from '@onecoach/lib-core';
+import { logger } from '../logger.service';
 interface InitResult {
   success: boolean;
   initialized: string[];

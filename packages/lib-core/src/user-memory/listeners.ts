@@ -8,7 +8,7 @@
 import { userMemoryService } from '../user-memory.service';
 import type { MemoryDomain, MemoryHistoryItem } from './types';
 
-import { logger } from '@onecoach/lib-core';
+import { logger } from '../logger.service';
 // ============================================================================
 // EVENT TYPES
 // ============================================================================
@@ -439,7 +439,7 @@ export async function handleMemoryEvent(
           break;
 
         default:
-          logger.warn('[Memory] Unknown event type:', (event as { type: string }).type);
+          logger.warn('[Memory] Unknown event type:', { type: (event as { type: string }).type });
       }
     }
   } catch (error) {

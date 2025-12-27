@@ -11,7 +11,7 @@ import type { user_profiles } from '@prisma/client';
 import type { IUserProfileService, UserProfileInput } from '@onecoach/contracts';
 import { createId } from '@onecoach/lib-shared/id-generator';
 
-import { logger } from '@onecoach/lib-core';
+import { logger } from './logger.service';
 function sanitizeStringArray(values?: string[] | null): string[] {
   if (!values || values.length === 0) {
     return [];
@@ -49,7 +49,7 @@ function serializeProfile(
         weightKgValue = null;
       }
     } catch (error: unknown) {
-      logger.warn('Error converting weightKg to number:', error);
+      logger.warn('Error converting weightKg to number:', { error });
       weightKgValue = null;
     }
   }

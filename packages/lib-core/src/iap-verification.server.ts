@@ -1,7 +1,8 @@
 /**
  * In-App Purchase Receipt Verification
  * Handles verification for both iOS (Apple) and Android (Google Play)
- */import { logger } from '@onecoach/lib-core';
+ */
+import { logger } from './logger.service';
 
 
 interface AppleVerificationResponse {

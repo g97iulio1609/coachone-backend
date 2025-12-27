@@ -7,7 +7,7 @@
 import { loadStripe } from '@stripe/stripe-js';
 import type { Stripe } from '@stripe/stripe-js';
 
-import { logger } from '@onecoach/lib-core';
+import { logger } from '../logger.service';
 let stripePromise: Promise<Stripe | null> | null = null;
 
 /**
