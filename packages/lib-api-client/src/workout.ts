@@ -52,6 +52,13 @@ export const workoutApi = {
   },
 
   /**
+   * Duplicate workout program
+   */
+  async duplicate(id: string): Promise<WorkoutProgramResponse> {
+    return apiClient.post<WorkoutProgramResponse>(`/api/workout/${id}/duplicate`, {});
+  },
+
+  /**
    * Create a new workout session
    */
   async createSession(

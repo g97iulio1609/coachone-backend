@@ -42,6 +42,11 @@ export const projectsApi = {
   delete: async (id: string): Promise<void> => {
     await apiClient.delete(`/api/projects?id=${id}`);
   },
+
+  duplicate: async (id: string): Promise<Project> => {
+    const response = await apiClient.post<ProjectResponse>(`/api/projects/${id}/duplicate`, {});
+    return response.project;
+  },
 };
 
 // NOTE: tasksApi and milestonesApi are now in their own files (tasks.ts, milestones.ts)

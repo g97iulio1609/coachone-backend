@@ -52,6 +52,13 @@ export const nutritionApi = {
   },
 
   /**
+   * Duplicate nutrition plan
+   */
+  async duplicate(id: string): Promise<NutritionPlanResponse> {
+    return apiClient.post<NutritionPlanResponse>(`/api/nutrition/${id}/duplicate`, {});
+  },
+
+  /**
    * Get nutrition plan versions
    */
   async getVersions(id: string): Promise<{ versions: unknown[] }> {
