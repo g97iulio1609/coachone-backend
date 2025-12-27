@@ -37,6 +37,8 @@ export {
   workoutRemoveSetGroupTool,
   workoutDuplicateSetGroupTool,
   workoutCopyProgressionPatternTool,
+  workoutPersistProgramTool,
+  workoutApplyModificationTool,
 } from './granular';
 
 // Program Generation Tools

@@ -17,6 +17,24 @@ import type { McpTool } from '../../types';
 import { GranularSessionService } from '@onecoach/lib-workout';
 import { workoutProgramSchema } from '@onecoach/schemas';
 import { normalizeWorkoutProgram } from './program-normalizer';
+import { prisma } from '@onecoach/lib-core';
+import { Prisma } from '@prisma/client';
+
+// =====================================================
+// MCP-Safe Schema (JSON-compatible for AI SDK)
+// =====================================================
+
+/**
+ * MCP-safe version of workoutProgramSchema
+ * 
+ * The original schema uses z.coerce.date() for createdAt/updatedAt which
+ * cannot be converted to JSON Schema for AI SDK tool definitions.
+ * This version uses z.string() for timestamps instead.
+ */
+const mcpWorkoutProgramSchema = workoutProgramSchema.extend({
+  createdAt: z.string().optional().describe('ISO 8601 timestamp'),
+  updatedAt: z.string().optional().describe('ISO 8601 timestamp'),
+});
 
 // =====================================================
 // Schema Definitions
@@ -109,7 +127,7 @@ const WeekUpdateSchema = z.object({
 // =====================================================
 
 const granularSetGroupUpdateParams = z.object({
-  program: workoutProgramSchema,
+  program: mcpWorkoutProgramSchema,
   target: SessionTargetSchema,
   update: SetGroupUpdateSchema,
   oneRepMax: z
@@ -166,7 +184,7 @@ Example: "Change Week 2, Day 1, Exercise 0 to 5 sets of 8 reps at RPE 8"`,
 // =====================================================
 
 const granularIndividualSetUpdateParams = z.object({
-  program: workoutProgramSchema,
+  program: mcpWorkoutProgramSchema,
   target: SessionTargetSchema.extend({
     setGroupIndex: z.number().int().nonnegative(),
     setIndex: z.number().int().nonnegative(),
@@ -220,7 +238,7 @@ Example: "Set the 4th set of squats to be a backoff set at 80% of the weight"`,
 // =====================================================
 
 const granularExerciseUpdateParams = z.object({
-  program: workoutProgramSchema,
+  program: mcpWorkoutProgramSchema,
   target: SessionTargetSchema,
   update: ExerciseUpdateSchema,
 });
@@ -264,7 +282,7 @@ Use this for:
 // =====================================================
 
 const granularDayUpdateParams = z.object({
-  program: workoutProgramSchema,
+  program: mcpWorkoutProgramSchema,
   weekNumber: z.number().int().positive(),
   dayNumber: z.number().int().positive(),
   update: DayUpdateSchema,
@@ -314,7 +332,7 @@ Use this for:
 // =====================================================
 
 const granularWeekUpdateParams = z.object({
-  program: workoutProgramSchema,
+  program: mcpWorkoutProgramSchema,
   weekNumber: z.number().int().positive(),
   update: WeekUpdateSchema,
 });
@@ -364,7 +382,7 @@ const batchUpdateOperationSchema = z.object({
 });
 
 const batchGranularUpdateParams = z.object({
-  program: workoutProgramSchema,
+  program: mcpWorkoutProgramSchema,
   operations: z
     .array(batchUpdateOperationSchema)
     .min(1)
@@ -413,7 +431,7 @@ Example: "Increase weight by 2.5kg for all squat sessions across weeks 2-4"`,
 // =====================================================
 
 const addSetGroupParams = z.object({
-  program: workoutProgramSchema,
+  program: mcpWorkoutProgramSchema,
   target: SessionTargetSchema,
   setGroup: z
     .object({
@@ -482,7 +500,7 @@ Use this for:
 // =====================================================
 
 const removeSetGroupParams = z.object({
-  program: workoutProgramSchema,
+  program: mcpWorkoutProgramSchema,
   target: SessionTargetSchema.extend({
     setGroupIndex: z.number().int().nonnegative(),
   }),
@@ -522,7 +540,7 @@ Note: Cannot remove the last SetGroup (at least one must remain).`,
 // =====================================================
 
 const duplicateSetGroupParams = z.object({
-  program: workoutProgramSchema,
+  program: mcpWorkoutProgramSchema,
   target: SessionTargetSchema.extend({
     setGroupIndex: z.number().int().nonnegative(),
   }),
@@ -564,7 +582,7 @@ Use this for:
 // =====================================================
 
 const copyProgressionPatternParams = z.object({
-  program: workoutProgramSchema,
+  program: mcpWorkoutProgramSchema,
   sourceExerciseName: z.string().describe('Name of the exercise to copy pattern from'),
   targetExerciseName: z.string().describe('Name of the exercise to apply pattern to'),
 });
@@ -605,8 +623,363 @@ Use this for:
 };
 
 // =====================================================
+// Tool: Persist Program (Save Granular Changes)
+// =====================================================
+
+const persistProgramParams = z.object({
+  programId: z.string().describe('The ID of the program to persist'),
+  program: mcpWorkoutProgramSchema.describe('The modified program object to save'),
+});
+
+type PersistProgramParams = z.infer<typeof persistProgramParams>;
+
+export const workoutPersistProgramTool: McpTool<PersistProgramParams> = {
+  name: 'workout_persist_program',
+  description: `Persists a modified workout program to the database.
+  
+IMPORTANT: Use this tool AFTER making granular modifications (add_setgroup, 
+remove_setgroup, granular_setgroup_update, etc.) to save the changes to the database.
+
+This performs a PATCH operation - it only updates the weeks JSON structure,
+preserving all other program metadata.
+
+Workflow:
+1. Use workout_get_program to retrieve the program
+2. Apply granular modifications (workout_add_setgroup, etc.)
+3. Call this tool with the modified program to persist changes`,
+  parameters: persistProgramParams,
+  execute: async (args) => {
+    console.log('[MCP:workout_persist_program] 📥 Called with:', {
+      programId: args.programId,
+      weeksCount: args.program?.weeks?.length,
+    });
+
+    // DEBUG: Log detailed program structure to trace what AI sends
+    if (args.program?.weeks) {
+      args.program.weeks.forEach((week: any, wIdx: number) => {
+        console.log(`[MCP:workout_persist_program] 📊 Week ${wIdx + 1}:`, {
+          daysCount: week.days?.length || 0,
+          days: week.days?.map((d: any, dIdx: number) => ({
+            dayNumber: dIdx + 1,
+            exercisesCount: d.exercises?.length || 0,
+          })),
+        });
+      });
+    }
+
+    const { programId, program } = args;
+    const normalizedProgram = normalizeWorkoutProgram(program);
+
+    // Verify program exists
+    const existingProgram = await prisma.workout_programs.findUnique({
+      where: { id: programId },
+      select: { id: true },
+    });
+
+    if (!existingProgram) {
+      console.log('[MCP:workout_persist_program] ❌ Program not found:', programId);
+      return {
+        success: false,
+        error: `Program with ID ${programId} not found`,
+      };
+    }
+
+    // PATCH: Only update the weeks structure, preserve everything else
+    await prisma.workout_programs.update({
+      where: { id: programId },
+      data: {
+        weeks: normalizedProgram.weeks as unknown as Prisma.InputJsonValue,
+        updatedAt: new Date(),
+      },
+    });
+
+    console.log('[MCP:workout_persist_program] ✅ Saved successfully:', {
+      programId,
+      weeksCount: normalizedProgram.weeks.length,
+    });
+
+    return {
+      success: true,
+      programId,
+      message: `Program ${programId} saved successfully with ${normalizedProgram.weeks.length} week(s)`,
+    };
+  },
+};
+
+// =====================================================
+// Tool: Apply Modification (DIFF-based approach)
+// =====================================================
+
+/**
+ * Modification action types for workout changes
+ */
+const ModificationActionSchema = z.enum([
+  'update_setgroup',
+  'add_setgroup',
+  'remove_setgroup',
+  'update_exercise',
+  'add_exercise',
+  'remove_exercise',
+]);
+
+/**
+ * Target location in the program (can use index or name for fuzzy matching)
+ */
+const ModificationTargetSchema = z.object({
+  weekIndex: z.number().int().min(0).describe('Week index (0-based)'),
+  dayIndex: z.number().int().min(0).describe('Day index within the week (0-based)'),
+  exerciseIndex: z.number().int().min(0).optional().describe('Exercise index (0-based)'),
+  setgroupIndex: z.number().int().min(0).optional().describe('SetGroup index (0-based)'),
+  // Alternative: use names for fuzzy matching (more robust)
+  exerciseName: z.string().optional().describe('Exercise name for fuzzy matching (e.g. "squat", "panca")'),
+});
+
+/**
+ * The modification specification - what to change
+ */
+const applyModificationParams = z.object({
+  programId: z.string().describe('The ID of the program to modify'),
+  action: ModificationActionSchema.describe('The type of modification to apply'),
+  target: ModificationTargetSchema.describe('Where to apply the modification'),
+  changes: z.record(z.string(), z.any()).optional().describe('The changes to apply (for update actions)'),
+  newData: z.any().optional().describe('New data to add (for add actions)'),
+});
+
+type ApplyModificationParams = z.infer<typeof applyModificationParams>;
+
+/**
+ * Helper: Find exercise by name (fuzzy matching)
+ */
+function findExerciseByName(
+  program: any,
+  weekIndex: number,
+  dayIndex: number,
+  exerciseName: string
+): { exerciseIndex: number; exercise: any } | null {
+  const day = program.weeks?.[weekIndex]?.days?.[dayIndex];
+  if (!day?.exercises) return null;
+
+  const searchName = exerciseName.toLowerCase().trim();
+  const exerciseIndex = day.exercises.findIndex((ex: any) =>
+    ex.name?.toLowerCase().includes(searchName) ||
+    ex.exerciseName?.toLowerCase().includes(searchName)
+  );
+
+  if (exerciseIndex === -1) return null;
+  return { exerciseIndex, exercise: day.exercises[exerciseIndex] };
+}
+
+export const workoutApplyModificationTool: McpTool<ApplyModificationParams> = {
+  name: 'workout_apply_modification',
+  description: `Applies a granular modification to a workout program using DIFF-based approach.
+  
+EFFICIENT: You only specify WHAT to change, not the entire program.
+The backend fetches the program, applies your changes, and saves.
+
+SUPPORTED ACTIONS:
+- update_setgroup: Update reps, sets, weight, intensity, rest, etc. of a specific setgroup
+- add_setgroup: Add a new setgroup to an exercise
+- remove_setgroup: Remove a setgroup from an exercise
+- update_exercise: Update exercise properties (name, notes, technique)
+- add_exercise: Add a new exercise to a day
+- remove_exercise: Remove an exercise from a day
+
+TARGETING:
+- Use weekIndex/dayIndex/exerciseIndex for precise targeting
+- OR use exerciseName for fuzzy matching (e.g. "squat" matches "Squat con bilanciere")
+
+EXAMPLE - Change squat to 5x5 at 80%:
+{
+  "programId": "abc-123",
+  "action": "update_setgroup",
+  "target": { "weekIndex": 0, "dayIndex": 0, "exerciseName": "squat", "setgroupIndex": 0 },
+  "changes": { "sets": 5, "reps": 5, "intensity": 80 }
+}`,
+  parameters: applyModificationParams,
+  execute: async (args) => {
+    console.log('[MCP:workout_apply_modification] 📥 Called with:', {
+      programId: args.programId,
+      action: args.action,
+      target: args.target,
+    });
+
+    const { programId, action, target, changes, newData } = args;
+
+    // 1. Fetch current program
+    const existingProgram = await prisma.workout_programs.findUnique({
+      where: { id: programId },
+    });
+
+    if (!existingProgram) {
+      return {
+        success: false,
+        error: `Program with ID ${programId} not found`,
+      };
+    }
+
+    const weeks = existingProgram.weeks as unknown as any[];
+    if (!weeks || weeks.length === 0) {
+      return {
+        success: false,
+        error: 'Program has no weeks',
+      };
+    }
+
+    // 2. Validate target
+    const { weekIndex, dayIndex, exerciseIndex, setgroupIndex, exerciseName } = target;
+
+    if (weekIndex < 0 || weekIndex >= weeks.length) {
+      return {
+        success: false,
+        error: `Invalid weekIndex: ${weekIndex}. Program has ${weeks.length} weeks.`,
+      };
+    }
+
+    const week = weeks[weekIndex];
+    if (dayIndex < 0 || dayIndex >= (week.days?.length || 0)) {
+      return {
+        success: false,
+        error: `Invalid dayIndex: ${dayIndex}. Week ${weekIndex + 1} has ${week.days?.length || 0} days.`,
+      };
+    }
+
+    const day = week.days[dayIndex];
+
+    // 3. Find exercise (by index or name)
+    let targetExerciseIndex = exerciseIndex;
+    let targetExercise: any = null;
+
+    if (exerciseName && targetExerciseIndex === undefined) {
+      const found = findExerciseByName(existingProgram, weekIndex, dayIndex, exerciseName);
+      if (!found) {
+        return {
+          success: false,
+          error: `Exercise "${exerciseName}" not found in Week ${weekIndex + 1}, Day ${dayIndex + 1}`,
+        };
+      }
+      targetExerciseIndex = found.exerciseIndex;
+      targetExercise = found.exercise;
+    } else if (targetExerciseIndex !== undefined) {
+      if (targetExerciseIndex < 0 || targetExerciseIndex >= (day.exercises?.length || 0)) {
+        return {
+          success: false,
+          error: `Invalid exerciseIndex: ${targetExerciseIndex}. Day has ${day.exercises?.length || 0} exercises.`,
+        };
+      }
+      targetExercise = day.exercises[targetExerciseIndex];
+    }
+
+    // 4. Apply modification based on action
+    let message = '';
+
+    switch (action) {
+      case 'update_setgroup': {
+        if (targetExercise === null || targetExerciseIndex === undefined) {
+          return { success: false, error: 'Exercise target required for update_setgroup' };
+        }
+        const sgIdx = setgroupIndex ?? 0;
+        if (!targetExercise.setGroups || sgIdx >= targetExercise.setGroups.length) {
+          return {
+            success: false,
+            error: `SetGroup index ${sgIdx} not found. Exercise has ${targetExercise.setGroups?.length || 0} setgroups.`,
+          };
+        }
+        // Apply changes to setgroup
+        weeks[weekIndex].days[dayIndex].exercises[targetExerciseIndex].setGroups[sgIdx] = {
+          ...targetExercise.setGroups[sgIdx],
+          ...changes,
+        };
+        message = `Updated setgroup ${sgIdx} of "${targetExercise.name || 'exercise'}" with: ${JSON.stringify(changes)}`;
+        break;
+      }
+
+      case 'add_setgroup': {
+        if (targetExercise === null || targetExerciseIndex === undefined) {
+          return { success: false, error: 'Exercise target required for add_setgroup' };
+        }
+        if (!weeks[weekIndex].days[dayIndex].exercises[targetExerciseIndex].setGroups) {
+          weeks[weekIndex].days[dayIndex].exercises[targetExerciseIndex].setGroups = [];
+        }
+        const newSetGroup = newData || { sets: 3, reps: 10, intensity: 70 };
+        weeks[weekIndex].days[dayIndex].exercises[targetExerciseIndex].setGroups.push(newSetGroup);
+        message = `Added setgroup to "${targetExercise.name || 'exercise'}"`;
+        break;
+      }
+
+      case 'remove_setgroup': {
+        if (targetExercise === null || targetExerciseIndex === undefined) {
+          return { success: false, error: 'Exercise target required for remove_setgroup' };
+        }
+        const sgIdx = setgroupIndex ?? 0;
+        if (!targetExercise.setGroups || sgIdx >= targetExercise.setGroups.length) {
+          return { success: false, error: `SetGroup index ${sgIdx} not found` };
+        }
+        weeks[weekIndex].days[dayIndex].exercises[targetExerciseIndex].setGroups.splice(sgIdx, 1);
+        message = `Removed setgroup ${sgIdx} from "${targetExercise.name || 'exercise'}"`;
+        break;
+      }
+
+      case 'update_exercise': {
+        if (targetExercise === null || targetExerciseIndex === undefined) {
+          return { success: false, error: 'Exercise target required for update_exercise' };
+        }
+        weeks[weekIndex].days[dayIndex].exercises[targetExerciseIndex] = {
+          ...targetExercise,
+          ...changes,
+        };
+        message = `Updated exercise "${targetExercise.name || 'exercise'}" with: ${JSON.stringify(changes)}`;
+        break;
+      }
+
+      case 'add_exercise': {
+        if (!newData) {
+          return { success: false, error: 'newData required for add_exercise' };
+        }
+        if (!weeks[weekIndex].days[dayIndex].exercises) {
+          weeks[weekIndex].days[dayIndex].exercises = [];
+        }
+        weeks[weekIndex].days[dayIndex].exercises.push(newData);
+        message = `Added exercise "${newData.name || 'new exercise'}" to Week ${weekIndex + 1}, Day ${dayIndex + 1}`;
+        break;
+      }
+
+      case 'remove_exercise': {
+        if (targetExerciseIndex === undefined) {
+          return { success: false, error: 'exerciseIndex or exerciseName required for remove_exercise' };
+        }
+        const removedName = day.exercises[targetExerciseIndex]?.name || 'exercise';
+        weeks[weekIndex].days[dayIndex].exercises.splice(targetExerciseIndex, 1);
+        message = `Removed exercise "${removedName}" from Week ${weekIndex + 1}, Day ${dayIndex + 1}`;
+        break;
+      }
+
+      default:
+        return { success: false, error: `Unknown action: ${action}` };
+    }
+
+    // 5. Save the modified program
+    await prisma.workout_programs.update({
+      where: { id: programId },
+      data: {
+        weeks: weeks as unknown as Prisma.InputJsonValue,
+        updatedAt: new Date(),
+      },
+    });
+
+    console.log('[MCP:workout_apply_modification] ✅ Applied:', message);
+
+    return {
+      success: true,
+      message,
+      programId,
+    };
+  },
+};
+
+// =====================================================
 // NOTE: I tool sono esportati singolarmente sopra.
 // Non creiamo oggetti contenitori per evitare inquinamento
 // del namespace MCP. Se serve un array di tool, usare
 // l'import * as granularTools from './granular' e filtrare.
 // =====================================================
+

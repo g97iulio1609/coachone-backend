@@ -225,18 +225,27 @@ ${args.includeDeload ? '🔄 Include settimane di deload' : ''}
 // ============================================================================
 
 const workoutGetProgramSchema = z.object({
-  programId: z.string(),
+  programId: z.string().optional().describe('Program ID to retrieve. Falls back to context.workout.programId if not provided.'),
 });
 
 type WorkoutGetProgramArgs = z.infer<typeof workoutGetProgramSchema>;
 
 export const workoutGetProgramTool: McpTool<WorkoutGetProgramArgs> = {
   name: 'workout_get_program',
-  description: 'Gets a workout program by ID with all details',
+  description: 'Gets a workout program by ID with all details. The programId can be passed explicitly or will be taken from context.',
   parameters: workoutGetProgramSchema,
-  execute: async (args: WorkoutGetProgramArgs, _context: McpContext) => {
+  execute: async (args: WorkoutGetProgramArgs, context: McpContext) => {
+    // Use args.programId if provided, otherwise fall back to context
+    const programId = args.programId || context.workout?.programId;
+    
+    if (!programId) {
+      throw new Error('programId is required - either pass it as argument or set it in context.workout.programId');
+    }
+    
+    console.log('[workout_get_program] 📥 Fetching program:', programId);
+    
     const program = await prisma.workout_programs.findUnique({
-      where: { id: args.programId },
+      where: { id: programId },
     });
 
     if (!program) {
@@ -244,21 +253,31 @@ export const workoutGetProgramTool: McpTool<WorkoutGetProgramArgs> = {
     }
 
     const weeks = program.weeks as unknown as WorkoutWeek[];
+    
+    console.log('[workout_get_program] ✅ Program found:', {
+      id: program.id,
+      name: program.name,
+      weeksCount: weeks.length,
+      firstWeekDays: weeks[0]?.days?.length || 0,
+    });
 
-    return createMcpTextResponse(
-      `📋 **${program.name}**
+    // Enhanced response with clear instructions for AI
+    const textContent = `📋 **${program.name}** (ID: ${program.id})
 
 📝 ${program.description}
 ⏱️ Durata: ${program.durationWeeks} settimane
 🎯 Obiettivi: ${program.goals.join(', ')}
 📊 Difficoltà: ${program.difficulty}
 📌 Stato: ${program.status}
-📅 Creato: ${program.createdAt.toLocaleDateString('it-IT')}
 
 **Struttura:**
-${weeks.map((w: any) => `• Settimana ${w.weekNumber}: ${w.days.length} giorni${w.isDeload ? ' (Deload)' : ''}`).join('\n')}`,
-      { program }
-    );
+${weeks.map((w: any) => `• Settimana ${w.weekNumber}: ${w.days.length} giorni - ${w.days.map((d: any) => `Day ${d.dayNumber} (${d.dayTitle || d.dayName || 'Training'}): ${d.exercises?.length || 0} esercizi`).join(', ')}`).join('\n')}
+
+**NOTA:** L'oggetto 'program' completo è incluso nella response. Usalo con i tool granulari:
+- workout_granular_setgroup_update: per modificare serie/ripetizioni di un esercizio
+- workout_persist_program: per SALVARE le modifiche al database (OBBLIGATORIO!)`;
+
+    return createMcpTextResponse(textContent, { program });
   },
 };
 

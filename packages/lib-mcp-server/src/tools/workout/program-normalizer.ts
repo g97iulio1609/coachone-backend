@@ -2,7 +2,7 @@ import type { WorkoutProgram, WorkoutStatus } from '@onecoach/types';
 
 type WorkoutProgramLike = Omit<
   Partial<WorkoutProgram>,
-  'difficulty' | 'name' | 'description' | 'durationWeeks' | 'weeks' | 'goals'
+  'difficulty' | 'name' | 'description' | 'durationWeeks' | 'weeks' | 'goals' | 'createdAt' | 'updatedAt'
 > & {
   name: string;
   description: string;
@@ -10,6 +10,9 @@ type WorkoutProgramLike = Omit<
   durationWeeks: number;
   weeks: any[]; // Allow any structure for weeks to avoid schema mismatch
   goals: string[];
+  // Allow both Date and string for timestamps (Zod schema outputs Date, but type expects string)
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
 };
 
 /**
@@ -26,10 +29,17 @@ export function normalizeWorkoutProgram(program: WorkoutProgramLike): WorkoutPro
         : ('ADVANCED' as WorkoutProgram['difficulty'])
       : ('ADVANCED' as WorkoutProgram['difficulty']);
 
+  // Helper to convert Date | string | undefined to ISO string
+  const toIsoString = (value: Date | string | undefined, fallback: string): string => {
+    if (!value) return fallback;
+    if (value instanceof Date) return value.toISOString();
+    return value;
+  };
+
   return {
     id: casted.id ?? 'temp-program',
-    createdAt: casted.createdAt ?? nowIso,
-    updatedAt: casted.updatedAt ?? nowIso,
+    createdAt: toIsoString(program.createdAt, nowIso),
+    updatedAt: toIsoString(program.updatedAt, nowIso),
     status: casted.status ?? ('ACTIVE' as WorkoutStatus),
     userId: casted.userId,
     version: casted.version,
