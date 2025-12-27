@@ -724,26 +724,70 @@ const ModificationActionSchema = z.enum([
 
 /**
  * Target location in the program (can use index or name for fuzzy matching)
+ * weekIndex/dayIndex are OPTIONAL - if not provided, uses defaults from context
  */
 const ModificationTargetSchema = z.object({
-  weekIndex: z.number().int().min(0).describe('Week index (0-based)'),
-  dayIndex: z.number().int().min(0).describe('Day index within the week (0-based)'),
+  weekIndex: z.number().int().min(0).optional().describe('Week index (0-based). Optional - uses current view context if not specified'),
+  dayIndex: z.number().int().min(0).optional().describe('Day index (0-based). Optional - uses current view context if not specified'),
   exerciseIndex: z.number().int().min(0).optional().describe('Exercise index (0-based)'),
   setgroupIndex: z.number().int().min(0).optional().describe('SetGroup index (0-based)'),
   // Alternative: use names for fuzzy matching (more robust)
   exerciseName: z.string().optional().describe('Exercise name for fuzzy matching (e.g. "squat", "panca")'),
+  // For batch: target all exercises matching criteria
+  allMatching: z.boolean().optional().describe('If true, applies to ALL exercises matching the name'),
 });
 
 /**
- * The modification specification - what to change
+ * Single modification specification
+ * Uses .refine() to ensure changes is not empty for update actions
+ */
+const singleModificationSchema = z.object({
+  action: ModificationActionSchema.describe('The type of modification to apply'),
+  target: ModificationTargetSchema.describe('Where to apply the modification'),
+  // Use explicit SetGroupUpdateSchema for documented, typed changes
+  changes: SetGroupUpdateSchema.optional().describe(
+    'The changes to apply. For update_setgroup use: sets (number), reps (number), weight (kg), intensityPercent (0-100), rest (seconds), rpe (1-10). Example for 5x5 at 80%: { "count": 5, "reps": 5, "intensityPercent": 80 }'
+  ),
+  newData: z.any().optional().describe('New data to add (for add actions like add_exercise, add_setgroup)'),
+}).refine(
+  (data) => {
+    // For update actions, changes must have at least one field
+    if (data.action.startsWith('update_')) {
+      return data.changes && Object.keys(data.changes).length > 0;
+    }
+    return true;
+  },
+  { message: 'For update actions, you MUST provide at least one field in changes (e.g., count, reps, weight, intensityPercent)' }
+);
+
+/**
+ * The modification parameters - supports single or batch operations
+ * Includes .refine() validation to prevent empty changes for update actions
  */
 const applyModificationParams = z.object({
   programId: z.string().describe('The ID of the program to modify'),
-  action: ModificationActionSchema.describe('The type of modification to apply'),
-  target: ModificationTargetSchema.describe('Where to apply the modification'),
-  changes: z.record(z.string(), z.any()).optional().describe('The changes to apply (for update actions)'),
+  // Single modification (backward compatible)
+  action: ModificationActionSchema.optional().describe('The type of modification to apply'),
+  target: ModificationTargetSchema.optional().describe('Where to apply the modification'),
+  // Use explicit SetGroupUpdateSchema with detailed description
+  changes: SetGroupUpdateSchema.optional().describe(
+    'REQUIRED for update actions. Fields: count (number of sets), reps, weight (kg), intensityPercent (0-100 for %1RM), rest (seconds), rpe (1-10). Example for "5x5 at 80%": { "count": 5, "reps": 5, "intensityPercent": 80 }'
+  ),
   newData: z.any().optional().describe('New data to add (for add actions)'),
-});
+  // Batch modifications: array of modifications to apply in sequence
+  batch: z.array(singleModificationSchema).optional().describe('Array of modifications to apply in sequence (for batch operations)'),
+}).refine(
+  (data) => {
+    // Skip validation if using batch mode
+    if (data.batch && data.batch.length > 0) return true;
+    // For single update actions, changes must have at least one field
+    if (data.action?.startsWith('update_')) {
+      return data.changes && Object.keys(data.changes).length > 0;
+    }
+    return true;
+  },
+  { message: 'For update actions, you MUST provide at least one field in changes. Valid fields: count, reps, weight, intensityPercent, rest, rpe. Example: { "count": 5, "reps": 5, "intensityPercent": 80 }' }
+);
 
 type ApplyModificationParams = z.infer<typeof applyModificationParams>;
 
@@ -788,22 +832,38 @@ TARGETING:
 - Use weekIndex/dayIndex/exerciseIndex for precise targeting
 - OR use exerciseName for fuzzy matching (e.g. "squat" matches "Squat con bilanciere")
 
+⚠️ CRITICAL: For update actions, the "changes" object MUST contain at least one field!
+
+CHANGES FIELD MAPPING (for update_setgroup):
+| User Request | changes Object |
+|--------------|----------------|
+| "5x5 at 80%" | {"count": 5, "reps": 5, "intensityPercent": 80} |
+| "3 sets of 10" | {"count": 3, "reps": 10} |
+| "weight 100kg" | {"weight": 100} |
+| "rest 90 seconds" | {"rest": 90} |
+| "RPE 8" | {"rpe": 8} |
+
+Valid fields: count (number of sets), reps, repsMax, weight (kg), intensityPercent (0-100), intensityPercentMax, rpe (1-10), rpeMax, rest (seconds), duration (seconds)
+
 EXAMPLE - Change squat to 5x5 at 80%:
 {
   "programId": "abc-123",
   "action": "update_setgroup",
   "target": { "weekIndex": 0, "dayIndex": 0, "exerciseName": "squat", "setgroupIndex": 0 },
-  "changes": { "sets": 5, "reps": 5, "intensity": 80 }
+  "changes": { "count": 5, "reps": 5, "intensityPercent": 80 }
 }`,
   parameters: applyModificationParams,
-  execute: async (args) => {
+  execute: async (args, context) => {
     console.log('[MCP:workout_apply_modification] 📥 Called with:', {
       programId: args.programId,
       action: args.action,
       target: args.target,
+      changes: args.changes, // Log the actual changes!
+      changesKeys: args.changes ? Object.keys(args.changes) : [],
+      hasBatch: !!args.batch?.length,
     });
 
-    const { programId, action, target, changes, newData } = args;
+    const { programId, batch } = args;
 
     // 1. Fetch current program
     const existingProgram = await prisma.workout_programs.findUnique({
@@ -825,154 +885,222 @@ EXAMPLE - Change squat to 5x5 at 80%:
       };
     }
 
-    // 2. Validate target
-    const { weekIndex, dayIndex, exerciseIndex, setgroupIndex, exerciseName } = target;
+    // Get default context from workout context (passed from frontend view)
+    const workoutContext = (context as any)?.workout || {};
+    const defaultWeekIndex = workoutContext.defaultWeekIndex ?? 0;
+    const defaultDayIndex = workoutContext.defaultDayIndex ?? 0;
 
-    if (weekIndex < 0 || weekIndex >= weeks.length) {
+    // Build list of modifications to apply (single or batch)
+    const modifications = batch && batch.length > 0
+      ? batch
+      : args.action && args.target
+        ? [{ action: args.action, target: args.target, changes: args.changes, newData: args.newData }]
+        : [];
+
+    if (modifications.length === 0) {
       return {
         success: false,
-        error: `Invalid weekIndex: ${weekIndex}. Program has ${weeks.length} weeks.`,
+        error: 'No modification specified. Provide action+target or batch array.',
       };
     }
 
-    const week = weeks[weekIndex];
-    if (dayIndex < 0 || dayIndex >= (week.days?.length || 0)) {
-      return {
-        success: false,
-        error: `Invalid dayIndex: ${dayIndex}. Week ${weekIndex + 1} has ${week.days?.length || 0} days.`,
-      };
-    }
+    const results: string[] = [];
 
-    const day = week.days[dayIndex];
+    // Apply each modification
+    for (const mod of modifications) {
+      const { action, target, changes, newData } = mod;
+      
+      // Use defaults from context if not specified
+      const weekIndex = target?.weekIndex ?? defaultWeekIndex;
+      const dayIndex = target?.dayIndex ?? defaultDayIndex;
+      const { exerciseIndex, setgroupIndex, exerciseName } = target || {};
 
-    // 3. Find exercise (by index or name)
-    let targetExerciseIndex = exerciseIndex;
-    let targetExercise: any = null;
-
-    if (exerciseName && targetExerciseIndex === undefined) {
-      const found = findExerciseByName(existingProgram, weekIndex, dayIndex, exerciseName);
-      if (!found) {
-        return {
-          success: false,
-          error: `Exercise "${exerciseName}" not found in Week ${weekIndex + 1}, Day ${dayIndex + 1}`,
-        };
+      // Validate target indices
+      if (weekIndex < 0 || weekIndex >= weeks.length) {
+        results.push(`❌ Invalid weekIndex: ${weekIndex}. Program has ${weeks.length} weeks.`);
+        continue;
       }
-      targetExerciseIndex = found.exerciseIndex;
-      targetExercise = found.exercise;
-    } else if (targetExerciseIndex !== undefined) {
-      if (targetExerciseIndex < 0 || targetExerciseIndex >= (day.exercises?.length || 0)) {
-        return {
-          success: false,
-          error: `Invalid exerciseIndex: ${targetExerciseIndex}. Day has ${day.exercises?.length || 0} exercises.`,
-        };
+
+      const week = weeks[weekIndex];
+      if (dayIndex < 0 || dayIndex >= (week.days?.length || 0)) {
+        results.push(`❌ Invalid dayIndex: ${dayIndex}. Week ${weekIndex + 1} has ${week.days?.length || 0} days.`);
+        continue;
       }
-      targetExercise = day.exercises[targetExerciseIndex];
-    }
 
-    // 4. Apply modification based on action
-    let message = '';
+      const day = week.days[dayIndex];
 
-    switch (action) {
-      case 'update_setgroup': {
-        if (targetExercise === null || targetExerciseIndex === undefined) {
-          return { success: false, error: 'Exercise target required for update_setgroup' };
+      // Find exercise (by index or name)
+      let targetExerciseIndex = exerciseIndex;
+      let targetExercise: any = null;
+
+      if (exerciseName && targetExerciseIndex === undefined) {
+        const found = findExerciseByName({ weeks }, weekIndex, dayIndex, exerciseName);
+        if (!found) {
+          results.push(`❌ Exercise "${exerciseName}" not found in Week ${weekIndex + 1}, Day ${dayIndex + 1}`);
+          continue;
         }
-        const sgIdx = setgroupIndex ?? 0;
-        if (!targetExercise.setGroups || sgIdx >= targetExercise.setGroups.length) {
-          return {
-            success: false,
-            error: `SetGroup index ${sgIdx} not found. Exercise has ${targetExercise.setGroups?.length || 0} setgroups.`,
+        targetExerciseIndex = found.exerciseIndex;
+        targetExercise = found.exercise;
+      } else if (targetExerciseIndex !== undefined) {
+        if (targetExerciseIndex < 0 || targetExerciseIndex >= (day.exercises?.length || 0)) {
+          results.push(`❌ Invalid exerciseIndex: ${targetExerciseIndex}. Day has ${day.exercises?.length || 0} exercises.`);
+          continue;
+        }
+        targetExercise = day.exercises[targetExerciseIndex];
+      }
+
+      // Apply modification based on action
+      switch (action) {
+        case 'update_setgroup': {
+          if (targetExercise === null || targetExerciseIndex === undefined) {
+            results.push('❌ Exercise target required for update_setgroup');
+            continue;
+          }
+          const sgIdx = setgroupIndex ?? 0;
+          if (!targetExercise.setGroups || sgIdx >= targetExercise.setGroups.length) {
+            results.push(`❌ SetGroup index ${sgIdx} not found. Exercise has ${targetExercise.setGroups?.length || 0} setgroups.`);
+            continue;
+          }
+          
+          // VALIDATION: Reject empty changes
+          if (!changes || Object.keys(changes).length === 0) {
+            console.error('[MCP:workout_apply_modification] ❌ EMPTY CHANGES REJECTED:', {
+              exerciseName: targetExercise.name,
+              sgIdx,
+              changes,
+            });
+            results.push(`❌ Empty changes object for "${targetExercise.name}". You MUST specify at least one field (count, reps, weight, intensityPercent, rest, rpe).`);
+            continue;
+          }
+          
+          const originalSetGroup = { ...targetExercise.setGroups[sgIdx] };
+          weeks[weekIndex].days[dayIndex].exercises[targetExerciseIndex].setGroups[sgIdx] = {
+            ...targetExercise.setGroups[sgIdx],
+            ...changes,
           };
+          
+          // Log the actual changes applied
+          console.log('[MCP:workout_apply_modification] 📝 Applied changes:', {
+            exercise: targetExercise.name,
+            sgIdx,
+            before: originalSetGroup,
+            changes,
+            after: weeks[weekIndex].days[dayIndex].exercises[targetExerciseIndex].setGroups[sgIdx],
+          });
+          
+          results.push(`✅ Updated setgroup ${sgIdx} of "${targetExercise.name || 'exercise'}" with: ${Object.keys(changes).join(', ')}`);
+          break;
         }
-        // Apply changes to setgroup
-        weeks[weekIndex].days[dayIndex].exercises[targetExerciseIndex].setGroups[sgIdx] = {
-          ...targetExercise.setGroups[sgIdx],
-          ...changes,
-        };
-        message = `Updated setgroup ${sgIdx} of "${targetExercise.name || 'exercise'}" with: ${JSON.stringify(changes)}`;
-        break;
-      }
 
-      case 'add_setgroup': {
-        if (targetExercise === null || targetExerciseIndex === undefined) {
-          return { success: false, error: 'Exercise target required for add_setgroup' };
+        case 'add_setgroup': {
+          if (targetExercise === null || targetExerciseIndex === undefined) {
+            results.push('❌ Exercise target required for add_setgroup');
+            continue;
+          }
+          if (!weeks[weekIndex].days[dayIndex].exercises[targetExerciseIndex].setGroups) {
+            weeks[weekIndex].days[dayIndex].exercises[targetExerciseIndex].setGroups = [];
+          }
+          const newSetGroup = newData || { sets: 3, reps: 10, intensity: 70 };
+          weeks[weekIndex].days[dayIndex].exercises[targetExerciseIndex].setGroups.push(newSetGroup);
+          results.push(`✅ Added setgroup to "${targetExercise.name || 'exercise'}"`);
+          break;
         }
-        if (!weeks[weekIndex].days[dayIndex].exercises[targetExerciseIndex].setGroups) {
-          weeks[weekIndex].days[dayIndex].exercises[targetExerciseIndex].setGroups = [];
-        }
-        const newSetGroup = newData || { sets: 3, reps: 10, intensity: 70 };
-        weeks[weekIndex].days[dayIndex].exercises[targetExerciseIndex].setGroups.push(newSetGroup);
-        message = `Added setgroup to "${targetExercise.name || 'exercise'}"`;
-        break;
-      }
 
-      case 'remove_setgroup': {
-        if (targetExercise === null || targetExerciseIndex === undefined) {
-          return { success: false, error: 'Exercise target required for remove_setgroup' };
+        case 'remove_setgroup': {
+          if (targetExercise === null || targetExerciseIndex === undefined) {
+            results.push('❌ Exercise target required for remove_setgroup');
+            continue;
+          }
+          const sgIdx = setgroupIndex ?? 0;
+          if (!targetExercise.setGroups || sgIdx >= targetExercise.setGroups.length) {
+            results.push(`❌ SetGroup index ${sgIdx} not found`);
+            continue;
+          }
+          weeks[weekIndex].days[dayIndex].exercises[targetExerciseIndex].setGroups.splice(sgIdx, 1);
+          results.push(`✅ Removed setgroup ${sgIdx} from "${targetExercise.name || 'exercise'}"`);
+          break;
         }
-        const sgIdx = setgroupIndex ?? 0;
-        if (!targetExercise.setGroups || sgIdx >= targetExercise.setGroups.length) {
-          return { success: false, error: `SetGroup index ${sgIdx} not found` };
-        }
-        weeks[weekIndex].days[dayIndex].exercises[targetExerciseIndex].setGroups.splice(sgIdx, 1);
-        message = `Removed setgroup ${sgIdx} from "${targetExercise.name || 'exercise'}"`;
-        break;
-      }
 
-      case 'update_exercise': {
-        if (targetExercise === null || targetExerciseIndex === undefined) {
-          return { success: false, error: 'Exercise target required for update_exercise' };
+        case 'update_exercise': {
+          if (targetExercise === null || targetExerciseIndex === undefined) {
+            results.push('❌ Exercise target required for update_exercise');
+            continue;
+          }
+          weeks[weekIndex].days[dayIndex].exercises[targetExerciseIndex] = {
+            ...targetExercise,
+            ...changes,
+          };
+          results.push(`✅ Updated exercise "${targetExercise.name || 'exercise'}"`);
+          break;
         }
-        weeks[weekIndex].days[dayIndex].exercises[targetExerciseIndex] = {
-          ...targetExercise,
-          ...changes,
-        };
-        message = `Updated exercise "${targetExercise.name || 'exercise'}" with: ${JSON.stringify(changes)}`;
-        break;
-      }
 
-      case 'add_exercise': {
-        if (!newData) {
-          return { success: false, error: 'newData required for add_exercise' };
+        case 'add_exercise': {
+          if (!newData) {
+            results.push('❌ newData required for add_exercise');
+            continue;
+          }
+          if (!weeks[weekIndex].days[dayIndex].exercises) {
+            weeks[weekIndex].days[dayIndex].exercises = [];
+          }
+          weeks[weekIndex].days[dayIndex].exercises.push(newData);
+          results.push(`✅ Added exercise "${newData.name || 'new exercise'}" to W${weekIndex + 1}D${dayIndex + 1}`);
+          break;
         }
-        if (!weeks[weekIndex].days[dayIndex].exercises) {
-          weeks[weekIndex].days[dayIndex].exercises = [];
-        }
-        weeks[weekIndex].days[dayIndex].exercises.push(newData);
-        message = `Added exercise "${newData.name || 'new exercise'}" to Week ${weekIndex + 1}, Day ${dayIndex + 1}`;
-        break;
-      }
 
-      case 'remove_exercise': {
-        if (targetExerciseIndex === undefined) {
-          return { success: false, error: 'exerciseIndex or exerciseName required for remove_exercise' };
+        case 'remove_exercise': {
+          if (targetExerciseIndex === undefined) {
+            results.push('❌ exerciseIndex or exerciseName required for remove_exercise');
+            continue;
+          }
+          const removedName = day.exercises[targetExerciseIndex]?.name || 'exercise';
+          weeks[weekIndex].days[dayIndex].exercises.splice(targetExerciseIndex, 1);
+          results.push(`✅ Removed exercise "${removedName}" from W${weekIndex + 1}D${dayIndex + 1}`);
+          break;
         }
-        const removedName = day.exercises[targetExerciseIndex]?.name || 'exercise';
-        weeks[weekIndex].days[dayIndex].exercises.splice(targetExerciseIndex, 1);
-        message = `Removed exercise "${removedName}" from Week ${weekIndex + 1}, Day ${dayIndex + 1}`;
-        break;
-      }
 
-      default:
-        return { success: false, error: `Unknown action: ${action}` };
+        default:
+          results.push(`❌ Unknown action: ${action}`);
+      }
     }
 
-    // 5. Save the modified program
-    await prisma.workout_programs.update({
-      where: { id: programId },
-      data: {
-        weeks: weeks as unknown as Prisma.InputJsonValue,
-        updatedAt: new Date(),
-      },
-    });
+    try {
+      // 5. Save the modified program
+      console.log('[MCP:workout_apply_modification] 💾 Saving program to database...', { programId });
+      
+      const updateResult = await prisma.workout_programs.update({
+        where: { id: programId },
+        data: {
+          weeks: weeks as unknown as Prisma.InputJsonValue,
+          updatedAt: new Date(),
+        },
+        select: { id: true, updatedAt: true } // Select only needed fields to confirm update
+      });
 
-    console.log('[MCP:workout_apply_modification] ✅ Applied:', message);
+      const message = results.join('\n');
+      console.log('[MCP:workout_apply_modification] ✅ Applied & Saved:', {
+        message, 
+        updatedAt: updateResult.updatedAt 
+      });
 
-    return {
-      success: true,
-      message,
-      programId,
-    };
+      const result = {
+        success: true,
+        message,
+        programId,
+        modificationsApplied: results.filter(r => r.startsWith('✅')).length,
+        errors: results.filter(r => r.startsWith('❌')).length,
+      };
+      
+      console.log('[MCP:workout_apply_modification] 📤 Returning result:', JSON.stringify(result));
+      return result;
+
+    } catch (error) {
+      console.error('[MCP:workout_apply_modification] 💥 CRITICAL ERROR saving program:', error);
+      return {
+        success: false,
+        error: `Database save failed: ${(error as Error).message}`,
+        debuginfo: String(error)
+      };
+    }
   },
 };
 
