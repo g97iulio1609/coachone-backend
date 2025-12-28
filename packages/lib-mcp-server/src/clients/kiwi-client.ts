@@ -3,21 +3,30 @@
  *
  * Client per comunicare con il server MCP esterno di Kiwi.com.
  * Usa il protocollo MCP standard su trasporto SSE.
+ * 
+ * ARCHITETTURA: Ogni chiamata a callTool() crea una connessione dedicata
+ * per evitare race condition in ricerche parallele.
  */
 
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { SSEClientTransport } from "@modelcontextprotocol/sdk/client/sse.js";
 import { logger } from '@onecoach/lib-shared/utils/logger';
 
+/**
+ * Rappresenta una connessione MCP isolata
+ */
+interface McpConnection {
+  client: Client;
+  transport: SSEClientTransport;
+}
+
 export class KiwiMcpClient {
-  private client: Client | null = null;
-  private transport: SSEClientTransport | null = null;
   private static instance: KiwiMcpClient | null = null;
 
   private constructor() {}
 
   /**
-   * Ottiene l'istanza singleton del client
+   * Ottiene l'istanza singleton del client (stateless, no shared connection)
    */
   public static getInstance(): KiwiMcpClient {
     if (!KiwiMcpClient.instance) {
@@ -27,52 +36,61 @@ export class KiwiMcpClient {
   }
 
   /**
-   * Assicura che il client sia connesso al server
+   * Crea una nuova connessione dedicata per una singola operazione
    */
-  private async ensureConnected() {
-    if (this.client) return;
+  private async createConnection(): Promise<McpConnection> {
+    const transport = new SSEClientTransport(new URL("https://mcp.kiwi.com"));
+    const client = new Client(
+      { name: "onecoach-flight-agent", version: "1.0.0" },
+      { capabilities: {} }
+    );
 
-    try {
-      this.transport = new SSEClientTransport(new URL("https://mcp.kiwi.com"));
-      this.client = new Client(
-        { name: "onecoach-flight-agent", version: "1.0.0" },
-        { capabilities: {} }
-      );
+    await client.connect(transport);
+    
+    if (process.env.NODE_ENV === 'development') {
+      logger.warn("✈️ [Kiwi MCP] Connesso con successo a Kiwi.com");
+    }
 
-      await this.client.connect(this.transport);
-      
-      if (process.env.NODE_ENV === 'development') {
-        logger.warn("✈️ [Kiwi MCP] Connesso con successo a Kiwi.com");
+    return { client, transport };
+  }
+
+  /**
+   * Chiude una connessione specifica
+   */
+  private async closeConnection(conn: McpConnection | null): Promise<void> {
+    if (conn?.transport) {
+      try {
+        await conn.transport.close();
+      } catch (e) {
+        // Ignora errori di chiusura (connessione già chiusa)
       }
-    } catch (error) {
-      logger.error("❌ [Kiwi MCP] Errore di connessione:", error);
-      this.client = null;
-      this.transport = null;
-      throw error;
     }
   }
 
   /**
-   * Esegue un tool sul server Kiwi con retry logic
+   * Esegue un tool sul server Kiwi con retry logic.
+   * Ogni chiamata usa una connessione isolata per evitare race condition.
    */
   public async callTool<T = any>(name: string, args: Record<string, any>, maxRetries = 2): Promise<T> {
     let lastError: Error | null = null;
+    let conn: McpConnection | null = null;
     
     for (let attempt = 0; attempt <= maxRetries; attempt++) {
       try {
-        // Reset connection on retry
         if (attempt > 0) {
           logger.warn(`🔄 [Kiwi MCP] Retry ${attempt}/${maxRetries} per ${name}`);
-          await this.close();
         }
         
-        await this.ensureConnected();
-        if (!this.client) throw new Error("Kiwi MCP client non inizializzato");
+        // Crea connessione dedicata per questo tentativo
+        conn = await this.createConnection();
 
-        const response = await this.client.callTool({
+        const response = await conn.client.callTool({
           name,
           arguments: args,
         });
+        
+        // Chiudi connessione dopo successo
+        await this.closeConnection(conn);
         
         return response as T;
       } catch (error) {
@@ -83,8 +101,9 @@ export class KiwiMcpClient {
           maxRetries,
         });
         
-        // Reset connection for next retry
-        await this.close();
+        // Chiudi connessione fallita
+        await this.closeConnection(conn);
+        conn = null;
         
         // Wait before retry (exponential backoff)
         if (attempt < maxRetries) {
@@ -98,23 +117,23 @@ export class KiwiMcpClient {
 
 
   /**
-   * Lista i tools disponibili sul server Kiwi
+   * Lista i tools disponibili sul server Kiwi.
+   * Crea una connessione temporanea per l'operazione.
    */
   public async listTools() {
-    await this.ensureConnected();
-    if (!this.client) throw new Error("Kiwi MCP client non inizializzato");
-
-    return await this.client.listTools();
+    const conn = await this.createConnection();
+    try {
+      return await conn.client.listTools();
+    } finally {
+      await this.closeConnection(conn);
+    }
   }
 
   /**
-   * Chiude la connessione (se necessario)
+   * @deprecated Non più necessario - le connessioni sono gestite per-request
    */
   public async close() {
-    if (this.transport) {
-      await this.transport.close();
-      this.client = null;
-      this.transport = null;
-    }
+    // No-op: le connessioni sono ora gestite per-request
+    logger.info("ℹ️ [Kiwi MCP] close() chiamato ma le connessioni sono per-request");
   }
 }
